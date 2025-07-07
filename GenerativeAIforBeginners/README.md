@@ -13,7 +13,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[!NOTE]  
 >Aprenderemos todo sobre IA Generativa empezando por los conceptos más fundamentales incluyendo Inteligencia
 >Artificial, Machine Learning, Deep Learning para luego adentrarnos en los avanzados.
->También haremos una demostración de ChatGPT y aprenderemos sus características, y lo que realmente lo diferencia de todo lo
+>También haremos una demostración de `ChatGPT` y aprenderemos sus características, y lo que realmente lo diferencia de todo lo
 >que vino en el pasado o lo que está por venir.
 >Ahora, en el módulo dos, echaremos un vistazo a algunas de las terminologías clave
 >que se oyen mucho en la IA Generativa, y quiero asegurarme de que las entiendes.
@@ -23,10 +23,10 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >Y esto le dará ideas prácticas y consejos sobre cómo utilizar la IA Generativa en su organización o trabajo,
 >y crear algo a partir de ella.
 >A continuación, en el módulo cuatro, crearemos un chatbot avanzado que podrá utilizar para consultar sus datos
->y formular preguntas, todo ello mediante la API ChatGPT.
+>y formular preguntas, todo ello mediante la API `ChatGPT`.
 >Y este módulo en particular va a ser increíble porque verás cómo podemos lograr
 >todo eso en sólo 30 a 50 líneas de código.
->Y ese es el verdadero poder de las herramientas generativas como ChatGPT.
+>Y ese es el verdadero poder de las herramientas generativas como `ChatGPT`.
 
 .
 
@@ -43,3 +43,251 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >Else you can select a star rating of your choice, and leave a small message.
 >
 >Your rating and feedback are very important to us. So please spare a few moments to leave a rating and feedback comments. This will hardly take 2 minutes of your time but it will help support us in creating great content like this.
+
+## Section 2: Understanding Generative AI
+
+### 3. Generative AI - Introduction
+
+>[!NOTE]  
+>Deep Learning, porque esto
+>nos ayudará a entender todos los detalles.
+>A continuación, a partir de estos aprendizajes,
+>haremos una recapitulación y comprenderemos aún más la IA Generativa.
+>Y por último hablaremos de `ChatGPT`, lo veremos en acción y veremos por qué de repente hay tanto revuelo
+>sobre la IA Generativa.
+>
+>Por qué es el único tema del que se oye hablar en cada reunión, en cada post de LinkedIn, en cada artículo de Internet.
+>Así que adelante.
+>Empecemos.
+>Así que chicos, qué es la IA Generativa como su propio nombre indica, es una combinación de Generativa e Inteligencia
+>Artificial o IA.
+>
+>La clave aquí es que la IA utiliza esta tecnología para "generar" algo para ti, para producir algo
+>nuevo.
+>Chicos, este ha sido un breve resumen de tres minutos sobre la IA Generativa y por ahora lo he mantenido muy simple.
+>A medida que avancemos en el curso, ampliaremos todo esto.
+>
+>Te voy a contar todos los aspectos de la IA Generativa de una forma muy sencilla, pero realmente, para entender las
+>cosas con más profundidad, primero tenemos que entender ¿qué es la IA o Inteligencia Artificial?
+>
+>**¿Cómo funciona el aprendizaje automático?**
+>
+>Porque son como un precursor del aprendizaje de la IA Generativa.
+>Así que lo que haremos es pasar al siguiente vídeo y aprender sobre IA, Aprendizaje Automático, Aprendizaje Profundo.
+>Y una vez hecho esto, tendremos algunos fundamentos más resueltos,
+>volveremos de nuevo a la IA Generativa y la comprenderemos aún más a fondo.
+
+### 4. Artificial Intelligence (AI), Machine Learning (ML) & Deep Learning
+
+>[!NOTE]  
+>Así que en este vídeo vamos a hablar de Inteligencia Artificial, Machine Learning y Deep Learning.
+>Y es importante entender estos temas primero porque son los antecedentes clave para conocer la
+>IA Generativa.
+>Así que vamos a entenderlos uno por uno.
+>
+>**En primer lugar, entendamos qué es la Inteligencia Artificial.**
+>
+>Así que los humanos son la especie más inteligente que ha existido en la Tierra.
+>Destacamos en todo lo que hacemos, ya sean ciencias, artes o deportes.
+>El cerebro humano es lo más inteligente de la Tierra.
+>Esto sí que es inteligencia.
+>Cuando intentamos replicar esta inteligencia en una máquina, es decir, cuando intentamos hacer
+>una máquina tan lista, tan inteligente como un ser humano, eso se llama Inteligencia Artificial o IA.
+>La Inteligencia Artificial es el desarrollo de máquinas capaces de realizar tareas que normalmente requieren inteligencia
+>humana.
+>
+>**¿Cómo hacer que las máquinas aprendan?**
+>
+>Así que piénsalo.
+>Y chicos, voy a ir paso a paso.
+>Iremos nivel por nivel.
+>Y te contaré todo esto de forma muy sencilla, muy interactiva, para que tus conceptos queden
+>absolutamente claros.
+>
+>**Si lo piensas bien, ¿cómo aprendemos algo los humanos?**
+>
+>Por ejemplo, hay un niño y ¿cómo aprendería, digamos, qué es una manzana?
+>Verán muchas frutas a su alrededor.
+>Verán plátano, verán naranja, verán manzana.
+>Y con el tiempo entenderán que, vale, todo lo que es redondo, todo lo que es de color rojo, es
+>una manzana.
+>Y la próxima vez que este niño vea diez frutas colocadas delante de él, podrá identificar fácilmente cuál
+>es una manzana.
+>Porque han memorizado algunas propiedades de la fruta, la han visto, la han aprendido, y así
+>es como todos aprendemos las cosas.
+>
+>**¿Qué es el aprendizaje profundo?**
+>
+>Veamos ahora la definición.
+>Es un subconjunto del Aprendizaje Automático,
+>y procesa datos a través de redes neuronales.
+>Y esto se traduce en una mayor precisión para los problemas complicados.
+>Así que no es necesario recordar todo esto.
+>Recuerda los detalles sencillos.
+>
+>Y sólo tres cosas es realmente lo que debes sacar de esta diapositiva.
+>
+>* En primer lugar, el aprendizaje profundo
+>es un subconjunto del aprendizaje automático.
+>
+>* Dos, utiliza una red neuronal.
+>
+>* Y en tercer lugar, ofrece resultados mucho mejores y más precisos en caso de problemas complejos.
+>
+>Así que chicos, esto iba de Inteligencia Artificial, Machine Learning y Deep Learning.
+>Sólo para ponerlos en una sola vista, en un solo contexto.
+>Tenemos la Inteligencia Artificial, que se refiere a crear máquinas que sean inteligentes como los humanos, es decir,
+>crear máquinas en las que se desea que tengan normalmente el mismo nivel de inteligencia que tienen
+>originalmente los humanos.
+>
+>En segundo lugar, tenemos el aprendizaje automático, que podemos decir que es un facilitador de la inteligencia artificial.
+>Permite a las máquinas aprender y mejorar con el tiempo.
+>
+>Y, por último, tenemos el aprendizaje profundo, que es un subconjunto del aprendizaje automático.
+>Y utiliza redes neuronales para resolver el complejo problema.
+
+### 5. Generative AI - Recap
+
+>[!NOTE]
+>
+>![Deep Leraning, Machine Learning and Artificial Intelligence](images/2025-07-04_151459.png "Deep Leraning, Machine Learning and Artificial Intelligence")
+>
+>**¿Dónde encaja la IA Generativa en todo esto?**
+>
+>Como habrás adivinado, la IA generativa es un subconjunto del aprendizaje profundo.
+>Utiliza las redes neuronales de aprendizaje profundo que vimos en el vídeo anterior para comprender los datos de entrenamiento,
+>aprender de ellos y generar nuevos contenidos.
+>
+>Así que, de nuevo, la diferenciación clave que sigue apareciendo es esta palabra "generativa" o la capacidad
+>de generar algo nuevo.
+>
+>![Generative AI](images/2025-07-04_152116.png "Generative AI")
+>
+>Los sistemas de IA existentes que denominamos sistemas de IA convencionales funcionaban de este modo.
+>Les dabas datos de entrenamiento, el modelo aprendía de ellos y luego hacía predicciones o clasificaba
+>los datos en categorías, o procesaba el lenguaje como traducciones, o hacía visión por ordenador como qué
+>es una imagen.
+>
+>![Conventional AI Systems](images/2025-07-04_152513.png "Conventional AI Systems")
+>
+>**En cambio, la IA generativa es totalmente distinta.**
+>
+>Le damos al modelo de IA muchos datos de entrenamiento... mucho, mucho más de lo que normalmente hemos dado al sistema
+>de IA convencional.
+>Y a partir de estos datos de entrenamiento, basados en la red neuronal que opera entre bastidores, es
+>capaz de generar nuevos contenidos, ya sean textos, imágenes, vídeos o lo que sea.
+>
+>Así que si hablamos del mismo ejemplo que hemos comentado antes, entrenamos nuestro modelo -esta vez un modelo generativo
+>de IA- en el mismo conjunto de datos de imágenes de manzanas.
+>Y luego le pedimos que nos genere la imagen de una manzana.
+>Y puede hacerlo.
+>Puede darnos esta nueva imagen.
+>
+>Nótese que esta imagen no procede de los millones de imágenes con las que se ha entrenado este modelo.
+>No es un ejercicio extractivo.
+>Es un ejercicio generativo.
+>
+>![Generative AI](images/2025-07-04_153118.png "Generative AI")
+>
+>**Y una vez más, eso es la IA Generativa.**
+>
+>Está generando nuevos contenidos, ya sean textos, imágenes, audio o vídeo, utilizando la Inteligencia Artificial.
+>Espero que ahora lo tengas muy claro.
+>Ahora que entramos en el siguiente vídeo y empezamos a hablar más en profundidad sobre la IA Generativa, cómo funciona
+>entre bastidores, su aplicabilidad, todas esas cosas,
+>realmente quiero que recuerdes tres cosas clave de estos vídeos anteriores.
+>En primer lugar, para que las máquinas sean inteligentes y precisas, hay que entrenarlas con un gran volumen de datos.
+>
+>**El segundo aspecto clave es que necesitamos una gran capacidad de cálculo, y ya hemos hablado de ello.**
+>
+>Alimentamos un gran volumen de datos de entrenamiento,
+>utilizamos redes neuronales, que
+>son muy complejas.
+>Esperamos respuestas rápidas cuando escribimos algo en `ChatGPT`.
+>Así que la potencia de cálculo tiene que ser enorme.
+>Tiene que ser muy potente para poder procesar estos datos en muy poco tiempo.
+>Y en tercer lugar, estamos asistiendo a un cambio en la forma de interactuar con estos modelos de aprendizaje automático.
+
+### 6. Explore `ChatGPT`: Features & Capabilities
+
+>[!NOTE]
+>
+>![`ChatGPT` is a...](images/2025-07-04_153738.png "`ChatGPT` is a...")
+>
+>**¿Qué es `ChatGPT`?**
+>
+>Leamos la introducción y luego entenderemos los detalles clave.
+>`ChatGPT` es un modelo lingüístico desarrollado por OpenAI.
+>Está diseñado para la comprensión y generación de lenguaje natural, concretamente en un contexto conversacional.
+>
+>¿Verdad?
+>
+>Y no quiero que profundices demasiado en las palabras.
+>Centrémonos en los componentes clave de esta definición que aparecen resaltados en naranja.
+>En primer lugar, es lo que llamamos un Gran Modelo Lingüístico o LLM (Large Language Model).
+>Y cubriremos LLM en el próximo módulo,
+>pero por ahora recuerda que `ChatGPT` es un LLM.
+>Y lo que significa es que es un sistema de inteligencia artificial que es realmente muy bueno con el lenguaje humano.
+>En segundo lugar, está diseñado para la comprensión y generación de lenguaje natural, como
+>ya he mencionado.
+>
+>**Dicho todo esto, ¿por qué no entramos en `ChatGPT` y hacemos una demostración de su capacidad, incluido el aspecto conversacional?**
+>
+>Así que aquí tengo GPT4, que es la versión de pago de esta herramienta.
+>Y como puedes ver aquí, también ofrece DALL-E, que es el modelo de generación de imágenes.
+>Pero como la mayoría de los espectadores utilizarán una versión gratuita, cambiaré a la 3. 5, que utilizaremos para demostrar
+>sus capacidades.
+>
+>Así que yo le preguntaría a `ChatGPT` algo como ¿cuántos aeropuertos hay en Nueva York?>
+>Lo primero que quiero que tengas en cuenta es que `ChatGPT` sólo se ha formado en contenidos hasta 2021, por lo que es posible que no pueda ofrecerte
+>información actualizada, especialmente si preguntas sobre acontecimientos recientes.
+>Pero en mi caso, lo pregunto sobre los aeropuertos de Nueva York, que no es una información muy reciente.
+>Estos aeropuertos llevan allí mucho tiempo, así que obtuve una buena respuesta.
+>Me dice que hay tres aeropuertos, y también me dice que hay aeropuertos más pequeños.
+>
+>**En primer lugar, es una aplicación de IA Generativa.**
+>
+>Está generando datos.
+>Puede generar texto similar al humano.
+>
+>Puede responder preguntas, completar frases, traducir idiomas y realizar análisis de sentimientos.
+>Y la versión 4 puede incluso generar imágenes.
+>
+>En resumen, `ChatGPT` es una aplicación de IA generativa.
+>
+>**En segundo lugar, está desarrollado por una empresa llamada OpenAI, y Microsoft tiene una muy buena inversión en OpenAI.**
+>
+>Es por eso que si nos fijamos en la aplicación de Microsoft, que es donde OpenAI se está utilizando mucho comercialmente,
+>ya sea Bing Search, Windows Copilot, Microsoft Teams, todos ellos tienen integraciones con GPT, las aplicaciones
+>iniciales, todas las que vinieron eran todas de Microsoft.
+>De hecho, en lo que respecta a la nube, por ahora esta capacidad solo está disponible en Azure Cloud, que es una
+>plataforma de Microsoft.
+>
+>**Tercer punto `ChatGPT` se entrena con miles de millones de documentos.**
+>
+>Por poner un ejemplo, la versión actual que vimos, la 3. 5, OpenAI no revela con cuántos datos
+>se entrenó, pero la versión anterior, que era GPT 3, se entrenó con 570 GB de datos
+>de texto.
+>Ahora bien, si has guardado un archivo de texto o si has guardado una página web, sabrás que la mayoría están en KB inferiores.
+>
+>Y aquí estamos hablando de 570 GB de datos de texto.
+>Así que imagina lo grande que es el volumen.
+>Se ha entrenado en casi toda la Wikipedia, blogs enteros, artículos de noticias, todo lo que sea texto
+>en Internet.
+>
+>Y si recuerdas lo que comentábamos en la nota final de nuestro último vídeo, cuantos más datos de entrenamiento,
+>más posibilidades de precisión tendrá tu aplicación.
+>Y eso explica por qué `ChatGPT` es tan bueno.
+>
+>![`ChatGPT`](images/2025-07-04_154603.png "`ChatGPT`")
+>
+>De hecho, ChatGPT es sólo el principio.
+>
+>Cada día aparecen nuevos modelos y se producen nuevos avances.
+>Tal vez haya algún modelo nuevo que llegue mañana y sustituya a ChatGPT como campeón del mercado.
+>Nunca se sabe.
+>Pero lo que permanecerá es la idea de que todos tendremos que adoptar la IA Generativa en nuestro trabajo.
+>
+>Ya seamos desarrolladores, probadores, analistas empresariales, comerciales, expertos en marketing o cualquier otra persona, todos
+>tendremos que aprender sobre la IA Generativa y empezar a utilizarla en nuestro trabajo.
+>Y de eso va a tratar este curso.

@@ -291,3 +291,9 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >Ya seamos desarrolladores, probadores, analistas empresariales, comerciales, expertos en marketing o cualquier otra persona, todos
 >tendremos que aprender sobre la IA Generativa y empezar a utilizarla en nuestro trabajo.
 >Y de eso va a tratar este curso.
+
+## Section 3: Quiz
+
+### Quiz 1: Generative AI Basics
+
+![Quiz 1: Generative AI Basics](images/2025-07-07_093536.gif "Quiz 1: Generative AI Basics")

@@ -297,3 +297,245 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 ### Quiz 1: Generative AI Basics
 
 ![Quiz 1: Generative AI Basics](images/2025-07-07_093536.gif "Quiz 1: Generative AI Basics")
+
+
+
+
+## Section 4: Understanding key terminologies
+
+### 7. Introduction
+
+![Module 2. Undertanding key terminologies](images/2025-07-08_084120.png "Module 2. Undertanding key terminologies")
+
+### 8. LLM (Large Language Model)
+
+>[!NOTE]
+>
+>**¿Qué es un LM y por qué oímos hablar tanto de él?**
+>
+>Para que lo entiendas de forma sencilla, a un nivel muy alto, cuando estamos en un smartphone intentando
+>enviar un mensaje de texto a alguien y aparece una función de texto predictivo.
+>Como puede ver, la persona teclea cant y el sistema predice las siguientes palabras: cantidad, cantina
+>o cantar.
+>
+>Eso es más o menos lo que es un nivel muy alto.
+>Pero, por supuesto, es más masivo.
+>Hay mucha más precisión y también intervienen muchos otros componentes.
+>Del mismo modo, cuando escribimos algo en el chat, GPT y responde por nosotros, eso también es una LM, una muy fuerte.
+>
+>Así que sí, el chat GPT también es un LM, por lo que los LM no son más que un tipo específico de modelos de IA que están diseñados para comprender
+>y generar textos similares a los humanos.
+>Por tanto, solo hay una cosa clave que debes recordar de esta diapositiva.
+>
+>Y eso es LM significa texto.
+>Pueden comprender textos, procesarlos y generarlos.
+>
+>**¿Cómo funciona una LM?**
+>
+>Ya conocemos las redes neuronales y su capacidad para manejar escenarios complejos con eficacia gracias
+>a su estructura en capas.
+>Así que el cerebro de la LM es un tipo específico de red neuronal, también llamada transformadora.
+>Y no vamos a profundizar en lo que es un transformador.
+>Su arquitectura les permite entender el lenguaje, el
+>significado y el contexto.
+>Todo eso.
+>
+>Y lo veremos con más detalle cuando hablemos de incrustaciones más adelante.
+>Pero de momento, recuerda que Transformers es un tipo de red neuronal muy buena para entender el lenguaje
+>humano.
+>Las palabras tienen significado, contexto, etcétera.
+>Y este transformador está entrenado con muchos datos de entrenamiento, de hecho, mucho, mucho más de lo que vemos.
+>
+>Por ejemplo, `ChatGPT` está entrenado en Wikipedia completa y muchos más sitios web basados en texto, blogs, manuales,
+>etcétera.
+>Y base de este aprendizaje.
+>Es realmente bueno en la comprensión del texto y la entrega de la salida.
+>
+>Por eso, si miras `ChatGPT`, por ejemplo, le preguntas cualquier cosa.
+>Entiende tu pregunta, da buena respuesta.
+>Y la razón de ello es que se está entrenando en el conjunto masivo de datos, como he mencionado.
+>Y este enorme número de parámetros transformador de base, red neuronal.
+>
+>**Tercer y último punto.**
+>
+>La formación no termina aquí.
+>Lo que vimos aquí fue nuestro pre-entrenamiento con el que los modelos ya vienen hechos.
+>A continuación, también podemos realizar algunos ajustes finos, lo que significa que podemos ajustar aún más el LM a un conjunto de datos
+>más específico y orientado a la tarea.
+>Más adelante hablaremos más a fondo del ajuste fino.
+>Pero por poner un ejemplo, si queremos utilizar un LM para completar o resumir textos, podemos afinarlo
+>exponiéndolo a los datos relacionados con estas tareas.
+>
+>**¿Dónde se puede utilizar el LMS?**
+>
+>La respuesta es cualquier cosa que implique texto y, de hecho, ya se están utilizando en muchos de estos espacios.
+>El primero es la generación de contenidos.
+>Así que usted está en las ventas de publicidad de marketing en cualquier lugar.
+>Podemos utilizar LMS como `ChatGPT` o Lama para nuestra generación de contenido de texto.
+>
+>**El segundo es el chat bot.**
+>
+>Este es un ámbito en el que los LMS tendrán un gran impacto.
+>Cuando chateamos con el servicio de atención al cliente, LMS puede sustituir ese primer nivel de compromiso y responder a las preguntas
+>por usted basándose en la documentación de la empresa.
+>Y si el usuario sigue insatisfecho, puede hablar con un humano.
+>
+>Y por último, las preguntas y respuestas, probablemente el caso de uso más utilizado.
+>Pedimos `ChatGPT` para cualquier pregunta y dar.
+>Nos da la respuesta puntual.
+>
+>Imagina que si quiero saber quién ganó la Superbowl 2020, no tengo que entrar en Wikipedia y leer un largo
+>documento.
+>Puedo hacer esa pregunta y obtener una respuesta concreta en la parte de aprendizaje práctico de este curso.
+>Más adelante crearemos un chatbot como este y lo verás en acción.
+>Así que, chicos, estos son algunos de los casos de uso de LM.
+>
+>Pero recuerde que la lista no acaba aquí.
+>LMS cambiará todas las formas en que interactuamos y manipulamos los datos de texto.
+>Y la lista de LMS está creciendo cada día de GPT a Lama a la palma de la mano para señalar LMS para la industria automotriz industria financiera.
+
+### 9. Prompt Engineering
+
+>[!NOTE]
+>
+>Así que cada vez que se hace una pregunta o se da una instrucción y una entrada para obtener la respuesta
+>deseada, eso es un prompt.
+>
+>Por solicitud se entiende una pregunta específica o una entrada que se da a un sistema de IA para obtener la respuesta requerida.
+>
+>Tenemos algunos ejemplos en la pantalla, como puedo decirle a `ChatGPT` que resuma los puntos clave de un artículo de investigación,
+>o puedo decirle que escriba una historia corta, o puedo decirle a Dall-E, que es una aplicación generativa de imágenes,
+>que genere imágenes de un coche amarillo.
+>O puedo pedirle a GitHub Copilot, que es un compañero de generación de código, que escriba un programa en Python para sumar
+>dos números.
+>Así que todo esto son indicaciones.
+>Así que, incluso sin conocer esta terminología, hasta ahora todos utilizábamos prompts cada
+>vez que introducíamos algo en `ChatGPT`.
+>
+>Y en eso consiste la ingeniería rápida.
+>Si quieres obtener buenas respuestas, tienes que hacer buenas preguntas.
+>Así pues, la ingeniería de la rapidez consiste en elaborar consultas bien definidas para formular preguntas claras.
+>Si haces preguntas concretas y precisas, preguntas sin ambigüedades, obtendrás respuestas mejores,
+>precisas y pertinentes.
+>
+>![Mejores prácticas para _Prompt Enineering_](images/2025-07-08_090624.png "Mejores prácticas para _Prompt Enineering_")
+
+
+
+### 10. Embeddings
+
+>[!NOTE]
+>
+> Ahora bien, todo eso era estupendo y perfecto, pero si se hace una pausa y se piensa en ello, hay algo
+>muy fundamental en lo que no hemos pensado.
+>
+>Y es que las máquinas no entienden el texto.
+>Sólo entienden de números.
+>
+>Entonces, ¿cómo entienden estos llms lo que significa una palabra?
+>
+>¿O cómo pueden las máquinas reconocer la similitud entre dos textos como cuando le preguntas cuál es la capital de
+>la India?
+>¿Y genera la palabra Nueva Delhi?
+>
+>**Ahí es donde entran en escena las incrustaciones.**
+>
+>Por tanto, una incrustación es una representación numérica del texto.
+>
+>![Embeddings son representaciones numéricas del texto](images/2025-07-08_091205.png "Embeddings son representaciones numéricas del texto")
+>
+>Ahora bien, lo que significan estas incrustaciones sólo lo sabe el modelo de transformador que las generó.
+>Esto es lo que el entrenamiento del modelo le ha enseñado a generar correctamente estas incrustaciones.
+>Cómo retener el significado.
+>
+>**El contexto de la relación.**
+>
+>![Contexto de la relación](images/2025-07-08_091553.png "Contexto de la relación")
+>
+>Toda esta información se almacena en estas incrustaciones y sólo el la entiende.
+>Lo utiliza para generar la salida.
+>
+>Por ejemplo, basándose en las incrustaciones, el LM sabe que la palabra I va seguida de una palabra de acción como
+>comer.
+>También sabe que las palabras hielo y crema van juntas.
+>Por eso ves que las incrustaciones de hielo y nata son muy parecidas entre sí.
+>Así es como fue entrenado.
+>Y recuerda que lo ha hecho durante miles de millones de palabras.
+>Ha generado billones de estas incrustaciones, y ese ha sido el entrenamiento de un modelo como
+>`ChatGPT`.
+>Y durante este entrenamiento, ha dominado el arte de capturar toda esta información con precisión en las incrustaciones.
+>Así que cuando alguien le pida al LM que genere un texto, utilizará todo este aprendizaje que ha conseguido,
+>utilizará todas estas incrustaciones que ha descubierto y las utilizará para predecir qué palabra viene
+>a continuación.
+
+### 11. Fine Tuning
+
+>[!NOTE]
+>
+>Es decir, le haces una pregunta a ChatGPT sobre cualquier tema genérico y te dará una buena respuesta.
+>Por tanto, los llms suelen estar preentrenados y ser muy precisos.
+>Pero todo esto es formación general.
+>Si desea generar información sobre una tarea específica o un conjunto de datos concreto de su organización, tendrá
+>que entrenar el modelo con su conjunto de datos concreto.
+>Y ahí es donde entra en juego el ajuste fino.
+>
+>**¿Qué es el ajuste fino?**
+>
+>Es como ajustar un LM preentrenado o lo que llamamos modelo base para realizar una tarea más específica.
+>
+>**¿Por qué lo hacemos?**
+>
+>Lo hacemos para obtener mejores resultados en un conjunto de datos específico, por ejemplo, un conjunto de datos médicos ajustado
+>con precisión le dará mejores respuestas a sus consultas que uno básico o de vainilla.
+>Ése era el qué y el por qué.
+>
+>**Hablemos de cómo hacer el ajuste fino.**
+>
+>Así que hay tres formas de afinar un modelo.
+>
+>* Y la primera se denomina ajuste fino autosupervisado.
+>Y lo que significa es que le das a tu modelo base una gran pila de datos de entrenamiento que son específicos de tu
+>dominio, y haces que el modelo aprenda de ellos.
+>Así, el modelo aprende a predecir los datos que faltan.
+>Como cuando dices yo helado, el modelo predice que la palabra que falta es comer.
+>Ahora bien, esto es muy similar a cómo se entrena el modelo base.
+>Y tienes razón.
+>
+>**La siguiente es lo que llamamos ajuste fino supervisado, y en realidad es una forma supervisada de aprendizaje.**
+>
+>Es decir, se proporcionan datos de entrenamiento detallados y etiquetados que tienen entrada y salida, y el modelo puede aprender
+>de ellos.
+>
+>Así que tu conjunto de datos etiquetados diría algo así como, ¿cómo encuentro un hueso roto?
+>Y la salida sería de rayos X.
+>Así que estás dando estos conjuntos de datos etiquetados a tu modelo.
+>Y va aprendiendo y mejorando en función de ellos.
+>
+>**Y el último es lo que llamamos aprendizaje por refuerzo.**
+>
+>Y en realidad el aprendizaje por refuerzo es un concepto antiguo.
+>
+>Es básicamente un método de aprendizaje basado en la retroalimentación.
+>
+>**¿Cómo habilitar GPT para responder a esa pregunta?**
+>
+>La respuesta es el ajuste fino.
+>
+>Usted entrenará el modelo con su conjunto de datos, y éste será capaz de darle ahora respuestas pertinentes para ese
+>conjunto de datos.
+>En eso consiste el ajuste fino.
+>
+>Ahora, al mismo tiempo, hablemos de lo que no es el ajuste fino.
+>En primer lugar, la puesta a punto no consiste en crear algo desde cero.
+>No partimos de cero.
+>Partimos de un modelo básico que ya ha sido entrenado en un conjunto de datos de gran volumen, y
+>sólo lo adaptamos a nuestro conjunto de datos específico.
+>
+>Por lo tanto, el ajuste fino es como construir sobre el conocimiento ya existente, no es reemplazar ese conocimiento.
+>El ajuste fino no significa que no se necesite ningún dato.
+
+
+### 12. Recap - Summary View
+
+![12. Sumary View](images/2025-07-08_101923.png "12. Sumary View")
+

@@ -539,3 +539,10 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 ![12. Sumary View](images/2025-07-08_101923.png "12. Sumary View")
 
+
+
+## Section 5: Quiz
+
+![Quiz 2: Generative AI Basics"](images/20250-07-08_183030.gif "Quiz 2: Generative AI Basics")
+
+

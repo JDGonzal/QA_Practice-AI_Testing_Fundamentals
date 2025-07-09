@@ -546,3 +546,183 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 ![Quiz 2: Generative AI Basics"](images/20250-07-08_183030.gif "Quiz 2: Generative AI Basics")
 
 
+
+## Section 6: GenAI Use Cases Across Industries
+
+### 13. Introduction
+
+>[!NOTE]
+>
+>Ya estamos en el módulo tres del curso, y aquí hablaremos de cómo la IA generativa está trastornando
+>muchas industrias.
+>
+>Como he mencionado antes, también hay un invento que aparece una vez cada diez años que cambia las reglas
+>del juego y pretende influir en todos los sectores, en todas las formas de interacción humana y de trabajo.
+>Está claro que la IA generativa es esa tecnología.
+>Es el invento de la década.
+>
+>Así pues, el objetivo de este módulo del curso es mostrarle cuál es el potencial de la IA generativa
+>en algunos sectores, cuáles son los casos de uso comunes que pueden resolverse y qué beneficios aporta.
+>Así que, sea cual sea el sector en el que trabajes, tanto si se trata aquí como si no, mi idea es
+>plantar esta idea en tu mente sobre todo lo que es posible, y luego espero que vuelvas, pienses en tu
+>área de trabajo y veas cómo puedes utilizar la IA generativa en ella.
+>
+>Ese es todo mi proceso de pensamiento y mantendremos una sesión muy orientada a la práctica.
+>
+>Antes de empezar, un consejo.
+>
+>La gente mira la IA generativa desde un nuevo prisma, pero no es que sólo pueda utilizarse para nuevos casos de uso.
+>Muchos de los casos de uso existentes, como el chatbot, el marketing predictivo o el análisis de sentimientos, llevan
+>mucho tiempo en el mercado y se gestionan mediante sistemas de IA convencionales, pero pueden optimizarse aún más utilizando
+>la IA generativa.
+>
+>Así que tenga en cuenta también sus casos de uso existentes y piense en cómo la IA generativa puede mejorarlos aún más.
+
+### 14. Software Development
+
+>[!NOTE]
+>
+>El primer campo del que vamos a hablar es el desarrollo de software.
+>
+>El desarrollo de software es un campo muy amplio.
+>Creamos todo tipo de software para distintos fines y cada aplicación es
+>diferente.
+>Pero en el fondo hay unas cuantas actividades que son comunes a cualquier desarrollo
+>de software.
+>
+>Siempre habría una fase de construcción, siempre habría una fase de pruebas,
+>siempre habría una fase de análisis de requisitos, y cada una de ellas tendría
+>ciertos resultados.
+>Y podemos mejorar la productividad y la calidad de cada una de estas etapas utilizando
+>
+>la IA Generativa.
+>Así que hablemos primero de ellos aquí y luego no nos limitaremos
+>sólo a la teoría.
+>
+>![Software Development -> Build](images/2025-07-09_113509.png "Software Development -> Build")
+>
+>**¿Cómo puede ayudarle aquí la IA generativa?**
+>
+>* En primer lugar, la IA generativa puede ayudarle a generar el código desde cero.
+>Así que puedes decirle a GPT que cree un código python para, digamos sumar dos
+>números, ¿verdad?
+>O puedes decirle que se conecte a una base de datos y GPT generará rápidamente
+>ese código para ti.
+>
+>* Así que cuando estás desarrollando el código, lo ejecutas, te encuentras con un error,
+>ahora tienes que depurarlo.
+>Puedes pegar ese mensaje de error en GPT y te sugerirá cuáles son las
+>resoluciones para eso, cómo puedes solucionarlo.
+>
+>* El tercer punto es que puedes utilizar los consejos de la IA generativa para optimizar el
+>rendimiento.
+>Así que piensa, tienes una consulta SQL que hace algo, puedes pegar
+>esa consulta SQL en GPT y te daría sugerencias sobre cómo mejorar
+>el rendimiento general.
+>
+>* Y por último, para todas las ideas anteriores, no necesitas
+>ir a GPT ni a ningún otro LLM.
+>Hay empresas como GitHub y AWS que han creado sus propios compañeros
+>de código.
+>Así que hay utilidades como GitHub Copilot, AWS CodeWhisperer, y puedes integrarlas
+>directamente en tus IDEs, y obtendrías recomendaciones
+>de inmediato sobre cuál debería ser el código, cuál es el error, ese
+>tipo de cosas.
+>
+>![Software Development -> Testing](images/2025-07-09_152815.png "Software Development -> Testing")
+>
+>Le pedimos que desempeñe el papel de un comprobador manual.
+>Y luego decimos que la aplicación tiene una página de inicio de sesión donde el usuario introduce
+>un nombre de usuario, contraseña, pulsa el botón de inicio de sesión.
+>Así que estoy dando detalles muy claros que hay tres campos.
+>Así son los nombres de los campos.
+>
+>El nombre del botón es botón de inicio de sesión.
+>
+>También hay una opción para olvidar el nombre de usuario y la contraseña.
+>
+>¿Puede generar escenarios de prueba para esto?
+>
+>Así que adelante, dejemos que haga su magia.
+>Y como puedes ver, ha empezado a generar algo y está convirtiendo
+>escenarios.
+>Me está dando login válido, login inválido, credenciales vacías, inyección SQL.
+>Así que, como puedes ver desde el primer momento, ha empezado a rellenar los detalles.
+>
+>![Software Development -> Requirement G.](images/2025-07-09_153249.png "Software Development -> Requirement G.")
+>
+>![Software Development -> Documentation](images/2025-07-09_153459.png "Software Development -> Documentation")
+
+
+### 15. Retail
+
+>[!NOTE]
+>
+>**El primer caso de uso del que quiero hablar es la recomendación de productos.**
+>
+>Así que si lo piensas hay cientos de miles de productos disponibles en Amazon.
+>Ahora, cuando un cliente acuda a la aplicación apenas tardará entre 10 y 15 minutos.
+>Por eso es muy importante que pueda encontrar el producto fácilmente.
+>_eben tener una descripción detallada del producto.
+>
+>Debe incluir viñetas, especificaciones, reseñas, preguntas y respuestas, todas estas cosas para ayudarle a hacer la elección
+>rápidamente.
+>Y todo esto es información de texto.
+>Así que la IA generativa es muy buena generando texto.
+>Y, por tanto, podemos utilizarla para generar todos estos detalles.
+>
+>Además, también podemos pedirle que lo haga SEO amigable.
+>Podemos pedirle que lo haga corto descriptivo como queramos.
+>Puede generar todas esas combinaciones para nosotros.
+>Otra cosa que podemos hacer es marketing específico y localizado.
+>
+>Así, por ejemplo, digamos que soy alguien que ha comprado un portátil, así que me pueden enviar recomendaciones de monitor,
+>teclado y soporte para el portátil porque es algo que quizá quiera comprar en un futuro próximo.
+>
+>![Retail -> Product Recomendation](images/2025-07-09_154002.png "Retail -> Product Recomendation")
+>
+>![Retail -> Supply Chain Optimization](images/2025-07-09_154245.png "Retail -> Supply Chain Optimization")
+>
+>![Retail -> Customer Support](images/2025-07-09_154513.png "Retail -> Customer Support")
+>
+>![Retail -> Sentiment Analysis](images/2025-07-09_154732.png "Retail -> Sentiment Analysis")
+>
+>Y por eso dije, chicos, que el comercio minorista es un espacio donde la IA generativa tiene un potencial tremendo.
+>Y por eso quería hablarte de ello.
+>Bien.
+>Muchos de los casos de uso que aparecen aquí siguen realizándose con IA convencional.
+>
+>Hay sistemas para hacer incluso este análisis de sentimiento del que hablamos, hay sistemas convencionales
+>de IA para hacerlo.
+>Pero de nuevo, como he dicho, todo esto es texto, ¿verdad?
+>Y realmente sobresale en ello.
+>Bien.
+>
+>Obtendrá mejores resultados.
+>Obtendrá un lenguaje natural, capacidad de conversación.
+>
+>Puedes seguir adelante y puedes usarlo para generar nuevos contenidos para tus campañas de marketing, para
+>tus publicaciones en redes sociales, y lo veremos en la próxima.
+>Pero todo esto puede disparar las operaciones minoristas.
+>
+>Todo ello puede mejorar la cadena de suministro, la satisfacción del cliente y generar enormes beneficios
+>en el sector minorista.
+>¿Verdad?
+>Las posibilidades de la IA generativa en el comercio minorista son infinitas, ¿verdad?
+>Hay muchas vías que tocar, muchas opciones que mejorar, modificar, automatizar.
+>Y por eso dije que incluía el comercio minorista en este vídeo en concreto.
+>Así que puedo darte una idea de cuáles son.
+
+### 16. Marketing
+
+>[!NOTE]
+>
+>![Marketing -> Content Generation](images/2025-07-09_155301.png "Marketing -> Content Generation")
+>
+>![Marketing -> Search Engine Optimization (SEO)](images/2025-07-09_155524.png "[Marketing -> Search Engine Optimization (SEO)")
+>
+>![Marketing -> Market Research](images/2025-07-09_164021.png "Marketing -> Market Research")
+>
+>
+
+

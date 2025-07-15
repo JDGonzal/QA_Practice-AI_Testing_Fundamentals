@@ -797,3 +797,28 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >* [Chatbot Code.txt](https://att-c.udemycdn.com/2024-07-16_03-01-56-a96a42b51cecb37a4b501b8b50ee8792/original.txt?response-content-disposition=attachment%3B+filename%3DChatbot%2BCode.txt&Expires=1752612411&Signature=s9VliWkepX1eJBSsLLftYdLByHskOaVdomkAnm5nVWfOS8LXVnsQs~XtnnqsSzF6SL8fkj2uGCzep33r1~G~b1oBqUoYi~jftwJeeW5vbKHBd~Lzup4WLVjm5GamLPBzu8DvoAABdiXVbAg98c28x4doNbQcGCNEbsVzL8U5lbu4GZkVvuEOTXalCf0fN96STVV1bJUj-Ywcqlzz5aRDdXOe1STYmIMl83qM7h3NteyO3ErBbW-7y2UL9U3MZPk3Ql4L0HJugdp5XTrGv4Q8G0lYWmmOtDw~0tq4wH8BQilIAjlexELPk~bj1t45uSf0RdALqwH8P1P4a~GcRDwC9A__&Key-Pair-Id=K3MG148K9RIRF4)
 >* [Chatbot Module - Common Issues and how to fix them.pdf](https://att-c.udemycdn.com/2024-07-16_03-03-07-5720e25a388cf1d31e86445b4200aaac/original.pdf?response-content-disposition=attachment%3B+filename%3DChatbot%2BModule%2B-%2BCommon%2BIssues%2Band%2Bhow%2Bto%2Bfix%2Bthem.pdf&Expires=1752612410&Signature=C4swcdhDrIDSqG0qarhKV8lMEDLEzGsUNr0bZNTAtyJM1xCX6XWeeHjnhFLIDLxFr2TC81zi9v3ZkpGx0SQLwhh12xBwX9XgB6elWUgXFuGvYJrTGvrweAaq1DiwveshXVkVSdqTMyQTGJiC1r9w-T8hVHBQt0cFcAlBIzYin9kiVqS43y4X~Bhn6GVvVXIaUbykrunOteqaOEHgJU8phnBflDRxz0dBKEidL6IFBd1xGET1lE4sTTOALV7SkHIuRVJBRvaOnrYtQox-ACKdjDNKBIJIEbQjMAZUdfTZeBHKGzzSQ64P1SE~EVu5MLAak9WIZuxaF3mCt4TlSwqIqw__&Key-Pair-Id=K3MG148K9RIRF4)
 
+1. Lo primero con base en la documentación, es descargar el  [Python 3.11.6](https://www.python.org/downloads/release/python-3116/)
+2. Este sería el proceso de instalación: </br> ![Python 3.11.6](images/2025-07-15_164213.gif "Python 3.11.6")
+3. Cierro el `Visual Studio Code` y lo vuelvo a abrir, creo un archivo de nombre **`HelloWorld.py`**, con este código:
+```py
+print('Hello world!')
+```
+4. Presiono el botón de `run` y el debe ejecutar sin problemas
+5. Extensiones requeridas en `Visual Studio Code`:
+   * [Python Extension Pack](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-extension-pack) de _Don Jayamanne_.
+   * [autopep8](https://marketplace.visualstudio.com/items?itemName=ms-python.autopep8) de _Microsoft_.
+   * [Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner) de _Jun Han_.
+
+
+### 19. Setting up the environment & keys
+
+1. Esta es la arquitectura: </br> ![Arquitectura](images/2025-07-15_170755.png "Arquitectura")
+2. El _IDE_ es `Visual Studio Code`
+3. _API key_ de [`Open AI`](https://openai.com/api/), debes hacer login a la `API Platform`, se sugiere con una cuenta de `Google`: </br> ![OpenAI Platform](images/2025-07-15_171311.png "OpenAI Platform").
+4. Aquí es donde se pretende ingresar a `Start building`: </br> ![OpenAI developer platform](images/2025-07-15_171545.png "OpenAI developer platform")
+6. Así sería el proceso para:
+   * Hacer `Log in`.
+   * Crear la `Organization`.
+   * Crear el `Project`.
+   * Obtener  `API Keys`. </br> **Recuerde almacenar o guardar las API Keys cuando estas aparecen**: </br> ![Log in -> Organization -> Project -> API Keys](images/2025-07-15_173215.gif "Log in -> Organization -> Project -> API Keys")
+

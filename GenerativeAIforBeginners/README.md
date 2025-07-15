@@ -725,4 +725,8 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 >
 
+## Section 7: Quiz
+
+![Quiz 3: GenAI Use Cases"](images/2025-07-15_070615.gif "Quiz 3: GenAI Use Cases")
+
 

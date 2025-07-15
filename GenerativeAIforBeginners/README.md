@@ -730,3 +730,70 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 ![Quiz 3: GenAI Use Cases"](images/2025-07-15_070615.gif "Quiz 3: GenAI Use Cases")
 
 
+
+## Section 8: Building our Own GenAI Chatbot
+
+### 17. Introduction
+
+>[!NOTE]
+>
+>Así que ya estamos en el módulo cuatro del curso.
+>Y esta va a ser nuestra sección de aprendizaje práctico.
+>
+>Vamos a crear algo similar a ChatGPT un chatbot que podemos utilizar para consultar nuestros propios datos.
+>Le haremos preguntas, obtendremos respuestas y lo construiremos completamente desde cero.
+>Y esta sección va a ser importante.
+>
+>Experimentaremos lo que aprendimos en el pasado y lo veremos en acción.
+>Así que mi sugerencia es que veas esta sección con atención y lo hagas junto conmigo.
+>Si usted es alguien que no es de un fondo técnico es todavía verlo.
+>Te dará una idea de las capacidades.
+>
+>Y para los que tengan formación técnica, usaremos integraciones API de Python, todas
+>esas cosas.
+>
+>![Course Content -> Module 4](images/2025-07-15_111223.png "Course Content -> Module 4")
+
+
+### 18. MUST READ: IMPORTANT INFORMATION for next videos
+
+>[!IMPORTANT]
+>
+>#### MUST READ: IMPORTANT INFORMATION for next videos
+>
+>Hello everyone, as part of the next few videos, where we would be creating a Chatbot using OpenAI services, you may need the following:
+>
+>**1: Initial Setup** -> If you are new to Python or need help with setting up Python, PyCharm, Libraries etc., we have created a handy help guide:
+>* [drive -> Chabot Module - Initial Setup.pdf](https://drive.google.com/file/d/1yvFHp3osx0g70MLb5cbYZEIuMaVDkD8M/view?usp=sharing)
+>* [local -> Chabot Module - Initial Setup.pdf](documents/1801-Chabot%20Module%20-%20Initial%20Setup.pdf)
+>
+>**2: Common Errors and resolutions** -> We have also compiled a list of common errors and how to solve them:
+>* [drive -> Chatbot Module - Common Issues and how to fix them.pdf](https://drive.google.com/file/d/12ISkREk3aQkeZ-1ZOoHd-SO1hlDlUDvW/view?usp=sharing)
+>* [local -> Chatbot Module - Common Issues and how to fix them.pdf](documents/1802-Chatbot%20Module%20-%20Common%20Issues%20and%20how%20to%20fix%20them.pdf)
+>
+>But even beyond this, if you need any other help, we are here. Email us on <aakriti.elearning@gmail.com> with the error details, steps and screenshots.
+>
+>**3: Update on OpenAI credit** -> Note that as of May'24, OpenAI has stopped giving free credits. You will need to recharge your account with minimum $5 to be able to proceed. If you do not wish to do so, just watch along and you will be fine.
+>
+>**Note** - To efficiently utilize OpenAI's credit, please use a small document of 1-2 pages in next videos. A bigger document would exhaust all your credits quickly.
+>
+>**4: Test Document** -> As part of our learning, we would be using a subset of the Indian Constitution (English version) pdf. You can find the file here:
+>* [drive -> Chatbot Code](https://drive.google.com/file/d/1_COGeFyFaIC1AhHPnpZl3JWMzJoZv-2h/view?usp=sharing)
+>* [local -> Chatbot Code](documents/1804-Chatbot%20Code.py)
+>
+>Or its also attached to the Resources section of this lecture. You can use any other file, it's perfectly ok. Use a small 1-2 page document as mentioned earlier.
+>
+>**5: Code Snippet** -> You can find the code snippet here:
+>* [drive -> Chatbot Code](https://docs.google.com/document/d/1MtVvNhxFHtGvsb9sQj7q2GNQTWfb68laVYfPTLsMoUk/edit?usp=sharing)
+>* [local -> Chatbot Code](documents/1805-Chatbot%20Code.py)
+>
+>Or its also attached to the Resources section of this lecture. Do not forget to put your OpenAI API key next to the "OPENAI_API_KEY" variable
+>
+>Thank you!!
+>
+>**Resources for this lecture**
+>* [Constitution_India_subset.pdf](https://att-c.udemycdn.com/2023-11-19_18-47-05-7623ba4f834e2aadbb2f21c70424a49c/original.pdf?response-content-disposition=attachment%3B+filename%3DConstitution_India_subset.pdf&Expires=1752612415&Signature=SESegS~b3wtg5ASZXEraV0hAGPgau7Llhkx0j0C1hnsbaCtFi9ztPZNmqLjDveQndbkZbqEKTOHCuMeyOiYzL6S5bSGDFdinyxelcuWzE4j9wBA-x0EZ2yMEcDMei1qJ7Zw~sZcJcReE0eX22eBetXOfUu~gxSCYog2MMobtQ7tvNGwiNeuMC3N80Q1zc9O-ImBAbFGdKQUh8H0gB6KPkShqEDCWJbvJqVzTJaqHaX5-eurArNdBvVizWEt6zXnpkyfD6WX6~ZcIuaxrn7KmlmpSfkA1jdpxxepyfoMGD0PiTQv~pQTUIHYYjV4sDBjKQ9MOti884dmkSmme15YTUA__&Key-Pair-Id=K3MG148K9RIRF4)
+>* [Chabot Module - Initial Setup.pdf](https://att-c.udemycdn.com/2024-06-02_08-38-14-3f89122c408da54969eaa4210c146956/original.pdf?response-content-disposition=attachment%3B+filename%3DChabot%2BModule%2B-%2BInitial%2BSetup.pdf&Expires=1752612409&Signature=UVGcAvTOCezUAIQlciVqc9CYQ-fzRpUcPCkJzNTMQxl4D~Rt6mjultD2RuJf17z1HE-u89Nge1XEbe9FfkxcrkB5r--PdVsa8NiId6AcAapd5VBvfNzhjDIzFMHhyXpQN1mQ4vQxO8cuEDyB08qd6ZDvsD-Dzx651MXw4OX6vgnqgKgFxU8NrgcoL0FXi3KUw3emkDspHk38eqP2ZShgQ6D7YT~sjp9EQQPYKhRBgK32PoYUpauxeVrBqRdNlIzZlm5zSiUlrXfef2U8a7sKNs4hNMXeZQT1AUIRy4kHLUlHgohrXb4RBycdTlmxTYAiv7~~ePr7mDh4E3lOwVWyRw__&Key-Pair-Id=K3MG148K9RIRF4)
+>* [Chatbot Code.txt](https://att-c.udemycdn.com/2024-07-16_03-01-56-a96a42b51cecb37a4b501b8b50ee8792/original.txt?response-content-disposition=attachment%3B+filename%3DChatbot%2BCode.txt&Expires=1752612411&Signature=s9VliWkepX1eJBSsLLftYdLByHskOaVdomkAnm5nVWfOS8LXVnsQs~XtnnqsSzF6SL8fkj2uGCzep33r1~G~b1oBqUoYi~jftwJeeW5vbKHBd~Lzup4WLVjm5GamLPBzu8DvoAABdiXVbAg98c28x4doNbQcGCNEbsVzL8U5lbu4GZkVvuEOTXalCf0fN96STVV1bJUj-Ywcqlzz5aRDdXOe1STYmIMl83qM7h3NteyO3ErBbW-7y2UL9U3MZPk3Ql4L0HJugdp5XTrGv4Q8G0lYWmmOtDw~0tq4wH8BQilIAjlexELPk~bj1t45uSf0RdALqwH8P1P4a~GcRDwC9A__&Key-Pair-Id=K3MG148K9RIRF4)
+>* [Chatbot Module - Common Issues and how to fix them.pdf](https://att-c.udemycdn.com/2024-07-16_03-03-07-5720e25a388cf1d31e86445b4200aaac/original.pdf?response-content-disposition=attachment%3B+filename%3DChatbot%2BModule%2B-%2BCommon%2BIssues%2Band%2Bhow%2Bto%2Bfix%2Bthem.pdf&Expires=1752612410&Signature=C4swcdhDrIDSqG0qarhKV8lMEDLEzGsUNr0bZNTAtyJM1xCX6XWeeHjnhFLIDLxFr2TC81zi9v3ZkpGx0SQLwhh12xBwX9XgB6elWUgXFuGvYJrTGvrweAaq1DiwveshXVkVSdqTMyQTGJiC1r9w-T8hVHBQt0cFcAlBIzYin9kiVqS43y4X~Bhn6GVvVXIaUbykrunOteqaOEHgJU8phnBflDRxz0dBKEidL6IFBd1xGET1lE4sTTOALV7SkHIuRVJBRvaOnrYtQox-ACKdjDNKBIJIEbQjMAZUdfTZeBHKGzzSQ64P1SE~EVu5MLAak9WIZuxaF3mCt4TlSwqIqw__&Key-Pair-Id=K3MG148K9RIRF4)
+

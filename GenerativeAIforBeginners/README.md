@@ -1092,3 +1092,70 @@ vector_store = FAISS.from_texts(chunks, embeddings)
 ```
 
 
+### 22. Creating chatbot (Part 3)
+
+1. Volviendo al archivo **`chatboy.py`**, seguimos con tres elementos:
+```py
+# Get user query
+
+# Do similarity search
+
+# Output the results
+```
+2. Empezamos con `# Get user query`:
+```py
+# Get user query
+user_question = st.text_input("Ask a question about your documents")
+```
+3. Hacemo el paso de `# Do similarity search`:
+```py
+# Do similarity search
+if user_question:
+    results = vector_store.similarity_search(user_question, k=3)
+
+    # Display the results
+    st.write("Results:")
+    for result in results:
+        st.write(result.page_content)
+```
+4. Volvemos al _browse_ y presionamos el botón `[Rerun]` y obtengo un error: </br> ![ModuleNotFoundError:](images/2025-07-18_113026.png "ModuleNotFoundError:")</br> Procedo a deterner la ejecución del server `streamlit run ./chatboy.py`, par instalar: </br> `pip install -U langchain-community`
+5. Reinicio la ejecución en la `TERMINAL` de: </br> `streamlit run ./chatboy.py`
+6. Sale otro error, detengo el server e instalo lo sugerido: </br> `pip install openai`</br> para volver a correr el server con: </br> `streamlit run ./chatboy.py`
+7. Sale otro error, detengo el server e instalo lo sugerido: </br> `pip install tiktoken`</br> para volver a correr el server con: </br> `streamlit run ./chatboy.py`
+
+>[!WARNING]
+>
+>#### Vuelvo a cargar el archivo PDF}
+>
+
+1. El error ahora es por hay que pagar o cargar algun valor en `openAI`: </br> ![openai.RateLimitError](images/2025-07-18_115016.png "openai.RateLimitError")
+2. En el Sitio de [Personal->Chatbot](https://platform.openai.com/settings/organization/billing/overview), tengo en la opción de `Billing` el valor de cero: </br> ![Billing](images/2025-07-18_120756.png "Billing")
+3. Simplemente debo de hacer una carga, con `u$5.°°`, es suficiente, en mi caso tengo otro sitio con un valor ya cargado de `u$10.°°`: </br> ![Credit grants](images/2025-07-18_121241.png "Credit grants")
+4. En el archivo **`chatboy.py`**, porngo la mayoría del código debajo de esto: </br> `if chunks:`
+5. Uso la `OPENAI_API_KEY` de la otra organización en el archivo **`.env`**, reinicio el proyecto y ya me permite, luego de cargar el archivo `*.PDF`, ya obtengo mi proceso correcto: </br> ![Ask a question about your documents](images/2025-07-18_123310.png "Ask a question about your documents")
+6. Voy a hacer esta pregunta primero en español </br>`¿Quién puede ser presidente de India?` </br> y veamos la respuesta: </br> ![Results](images/2025-07-18_140139.png "Results")
+7. Agrego dos importaciones y el uso de estos:
+```py
+            # define the LLM chain
+            llm = ChatOpenAI(
+                openai_api_key=OPENAI_API_KEY,
+                temperature=0.2,
+                max_tokens=1000,
+                model_name="gpt-3.5-turbo"
+            )
+```
+8. Comento todo lo de la parte `# Display the results`.
+9. Añado abajo lo de `# Output the answer`:
+```py
+            # Output the answer
+            chain = load_qa_chain(llm, chain_type="stuff")
+            response = chain.run(input_documents=results,
+                                 question=user_question)
+            st.write("Answer:")
+            st.write(response)
+```
+10. Vuelvo a darle en el _browser_ `[Rerun]` y pongo esta pregunta: </br> `¿Quién puede ser presidente de la India?`, y esta es la respuesta: </br> ![Answer 1](images/2025-07-18_142933.png "Answer 1")
+11. Luego de agregar este texto: </br> `una explicacion mas detallada con base en la constitución de la India` </br> Esta fue l respuesta: </br> ![Answer 2](images/2025-07-18_143659.png "Answer 2")
+12. Detengo la ejecución del server: </br> `streamlit run ./chatboy.py`
+
+

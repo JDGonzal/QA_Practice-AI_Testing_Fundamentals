@@ -822,3 +822,198 @@ print('Hello world!')
    * Crear el `Project`.
    * Obtener  `API Keys`. </br> **Recuerde almacenar o guardar las API Keys cuando estas aparecen**: </br> ![Log in -> Organization -> Project -> API Keys](images/2025-07-15_173215.gif "Log in -> Organization -> Project -> API Keys")
 
+
+### 20. Creating chatbot (Part 1)
+
+1. Se nos pide instalar unas bibliotecas de `Python` con el comando `pip`: </br>
+`pip install streamlit pypdf2 langchain faiss-cpu`
+* Bibliotecas `pip`:
+  * [`streamlit 1.47.0`](https://pypi.org/project/streamlit/). </br> **¿Qué es Streamlit?**
+Streamlit te permite transformar scripts de Python en aplicaciones web interactivas en minutos, en lugar de semanas. Crea paneles de control, genera informes o crea aplicaciones de chat. Una vez creada una aplicación, puedes usar nuestra plataforma Community Cloud para implementarla, administrarla y compartirla.</br> **¿Por qué elegir Streamlit?**
+Sencillo y Pythonic: Escribe código atractivo y fácil de leer.
+Prototipado rápido e interactivo: Permite que otros interactúen con tus datos y proporcionen comentarios rápidamente.
+Edición en vivo: Observa cómo tu aplicación se actualiza al instante mientras editas tu script.
+Código abierto y gratuito: Únete a una comunidad dinámica y contribuye al futuro de Streamlit.
+  * [`PyPDF2 3.0.1`](https://pypi.org/project/PyPDF2/). </br> PyPDF2 es una biblioteca PDF gratuita y de código abierto, desarrollada en Python, capaz de dividir, fusionar, recortar y transformar páginas de archivos PDF. También permite añadir datos personalizados, opciones de visualización y contraseñas a los archivos PDF. PyPDF2 también puede recuperar texto y metadatos de archivos PDF.
+  * [`langchain 0.3.26`](https://pypi.org/project/langchain/). </br> **¿Qué es esto?**
+Los modelos de lenguaje grandes (LLM) están surgiendo como una tecnología transformadora que permite a los desarrolladores crear aplicaciones que antes no podían. Sin embargo, usar estos LLM de forma aislada suele ser insuficiente para crear una aplicación realmente potente; el verdadero potencial surge al combinarlos con otras fuentes de computación o conocimiento.
+  * [`faiss-cpu 1.11.0.post1`](https://pypi.org/project/faiss-cpu/). </br>Este repositorio proporciona scripts para compilar paquetes de rueda para la biblioteca faiss. </br> Compilación de la versión solo para CPU con cibuildwheel.
+Incluye OpenBLAS en Linux/Windows. </br>
+Utiliza el framework Accelerate en macOS.
+También hay un paquete fuente para personalizar el proceso de compilación.
+    * _Nota: El paquete binario de GPU se discontinuó a partir de la versión 1.7.3. Compilación de un paquete fuente compatible con las funciones de GPU._
+
+>[!WARNING]
+>Al Ejecutarlo sale una advertencia
+>```diff
+>[notice] A new release of pip is available: 23.2.1 -> 25.1.1
+>[notice] To update, run: python.exe -m pip install --upgrade pip
+>```
+>Voy a probar cerrando el `Visual Studio Code` e instalando la última versión disponible de [`Python 3.13.5`](https://www.python.org/downloads/) </br> ![`Python 3.13.5`](images/2025-07-17_120115.gif "`Python 3.13.5`")
+
+2. Ejecuto de nuevo el comando: </br> `pip install streamlit pypdf2 langchain faiss-cpu` </br> Demora pero si empieza el proceso.
+```diff
+Collecting streamlit
+  Downloading streamlit-1.47.0-py3-none-any.whl.metadata (9.0 kB)
+Collecting pypdf2
+  Downloading pypdf2-3.0.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting langchain
+  Downloading langchain-0.3.26-py3-none-any.whl.metadata (7.8 kB)
+Collecting faiss-cpu
+  Downloading faiss_cpu-1.11.0.post1-cp313-cp313-win_amd64.whl.metadata (5.1 kB)
+...
+Downloading streamlit-1.47.0-py3-none-any.whl (9.9 MB)
++   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.9/9.9 MB 7.2 MB/s eta 0:00:00
+Downloading altair-5.5.0-py3-none-any.whl (731 kB)
++   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 731.2/731.2 kB 11.6 MB/s eta 0:00:00
+Downloading numpy-2.3.1-cp313-cp313-win_amd64.whl (12.7 MB)
++   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.7/12.7 MB 21.2 MB/s eta 0:00:00
+Downloading pandas-2.3.1-cp313-cp313-win_amd64.whl (11.0 MB)
++   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.0/11.0 MB 22.4 MB/s eta 0:00:00
+Downloading pillow-11.3.0-cp313-cp313-win_amd64.whl (7.0 MB)
++   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 22.4 MB/s eta 0:00:00
+...
+Downloading pydeck-0.9.1-py2.py3-none-any.whl (6.9 MB)
++   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.9/6.9 MB 24.3 MB/s eta 0:00:00
+...
+Successfully installed MarkupSafe-3.0.2 PyYAML-6.0.2 SQLAlchemy-2.0.41 altair-5.5.0 annotated-types-0.7.0 anyio-4.9.0 attrs-25.3.0 blinker-1.9.0 cachetools-6.1.0 certifi-2025.7.14 charset_normalizer-3.4.2 click-8.2.1 colorama-0.4.6 faiss-cpu-1.11.0.post1 gitdb-4.0.12 gitpython-3.1.44 greenlet-3.2.3 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.10 jinja2-3.1.6 jsonpatch-1.33 jsonpointer-3.0.0 jsonschema-4.24.1 jsonschema-specifications-2025.4.1 langchain-0.3.26 langchain-core-0.3.69 langchain-text-splitters-0.3.8 langsmith-0.4.6 narwhals-1.47.0 numpy-2.3.1 orjson-3.11.0 packaging-25.0 pandas-2.3.1 pillow-11.3.0 protobuf-6.31.1 pyarrow-20.0.0 pydantic-2.11.7 pydantic-core-2.33.2 pydeck-0.9.1 pypdf2-3.0.1 python-dateutil-2.9.0.post0 pytz-2025.2 referencing-0.36.2 requests-2.32.4 requests-toolbelt-1.0.0 rpds-py-0.26.0 six-1.17.0 smmap-5.0.2 sniffio-1.3.1 streamlit-1.47.0 tenacity-9.1.2 toml-0.10.2 tornado-6.5.1 typing-extensions-4.14.1 typing-inspection-0.4.1 tzdata-2025.2 urllib3-2.5.0 watchdog-6.0.0 zstandard-0.23.0
+```
+
+>[!NOTE]
+>
+>* Así que vamos a utilizar `streamlit` que es una biblioteca para la creación de interfaces de usuario, vamos a utilizar
+>* `pypdf2`, que nos permite leer nuestros archivos PDF de origen.
+>* Vamos a utilizar la `langchain`, que es básicamente una interfaz para utilizar servicios abiertos de IA.
+>* Y vamos a utilizar `faiss-cpu`, que es un almacén de vectores para almacenar incrustaciones.
+>
+>Así que adelante, introduce esta línea y pulsa enter.
+>Y esto instalará las librerías por ti más cualquier dependencia que tengas.
+
+3. Empezamos creando el archivo **`chatboy.py`**, e importando las primeras bibliotecas:
+```py
+import streamlit as st
+
+# Upload PDF files
+st.header("My First Chatbot")
+```
+4. Seguimos agregando mas código a **`chatboy.py`**:
+```py
+with st.sidebar:
+    st.title("Your Documents")
+    # Con esto cargamos los archivos PDF
+    file = st.file_uploader("Upload a PDF and start asking questions",
+                            type="pdf", accept_multiple_files=True)
+```
+5. Ejecuto este código y este es el resultado obtenido:
+```diff
+WARNING streamlit.runtime.scriptrunner_utils.script_run_context: Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+ 
+  [33m[1mWarning:[0m to view this Streamlit app on a browser, run it with the following
+  command:
+
+    streamlit run e:\Development\..\chatboy.py [ARGUMENTS]
+...
+2025-07-18 07:43:13.943 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+
+[Done] exited with code=0 in 2.087 seconds
+```
+6. La primera vez que lo ejecutes, obtendrás algo como esto:</br>`streamlit run e:\Development\..\chatboy.py [ARGUMENTS]`</br>
+Y básicamente lo que significa es que tienes que inicializar un `streamlit` en tu máquina.</br>Así que adelante, copia este texto:</br>`streamlit run ./chatboy.py`
+7. Al ejecutar nos sale un texto:</br>![Welcome to Streamlit!](images/2025-07-18_080017.png "Welcome to Streamlit!")</br>Completo con mi correo personal de `gmail.com`.
+8. Luego nos sale la explicación del sitio que va a compartir: </br> ![Streamlit app in your browser](images/2025-07-18_080154.png "Streamlit app in your browser")
+9. Ahora si, aparece en el _browser_ la página en cuestión: </br> ![My First Chatbot](images/2025-07-18_080214.png "My First Chatbot")
+
+>[!NOTE]
+>
+>* Así que introducimos una barra lateral izquierda que básicamente te permite hacer cosas como navegar, subir
+>ese tipo de cosas.
+>* Y dijimos que el título de esta sección debería ser Tus Documentos, que se muestra aquí.
+>* Y entonces dijimos que necesitamos una capacidad de carga de archivos.
+>* Necesitamos una sección que nos permita subir un archivo.
+>* Y puedes poner el texto, subir un archivo por ahí para facilitarle las cosas al usuario.
+>* ¿Y cuál es el tipo de archivo que queremos cargar?
+>Queremos cargar un archivo PDF.
+>Así que como se puede ver que ha dado a esta sección.
+>Tiene este texto aquí que queríamos.
+>Y aquí se dice que esto es para PDF.
+
+10. Hacemos clic en el botón `[Browse files]` y buscamos el archivo en nuestro proyecto [`THE CONSTITUTION OF INDIA`](documents/1806-Constitution_India_subset.pdf), y esperamos a que este disponible:</br> ![1806-Constitu...pdf](images/2025-07-18_084707.png "1806-Constitu...pdf")
+11. Añadimos este código en el archivo **`chatboy.py`**:
+```py
+    text = ""
+    for pdf_file in file:
+        reader = PdfReader(pdf_file)
+        for page in reader.pages:
+            text += page.extract_text() + "\n"
+# Proceso dado por el insructor
+# if file is not None:
+#    pdf_reader = PdfReader(file)
+#    text = ""
+#    for page in pdf_reader.pages:
+#        text += page.extract_text() # + "\n" # Le falta este salto de línea
+```
+12. Ahora dentro del ciclo `for` iprimimos el `text`, según el instructor, pero prefiero hacerlo al final:
+```py
+    st.write("Extracted Text:")
+    st.write(text)
+```
+13. Damos clic en el botón de arriba a la derecha `[Rerun]`: </br> ![Extracted Text:](images/2025-07-18_090131.png "Extracted Text:")
+
+>[!NOTE]
+>
+>Así que dividirlo en pequeños trozos ayuda a asegurarse de que estás trabajando en una pequeña sección, y
+>es capaz de entender mejor esa sección, trabajar en ella mejor.
+>
+>Así que para dividirlo en trozos, vamos a utilizar algo que ofrece Lang Chain, ¿verdad?
+>
+>Y voy a traer esa dependencia.
+>Y voy a decir de Lang cadena de texto divisor.
+>Bien.
+>
+>Así que básicamente `langchain` me ofrece un divisor de texto.
+>Y allí también voy a utilizar el divisor de texto de carácter recursivo.
+
+14. Regresamos al archivo **`chatboy.py`** y agrego lo siguiente:
+```py
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+...
+# Break the text into chunks
+text_splitter = RecursiveCharacterTextSplitter(
+    separators="\n", chunk_size=1000, chunk_overlap=150, length_function=len
+)
+chunks = text_splitter.split_text(text)
+
+# Display the extracted text
+st.write("Extracted Text in Chunks:")
+st.write(chunks)
+```
+15. Regresamos al _browser_ y presionamos de nuevo el botón `[Rerun]`: </br> ![Extracted Text in Chunks:](images/2025-07-18_093605.png "Extracted Text in Chunks:")
+
+>[!NOTE]
+>Así que básicamente es el mismo texto, pero ahora está dividido en pequeñas secciones, pequeños trozos.
+>Bien.
+>Y se rige por la norma que le hemos dado.
+>
+>Así que habíamos dicho que el tamaño del trozo debe ser 1000.
+>Así que se rompe a los 1000 caracteres.
+>
+>Puedes pegar esos trozos dentro de un archivo word y puedes comprobar que la longitud de cada trozo sería
+>de 1000 caracteres o menos.
+>Y cuando decimos solapamiento de trozos de 150, lo que queremos decir es que, si lo piensas bien, este solapamiento se producirá
+>bruscamente, ¿no?
+>
+>Empezaría a leer desde el principio.
+>Encuentra 5000 caracteres.
+>Rómpelo.
+>Córtalo otra vez.
+>Iría en 5000 caracteres de paréntesis.
+>Trocéalo.
+>Bien.
+>
+>Así que cuando lo haces así, cuando lo haces bruscamente, al azar, ese chunking ocurriría, esa división
+>ocurriría.
+>Puedes perder algo de sentido, ¿verdad?
+>Así, por ejemplo, si ves aquí, mi primer trozo termina diciendo el nombre y el territorio de la Unión
+>
+
+

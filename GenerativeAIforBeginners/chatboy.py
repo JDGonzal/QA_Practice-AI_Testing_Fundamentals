@@ -1,5 +1,9 @@
+from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.vectorstores import FAISS
 import streamlit as st
+from dotenv import load_dotenv
+import os
 
 # Upload PDF files
 st.header("My First Chatbot")
@@ -19,20 +23,6 @@ if file is not None:
         reader = PdfReader(pdf_file)
         for page in reader.pages:
             text += page.extract_text() + "\n"
-# Proceso dado por el insructor
-# if file is not None:
-#    pdf_reader = PdfReader(file)
-#    text = ""
-#    for page in pdf_reader.pages:
-#        text += page.extract_text() # + "\n" # Le falta este salto de línea
-
-# Display the extracted text
-# st.write("Extracted Text:")
-# st.write(text)
-
-# Optional: Display the text in a text area
-# st.text_area("Text from PDF", value=text, height=300)
-# from langchain.text_splitter import RecursiveCharacterTextSplitter
 
 # Break the text into chunks
 text_splitter = RecursiveCharacterTextSplitter(
@@ -41,5 +31,15 @@ text_splitter = RecursiveCharacterTextSplitter(
 chunks = text_splitter.split_text(text)
 
 # Display the extracted text
-st.write("Extracted Text in Chunks:")
-st.write(chunks)
+# st.write("Extracted Text in Chunks:")
+# st.write(chunks)
+
+# Generating embeddings
+load_dotenv()  # Carga las variables de entorno del archivo .env
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+print("OpenAI API Key:", OPENAI_API_KEY)
+embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+
+
+# Create a vector store - FAISS
+vector_store = FAISS.from_texts(chunks, embeddings)

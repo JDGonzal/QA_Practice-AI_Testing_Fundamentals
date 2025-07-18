@@ -1017,3 +1017,78 @@ st.write(chunks)
 >
 
 
+### 21. Creating chatbot (Part 2)
+
+>[!NOTE]
+>
+>Así que, como comentamos al final del vídeo anterior, hemos completado los dos primeros pasos de nuestro
+>flujo de trabajo.
+>
+>Leemos los archivos fuente, los dividimos en trozos y este trozo es lo que introducimos en el modelo de incrustación.
+>Así que en este tutorial vamos a cubrir los dos pasos siguientes que son la generación de las incrustaciones y su almacenamiento
+>en un almacén de vectores o una base de conocimientos.
+>
+>Y usaríamos los servicios de OpenAI para generar las incrustaciones.
+>Hay muchos otros modelos disponibles y todo depende del caso de uso.
+>Hay un sitio web llamado Huggingface que te muestra todos los diferentes modelos que están disponibles, para
+>qué caso de uso son adecuados, cuál es su rendimiento, cuál es su revisión y podemos tomar la decisión
+>a partir de ahí sobre la base de cuál es nuestro caso de uso, qué modelo utilizar en este.
+>
+>Dado que trabajaríamos sobre todo con texto, OpenAI encaja muy bien porque, como hemos visto, es
+>muy bueno con la comprensión y generación de texto.
+>
+>Ahora, una vez generadas las incrustaciones, tenemos que almacenarlas en algún sitio.
+>Ahí es donde entra en escena este almacén de vectores.
+>Y puedes pensar en el almacén vectorial como una base de datos que almacena nuestra incrustación.
+>Y aquí también tenemos múltiples opciones disponibles.
+>
+>Tenemos varias.
+>Tenemos `pinecone`, tenemos `Croma`.
+>Todos tienen los mismos objetivos.
+>Hay pros y contras en función de los casos de uso específicos.
+>En nuestro caso de uso estamos utilizando rápido porque es un mejor ajuste.
+>Y recuerda que también oirás hablar de almacén vectorial, base de datos vectorial, base de conocimientos, todas ellas terminologías diferentes.
+>
+>Pero entre bastidores todos significan una cosa muy sencilla.
+>Generamos incrustaciones.
+>Necesitamos una forma de almacenar esas incrustaciones.
+>Necesitamos una base de datos para almacenar esas incrustaciones.
+>Y eso es lo que es esta tienda de vectores.
+>No es otra cosa.
+>Es una base de datos que almacena nuestras incrustaciones.
+
+1. Detengo la ejecución de `streamlit run ./chatboy.py`
+2. Como vamos a requerir claves o _keys_, que no deben subirse al repositorio, empezamos con instalar esto en la terminal:</br> `pip install python-dotenv`
+3. Reinicio la ejecución de nuevo con:</br>`streamlit run ./chatboy.py`
+4. Creamos el archivo en la raíz del proyecto con el nombre **`.env`**, con la clave obtenida en el paso [19. Setting up the environment & keys](#19-setting-up-the-environment--keys):
+```ini
+OPENAI_API_KEY = "sk-xoxoxoxoxoxoxoxoxoxoxIV" 
+```
+5. Regresamos al archivo **`chatboy.py`**, comentamos la generación del texto de los `chunks` y agregamos este código:
+```py
+from dotenv import load_dotenv
+import os
+...
+# Generating embeddings
+load_dotenv()  # Carga las variables de entorno del archivo .env
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+print("OpenAI API Key:", OPENAI_API_KEY)
+```
+5. Al darle al botón `[Rerun]`, sale en la `TERMINAL` el texto de: `OpenAI API Key:`, seguida de la clave en el archivo **`.env`**.
+6. Arriba del archivo , agreo la importación de `OpenAI...`:
+```py
+from langchain.embeddings.openai import OpenAIEmbeddings
+```
+7. Luego en la zona de `# Generating embeddings`, agrego este código:
+```py
+embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+```
+8. Agregamos arriba otra importación y abajo el uso:
+```py
+from langchain.vectorstores import FAISS
+...
+# Create a vector store - FAISS
+vector_store = FAISS.from_texts(chunks, embeddings)
+```
+
+

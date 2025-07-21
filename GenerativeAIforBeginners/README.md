@@ -1159,3 +1159,77 @@ if user_question:
 12. Detengo la ejecución del server: </br> `streamlit run ./chatboy.py`
 
 
+
+## Section 9: Ethical Considerations and Future Trends
+
+
+### 23. Introduction
+
+>[!NOTE]
+>
+>![Module 5](images/2025-07-21_151036.png "Module 5")
+>
+>**Ya estamos en el quinto módulo de este curso.**
+>
+>Hasta ahora, comenzamos nuestro viaje desde los cimientos de lo que es AI Machine Learning, AI
+>generativa ChatGPT aprendimos las terminologías clave LM Prompt engineering, embeddings, fine tuning.
+>
+>También hablamos de casos de uso de la IA generativa en la industria para que tengas algunas ideas sobre dónde puedes
+>utilizar la IA generativa en tu trabajo.
+>
+>Por último, realizamos una sesión práctica en la que creamos nuestro propio chat bot.
+>En resumen, hemos estudiado muchos detalles, tanto conceptuales como prácticos, relacionados con la
+>IA generativa.
+>
+>En este módulo hablaremos de consideraciones éticas y tendencias futuras.
+>
+>Aprenderemos sobre la IA responsable, que está recibiendo mucha atención a medida que aumenta la adopción de la
+>IA generativa.
+>Y por último, entraremos en un tema que todos tenemos en la cabeza, que es se hará cargo de los trabajos humanos.
+
+### 24. Responsible AI
+
+>[!NOTE]
+>
+>![Errores de A.I.](images/2025-07-21_165303.png "Errores de A.I.")
+>
+>![Responsabilidad de AI se refiere a](images/2025-07-21_165549.png "Responsabilidad de AI se refiere a")
+>
+>![¿Porqué necesitamos una I.A. responsable?](images/2025-07-21_165758.png "¿Porqué necesitamos una I.A. responsable?")
+>
+>![¿Cómo implementar una I.A. responsable?](images/2025-07-21_170155.png "¿Cómo implementar una I.A. responsable?")
+>
+>Ahora, para recapitular, como dicen en la película de Spiderman, un gran poder conlleva grandes responsabilidades.
+>
+>La IA es cada vez más avanzada.
+>La IA es cada día más potente.
+>
+>Y eso significa que los problemas conocidos, como la parcialidad de los resultados, los contenidos inapropiados o los problemas de privacidad,
+>son ahora mayores que nunca.
+>Necesitamos controles, sobre todo ahora que la IA generativa entra en escena y produce sus propios
+>contenidos.
+>
+>Se prevé que el problema se agrave aún más, por lo que necesitamos disponer de controles.
+>Necesitamos un marco que garantice que los sistemas de IA son éticos, imparciales, diversos y seguros para el ser
+>humano.
+>Y en eso consiste la IA responsable.
+>
+>Siga las prácticas responsables de IA en todos los desarrollos de sistemas que impliquen IA, ya sea IA convencional
+>o IA generativa.
+>Ese debería ser nuestro mantra.
+>Vale, eso era todo sobre la IA responsable.
+>Sigamos adelante.
+
+
+## 25. Future Potential & will GenAI take over human jobs?
+
+>[!NOTE]
+>
+>![¿Qué se espera pase ahora?](images/2025-07-21_170724.png "¿Qué se espera pase ahora?")
+>
+>![¿La I.A. generaiva va ha reemplazar trabajos humanos?](images/2025-07-21_170951.png "¿La I.A. generaiva va ha reemplazar trabajos humanos?")
+>
+>![No reemplaza a humanos pero](images/2025-07-21_171204.png "No reemplaza a humanos pero")
+>
+
+

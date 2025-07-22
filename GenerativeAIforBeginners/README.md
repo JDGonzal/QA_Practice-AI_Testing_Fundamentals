@@ -1233,3 +1233,11 @@ if user_question:
 >
 
 
+
+
+## Section 10: Quiz
+
+![Quiz 4: Ethical Considerations and Future Trends](images/2025-07-22_064117.gif "Quiz 4: Ethical Considerations and Future Trends")
+
+
+

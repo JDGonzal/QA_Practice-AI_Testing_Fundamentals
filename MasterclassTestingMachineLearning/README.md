@@ -93,7 +93,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 
 
-## 3. History of AI from 1950 to 2024
+### 3. History of AI from 1950 to 2024
 
 >[!NOTE]
 >
@@ -174,5 +174,33 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >Y, de nuevo, si eres fan de la ciencia ficción, quizá conozcas a Isaac Asimov y las leyes de la robótica, que prohíben a una máquina dañar a un ser humano, etc.
 >
 >![The Modern Era of AI](images/2025-07-29_111546.png "The Modern Era of AI")
+
+
+
+
+## Section 2: Setting up Environment
+
+### 4. Install VS Code
+
+1. Ir al sitio de [Download Visual Studio Code](https://code.visualstudio.com/download).
+2. Descargar e instalar.
+3. Una vez instalado ir al menú, casi siempre a la izquierda, a ![.](images/2025-08-04_085417.png "") `Extensions` y tener estos instalados:
+* [`Java extension pack`](https://marketplace.visualstudio.com/items?itemName=walkme.Java-extension-pack) de [_walkme_](https://marketplace.visualstudio.com/publishers/walkme), trae 8 extensiones de una vez:
+  * Maven for Java 1️⃣
+  * Language Suppor for Java(TM) by Red Hat 2️⃣
+  * Debugger for Java 3️⃣
+  * Test Runner for Java 4️⃣
+  * Project Manager for Java 5️⃣
+  * Java Language Support 🥇
+  * Sprint inicializr Java Support 🥈
+* [`Extension Pack for Java`](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) de [_Microsoft_](https://marketplace.visualstudio.com/publishers/Microsoft), trae 7 extensiones de una vez:
+  * Language Suppor for Java(TM) by Red Hat 2️⃣
+  * Debugger for Java 3️⃣
+  * Test Runner for Java 4️⃣
+  * Maven for Java 1️⃣
+  * Gradle for Java 🥉
+  * Project Manager for Java 5️⃣
+  * IntelliCode 💡
+* [`GitHub Actions`](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions) de [_GitHub_](https://marketplace.visualstudio.com/publishers/GitHub)
 
 

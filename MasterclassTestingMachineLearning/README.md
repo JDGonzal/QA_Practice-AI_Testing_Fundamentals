@@ -204,3 +204,230 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 * [`GitHub Actions`](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-github-actions) de [_GitHub_](https://marketplace.visualstudio.com/publishers/GitHub)
 
 
+### 5. Installing Python
+
+1. Ir al sitio [Python -> Downloads](https://www.python.org/downloads/)
+2. Se sugiere la última versión `3.13.5` </br> ![.](images/2025-07-17_120115.gif)
+3. En una `TERMINAL` ejecutar este comando para estar seguro que el `Python` quedó bien instalado: </br> `python --version`</br> Debe salirte algo paerecido a esto: `Python 3.13.5`.
+
+
+### 6. Install Python Dependencies - PIP
+
+1. En este sitio hay unas instrucciones dependiendo del sistema operativo: [pip documentation -> Getting Started](https://pip.pypa.io/en/stable/getting-started/).
+2. Verificar la versión en una `TERMINAL`: </br> `py -m pip --version`
+3. Para tener una actualización en este sitio stán las instrucciones [pip documentation -> Installation](https://pip.pypa.io/en/stable/installation/).
+4. El comando de este sitio, para actualizar, sería: </br> `py -m pip install --upgrade pip`
+
+
+### 7. Installing Conda - Environment Isolator tool
+
+1. En este sitio [Miniconda con PowerShell](https://www-anaconda-com.translate.goog/docs/getting-started/miniconda/install?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc&_x_tr_hist=true#powershell).
+2. Este comando en una `TERMINAL` de `PowerShell`: </br> `wget "https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe" -outfile ".\Downloads\Miniconda3-latest-Windows-x86_64.exe"` </br> o este otro comando: </br> `curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe --output .\Downloads\Miniconda3-latest-Windows-x86_64.exe`
+3. En una `TERMINAL` de `PowerShell`, este comando: </br> `cd "$($env:HOMEPATH)\Downloads"` </br> y dale despues: </br> `dir mini*.*`
+4. Ejecuta ese archivo allí hallado: </br> `Start-Process -FilePath "./Miniconda3-latest-Windows-x86_64.exe" -NoNewWindow -Wait -RedirectStandardOutput "C:\temp\conda-LogFile.log" -RedirectStandardError "C:\temp\conda-ErrorLogFile.log"` </br> Debe existir la carpeta **"c:\temp"**
+5. Este sería el proceso: </br> ![Miniconda3 Install](images/2025-08-04_151935.gif "Miniconda3 Install")
+6. Pero al ver todas las posibles consecuencias, decido no instalarlo.
+
+
+### 8. Install NodeJS and NPM
+
+1. El sititio que sugiere el Instructor es este [Download Node.js®](https://nodejs.org/en/download).
+2. Para lo que sigue debe instalar `nvm` de este sitio [`nvm`](https://github.com/coreybutler/nvm-windows/releases)
+3. Pero yo prefiero tener el control de versiones con este instructivo: [Instalar múltiples versiones de Node.js en Windows](https://rafaelneto.dev/blog/instalar-multiples-versiones-nodejs-windows/) de [`RAFAEL NETO`](https://rafaelneto.dev/), comandos: </br> » `nvm install 22.18.0` </br> » `nvm use 22.18.0` </br> » `nvm list`
+
+
+### 9. Introduction to Hugging Face Community Page
+
+1. El sitio en cuestión es <img alt="Hugging Face's logo" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" width="32" height="32"> [Hugging Face](https://huggingface.co/) </br> ![Hugging Face](images/2025-08-04_154830.png "Hugging Face")
+2. Del sitio se sugiere ir a [`Models`](https://huggingface.co/models).
+3. Los puedes filtar por:
+* Multimodal
+  * Audio-Text-To-Text
+  * Any-to-Any
+  * ...
+* Computer Vision
+  * Depth Estimation
+  * Image Classification
+  * Image-To-Text
+  * Video-to-Video
+  * ...
+* Natural Language Precessing
+  * Text Classification
+  * Token Classsification
+  * Text Tanking
+  * ...
+* Audio
+  * Text-to-Speech
+  * Text-to-Audio
+  * ...
+* Tabular
+* Reinforcement Learning
+* Other
+4. Otro sitio es [`Spaces`](https://huggingface.co/spaces).
+5. Nos ponene de ejemplo a [`DimensionX`](https://huggingface.co/spaces/ShuoChen20/DimensionX).
+6. Otro ejemplo [`Qwen2.5-Coder-Artifacts`](https://huggingface.co/spaces/Qwen/Qwen2.5-Coder-Artifacts).
+7. Elementos para soportar la información [`Documentation`](https://huggingface.co/docs).
+
+
+### 10. Hugging Face Transformers Python Package
+
+1. Vamos a este sitio de <img alt="Hugging Face's logo" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" width="32" height="32"> [Hugging Face](https://huggingface.co/), a [`Transformers`](https://huggingface.co/docs/transformers/index)
+2. Estos son los pasos para la instalación [`Transformers` -> Installation](https://huggingface.co/docs/transformers/installation).
+3. Un comando sería: </br> `pip install torch`,
+4. Luego otro sería </br> `pip install transformers`
+5. Creamos el archivo **`src/test/LLM/Hug_face/test1.py`**, con esto en el código:
+```py
+from transformers import pipeline
+
+classifier = pipeline("sentiment-analysis")
+
+res = classifier("I want to learn how to do AI Model benchmarking") #bencharmking")
+
+print(res)
+```
+6. Simplemente le ejecutamos el código del botón "run" (El triángulo en la parte superior).
+7. Tengo una advertencia que debo instalar otro elemento: </br> `pip install huggingface_hub[hf_xet]`
+8. Repito la ejecución y esta es la respuesta:
+```bash
+No model was supplied, defaulted to distilbert/distilbert-base-uncased-finetuned-sst-2-english and revision 714eb0f (https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Device set to use cpu
+[{'label': 'NEGATIVE', 'score': 0.6163020730018616}]
+```
+9. Cambiamos el valor de `classifier` por `I love to code in Python with pytorch`, y al ejecutar esta fue la respuesta:
+```bash
+No model was supplied, defaulted to distilbert/distilbert-base-uncased-finetuned-sst-2-english and revision 714eb0f (https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english).
+Using a pipeline without specifying a model name and revision in production is not recommended.
+Device set to use cpu
+[{'label': 'POSITIVE', 'score': 0.9949877262115479}]
+```
+10. Creo otro archivo **`src/test/LLM/Hug_face/test2.py`**, con este código:
+```py
+from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
+
+# Load a custom tokenizer
+custom_Tokenizer = AutoTokenizer.from_pretrained("bert-base-uncased")
+
+# Load a compatible model
+model = AutoModelForSequenceClassification.from_pretrained("bert-base-uncased")
+
+# Create a pipeline with both model and tokenizer
+classifier = pipeline("sentiment-analysis", model=model,
+                      tokenizer=custom_Tokenizer)
+
+# Run the classsifier
+res = classifier("I want to learn how to do AI Model benchmarking")
+print(res)
+```
+11. Ejecuto y este es el resultado:
+```bash
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Device set to use cpu
+  return forward_call(*args, **kwargs)
+[{'label': 'LABEL_1', 'score': 0.5975498557090759}]
+```
+12. Cambio el texto de `classifier` por `I love to code in Python with pytorch`, ejecuto y este es el resultado:
+```bash
+Some weights of BertForSequenceClassification were not initialized from the model checkpoint at bert-base-uncased and are newly initialized: ['classifier.bias', 'classifier.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Device set to use cpu
+  return forward_call(*args, **kwargs)
+[{'label': 'LABEL_0', 'score': 0.709624171257019}]
+```
+
+### 11. How to load and use any model from Huggingface
+
+1. Creamos el archivo**`src/test/LLM/Hug_face/tts_model.py`**, con este código:
+```py
+from transformers import pipeline
+
+# Load the question-answering pipeline
+qa_pipeline = pipeline("question-answering",
+                       model="deepset/roberta-base-squad2")
+
+# Correct input format
+result = qa_pipeline(question="What is Hugging Face?",
+                     context="Hugging Face is a platform for NLP.")
+print(result)
+```
+2. Lo ejecuto y este es el resultado:
+```bash
+  return forward_call(*args, **kwargs)
+{'score': 0.7612054347991943, 'start': 16, 'end': 34, 'answer': 'a platform for NLP'}
+```
+3. Vamos a este sitio [`shuttleai/shuttle-3-diffusion`](https://huggingface.co/shuttleai/shuttle-3-diffusion)
+4. Debemos instalar esto: </br> `pip install -U diffusers`
+5. Copiamos el código y le cambiamos el contenido de **``**:
+```py
+import torch
+from diffusers import DiffusionPipeline
+
+# Load the diffusion pipeline from a pretrained model, using bfloat16 for tensor types.
+pipe = DiffusionPipeline.from_pretrained(
+    "shuttleai/shuttle-3-diffusion", torch_dtype=torch.bfloat16
+).to("cuda")
+
+# Uncomment the following line to save VRAM by offloading the model to CPU if needed.
+# pipe.enable_model_cpu_offload()
+
+# Uncomment the lines below to enable torch.compile for potential performance boosts on compatible GPUs.
+# Note that this can increase loading times considerably.
+# pipe.transformer.to(memory_format=torch.channels_last)
+# pipe.transformer = torch.compile(
+#     pipe.transformer, mode="max-autotune", fullgraph=True
+# )
+
+# Set your prompt for image generation.
+prompt = "A cat holding a sign that says hello world"
+
+# Generate the image using the diffusion pipeline.
+image = pipe(
+    prompt,
+    height=1024,
+    width=1024,
+    guidance_scale=3.5,
+    num_inference_steps=4,
+    max_sequence_length=256,
+    # Uncomment the line below to use a manual seed for reproducible results.
+    # generator=torch.Generator("cpu").manual_seed(0)
+).images[0]
+
+# Save the generated image.
+image.save("shuttle.png")
+```
+6. Nos sugiere instalar: </br> It is strongly recommended to install `accelerate` for faster and less memory-intense model loading. You can do so with: </br> `pip install accelerate`
+```bash
+Fetching 23 files:   0%|          | 0/23 [00:00<?, ?it/s]
+Fetching 23 files:  26%|##6       | 6/23 [05:52<16:38, 58.71s/it]
+Fetching 23 files:  30%|###       | 7/23 [06:44<15:20, 57.56s/it]
+Fetching 23 files:  78%|#######8  | 18/23 [10:24<02:26, 29.33s/it]
+Fetching 23 files:  83%|########2 | 19/23 [13:56<03:02, 45.54s/it]
+Fetching 23 files: 100%|##########| 23/23 [13:56<00:00, 36.37s/it]
+```
+7. Luego de un rato consigo un error: </br> `Cannot instantiate this tokenizer from a slow version. If it's based on sentencepiece, make sure you have sentencepiece installed.` </br> Se recomienda instalar: </br> `pip install sentencepiece`
+
+>[!WARNING]
+>
+>An error encountered when using shuttleai/shuttle-3-diffusion from Hugging Face with torch_dtype=torch.bfloat16 can stem from several factors, often related to hardware compatibility, software environment, or specific model requirements.
+>
+>**GPU Compatibility:**
+>torch.bfloat16 (Brain Floating Point) requires specific GPU hardware support, primarily NVIDIA Ampere architecture (e.g., A100, RTX 30 Series, RTX 40 Series) or newer. Older GPUs or those without native bfloat16 support will likely encounter errors or performance issues when attempting to use this data type.
+>
+>**PyTorch and CUDA Version Mismatch:**
+>Ensure that the installed PyTorch version is compatible with your CUDA toolkit version and that both are properly configured to utilize your GPU. Incompatible versions can lead to issues when loading models with specific data types like bfloat16.
+>
+>**Insufficient VRAM:**
+>While bfloat16 aims to reduce memory footprint, complex models like shuttleai/shuttle-3-diffusion can still demand substantial VRAM, especially during inference. If your GPU lacks sufficient VRAM, even with bfloat16, memory-related errors can occur. Consider enabling CPU offloading if available within the Diffusers pipeline to mitigate this.
+>
+>**Model-Specific Requirements:**
+>Some models might have specific data type requirements or optimizations that are not fully compatible with a direct torch_dtype=torch.bfloat16 setting. Consult the model's documentation or discussions on its Hugging Face page for any known limitations or recommended configurations.
+>
+>**Troubleshooting Steps:**
+> * **Verify GPU Support:** Confirm your GPU's architecture supports bfloat16.
+> * **Update PyTorch and CUDA:** Ensure you are using recent, compatible versions of PyTorch and CUDA.
+> * **Monitor VRAM Usage:** Use tools like nvidia-smi to monitor VRAM usage during model loading and inference.
+> * **Try torch.float32:** As a test, try loading the model with torch_dtype=torch.float32 to see if the error persists. This can help isolate whether the issue is bfloat16-specific or a broader problem with your setup.
+> * **Consult Hugging Face Resources:** Check the shuttleai/shuttle-3-diffusion model page on Hugging Face for discussions, issues, or specific instructions related to its usage and data types.
+
+

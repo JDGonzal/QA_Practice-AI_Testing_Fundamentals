@@ -66,3 +66,13 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 
 
+
+### 2. 🚀 Pop Quiz: Introduction to ACCELQ Automation
+
+>[!NOTE]
+>
+>![🚀 Pop Quiz: Introduction to ACCELQ Automation](images/2025-08-05_090737.gif "🚀 Pop Quiz: Introduction to ACCELQ Automation")
+>
+
+
+

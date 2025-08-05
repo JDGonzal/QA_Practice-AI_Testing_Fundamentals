@@ -44,6 +44,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 21. Esto ayuda en el mantenimientoy la velocidad del desarrollo a medida que vayas construyendo más escenarios en `AccelQ`.
 22. Selecciono del paso `2️⃣ Enter 'qbankadmin' in input` hasta el paso `4️⃣ Click on text (equals, ignore case): 'Sign In'` y presiono el clic derecho.
 23. Y selecciono de la lista el penúltimo `Create New Action and Replace`.
+<a name="unique-anchor-name"></a>
 24. En el `Action Name`, le pongo `Login to QBank`.
 25. En el cuadro selector de nombre `Which page does this Action star-from/belong-to ❓`, escribo `QBank Login Page` y presiono [`Enter`] </br> _¿De donde sale este nombre? pues le sale de los 🥚🥚 al Instructor_).</br> ![New Action](images/2025-08-01_103118.png "New Action")
 26. Clic en el botón `[Input Params >]`: </br> ![Input Parameters](images/2025-08-01_103449.png "Input Parameters")
@@ -62,7 +63,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 >[!IMPORTANT]
 >
->[![Mira el video `Hello World`](images/2025-07-31_084115.gif "Mira el video `Hello World`")](videos/01_Hello%20World.mp4)
+>[![Haz clic aquí y mira el video `Hello World`](images/2025-07-31_084115.gif "Haz clic aquí y mira el video `Hello World`")](videos/01_Hello%20World.mp4)
 >
 
 
@@ -75,4 +76,140 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 
 
+
+### 3. ▶️ Extending Hello World!
+
+1. Ahora que se hizo el escenario `Hello World`, vamos a crear un escenario de complejidad algo identificable. Vamos a tratar de verificar transferencia de fondos en `QBank`.
+2. Ya hay un escenario de nombre `Verify Founds Transfer on QBank` y seleccionamos `Record in Design Studio`: </br> ![Scenario -> Record in Design Studio](images/2025-08-05_103637.png "Scenario -> Record in Design Studio")
+3. En la parte derecha agregar la _URL_ apuntando a `http://qbank.accelq.com`, que por defecto lo deja en la página de _login_, al darle [`ENTER`], aparece el paso: </br> `1️⃣ Invoque Browser (URL: 'http://qbank.accelq.com')` </br> ![1️⃣ Invoque Browser (URL: 'http://qbank.accelq.com')](images/2025-08-05_104308.png "1️⃣ Invoque Browser (URL: 'http://qbank.accelq.com')")
+4. Vamos a hacer _login_ de nuevo, así que dar click derecho en el cuadro de `Username` de la derecha, aparecen los `Commands`, entonces cambia a `Actions`: </br> ![Cambiar `Commands` a `Actions`](images/2025-08-05_104717.png "Cambiar `Commands` a `Actions`")
+5. Seleccionamos el que creamos en el paso [24](#1-️-hello-world-lets-automate-our-first-scenario) anterior: `Login to QBank`, y nos pide completar `Username` y `Password`: </br> ![.](images/2025-08-05_111900.png "Login to QBank")
+6. Una vez adentro Damos click derecho al botón `[Make a Transfer]`y cambiamos de `Actions` a `Commands`, para luego seleccionar: </br> `clic on a web element` </br> ![Make a Transfer -> clic on a web element](images/2025-08-05_112456.png "Make a Transfer -> clic on a web element") </br> Esto crea el tercer paso </br> `3️⃣ Click on text (equals, ignore case): 'Make a Transfer'`
+7. Nos abre un formulario para llenar: </br> ![Formulario -> Transfer Founds](images/2025-08-05_112916.png "Formulario -> Transfer Founds")
+8. Damos clic derecho sobre el primer campo de `Transfer form` y Seleccionamos `select an item from a web dropdown`, pero sería mas largo y demorado hacer cada paso.
+9. Sugerencia seleccionar toda el área que envuelve el formulario: </br> ![WebElement div#qbl-transfer-box.qbf-box ng-scope](images/2025-08-05_113327.png "WebElement div#qbl-transfer-box.qbf-box ng-scope") </br>
+<div>
+  <div>
+    <div>Transfer Funds</div>
+    <div>
+      <div>
+        <div>01</div>
+        <div>Fill Details</div>
+      </div>
+      <div>
+        <div>02</div>
+        <div>Confirmation</div>
+      </div>
+    </div>
+    <div>
+      <form>
+        <div>
+          <div>
+            <div>Transfer from </div>
+            <div> 
+              <select>
+                <option></option>
+                <option>Salary Account</option>
+                <option>Monthly Savings account</option>
+              </select><sup>1️⃣</sup>
+            </div>
+          </div>
+          <div>
+            <div>Transfer to </div>
+            <div>
+              <select>
+                <option></option>
+                <option>Electricity Bill</option>
+                <option>Mortgage Payment</option>
+                <option>Day care</option>
+                <option>ac</option>
+                <option>TEST</option>
+                <option>Kumar</option>
+                <option>sai</option>
+              </select><sup>2️⃣</sup>
+            </div>
+          </div>
+          <div>
+            <div>Amount ($)</div>
+            <div>
+              <input type="number" /><sup>3️⃣</sup>
+              <div style="font-size: 12px; font-style: italic">
+                Transfer amount not to exceed $150
+              </div>
+            </div>
+          </div>
+          <div>
+            <div>Date of Transfer</div>
+            <div>
+              <input type="date" /><sup>4️⃣</sup>
+            </div>
+          </div>
+          <div>
+            <div>Memo</div>
+            <div>
+              <input type="text" /><sup>5️⃣</sup>
+            </div>
+            <div>
+              <div></div>
+            </div>
+          </div>
+          <div>
+            <div>
+              <div>One-time or repeating?</div>
+            </div>
+            <div>
+              <label>
+                <input type="radio" name="onetime_or_repeating" /><sup>6️⃣</sup>
+                One-time
+              </label>
+              <label class="qbl-radiolabel">
+                <input type="radio" name="onetime_or_repeating" /><sup>7️⃣</sup>
+                Repeating
+              </label>
+            </div>
+            <div>
+              <div></div>
+            </div>
+          </div>
+          <div>
+            <div></div>
+            <div>
+              <button type="button">Cancel</button>
+              <button type="submit">Submit</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+10. Damos clic derecho y seleccionamos un link abajo de nombre `Fill/Update Form Fields`: </br> ![Fill/Update Form Fields](images/2025-08-05_123525.png "Fill/Update Form Fields")
+11. Nos trae una estructura numerada con los siete (7) campos que podemos completar: </br> ![Select the fields to generate statments for populate](images/2025-08-05_123808.png "Select the fields to generate statments for populate")
+12. El primer campo de `Transfer from`<sup>1️⃣</sup>, le selecciono `Salary Account`.
+13. El segundo campo de `Transfer to`<sup>2️⃣</sup>, le selecciono `Electricity Bill`.
+14. En el tercero de `Amount($)`<sup>3️⃣</sup>, escribo `10`. </br> Así se ve los campos seleccionados hasta el momento: </br> ![Tres primeros campos](images/2025-08-05_131904.png "Tres primeros campos")
+15. En el cuarto de `Date of Transfer`<sup>4️⃣</sup>, le quito el chulo o _checkbox_ ☑️ -> 🔲.
+16. El quinto de `Memo`<sup>5️⃣</sup>, le pongo `test`.
+17. El sexto de `One-time`<sup>6️⃣</sup> lo dejo intacto y quito el chulo o _checkbox_ ☑️ -> 🔲 de `Repeating`<sup>7️⃣</sup>, y así van los campos: </br> ![Los últimos cuatro campos](images/2025-08-05_132553.png "Los últimos cuatro campos")
+18. El cuadro de abajo que dice `Button Label`, le escribo `Submit`.
+19. Por último presiono el botón de `[Done]`, y nos sale la ventana de `Generación exitosa` y atrás los pasos que se crearon </br> ![Generación exitosa y los pasos](images/2025-08-05_132958.png "Generación exitosa y los pasos")
+20. Aquí le damos al botón `[Create Action]`.
+21. Y le ponemos un nombre: `Populate Found Transfer Info` y para `Which page does this Action`, escribimos `Transfer info page`</br> ![New Action -> Populate Founds](images/2025-08-05_133550.png "New Action -> Populate Founds")
+22. Damos clic en el botón azúl `[Input Params>]` y nos lleva a esta pantalla: </br> ![Input Parameters](images/2025-08-05_133827.png "Input Parameters")
+23. Eleccionamos, los tres primeros y ajustamos los nombres para que no tengan caracters especiales: </br> ![Tres primeros campos de `Input Parameters`](images/2025-08-05_134119.png "Tres primeros campos de `Input Parameters`")
+24. La lista de pasos se redujo a cuatro: </br> ![Declaraciones reemplazadas por una nueva Acción](images/2025-08-05_134339.png "Declaraciones reemplazadas por una nueva Acción")
+25. Vamos a darle clic derecho al botón superior derecho de `[Log out]` y seleccionamos `Actions` el de nombre `Logout from QBank`: </br> ![Actions -> Logout from QBank](images/2025-08-05_143541.png "Actions -> Logout from QBank")
+26. Si revisa la lista de pasos, el 3️⃣, tiene mas acciones que el resto: </br> ![Paso 3️⃣ tiene mas acciones](images/2025-08-05_143833.png "Paso 3️⃣ tiene mas acciones")
+27. Como tenemos seleecionado el paso 3️⃣ , en la parte superior seleccionamos en `CREATE ACTION FROM SELECTION`, la opción `Create Action and Replace`: </br> ![Create Action and Replace](images/2025-08-05_144422.png "Create Action and Replace")
+28. Le ponemos de nombre `Navigate to founds transfer` y en el campo de `Wich page dows Action`, seleccionamos `QBanck Home Page`: </br> ![New Action -> Navigate to founds transfer](images/2025-08-05_144731.png "New Action -> Navigate to founds transfer")</br> Y clic en el botón azul de `[Create Action]`.
+29. VAmos a la parte superior derecha en el botón `[Finalize]` y seleccionamos 💾 `Finalize Changes`: </br> ![💾 Finalize Changes](images/2025-08-05_145201.png "💾 Finalize Changes")
+30. Esta es la manera en como se reutilizan acciones en ACCELQ y como el sistema los muestra cuando hay una oportunidad. </br> Así es como se construyen mas y mas escenarios, y se convierte en un reuso eficiente, de activos en vez de recrear o regrabar la lógia de nuevo.
+
+
+>[!IMPORTANT]
+>
+>[![Haz clic aquí y mira el video `Extending Hello World`](images/2025-08-05_095351.gif "Haz clic aquí y mira el video `Extending Hello World`")](videos/02_Extending%20Hello%20World.mp4)
+>
 

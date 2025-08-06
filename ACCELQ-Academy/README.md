@@ -205,7 +205,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 27. Como tenemos seleecionado el paso 3️⃣ , en la parte superior seleccionamos en `CREATE ACTION FROM SELECTION`, la opción `Create Action and Replace`: </br> ![Create Action and Replace](images/2025-08-05_144422.png "Create Action and Replace")
 28. Le ponemos de nombre `Navigate to founds transfer` y en el campo de `Wich page dows Action`, seleccionamos `QBanck Home Page`: </br> ![New Action -> Navigate to founds transfer](images/2025-08-05_144731.png "New Action -> Navigate to founds transfer")</br> Y clic en el botón azul de `[Create Action]`.
 29. VAmos a la parte superior derecha en el botón `[Finalize]` y seleccionamos 💾 `Finalize Changes`: </br> ![💾 Finalize Changes](images/2025-08-05_145201.png "💾 Finalize Changes")
-30. Esta es la manera en como se reutilizan acciones en ACCELQ y como el sistema los muestra cuando hay una oportunidad. </br> Así es como se construyen mas y mas escenarios, y se convierte en un reuso eficiente, de activos en vez de recrear o regrabar la lógia de nuevo.
+30. Esta es la manera en como se reutilizan acciones en ACCELQ y como el sistema los muestra cuando hay una oportunidad. </br> Así es como se construyen mas y mas escenarios, y se convierte en un reuso eficiente, de activos en vez de recrear o regrabar la lógica de nuevo. </br> ![Escenario y los cinco(5) Pasos](images/2025-08-05_145448.png "Escenario y los cinco(5) Pasos")
 
 
 >[!IMPORTANT]

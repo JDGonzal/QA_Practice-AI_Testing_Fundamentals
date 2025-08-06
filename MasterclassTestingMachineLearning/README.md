@@ -431,3 +431,481 @@ Fetching 23 files: 100%|##########| 23/23 [13:56<00:00, 36.37s/it]
 > * **Consult Hugging Face Resources:** Check the shuttleai/shuttle-3-diffusion model page on Hugging Face for discussions, issues, or specific instructions related to its usage and data types.
 
 
+## Section 3: Introduction to Artificial Intelligence -optional if you know the basics of AI
+
+### 12. What makes up AI
+
+>[!NOTE]
+>
+>Antes de analizar qué es realmente la inteligencia artificial y qué la compone como ciencia, tal como la conocemos hoy, necesitamos comprender qué es exactamente la inteligencia.
+>
+>Encontré dos definiciones: una se refiere a la capacidad de adquirir y aplicar conocimientos y habilidades.
+>
+>La otra se refiere a la capacidad de resolver problemas complejos o tomar decisiones con resultados que benefician al actor y que ha evolucionado en formas de vida para adaptarse a diversos entornos para su supervivencia y reproducción.
+>
+>En cierto modo, significa la capacidad de pensar, adaptarse y adquirir nuevas habilidades.
+>
+>La inteligencia artificial se refiere a una ciencia, o quizás a un desarrollo en sistemas informáticos, capaces de realizar tareas que normalmente requieren inteligencia. Artificial significa que ha sido creada por una persona o forma de vida inteligente; es decir, esto es lo que los humanos entendemos por inteligencia artificial.
+>
+>Si continuáramos y entendiéramos cuáles son las prácticas actuales para la inteligencia artificial.
+>
+>![Artificial Intelligence](images/2025-08-05_151643.png "Artificial Intelligence")
+>
+>**¿Adónde nos ha llevado la ciencia hoy y qué constituye la inteligencia artificial?**
+>
+> * El primero sería el aprendizaje automático.
+>Esta parte de la inteligencia artificial otorga a los sistemas que diseñamos la capacidad de aprender nuevas habilidades, la capacidad de aprender de los datos para que las máquinas puedan aprender por sí mismas.
+>
+> * El siguiente sería el procesamiento del lenguaje natural.
+>Este es el paso intermedio entre el ser humano y la máquina, para que los humanos tengan la capacidad de comprender a las máquinas, o que las máquinas tengan la capacidad de expresarse. Actúa como los humanos porque no tiene sentido que un humano cree algo si no tiene la capacidad de comprenderlo y usarlo.
+>
+> * En el procesamiento del lenguaje natural, la capacidad de las máquinas para comprender las emociones del texto, el contexto de una expresión, el significado de una oración, etc.
+>Esto es el procesamiento del lenguaje natural.
+>
+> * Luego está la visión artificial.
+>Y aquí está la capacidad de los sistemas informáticos para comprender imágenes, descomponerlas en píxeles e intentar comprender qué significa ese gran grupo de píxeles para un humano.
+>Eso es la visión artificial.
+>
+> * Y esto también se aplica al habla, ¿verdad?
+>La capacidad de estos robots para comprender el habla.
+>Bueno, en realidad traducen el habla en palabras.
+>Y luego, mediante el procesamiento del lenguaje natural, esas palabras se descomponen en los diferentes significados que podrían tener para una persona.
+>
+>En resumen, la IA incluye procesamiento del lenguaje natural, aprendizaje automático y, detrás de ese gran conjunto de datos, algoritmos, modelos de entrenamiento, etc.
+
+
+### 13. Natural Language Processing
+
+>[!NOTE]
+>
+>Para que los humanos podamos hablar con las computadoras o interactuar con ellas, necesitamos que entiendan nuestros deseos, ideas, nuestra forma de pensar, y viceversa.
+>Debemos asegurarnos de que, cuando recibimos una respuesta de una computadora, la recibamos en un formato comprensible para los humanos.
+>Esta rama de la inteligencia artificial se llama procesamiento del lenguaje natural.
+>Y creo que el nombre lo dice todo.
+>
+>**¿Qué es exactamente el procesamiento del lenguaje natural?**
+>
+> * Es la parte que permite a las computadoras comprender, interpretar y generar lenguaje humano.
+>Y cuando dices lenguaje humano, no pienses solo en texto.
+>Piensa también en voz y video.
+>Todo lo que nos hace humanos: todas las formas posibles de comunicarnos.
+>
+>![NLP = Natural Language Porecessing](images/2025-08-05_152206.png "NLP = Natural Language Porecessing")
+>
+> * Y el PLN en sí mismo es una intersección.
+>También se puede encontrar en la informática, por supuesto, en el lenguaje humano; es parte de nuestra forma de comunicarnos.
+>Y, por supuesto, es parte de la IA.
+>Así que, al combinar todas estas ramas (IA, informática y lenguaje humano), el procesamiento del lenguaje natural es algo que encaja en todas ellas.
+>
+> * Ahora bien, el procesamiento del lenguaje natural se divide en dos áreas principales: la primera es la comprensión del lenguaje natural.
+>Esto significa que las computadoras pueden comprender lo que las personas intentan expresar, porque hoy en día, por sí solas, no se cree que las computadoras puedan o tengan sentimientos.
+>Están programadas para comprender lo que se intenta decir.
+>
+>**¿Y cómo funciona esto?**
+>
+>Bueno, tienes a un usuario común que puede interactuar con voz o vídeo, imágenes y texto.
+>Esta información se introduce en un proceso llamado descomposición, en un bloque de software que intentará tokenizar lo que se expresa.
+>Y luego realizará este tipo de análisis: léxico, semántico, pragmático, etc.
+>Intentará comprender lo que se quiere decir desde una perspectiva lógica.
+>
+>La generación de lenguaje natural debe transmitir un mensaje de urgencia y entusiasmo a tus correos electrónicos.
+>
+>**¿Cómo funciona esto?**
+>
+>Bueno, se parte del modelo base.
+>Básicamente, aquí es donde nos quedamos al introducir la información.
+>Luego, se genera el contenido utilizando una herramienta de IA generativa.
+>Y se recibe la respuesta tal como se solicita.
+>Esto puede ser en forma de imágenes que sabemos que podemos generar.
+>Las imágenes también pueden ser, por ejemplo, un archivo de vídeo.
+>Ahora también se pueden generar diferentes vídeos, cortos o incluso largos, que pueden ser texto o sonido.
+>
+>En resumen, el procesamiento del lenguaje natural es la parte que se encuentra entre los humanos y el modelo base, o el modelo entrenado que traduce lo que queremos obtener de nuestro sistema de IA generativa.
+
+### 14. Types of Machine Learning
+
+>[!NOTE]
+>
+>Hablemos ahora un momento sobre el aprendizaje automático.
+>El nombre en sí se explica por sí solo.
+>Se trata de la capacidad de los sistemas informáticos, o quizás simplemente de los sistemas, de aprender de los diferentes datos que poseen y crear diferentes resultados basados en algoritmos.
+>
+>Ahora bien, al pensar en los diferentes tipos de aprendizaje, existen muchos.
+>Pero creo que estos son los más básicos.
+>Analizaremos estos cuatro:
+>
+>![Tipos de Aprendizaje](images/2025-08-05_154640.png "Tipos de Aprendizaje")
+>
+>1. **Supervised Learning:** El primero se llama aprendizaje supervisado.
+>Esto significa que una máquina empieza a aprender, pero es supervisada por una persona, un sistema o alguna forma de enseñanza.
+>En este caso, se refiere a la idea de que cada dato tiene una etiqueta.</br></br>
+>Así, se le introducen estos datos a una máquina y se le indica que representan lo siguiente:
+>Por ejemplo, se le podría proporcionar la imagen de un perro y decirle: «Esto es un perro», lo cual es una forma de aprendizaje supervisado.
+>
+>2. **Unsupervised Learning:** El siguiente es el aprendizaje no supervisado.
+>Se trata de la capacidad de los sistemas informáticos de aprender, pero sin intervención externa.
+>Les otorga a las máquinas la capacidad de intentar encontrar sus propias razones y diferentes categorizaciones o agrupaciones de datos.
+>Por lo tanto, la máquina debe identificar patrones en los datos y agruparlos.
+>
+>3. **Reinforced:** Otro es el aprendizaje reforzado.
+>Y creo que este es el ejemplo más simple de cómo le enseñas algo a un niño.
+>La máquina.
+>Consta básicamente de dos partes: el agente y el sistema o entorno.
+>Y luego, el agente de IA comienza a realizar diferentes acciones.
+>Y luego le dices si está bien o no.</br></br>
+>Lo que has hecho, al igual que le enseñas a un niño cuando está aprendiendo a contar hasta diez, es que si empieza con uno, está bien.
+>Y si en el capítulo uno dices dos, también está bien.
+>Pero si tu hijo dice cinco, entonces no está bien.
+>Así que tu hijo está aprendiendo que el cinco no es después del dos, y así sucesivamente.</br></br>
+>Esto es aprendizaje reforzado.
+>Cuando una persona externa supervisa lo que hace la máquina y otorga puntos, por ejemplo, por cada decisión o acción correcta que la máquina ha realizado, ya sea nosotros o cualquier otra parte.
+>
+>4. **Deep Learning:** Y este es el más importante de todos.
+>Se trata del aprendizaje profundo.
+>Y está inspirado en el cerebro humano.
+>Utiliza redes neuronales.
+>Y esta es la capacidad, nuevamente, de un sistema para aprender usando datos no estructurados, usando datos sin etiquetar,
+>pero pasando por múltiples fases o múltiples iteraciones para ajustar el modelo.
+>Y estas iteraciones se llaman neuronas.
+>Pero hablaremos de eso más adelante.</br> </br>
+>Y los grandes modelos de lenguaje y toda la IA se basan en estos algoritmos de aprendizaje profundo.
+>Pero, nuevamente, abordaremos estos puntos a lo largo de nuestro material para comprender mejor qué son exactamente todos estos tipos de aprendizaje automático.
+
+
+### 15. Machine Learning - Supervised ML
+
+>[!NOTE]
+>
+>El aprendizaje supervisado se produce cuando se utiliza un algoritmo de aprendizaje automático con información predefinida sobre los datos que se consumen.
+>Esto significa que, al introducir datos en el algoritmo de aprendizaje automático, al introducirlos, se están proporcionando los datos, ¿verdad?
+>
+> * Estos datos de etiquetas, y tú proporcionas las etiquetas.
+>Un buen ejemplo.
+>Tomemos los perros como ejemplo.
+>Quieres enseñar a tu sistema de aprendizaje automático o entrenar a tu sistema de IA para que identifique cuándo tienes una foto de un perro o de cualquier otra cosa.</br>
+>En este caso, intentarías proporcionar una gran cantidad de datos, quizás un par de millones de fotos de perros, pero también millones de fotos de animales que no sean perros.
+>Las etiquetarías: tomarías cada foto y dirías "esto es un perro", y tomarías la otra foto y dirías "esto no es un perro", o podrías decir algo como "un zorro".
+>
+> * Entonces, para cada conjunto de datos que tengas (datos y etiquetas), los introducirías en este algoritmo de aprendizaje automático y el sistema, basado en un lenguaje de programación o una lógica de programación ya instalada, intentará encontrar una forma de identificar si se trata de un perro o no.
+>Ahora estás entrenando tu modelo.
+>Así es como lo llamaría yo, ¿verdad?
+>Estás entrenando el modelo y, de nuevo, necesitas una gran cantidad de datos para ello.
+>A continuación, te explicamos cómo funciona.
+>
+> * Ahora estás probando tu modelo.
+>Así que tienes el modelo de entrenamiento.
+>Tienes cierta lógica.
+>Tienes una gran cantidad de datos de entrenamiento y ahora quieres probar tu modelo o usarlo para predecir algo.
+>Correcto. </br>
+>La predicción y tú la introducirías en este modelo.
+>Ahora introducirías algunos datos de prueba, pero sin la etiqueta.
+>Correcto.
+>Porque ahora está aprendiendo.
+>Así que estás introduciendo datos en tu modelo.
+>De nuevo, diferentes imágenes de cualquier tipo de animal podrían ser perros, o cualquier otra cosa.
+>
+> * Pero no estás introduciendo la etiqueta porque quieres que el modelo lo entienda o validar si es correcto.
+>Después de esto, el modelo te dará una predicción.
+>Te dirá si es perro o no.
+>Básicamente, eso es todo. Lo que quieres hacer ahora es si el modelo está bien y si estás satisfecho con la predicción, está bien.
+>
+> * Pero si no estás satisfecho, lo que haces es tomar la predicción.
+>Si es un modelo, si es un perro o no, y luego la comparas con la etiqueta de esa imagen en particular.
+>Y si no es correcta, tienes que volver a entrenar tu sistema de IA con estos datos, con estos datos de prueba.
+>Correcto.
+>Y el sistema se adaptará para identificar cuál fue el problema.
+>
+>![Supervised Learning](images/2025-08-05_160223.png "Supervised Learning")
+>
+>Esto se llama aprendizaje supervisado porque constantemente le estás diciendo a tu sistema qué es lo que tienes.
+>Si es un perro o algo más.
+>Y con cada fallo, tu sistema aprenderá de ello porque le estás indicando que hay un problema.
+>Es un fallo que no es un perro y tu modelo aprenderá.
+>Esto es aprendizaje automático supervisado.
+
+
+### 16. Machine Learning - Unsupervised ML
+
+>[!NOTE]
+>
+>Ahora intentemos comprender qué es exactamente el aprendizaje no supervisado.
+>Como su nombre indica, no está supervisado por algo, por un algoritmo, por una entidad, ni proporciona ningún tipo de preenseñanza.
+>Por lo tanto, no se proporcionan estos valores como, por ejemplo, "esto es un caballo", ni se proporciona el sonido, la imagen o algo que exprese el significado de un caballo.
+>Así que creo que es más fácil simplemente dar un ejemplo de lo que es el aprendizaje no supervisado.
+>Y haremos un ejemplo muy, muy, muy simple.
+>
+>Ahora imaginemos que tienes este gráfico y aquí, en la vertical, tienes la altura.
+>Y aquí, el peso y lo que haces.
+>Así que tomarías a la persona.
+>Y la persona se caracteriza por la altura y el peso, y nada más.
+>Así que alimentarías tu algoritmo.
+>Introducirías mucha información sobre pares de valores, altura y peso, y los representarías en este gráfico de esta manera.
+>
+>![Gráfica Peso y Altura](images/2025-08-05_160857.png "Gráfica Peso y Altura")
+>
+>Así que cada punto representa una altura y su peso correspondiente.
+>Ves un patrón.
+>Lo que le pedirías a tu algoritmo es que agrupe estos datos.
+>El algoritmo dirá: «He encontrado estos dos grupos».
+>
+>![_Clusters_ o Grupos Hallados](images/2025-08-05_161156.png "_Clusters_ o Grupos Hallados")
+>
+>También puedes indicarle a tu algoritmo que encuentre tres clústeres.
+>Pero en este caso, tenemos dos clústeres.
+>Pero también puedes tener tres, cuatro, cinco, seis y muchos más.
+>Así que esta es la letra K.
+>Así que, el número de clústeres que quieres tener en tus datos de entrenamiento.
+>
+>Basándonos en la información que tenemos ahora, podríamos pedirle al robot que diga: "Si obtengo valores que caen dentro del círculo rojo o en el área roja, lo más probable es que sea una mujer, basándonos en lo que tenemos y en lo que tenemos en el círculo azul, que corresponde a la altura y el peso de un hombre".
+>Y, por supuesto, esto puede interrelacionarse.
+>Así que, en este caso, tienes dos clústeres.
+>
+>![Grupo Rojo=Mujeres, Azul=Hombres](images/2025-08-05_161631.png "Grupo Rojo=Mujeres, Azul=Hombres")
+>
+>Lo que has hecho es pedirle a tu algoritmo de aprendizaje automático que intente estructurar los datos para encontrar patrones basados en dos o más grupos, basándose únicamente en estos dos elementos.
+>
+>En este caso, intentarías enseñarle a tu algoritmo a predecir si el valor, el par, la altura y el peso corresponden a un hombre o a una mujer.
+>
+> * **Clustering:** Si observas este tipo de aprendizaje, tienes agrupamiento.
+>Esto es lo que ves aquí: la idea del agrupamiento.
+>Hemos agrupado nuestros datos en diferentes grupos o valores.
+>
+> * **Association:** Otro tipo es la asociación.
+>Imagina que estás en un sitio web y quieres comprar algo.
+>Y ves que se compran juntos con frecuencia.
+>Ese es un ejemplo de una aplicación práctica del aprendizaje no supervisado.</br>
+>Porque si le dices a tu robot que la gente ha comprado esto y solo introduces los pedidos con exactamente qué han comprado, tu algoritmo de aprendizaje automático dirá: "Las personas que compran esto la mayoría de las veces también compran esto".
+>Así que esa es una forma diferente de aprendizaje no supervisado.
+>Si entonces...
+>
+> * **Dimension Reduction** Y la última podría ser la reducción de dimensión, que ocurre cuando tienes demasiadas dimensiones, demasiados parámetros, demasiados puntos de datos, e intentas ignorar los que no son relevantes porque eso es solo ruido.
+>
+> Ahora bien, esta es una forma de aprendizaje no supervisado.
+>Pero lo realmente interesante es que si se aplica este algoritmo en conjunto, se obtienen datos que se pueden usar en el aprendizaje supervisado.
+>
+>Porque si observan aquí, tenemos dos pares de datos.
+>Y podemos decir que a cualquier persona cuya altura y peso estén dentro del círculo azul, podemos asignarle una etiqueta que sería masculina.
+>Y luego esos datos podrían incorporarse al aprendizaje supervisado.
+>Y ahora estamos entrando en este aprendizaje perpetuo.
+>Y esta es la forma más común en que las máquinas aprenden hoy en día: una forma de aprendizaje no supervisado.
+
+
+### 17. Machine Learning - Reinforced ML
+
+>[!NOTE]
+>
+>Ahora entendamos qué es exactamente el aprendizaje por refuerzo.
+>Es la capacidad de un sistema de aprender con ayuda externa, con el refuerzo de una entidad omnisciente.
+>Y, basándose en las acciones que realiza un sistema y la retroalimentación constante, aprende mediante un mecanismo de ensayo y error.</br>
+>¡Bah!
+>
+>Sí, suena un poco difícil de comprender, pero veamos un ejemplo.
+>Este es tu sistema de IA y este es tu medio, tus factores externos y lo que tienes en este caso.
+>En primer lugar, tu sistema de IA puede aprender o interpretar el estado del entorno.
+>Así que comprende el entorno y luego puede tomar medidas basadas en él.
+>
+>Y voy a tomar el ejemplo del coche autónomo; será la forma más sencilla de explicarlo.
+>
+>![Reinforcement Lerning](images/2025-08-05_162834.png "Reinforcement Lerning")
+>
+>A la izquierda y a la derecha, el cerebro.
+>Esa es la IA de tu coche autónomo, y a la derecha, el entorno por el que circula.
+>La carretera, la gente, los semáforos, etc.
+>Correcto.
+>Todo lo relacionado con el entorno del coche.
+>Por ejemplo, pones el coche en marcha hacia un destino y empiezas a observar su comportamiento.
+>
+>![Reward=Recompensa](images/2025-08-05_163231.png "Reward=Recompensa")
+>
+>Y si el coche hace algo correctamente, le das esta recompensa.
+>Si el coche hace algo incorrecto, le das la misma recompensa, pero de forma negativa.
+>Así que le das o le quitas puntos.
+>
+>Pongamos un ejemplo:
+>Has empezado a conducir.
+>Y entonces el coche empieza a moverse en línea recta.
+>Y por cada segundo, o quizás por cada 2 o 3 segundos que el coche conduce correctamente, le das esta recompensa, y la das constantemente.
+>Ahora imaginemos que el coche llega a un semáforo y no reduce la velocidad.
+>Entonces le das diferentes recompensas, pero de forma negativa.
+>
+>Imagina que el coche cambia de carril sin señalizar.
+>Entonces eso también es algo negativo, o está superando el límite de velocidad.
+>Y eso otra vez.
+>Correcto.
+>Le das puntos negativos y entonces el coche o el sistema de IA aprenderá, como si le estuvieras enseñando a un niño. Si haces eso, no está bien.
+>
+>Pero esto sí está bien.
+>Esto sigue estando bien.
+>Sigue estando bien.
+>
+>Una vez que superas los 80 km/h, ya no está bien.
+>Es ilegal.
+>¿Verdad?
+>Porque estás superando el límite de velocidad, etc.
+>
+>Esto es aprendizaje por refuerzo.
+>Y esta es otra forma de entrenar tu algoritmo de aprendizaje automático para que se comporte mejor simplemente ofreciendo recompensas o dando y quitando puntos, según las decisiones que haya tomado la IA.
+
+
+### 18. Importance of Training Data
+
+>[!NOTE]
+>
+>Probablemente ya hayas oído hablar de la palabra "basura entra, basura sale".
+>En la inteligencia artificial, en la IA generativa, los datos son lo más importante.
+>Después de eso, se aplican a tu algoritmo de aprendizaje automático, a tus sesgos y a las decisiones que tomas.
+>Así que, en el caso de la IA, o en el de la IA generativa y los grandes modelos de lenguaje, los datos provienen de todas partes.
+>
+> * **Extract:** El primer paso al gestionar tus datos se denomina extracción.
+>Esto significa que tienes una especie de lago de datos, algo que abarca todo tipo de contenido que puede alimentar tu algoritmo de aprendizaje automático.
+>Por ejemplo, tienes imágenes, archivos de vídeo, archivos de audio, archivos de texto, código o cualquier cosa que puedas tener en cualquier lugar.
+>Y lo primero que debes hacer al gestionar u obtener tus datos de entrenamiento, es extraer los datos relevantes para tu modelo.</br></br>
+>Y después de decidir, ¿qué quieres usar?</br></br>
+>Por ejemplo, si estás entrenando datos o un modelo que usan los desarrolladores, lo más probable es que también consultes diferentes repositorios de GitHub.
+>Consultarás Stack Overflow y cualquier otro tipo de foros, o quizás materiales, conferencias o cursos relacionados con la informática.Y después de decidir, ¿qué quieres usar?
+>Por ejemplo, si estás entrenando datos o un modelo que usan los desarrolladores, lo más probable es que también consultes diferentes repositorios de GitHub.
+>Consultarás Stack Overflow y cualquier otro tipo de foros, o quizás materiales, conferencias o cursos relacionados con la informática.
+>
+> * **Transform:** Después de extraer todos estos datos, se pasa por la fase llamada transformación.
+>Transforma los datos.
+>Los prepara para que el algoritmo pueda procesarlos.
+>Los baraja.
+>Los procesa por lotes.
+>Realiza algún tipo de ampliación o simplemente, eh, algún tipo de filtrado.
+>Sí.
+>Datos buenos versus datos malos, o datos estadísticamente relevantes versus datos que no tienen relevancia estadística, porque, de nuevo, depende de cómo y qué tipo de datos introduzcas en tu algoritmo de aprendizaje automático.
+>La calidad de tu modelo dependerá de ello.
+>Datos malos o sesgados equivalen a un modelo sesgado, o quizás a un modelo deficiente.
+>Sí.
+>
+> * **Model:** Después de esto, introduces estos datos en tu modelo.
+>Se trata de una especie de proceso ETL: extraes, transformas y luego los cargas en tu modelo.
+>A lo largo de toda esta cadena (extraes, transformas y cargas), compruebas que los datos no estén sesgados o los eliminas.
+>Compruebas si hay datos corruptos.
+>Yo compruebo si hay datos falsos o noticias falsas.</br></br>
+>Por ejemplo, no conviene entrenar tu modelo con noticias falsas, datos estadísticamente relevantes o sesgados, datos de odio, etc.
+>Por eso, al trabajar con modelos de lenguaje grandes, los datos de entrenamiento son lo más importante que puedes tener para entrenar tu modelo.
+>No para hablar, ni para generar contenido, sino para ser políticamente correcto.
+>Por ejemplo, si quieres ser ético, si no necesitas tener sesgos, o si quieres hablar bien o escribir con corrección gramatical, debes asegurarte de que los datos de entrenamiento también sean gramaticalmente correctos, y la lista continúa.
+>Así que recuerda que tus datos de entrenamiento deben ser limpios, no deben estar sesgados y deben ser relevantes para el modelo que intentas crear.
+>
+>![Data Importance](images/2025-08-06_160657.png "Data Importance")
+
+
+
+### 19. What actually is GEN AI
+
+>[!NOTE]
+>
+>Y ahora llegamos a la pregunta: ¿qué es la IA generativa?
+>
+>Hemos aprendido sobre modelos de aprendizaje automático, datos etiquetados y no etiquetados, y redes neuronales.
+>Entonces, ¿cómo se integran todos estos elementos?
+>Bueno, en primer lugar, lo que hay que decir sobre la IA generativa es que no se compone solo de grandes modelos de lenguaje, porque sabemos que la IA generativa puede producir imágenes.
+>Pero sabemos que LLM solo puede proporcionar texto.
+>
+>Sabemos que tenemos datos sin etiquetar, datos etiquetados y código.
+>Y contamos con muchas herramientas para entrenar nuestro modelo base.
+>Hemos entrenado nuestro modelo con toda esta cantidad de datos, y el modelo continúa entrenándose a sí mismo basándose en los nuevos datos que obtiene o en la retroalimentación de los usuarios.
+>Después de eso, este modelo base también puede generar contenido porque sabe cómo descomponerlo en estos parámetros.
+>También puede hacer lo contrario.
+>Así que si sabes cómo ir de A a B, también sabes cómo ir de B a A o quizás una variación de esto.
+>
+>Esto también se trata de generar contenido, ya que sabe cómo se ve un perro a partir de estos 76 mil millones de parámetros.
+>Solo te dará una ligera variación de esos parámetros cuando se los indiques.
+>Genera un perro para mí.
+>Correcto.
+>Y generativo.
+>Generará contenido y te lo mostrará.
+>Puede ser código, texto, un libro, cualquier cosa.
+>Pero lo importante es saber qué es generativo y qué no.
+>
+>En primer lugar, una frase, un poema, cualquier cosa generativa, forma parte de la IA generativa.
+>Pero si es un número, una probabilidad, si es verdadero o falso, no forma parte de la IA generativa.
+>Es solo un cálculo.
+>En resumen, todo esto encaja perfectamente.
+>Y forman esta IA generativa.
+>
+>En nuestro caso, si vamos más allá de la idea de grandes modelos de lenguaje que funcionan con texto y se desea crear imágenes, esto significa que la IA generativa es toda una rama de la IA que se centra en proporcionar o aplicar diferentes algoritmos y patrones de aprendizaje automático para generar lo que se desee generar.
+>Ya sea código, un poema, un discurso, texto, imágenes, etc.
+>
+>![Generative A.I.](images/2025-08-06_161521.png "Generative A.I.")
+
+
+### 20. Transformer Architecture Model
+
+>[!NOTE]
+>
+>[![What are Transformers (Machine Learning Model)?](images/2025-08-06_161828.png "What are Transformers (Machine Learning Model)?")](https://www.youtube.com/watch?v=ZXiruGOCn9s)
+>
+>No, no son esos transformadores.
+>Pero pueden hacer cosas geniales, déjame mostrarte.
+>¿Y por qué el plátano del otro lado de la calle?
+>
+>¡Porque estaba harto de que lo aplastaran!
+>Sí, no sé si lo entiendo bien.
+>Y eso es porque lo creó una computadora.
+>
+>Literalmente le pedí que me contara un chiste.
+>Y esto es lo que se le ocurrió.
+>Específicamente, usé un GPT-3, o un modelo de transformador generativo preentrenado.
+>
+>El 3 aquí significa que esta es la tercera generación.
+>GPT-3 es un modelo de lenguaje autorregresivo
+>que produce texto que parece escrito por un humano.
+>GPT-3 puede escribir poesía, redactar correos electrónicos y, evidentemente, inventar sus propios chistes.
+>¡Vamos!
+>
+>Ahora bien, aunque nuestro chiste del plátano no es precisamente gracioso,
+>sigue el patrón típico de un chiste con un planteamiento y un remate, y en cierto modo tiene sentido. ¿Quién no cruzaría la calle para evitar ser aplastado?
+>
+>Pero mira, GPT-3 es solo un ejemplo de transformador.
+>Algo que transforma de una secuencia a otra.
+>Y la traducción de idiomas es un gran ejemplo.
+>Quizás queramos tomar nuestra frase "¿Por qué el plátano >cruzó la calle?",
+>y traducirla al francés.
+>
+>Bueno, los transformadores constan de dos partes: un codificador y un decodificador.
+>
+>El codificador trabaja con la secuencia de entrada,
+>y el decodificador con la secuencia de salida.
+>Ahora bien, a primera vista, la traducción parece poco más que una simple búsqueda,
+>
+>así que convierte el "por qué" de nuestra frase en inglés a su equivalente en francés: "pourquoi".
+>Pero, por supuesto, la traducción de idiomas no funciona así.
+>
+>Cosas como el orden de las palabras y los giros idiomáticos a menudo generan confusión. Los transformadores funcionan mediante aprendizaje secuencia a secuencia, donde el transformador toma una secuencia de tokens, en este caso palabras de una oración, y predice la siguiente palabra en la secuencia de salida. Esto se logra iterando por las capas del codificador, de modo que el codificador genera codificaciones que definen qué partes de la secuencia de entrada son relevantes entre sí y luego pasa estas codificaciones a la siguiente capa. El decodificador toma todas estas codificaciones y utiliza su contexto derivado para generar la secuencia de salida.
+>
+>Los transformadores son una forma de aprendizaje semisupervisado.
+>Por "semisupervisado", nos referimos a que se entrenan previamente de forma no supervisada con un gran conjunto de datos sin etiquetar y luego se perfeccionan mediante entrenamiento supervisado para optimizar su rendimiento.
+>
+>En videos anteriores, he hablado de otros algoritmos de aprendizaje automático que procesan la entrada secuencial como lenguaje natural. Por ejemplo, existen redes neuronales recurrentes (RRN).
+>
+>Lo que diferencia a los Transformers es que no necesariamente procesan los datos en orden.
+>Los Transformers utilizan un mecanismo de atención.
+>Este proporciona contexto en torno a los elementos de la secuencia de entrada.
+>Así, en lugar de comenzar la traducción con la palabra "por qué" porque está al principio de la oración, el Transformer intenta identificar el contexto que aporta significado a cada palabra de la secuencia.
+>
+>Y es este mecanismo de atención lo que les da a los Transformers una gran ventaja sobre algoritmos como las RNN, que deben ejecutarse en secuencia.
+>
+>Los Transformers ejecutan múltiples secuencias en paralelo.
+>Y esto acelera enormemente los tiempos de entrenamiento.
+>Más allá de las traducciones, ¿a qué se pueden aplicar los Transformers?
+>
+>Bueno, los resúmenes de documentos son otro gran ejemplo.
+>Se puede introducir un artículo completo como secuencia de entrada y luego generar una secuencia de salida que, en realidad, consistirá en un par de oraciones que resumen los puntos principales. Los Transformers pueden crear documentos completamente nuevos, por ejemplo, escribir una entrada de blog completa.
+>
+>Y más allá del lenguaje, los Transformers han hecho cosas como aprender a jugar ajedrez y realizar un procesamiento de imágenes que incluso rivaliza con las capacidades de las redes neuronales convolucionales.
+>
+>Mira, los Transformers son un potente modelo de aprendizaje profundo y, gracias a la capacidad de paralelizar ese mecanismo, están mejorando constantemente.
+>¿Y quién sabe?
+>Muy pronto, tal vez incluso puedan hacer chistes de plátanos que sean realmente graciosos.
+
+### Quiz 1: Chapter Quiz
+
+>[!NOTE]
+>
+>![Quiz 1: Chapter Quiz](images/2025-08-06_163419.gif "Quiz 1: Chapter Quiz")
+
+
+

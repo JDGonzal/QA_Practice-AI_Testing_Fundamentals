@@ -221,3 +221,43 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >![🚀 Pop Quiz: Action Reuse in Scenario Development](images/2025-08-11_142021.gif "🚀 Pop Quiz: Action Reuse in Scenario Development")
 
 
+
+### 5. ▶️ Basic Entities in ACCELQ
+
+>[!NOTE]
+>
+>1. En los últimos dos ejemplos, ACCELQ toma una primera aproximación al diseño para la automatización del test.</br>
+>Aquí mientras estamos construyendo elementos en vez de grabar los casos de prueba. Esencialmente esto quiere decir que estamos construyendo una configuración modular desde el _get-go_ (Ve y consigue) y varios pasos han sido creados por ACCELQ como unas simples tareas.
+>
+>2. Vamos a darle otra mirada a esto en este escenario:</br> ![Scenario: ValidateLogin on QBank](images/2025-08-11_145205.png "Scenario: ValidateLogin on QBank")</br>
+>Cada paso que se ve comprende dos porciones.</br>
+>Una es el `Login to QBank` que es una acción en ACCELQ, que puede tener ciertos parámetros (_Username_ y _Passord_) y adicional cada acción toma un lugar en un particular página de su aplicación, el cual llama un contexto.
+>
+>3. Por lo tanto, simplemente por proveer un nombre de página, usted creó una acción, dando mucho mejor contexto a su proceso de negocios y ayuda a entender que está pasando.
+>
+>4. Antes demostrar los pasos relacionados mas allá del ejemplo, permítame abrir una acción y mostrarla:</br> ![Action: Login to QBank](images/2025-08-11_150244.png "Action: Login to QBank")</br>
+>Notará que la acción primariamente consiste de la automatización de la lógica.
+>
+>5. Esto se detallará mas en próximos vídeos. Ahora vamos detrás de las escenas y examinemos el botón de `NAVIGATOR` que muestra los elementos que van a ser construídos: </br> ![NAVIGATOR](images/2025-08-11_151021.png "NAVIGATOR")
+>
+>6. Lo primero que muestra son los Escenarios, Contextos y Acciones: </br> ![Scenarios, Contexts, Actions](images/2025-08-11_151522.png "Scenarios, Contexts, Actions")</br>
+>Se pueden ver las acciones formuladas, los contextos creados y los escenarios que hemos grabado.
+>
+>7. Ahora todo esto pasa sin requerir habilidades técnicas avanzadas o esfuerzo adicional de su parte.
+>Así que se continua construyendo mas escenarios de pruebas en ACCELQ, todo estará uniéndose y demuestra como esto ayuda a reducir el mantenimiento e incrementar la velocidad de desarrollo.
+>
+>8. Y el `UNIVERSE` captura las posibles interacciones en su aplicación: </br> ![UNIVERSE](images/2025-08-11_152138.png "UNIVERSE") </br>
+>y empieza a auto-formular como se construyen los elementos.
+>
+>9. Ahora antes de terminar, deseo clarificar y asegurar que todo esté claro. La diferencia entre una `Action` y un `Scenario`: </br> ![Clarificar diferenciar una `Action` de un `Scenario`](images/2025-08-11_152629.png "Clarificar diferenciar una `Action` de un `Scenario`")</br>
+>Un `Scenario` es un proeso del negocio que se está probando en cambio una `Action` es un bloque de lógica reutilizable significativo y funcional que se usa como un `Step` en un `Scenario`.
+
+
+
+>[!IMPORTANT]
+>
+>[![Haz clic aquí y mira el video `Key Entities in ACCELQ`](images/2025-08-11_144035.gif "Haz clic aquí y mira el video `Key Entities in ACCELQ`")](videos/03_Key%20Entities%20in%20ACCELQ.mp4)
+>
+
+
+

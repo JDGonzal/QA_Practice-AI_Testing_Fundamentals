@@ -106,7 +106,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
         <div>
           <div>
             <div>Transfer from </div>
-            <div> 
+            <div>
               <select>
                 <option></option>
                 <option>Salary Account</option>
@@ -198,7 +198,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 20. Aquí le damos al botón `[Create Action]`.
 21. Y le ponemos un nombre: `Populate Found Transfer Info` y para `Which page does this Action`, escribimos `Transfer info page`</br> ![New Action -> Populate Founds](images/2025-08-05_133550.png "New Action -> Populate Founds")
 22. Damos clic en el botón azúl `[Input Params>]` y nos lleva a esta pantalla: </br> ![Input Parameters](images/2025-08-05_133827.png "Input Parameters")
-23. Eleccionamos, los tres primeros y ajustamos los nombres para que no tengan caracters especiales: </br> ![Tres primeros campos de `Input Parameters`](images/2025-08-05_134119.png "Tres primeros campos de `Input Parameters`")
+23. Seleccionamos, los tres primeros y ajustamos los nombres para que no tengan caracters especiales: </br> ![Tres primeros campos de `Input Parameters`](images/2025-08-05_134119.png "Tres primeros campos de `Input Parameters`")
 24. La lista de pasos se redujo a cuatro: </br> ![Declaraciones reemplazadas por una nueva Acción](images/2025-08-05_134339.png "Declaraciones reemplazadas por una nueva Acción")
 25. Vamos a darle clic derecho al botón superior derecho de `[Log out]` y seleccionamos `Actions` el de nombre `Logout from QBank`: </br> ![Actions -> Logout from QBank](images/2025-08-05_143541.png "Actions -> Logout from QBank")
 26. Si revisa la lista de pasos, el 3️⃣, tiene mas acciones que el resto: </br> ![Paso 3️⃣ tiene mas acciones](images/2025-08-05_143833.png "Paso 3️⃣ tiene mas acciones")
@@ -212,4 +212,12 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 >[![Haz clic aquí y mira el video `Extending Hello World`](images/2025-08-05_095351.gif "Haz clic aquí y mira el video `Extending Hello World`")](videos/02_Extending%20Hello%20World.mp4)
 >
+
+
+### 4. 🚀 Pop Quiz: Action Reuse in Scenario Development
+
+>[!NOTE]
+>
+>![🚀 Pop Quiz: Action Reuse in Scenario Development](images/2025-08-11_142021.gif "🚀 Pop Quiz: Action Reuse in Scenario Development")
+
 

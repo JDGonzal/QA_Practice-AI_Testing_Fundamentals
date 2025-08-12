@@ -908,4 +908,331 @@ Fetching 23 files: 100%|##########| 23/23 [13:56<00:00, 36.37s/it]
 >![Quiz 1: Chapter Quiz](images/2025-08-06_163419.gif "Quiz 1: Chapter Quiz")
 
 
+## Section 4: Overview of Machine Learning Model Testing
+
+### 21. Types of Testing in Software
+
+>[!NOTE]
+>
+>Antes de adentrarnos en la parte esencial de las pruebas de lenguaje, entendamos un poco cómo funcionan las pruebas de software.
+>Quizás ya sepas esto.
+>Si lo sabes, puedes omitirlo, pero si no, podemos simplemente resumir:
+> * **¿qué significa ingeniería de calidad?**
+>Generalmente se le llama pruebas de software.
+>Por lo tanto, la ingeniería de calidad es el gran ámbito que se encarga de verificar que se tenga un cierto nivel de calidad en cualquier cosa.
+>
+> * Una parte de la ingeniería de calidad se denomina pruebas de software.
+>Ahora bien, las pruebas de software.
+>Tradicionalmente se dividen en
+>   * pruebas funcionales y, por supuesto,
+>   * pruebas no funcionales.
+> * Y si analizamos qué son las pruebas funcionales, nos referimos a qué hace nuestro producto.
+>Qué hace.
+>Por ejemplo, si queremos ir de A a B, el programa nos dará una ruta.
+>Y eso es lo que hace.
+>Esa es una funcionalidad.
+>
+>   * Las pruebas no funcionales se refieren al rendimiento de nuestra aplicación, sea lo que sea que necesite realizar.</br>
+> Algunos ejemplos son las pruebas de rendimiento.
+>¿Qué tan rápido carga nuestra página web?
+>¿Qué tan rápido genera una imagen nuestro modelo de lenguaje?
+>Cuando decimos que generemos una imagen para nosotros.
+>   * Las pruebas de seguridad se refieren a que, independientemente de lo que hagamos, está protegido y nadie puede acceder a esa información si no se le permite acceder a ella.
+>Y hay más.
+>
+> * La parte funcional, nuevamente, se divide en varias áreas.
+>Pero el objetivo principal es qué hace nuestra aplicación.
+>   * Por ejemplo, las pruebas de aceptación del usuario forman parte de las pruebas funcionales.
+>   * Luego, se pueden realizar pruebas unitarias, pruebas de integración y pruebas de interfaz de usuario.
+>Todas se consideran parte de las pruebas funcionales.
+>   * También es posible que quieras verificar tus requisitos.
+>Así que asegúrate de que tu aplicación funcione correctamente.
+>Sí, en comparación con tus requisitos.
+>
+>En resumen, estas son tus pruebas de software.
+>Y esto es a gran escala.
+>Lo que validas, por supuesto, es que sabes que puedes hablar durante horas sobre qué son las pruebas de software.
+>Pero para el propósito de nuestra lección, necesitamos entender qué es esto.
+>
+>![Quality Engineering](images/2025-08-12_131314.png "Quality Engineering")
+
+
+
+### 22. Understand how ML models are tuned - General View
+
+>[!NOTE]
+>
+>Ahora solo quiero tomarme un par de minutos para explicar cómo ajustar cualquier tipo de modelo.
+>Es muy fácil.
+>Es como cualquier otro software.
+>Como pueden ver, esto es similar al concepto de ramificación.
+>
+>Podrían tener su repositorio de modelos.
+>Podrían pensar en esto como la línea principal, el tronco.
+>Y esto podría ser una rama.
+>
+>Entonces, lo primero que hacen es modificar su modelo para tener una nueva idea o si su modelo ha sido...
+>eh, hay alguna degradación, o quieren mejorar su algoritmo o lo que sea.
+>
+>Entonces, lo que haces es modificar el código que cambia tu conjunto de datos y luego ejecutar algunas pruebas preentrenadas.
+>Esto significa que aquí mismo estás ejecutando la prueba en un modelo preentrenado.
+>Justo en el modelo que está aquí.
+>
+>Después, vuelves a entrenar el modelo con los datos más recientes, ya que podrías entrenarlo gracias a los datos.
+>Podrías tener nuevos datos en el concepto de desviación de datos o desviación del modelo.
+>
+>Quieres entrenar con datos nuevos porque los antiguos ya no son relevantes para la situación actual, o has cambiado tu algoritmo.
+>Tu modelo de aprendizaje automático se ha modificado con nuevos parámetros.
+>Y por eso, ahora mismo estás entrenando tu modelo con tu nuevo algoritmo.
+>Y luego ejecutas la nueva prueba.
+>
+>Así que ahora tienes pruebas que deben validar que el entrenamiento se ajusta a lo que tienes, a lo que quieres hacer con tu modelo más reciente.
+>Ese es el punto clave.
+>
+>Necesitas obtener algunos resultados, pero después de entrenar, buscas otros resultados que correspondan al nuevo parámetro.
+>Y, por supuesto, esta prueba.
+>También se combinan algunas métricas.
+>Así que las métricas y los resultados se combinan.
+>
+>Es como ejecutar una UAT o validar los resultados de la UAT, como podría ser este.
+>Y luego la apruebas y la implementas directamente en producción.
+>Por supuesto, también hay una parte donde se podría hablar de depuración de datos.
+>Así podría ser.
+>
+>Pero suponiendo que tus datos ya están limpios, no necesitas depurar los datos en este punto.
+>Correcto.
+>Esto significa que te aseguras de que los datos que obtienes sean correctos y no estén sesgados.
+>Eh, son relevantes, etc.
+>
+>Al igual que con cualquier tipo de ramificación, se modifica la prueba, se ejecuta una prueba previa al entrenamiento, se entrena, se valida el entrenamiento, se revisa, se aprueba y, finalmente, se implementa en producción.
+>Y aquí, por supuesto, se vuelve a supervisar.
+>Así es como se ajusta cualquier modelo de aprendizaje automático.
+>
+>![Basic Model Tuning](images/2025-08-12_132223.png "Basic Model Tuning")
+
+
+
+### 23. Fine tunning techniques for AI and any LLM foundation model
+
+>[!NOTE]
+>
+>Para comprender completamente la IA, necesitamos detenernos un momento y pensar en el ajuste del modelo.
+>Lo que ven aquí es un ciclo de vida estándar para ajustar un modelo base.
+>Porque lo que sucede es que obtendrán, por ejemplo, Llama 3, o ChatGPT 01 o cualquier otro modelo de lenguaje extenso.
+>Si se trata de un fanático chino, tal vez podrían obtener la versión 3 profunda, y así sucesivamente.
+>Y aquí es donde terminan, ¿verdad?
+>
+>Así que, de todo el ciclo de vida, preparan sus datos, seleccionan su modelo base y luego evalúan el mejor modelo para su tarea.
+>Por ejemplo, he visto que Claude Sonnet 3.5 es mejor que ChatGPT 4 en codificación.
+>Así que quizás seleccione Cloud 3.5 y lo use para codificar.
+>Y después de eso, necesito ajustar mi modelo.
+>Esto significa que necesito preparar mi modelo para la tarea específica que quiero realizar.
+>Porque, no olvidemos que un modelo base como ChatGPT sirve para todo, así que necesitamos mejorarlo para la tarea en cuestión.
+>
+>[![https://mostly.ai/blog/machine-learning-life-cycle-with-synthetic-data](https://mostly-web-mostly-website-assets.s3.eu-central-1.amazonaws.com/wp-content/uploads/2023/08/Machine-learning-life-cycle-1-1-1024x871.jpg "https://mostly.ai/blog/machine-learning-life-cycle-with-synthetic-data")](https://mostly.ai/blog/machine-learning-life-cycle-with-synthetic-data#what-is-a-machine-learning-life-cycle)
+>
+>Comenzaremos con el conjunto de datos.
+>Tienes el conjunto de datos de preentrenamiento y el conjunto de datos de ajuste.
+>Lo llamaremos así.
+>Selecciona el conjunto de datos completo, que es el 100%, llamémoslo así.
+>Y luego volverás a entrenar.
+>
+>Los modelos ejecutarán el algoritmo de entrenamiento con entre el 60% y el 70% de los datos.
+>Tu modelo se entrenará con estos datos.
+>Después de entrenar tu modelo con estos datos, del 30% o 40% restante, dependiendo de cómo lo dividas,
+>necesitamos seleccionar la mitad.
+>
+>Imaginemos que el 20% se evaluará durante el entrenamiento.
+>Entrenamos el modelo y luego evaluamos durante el entrenamiento para que la inferencia, que es básicamente la predicción, se acerque a lo que buscamos.
+>Y luego, para el resto, probamos el modelo en un entorno sin entrenamiento, ya que esto es entrenamiento puro.
+>Esto es entrenamiento y evaluación.
+>Así que evalúas tus parámetros para que las inferencias se acerquen a lo deseado.
+>Y aquí esto es evaluación pura, sin entrenamiento.
+>
+>Así que esta es una forma de guiar tu modelo, basándote en tus datos, para que se acerque más a lo que realmente quieres lograr.
+>Esta es una forma de, digamos, evaluar o ajustar tu modelo.
+>
+>[![.](https://miro.medium.com/v2/resize:fit:1000/1*AE17O-39mBq3PFBalay6-w.png "https://medium.com/data-science/data-splitting-technique-to-fit-any-machine-learning-model-c0d7f3f1c790")](https://medium.com/data-science/data-splitting-technique-to-fit-any-machine-learning-model-c0d7f3f1c790)
+>
+>La siguiente forma de perfeccionar tu modelo es con indicaciones.
+>Si sabes, puedes usar este generador de GPT, que te permite perfeccionar un modelo; de hecho, crear tu propio modelo.
+>Lo que hace es, básicamente, perfeccionarlo para una tarea específica.
+>Tengo la guía de certificación, mi propio modelo de perfeccionamiento, diseñado específicamente para ayudar a las personas a aprobar la certificación.
+>Si revisamos la configuración, editamos mi GPT, encontrarás las instrucciones.
+>
+>[![https://chatgpt.com/g/g-UpNvtv9X2-istqb-certification-guide](images/2025-08-12_133947.png "https://chatgpt.com/g/g-UpNvtv9X2-istqb-certification-guide")](https://chatgpt.com/g/g-UpNvtv9X2-istqb-certification-guide)
+>
+>Otra opción podría ser usar barandillas.
+>AWS ofrece un servicio llamado barandillas.
+>Y de lo que quiero hablar específicamente es de bloquear temas no deseados.
+>Quizás quieras que tu modelo no trate un tema específico.
+>Quizás esté prohibido hablar de cualquier tema.
+>
+>Así que puedes implementar este tipo de barandillas en tu modelo para que solo tú lo sepas.
+>Se permite la generación de código y no se permite nada que esté fuera de las decisiones o políticas de tu empresa.
+>Esta es otra forma de ajustar tu modelo de forma granular para restringir la cantidad y los temas que puede gestionar.
+>
+>Estas son las formas más sencillas de ajustar tu modelo si quieres trabajar con diferentes parámetros, como el funcionamiento interno de los modelos de aprendizaje automático, como las redes neuronales.
+>
+>Luego necesitas profundizar mucho en los modelos de entrenamiento, el aprendizaje automático y las matemáticas.
+>Pero, ya sabes, eso es bastante difícil.
+>La forma más fácil es recordar los datos.
+>Se hace con indicaciones y recopilaciones.
+>
+>[![https://aws.amazon.com/es/bedrock/guardrails/](images/2025-08-12_135208.png "https://aws.amazon.com/es/bedrock/guardrails/")](https://aws.amazon.com/es/bedrock/guardrails/)
+>
+>
+
+
+
+### 24. Overall Testing Approach to LLMs
+
+>[!NOTE]
+>
+>Ahora hablemos de nuestro enfoque para probar modelos lingüísticos grandes.
+>El problema es que, en nuestro escenario, o en el caso de los modelos lingüísticos grandes, es casi imposible probarlo todo, ya que las aplicaciones son prácticamente infinitas.
+>
+>Por lo tanto, necesitamos un enfoque más estructurado para que, al probar algo, pueda aplicarse en toda la cadena de valor de, digamos, toda la industria.
+>Por lo tanto, en nuestro material, al probar modelos lingüísticos grandes, nos referiremos a tres elementos diferentes.
+>
+>El primero trata sobre los datos que necesitamos para probar cómo se utilizan en los modelos lingüísticos grandes.
+>
+>Necesitamos comprobar que los resultados no contengan datos sesgados.
+>Si introduces datos sesgados, quieres asegurarte de que el resultado que obtienes no lo esté.
+>Por lo tanto, los modelos de lenguaje grandes necesitan asegurarse de contar con este tipo de medidas de seguridad.
+>
+>Al cargar los datos o al proporcionar el resultado, analizaremos datos estadísticamente irrelevantes, ya que, como ya hemos dicho, los modelos de lenguaje grandes son máquinas de predicción estadística.
+>Si las estadísticas no son relevantes, el resultado tampoco lo es.
+>Por lo tanto, estas máquinas deben tener la capacidad de filtrar este tipo de datos: datos desequilibrados.
+>
+>Estos datos son estadísticamente relevantes, pero no están, digamos, equilibrados ni a la izquierda ni a la derecha. Veremos qué significa esto, o datos obsoletos, porque aprenderemos sobre el concepto de deriva.
+>
+>Podrías entrenar tu modelo con datos relevantes de hace 15 años, pero que ya no se aplican hoy en día, y, por supuesto, con otros.
+>Luego, haremos pruebas con indicaciones.
+>Y cuando digo indicaciones, también me refiero a las API.
+>
+>Cuando llamas a una API para un modelo de lenguaje grande, básicamente la estás indicando, pero con un tipo de indicación diferente.
+>Pero no te preocupes tanto por cómo probar una API.
+>Estoy bastante seguro de que puedes encontrar eso en línea.
+>Veremos cómo usar indicaciones para ver si tu modelo de lenguaje grande tiene diferentes capacidades de razonamiento.
+>Y, por supuesto, usaremos indicaciones en cascada.
+>
+>Por ejemplo, indicaciones de cero disparos, indicaciones iterativas, cadena de pensamiento, indicaciones contrafácticas, entre otras.
+>Sí, creo que este será el capítulo más importante que abordaremos.
+>
+>Y un último punto que analizaremos es la regulación de la UE.
+>Y, por supuesto, la parte ética.
+>Aquí analizaremos las prácticas prohibidas para garantizar que se cuente con las salvaguardas necesarias.
+>Transparencia en la toma de decisiones.
+>Documentación técnica y, por supuesto, mantenimiento de registros.
+>Esto también está regulado.
+>Y la capacidad de las personas para supervisar cualquier tipo de interacción con la IA.
+>
+>Y el último punto se refiere a los datos y su gobernanza.
+>Esto es, ya saben, la parte principal. Habrá otra parte intermedia sobre seguridad y diferentes tipos de ataques que se pueden realizar para exponer datos o quizás inyectar datos que no se desean.
+>Pero hablaremos de eso más adelante.
+>
+>![Data, Prompts, EU Regulation](images/2025-08-12_140928.png "Data, Prompts, EU Regulation")
+>
+
+
+
+### 25. Testing Types for LLMs | Foundation Models
+
+>[!NOTE]
+>
+>Así que, al pensar en pruebas no funcionales para un modelo de lenguaje grande, ya hemos decidido que, de nuevo, se debe tener rendimiento, seguridad, portabilidad, escalabilidad, registro, monitorización y auditorías.
+>Cierto.
+>Todo esto.
+>
+>![Quality Engineering"](images/2025-08-12_131314.png "Quality Engineering")
+>
+>Pero los modelos de lenguaje grandes o la IA también necesitan ir más allá del software tradicional, porque giran en torno a la inteligencia.
+>Y recuerden, inteligencia.
+>
+>Si lo crean humanos, debe imitar el comportamiento humano.
+>Por lo tanto, debe pensar como un humano, con sus virtudes y defectos.
+>Y por esta razón, al pensar en probar modelos de lenguaje grandes, y específicamente, no funcionales, necesitamos incorporar al menos tres tipos más de pruebas.
+>Y en primer lugar, se trata de la ética en torno a su modelo de lenguaje grande.
+>
+> * En primer lugar, se tratará la **ética** en torno a su modelo lingüístico general.
+>Porque si se utilizan estos modelos, deben incorporar la ética humana.
+>Y también sabemos que, a lo largo de la historia, la ética humana no ha evolucionado.
+>Quizás no teníamos ética en la Edad Media.
+>Quizás teníamos algo de ética hace unos 100 años y ahora es diferente.
+>Por lo tanto, la ética debe evaluarse según los tiempos modernos, según lo que es ético en la actualidad.
+>Esto es algo que analizaremos en los próximos capítulos.
+>
+> * Y luego está la parte **adversarial**.
+>Y cuando digo adversarial, me refiero a un tipo especial de prueba de seguridad que consiste en usar indicaciones para que el modelo actúe de forma poco ética, para recopilar información del modelo, para extraer información y para engañarlo para que haga algo poco ético.
+>Inyectar indicaciones.
+>Envenenar los datos para que el modelo actúe de forma poco ética o maliciosa, o quizás enseñarte a fabricar una bomba.
+>Por lo tanto, las pruebas adversariales son un tipo de seguridad y también las abordaremos en los próximos capítulos.
+>
+> * Y quizás uno de los aspectos más interesantes es si tu modelo de IA puede actuar como un **humano**.
+>Esto significa que cuando hablo con el modelo Doe, ¿siente que le estoy hablando?</br>
+>En primer lugar, ¿es un robot o tiene consistencia?
+>¿Pierde contexto?
+>¿Es ético?
+>¿Habla de la misma manera?
+>¿Tiene solidez en la conversación?
+>
+>![Ethics, Adversial, Human](images/2025-08-12_142150.png "Ethics, Adversial, Human")
+>
+>Estos también son algunos aspectos no funcionales del modelo.
+>Pero si no los tienes, si el modelo, al hablar con él, se siente torpe y estúpido,
+>y estás teniendo una conversación sobre algo.
+>Y de repente, el modelo responde a una pregunta diferente, y siempre responde de forma diferente,
+>y no entiende y te da la misma respuesta una y otra vez.
+>
+>Es decir, tiene todos los aspectos, quizás no funcionales.
+>Puede que tenga la parte funcional, pero no actúa como un humano. Así que te vas a frustrar.
+>También probaremos este tipo de lado humano, parte de los aspectos no funcionales de un chatbot, o quizás de un modelo de lenguaje más amplio.
+
+
+
+### 26. Introduction to Benchmarking for LLMs
+
+>[!NOTE]
+>
+>En cualquier tipo de industria, digamos.
+>Existen ciertos puntos de referencia.
+>Existen empresas, o quizás no solo empresas, foros que comparan una cosa con otra para saber cuál es mejor.
+>
+>Por ejemplo, en la industria de los videojuegos, existen CPU o GPU.
+>En ciertas aplicaciones o juegos, se comparan en función de los fotogramas por segundo que pueden ofrecer.
+>Y esto puede aplicarse a cualquier cosa.
+>
+>Por ejemplo, en la industria automotriz, es la vuelta a Nürburgring.
+>Entonces, ¿qué tan rápido puede un auto dar esa vuelta de 40 km? Y la lista continúa.
+>Y, por supuesto, para la IA existen diferentes tipos de puntos de referencia.
+>
+>Pero entendamos cómo funciona el benchmarking en un modelo de IA.
+>Porque normalmente, por ejemplo, si quisiera saber si mi hija sabe contar hasta diez,
+>lo haría.
+>Sé contar hasta diez.
+>Cierto.
+>
+>Es, digamos, una verdad obvia.
+>Cómo contar hasta diez en cualquier idioma: uno, dos, tres, etc.
+>Así que si quisiera saber si mi hija sabe contar hasta diez, le pediría que contara hasta diez.
+>Y si dijera uno, dos, tres, cuatro, cinco, etc., le diría que sí, pero si dice uno, cuatro, nueve y luego ocho, sabría que, en comparación con el punto de referencia, no está rindiendo como debería.
+>
+>Así que es básicamente una comparación.
+>
+>Si la comparación da igual, sabes que has aprobado.
+>Si no, no obtienes puntuación y entonces realizas la evaluación.
+>
+>Básicamente, comparas los resultados y realizas estas pruebas para quizás 100 preguntas, 100 problemas matemáticos diferentes, 100 problemas científicos diferentes, problemas universitarios.
+>Dependiendo de lo que necesites analizar, existen herramientas de evaluación comparativa específicas.
+>
+>![.](images/2025-08-12_143305.png "")
+>
+>Así es como funciona la evaluación comparativa, no solo en IA, sino en cualquier ámbito.
+>Pero en el caso de la IA, necesitas datos de referencia.
+>Necesitas un modelo de lenguaje extenso.
+>
+>Necesitas algún tipo de herramienta para comparar el resultado dado con el resultado generado por el modelo de lenguaje extenso. Los introduces en un mecanismo de puntuación, luego emites una puntuación y listo.
+>Puedes comparar diferentes modelos de lenguaje extensos entre sí dentro del mismo conjunto de datos.
+>
 

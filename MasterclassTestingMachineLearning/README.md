@@ -1236,3 +1236,569 @@ Fetching 23 files: 100%|##########| 23/23 [13:56<00:00, 36.37s/it]
 >Puedes comparar diferentes modelos de lenguaje extensos entre sí dentro del mismo conjunto de datos.
 >
 
+
+
+## Section 5: Common Traditional Metrics for ML Models and how to calculate them
+
+### 27. Understanding how to compute any score
+
+>[!TIP]
+>
+>**Understanding how to compute any score**
+>
+>In case you have not watched Lecture 1 of Section 3( Introduction to Benchmarking for LLMs)  revisit, that since it contains information that is vital to understand the following 5-6 lectures.
+>
+
+
+### 28. Ground Truth Table - source of Truth | Test Oracle
+
+>[!NOTE]
+>
+>Lo que veremos ahora es cómo calcular la puntuación F1, la precisión, la predicción, la veracidad, etc.
+>Pero para ello, necesitamos que se cumpla una condición previa específica.
+>Necesitamos los datos de prueba de referencia que se utilizan para calcular la puntuación.
+>
+> Y quiero presentar un concepto llamado tabla de verdad fundamental.
+>Y para explicarlo, los guiaré a través de todo el proceso de prueba para calcular todos estos elementos.
+>
+> * **String:** Así que lo primero que necesitarán es una cadena, una cadena muy larga y compleja, que contenga muchos sustantivos, nombres de animales, entidades, empresas y personas.
+>
+> * **Prompt:** Así que no solo verbos, sustantivos, etc., sino que también tiene entidades que definen algo especial.
+>En mi ejemplo, tengo una entidad de 100 cadenas, y sin la entidad, o sobre ella,
+>necesitarías una indicación.
+>Y, como sabes, la indicación se puede usar simplemente para decir: "¿Qué hay en la entidad?".
+>O no necesitas una indicación cuando simplemente preguntas algo más.</br>
+>Pero en nuestro caso, necesitamos especificar que queremos que el modelo realice este tipo de reconocimiento de entidades.
+>
+> * **LLM(Model):** Lo que necesitas, por supuesto, es un modelo bastante obvio.
+>Para validar esto, necesitarás un modelo.
+>Envías una cadena, digamos 100, una oración, una frase o quizás un párrafo, de una página, por ejemplo.
+>Y le pides al modelo que calcule el reconocimiento de entidades de nombre para todo.
+>Eso incluye espacios, signos de puntuación, absolutamente todo.</br>
+>¿Y qué sucede?
+> * **Output:** El modelo proporcionará un resultado en forma de tabla, que les mostraré.
+>Por ejemplo, en el ejemplo que tenemos, la columna A será el nombre de la entidad.
+>La columna B será un código que se asigna a una entidad específica.
+>Y la columna C será la explicación del código para el usuario.
+>Esto se denomina, digamos, tabla de predicción, lo que el modelo ha predicho.
+>
+> * **Truth Table:** También tendrás otra creada por ti.
+>Esta será la tabla de verdad fundamental.
+>Así que tendrás ambas y compararás la tabla de verdad fundamental.
+>Básicamente, esta de aquí.
+>   * Lo que está a la derecha.
+>   * Compararás esta con lo que viene de la izquierda.
+>   * Y luego podrás calcular todo lo que queremos hacer en el siguiente material.
+>Ahora, permíteme darte un ejemplo de la tabla de verdad fundamental que tengo ahora mismo.
+>
+>![Texto Base (String)](images/2025-08-14_100206.png "Texto Base (String)")
+>
+>Este lo compararás con lo que viene de la izquierda.
+>Y luego podrás calcular todo lo que queremos hacer en el siguiente material.
+>Ahora, permítanme darles un ejemplo de la tabla de verdad fundamental que tengo ahora mismo.
+>En mi tabla, como pueden ver, esta es una cadena que estoy usando.
+>La encuentran en línea, van a cualquier parte, buscan un artículo y luego simplemente copian algunos elementos.
+>
+>![groud_truth_labels](images/2025-08-14_100557.png "groud_truth_labels")
+>
+>Lo encuentras en línea, vas a cualquier parte, consigues un artículo y luego simplemente copias algunos elementos.
+>Y con base en esta cadena, así es como se ve mi tabla de verdad fundamental.
+>Lo que podemos ver es el token "doctor".
+>Vemos la etiqueta de verdad fundamental.
+>
+>Esta es la etiqueta y la descripción: el comienzo de una entidad personal.
+>Esto es lo que significa "beeper".
+>La identidad de Sarah I, la identidad de Thompson I y todo es todo lo externo a una entidad.
+>
+>Universidad de Oxford, como pueden ver, el comienzo de una entidad de organización, etc.
+>Así que todos los tokens, incluso el punto, la coma, todo.
+>Supongamos que se identifican los signos.
+>Esta es la verdad.
+>Este es nuestro punto de referencia.
+>Esta es nuestra línea base.
+>Y con este texto, lo usaremos para probar la puntuación f1, la precisión, etc.
+
+
+### 29. Obtain the Prediction table from the LLM - Google Gemini
+
+>[!NOTE]
+>
+>Entonces, donde lo dejamos la última vez, teníamos esta cadena que usamos para establecer una especie de punto de referencia, y luego creamos esta etiqueta de verdad fundamental.
+>Y, por cierto, todos estos son tokens, ¿verdad?
+>
+>Así que tenemos tokens, la etiqueta de verdad y la descripción para que podamos entender de forma sencilla y fácil lo que intentamos hacer.
+>Y lo creamos manualmente.
+>Así que lo que vemos aquí ha sido configurado manualmente por una persona.
+>
+>Y lo que queremos hacer ahora es asegurarnos de que nuestro modelo de lenguaje grande intente hacer exactamente lo que hemos hecho aquí.
+>Para eso, he creado esta instrucción.
+>Y la instrucción es la siguiente:
+>Basada en este texto.
+>Y he creado un texto aquí, el que tenemos.
+>
+>Quiero que identifiques todos los tokens o palabras, los cuantifiques y, digamos, los etiquetes con las siguientes etiquetas.
+>Etiquétalos con las siguientes etiquetas.
+>Suena tonto, pero funciona.
+>Estas son todas las etiquetas posibles que tenemos:
+>
+>Fecha, inicio de una entidad de fecha, B-loc, inicio de una entidad de asignación.
+>Estos son básicamente todos los elementos que tenemos.
+>Colócalos en una tabla y muéstrame dos columnas:
+>Nombre de la entidad y una etiqueta.
+>
+>Ahora, si miras aquí y volvemos a nuestra tabla, he añadido algunos filtros.
+>Estos son todos los valores posibles que tenemos.
+>Y aquí, de nuevo, todos los valores posibles que tenemos.
+>Todos forman parte de la solicitud.
+>Lo que he hecho es tomar esta solicitud y usar Google Gemini.
+>
+>![Gemini Prompt](images/2025-08-14_101501.png "Gemini Prompt")
+>
+>![Agrupamiento por entidad o Token](images/2025-08-14_101821.png "Agrupamiento por entidad o Token")
+>
+>Y lo que sí me gusta de Gemini.
+>
+>Me ha dado varias opciones, ya sea de esta manera, y las entidades se agrupan por entidad o por token, y esto es lo que queremos.
+>Queremos por token.
+>Esto es lo mejor.
+>
+>Ahora exportaré esto a hojas de cálculo.
+>Luego copiaremos esto.
+>Y los tendremos uno tras otro.
+>Así que obtendré esta columna completa.
+>Veamos si puedo copiar así.
+>Y lo insertaré aquí.
+>
+>Y simplemente diré "ID de etiqueta".
+>Pero esto es una predicción.
+>Predicción.
+>Y ahora tenemos la predicción.
+>Y tenemos el ID de etiqueta de verdad fundamental.
+>
+>Y con base en estos elementos, calcularemos diferentes métricas que usaremos para evaluar la eficiencia y precisión de nuestros modelos.
+
+### 30. Machine Learning Metrics - Accuracy
+
+>[!NOTE]
+>
+>**¿Qué es exactamente la precisión?**
+>
+>El nombre es bastante indicativo y simple.
+>La precisión en sí misma representa la proporción de predicciones correctas realizadas por el modelo.
+>De todas las predicciones.
+>Para simplificar,
+>
+>Imagina que haces un examen con 100 preguntas y preguntas.
+>Responderemos estas preguntas e imaginaremos que, de las 100 preguntas, respondes 80 correctamente, por lo que
+>tu precisión es del 80 %.
+>Esto es algo que también monitoreamos para los modelos.
+>
+>Podrías preguntarte cuál es la precisión o la eficiencia de un modelo.
+>Luego lo sometes a una prueba.
+>Como has visto en los ejercicios de evaluación comparativa, la mayoría de las veces probamos la precisión.
+>De unas 400 preguntas, obtienes 50 correctas.
+>Eso te dará una puntuación correcta.
+>Esta es la precisión.
+>
+>Se trata del número de predicciones correctas dividido entre el número total de predicciones.
+>Esta es la métrica más fácil de implementar y medir.
+>Y, por supuesto, cuanto mayor, mejor.
+>Cuanto mayor sea la precisión, mejor será el modelo.
+>
+>Ahora bien, hay algo que comentar sobre los datos desequilibrados.
+>Recuerden que su modelo podría estar entrenado con algo.
+>Y permítanme darles un ejemplo más práctico.
+>
+>Imaginemos que prueban su modelo con un conjunto de datos muy limitado y pequeño.
+>Imaginemos simplemente que lo prueban con física y su modelo obtiene una precisión del 95 %.
+>Y dirán: "¡Guau! ¡He creado el Santo Grial!".
+>¿Verdad?
+>
+>Así que he reinventado a Einstein.
+>Pero una vez que pongas tu modelo en práctica (imagínate en química, no en física, o quizás en informática), verás que tu modelo ya no predice con un 95% de precisión, sino con un 20%.
+>Estos son datos desequilibrados.
+>
+>![Accuracy](images/2025-08-14_102452.png "Accuracy")
+>
+>Si has probado tu modelo solo con un pequeño conjunto de datos, esto no es relevante para todos los datos que quieres.
+>Así que ten cuidado con esto.
+>
+>Así que, al probar la precisión, piensa siempre de esta manera: ¿el conjunto de datos que estoy usando es relevante para lo que quiero hacer en la vida real?
+>¿Son mis datos de entrenamiento relevantes o están desequilibrados en comparación con lo que quiero hacer?
+>Estas son preguntas muy importantes y, como vimos antes, ¿entra basura y sale basura del entrenamiento?
+>Los datos en sí mismos son muy importantes.
+>Ahora bien, todo se reduce a la precisión.
+
+### 31. Machine Learning Metrics - Precision
+
+>[!NOTE]
+>
+>Otra métrica importante que validó esto se refiere a la precisión y a la definición.
+>Esto se refiere a la proporción de identificaciones positivas que fueron realmente correctas.
+>Es un poco complicado.
+>Pero permítanme explicar dos conceptos más.
+>Tenemos un falso positivo y un falso negativo.
+>
+>Si se dedican a la ingeniería de calidad, saben que un falso positivo se produce cuando las pruebas automatizadas identifican un defecto, pero este no existe.
+>Podría tratarse de una prueba deficiente que está fallando.
+>Y creen que hay un problema en su aplicación.
+>Eso sí que es un falso positivo.
+>
+>Un falso negativo significa que hay un problema que no pudieron identificar con la prueba.
+>Es decir, es al revés.
+>
+>**¿Qué es exactamente la precisión?**
+>
+>¿Precisión significa cuántos verdaderos positivos?
+>
+>Entonces, ¿cuántos hallazgos reales, correctos, tienes o el modelo ha identificado, dividido entre este número de hallazgos más los falsos positivos, aquellos que se han identificado como correctos, pero que en realidad no lo son?
+>Y continuando.
+>
+>**¿Dónde es importante la precisión?**
+>
+>Es importante medir en los casos en que los falsos positivos son costosos, donde identificarlos e investigarlos resulta muy costoso.
+>Tomemos un sistema de detección de spam.
+>Como saben, actualmente todas las empresas importantes tienen filtros que identifican cuándo un correo electrónico es spam y tratan de identificar los correos electrónicos que no lo son.
+>Por lo tanto, un falso positivo en este caso es muy indeseable.
+>Por lo tanto, no conviene que un correo electrónico spam no sea bloqueado.
+>Pero lo más importante es que no conviene.
+>
+>Por lo tanto, no conviene que un buen correo electrónico se etiquete como spam.
+>Eso es algo muy, muy malo.
+>Esto es un falso positivo.
+>Cuando un correo electrónico positivo no es spam, se marca como tal.
+>Entra en tu carpeta y nunca la vuelves a revisar.
+>
+>![Presision](images/2025-08-14_105136.png "Presision")
+>
+>Ahora veamos un ejemplo.
+>Imagina que tu modelo indica: «Oye, recibiste 50 correos electrónicos spam, así que, bien, estás haciendo tu trabajo correctamente».
+>
+>Y luego, al revisar los correos electrónicos para validar que el modelo identifica el spam correctamente, ves que diez de ellos no lo son.
+>Son de un socio comercial.
+>Y has estado esperando algunos de esos correos.
+>
+>En este caso, la precisión es 40 dividido entre 50, ya que 40 eran correctos, pero 50 se han marcado como spam.
+>Así que tienes un 80 %.
+>
+>Digamos que tu precisión es de 0,8, o podrías marcarla como 80 %.
+>Y, de nuevo, imagina que la precisión es importante.
+>Sabes dónde un falso positivo es realmente indeseable.
+>
+
+
+### 32. Machine Learning Metrics - Recall
+
+>[!NOTE]
+>
+>Dado que hemos hablado de precisión, también debemos abordar la recuperación, que es muy similar a la precisión, pero con una pequeña diferencia.
+>La recuperación mide la proporción de casos positivos reales que el modelo identificó correctamente.
+>Para facilitar la comprensión,
+>Se tienen los verdaderos positivos divididos entre el número de verdaderos positivos más los falsos negativos.
+>
+>En la lección anterior, donde analizamos la precisión, tuvimos un falso positivo.
+>La recuperación se centra en los falsos negativos.
+>
+>**¿Cuándo podría ser importante?**
+>
+>La recuperación es muy útil en casos donde la omisión de un resultado positivo es muy costosa, como en el diagnóstico médico o la detección de fraude.
+>En estos casos, imaginemos que una IA escanea células cancerosas.
+>Se proporciona una imagen (una tomografía computarizada, una radiografía), y la IA la analiza y no indica nada.
+>Esto es un falso negativo porque hay algo ahí y no quieres pasarlo por alto.
+>
+>**¿Lo mismo ocurre con el fraude o el blanqueo de capitales?**
+>
+>Podría ser que las señales estén ahí, pero no pueda detectarlas.
+>En este caso, la memoria es muy importante.
+>
+>Creo que deberíamos usar un ejemplo para simplificarlo.
+>Imagina que sabes que tienes 100 pacientes con cáncer que dieron positivo.
+>Sabes que hay 100.
+>Y le proporcionas una radiografía de estos pacientes a tu modelo y, por supuesto, 100 imágenes.
+>
+>![Recall](images/2025-08-14_110456.png "Recall")
+>
+>Y luego el modelo analizará imagen por imagen y dirá: "Bueno, el 80% u 80 de estos pacientes o imágenes presentan un síntoma, no sé, con un 95% de precisión".
+>Así que el modelo identificó correctamente solo ocho de cada diez, u 80 de cada cien.
+>Pero sabemos, gracias a los datos que proporcionamos, que hay otros 20 pacientes y el modelo pudo identificarlos.
+>
+>Así que, si esto no fuera un ejercicio de entrenamiento y fuera una situación real, esas 20 personas se irían a casa sin un diagnóstico correcto y seguirían sin saber qué les pasa.
+>Así que la tasa de recuperación en este caso sería del 0,8%, o del 80%.
+>
+
+
+### 33. Machine Learning Metrics - F1 Score
+
+>[!NOTE]
+>
+>**Ya llegamos a la famosa puntuación F1.**
+>
+>Si han leído en línea o investigado un poco, probablemente habrán visto que la puntuación F1 es muy importante y que la mayoría de las veces se la menciona.
+>
+>Ahora les doy un poco de información sobre la puntuación F1, ya que para calcularla también se necesita precisión y recuerdo.
+>No se puede tener solo uno de ellos.
+>
+>La puntuación F1 en sí misma es una especie de promedio entre la precisión y el recuerdo.
+>No es un promedio aritmético, sino un promedio armónico entre ambos.
+>Y cuando es importante, en primer lugar, se aplica cuando hay clases desequilibradas.
+>
+>Entonces, cuando quizás el 80 % de la población reside en el 20 % del intervalo total.
+>Podría tratarse de una clase desequilibrada, ya que el modelo perderá precisión, o su recuperación será mayor, o su precisión será mayor o menor, dependiendo de su posición en una determinada clase.
+>
+>La puntuación F1 mide el rendimiento del modelo en todo el espectro, en toda la población o en todo el conjunto de datos.
+>Si quiere saberlo en forma de fórmula, ahí lo tiene.
+>Correcto.
+>
+>Se dice promedio armónico entre precisión y recuperación.
+>¿Y cuándo desea esto?
+>Bueno, digamos que normalmente lo haría.
+>Todos desean una puntuación F1 alta.
+>
+>Si tomáramos un ejemplo médico que ya hemos usado con el paciente con cáncer, sería algo como esto:
+>Cuando se tiene un modelo de diagnóstico médico, el que no detecta cáncer, sino cualquier otra cosa, como un manguito de sangre, o algo similar,
+>la alta precisión garantiza que se sepa qué tan positivo es un verdadero positivo.
+>
+>![F1 Score](images/2025-08-14_133844.png "F1 Score")
+>
+>Entonces, cuando se dice que hay un 98% de probabilidad de que algo esté presente, se tiene la certeza de no proporcionar un falso negativo.
+>Esto se refiere a alta precisión.
+>Pero también en este caso, se debe asegurar que la mayoría de los pacientes tengan esta afección identificada.
+>
+>Por lo tanto, se debe asegurar que la afección esté presente.
+>Y también se debe asegurar que, en todos los casos donde se identificó la afección, esté presente correctamente.
+>Y es por eso que la mayoría de las empresas, la mayoría de los puntos de referencia, no utilizan la precisión ni la recuperación, sino la puntuación F1, que es una combinación de precisión y recuperación.
+>Y se utiliza muy a menudo con clases desequilibradas.
+>
+
+
+### 34. Machine Learning Metrics - Perplexity
+
+>[!NOTE]
+>
+>**Perplejidad.**
+>
+>Se refiere a la idea de predicción.
+>La perplejidad se aplica únicamente a grandes modelos lingüísticos basados en texto.
+>Fácil de entender.
+>
+>La perplejidad significa que escribes un montón de palabras y el modelo indica la probabilidad de que la siguiente palabra sea similar a la de Google cuando intentas buscar algo en línea.
+>
+>Google te dará pistas sobre cuál es la siguiente palabra.
+>Se utiliza en grandes modelos lingüísticos para la generación de texto, y específicamente para la traducción, para evaluar la confianza del modelo en predecir la siguiente palabra.
+>Una perplejidad menor significa que el modelo es más preciso y está mejor entrenado.
+>
+>**¿Cuál es la fórmula?**
+>
+>Bueno, ahí lo tienes.
+>Eh, y en realidad n significa el número de palabras, y p es la probabilidad de que una palabra esté ahí.
+>Así que es una función logarítmica.
+>En realidad, es una suma de una proporción logarítmica.
+>
+>Ahora veamos un ejemplo adecuado para entenderlo, porque no hace falta ser informático, matemático ni estadístico para entenderlo y comprobarlo. Simplemente, podemos decir:
+>
+>Sí, el índice de perplejidad está bien para nosotros.
+>Estamos por debajo del umbral.
+>
+>![Perplexity](images/2025-08-14_135439.png "Perplexity")
+>
+>Ahora, permítanme darles un ejemplo muy simple.
+>
+>Tienen una oración.
+>El zorro marrón salta sobre...
+>Y la oración es "sobre el perro perezoso" porque es una oración muy común en las estadísticas de aprendizaje automático debido a las propiedades de las palabras.
+>Entonces, después de decir "el zorro marrón salta sobre allí", el modelo podría decir, bueno, las palabras probables
+>que vienen después podrían ser A, B, C, D y luego "perezoso".
+>
+>Y dos palabras más.
+>Entonces, si tienen siete, el modelo tiene una perplejidad de siete, porque cree que una de siete palabras estará allí.
+>En caso de decir "el zorro marrón salta sobre", lo más probable es que sea un artículo sobre allí,
+>y la perplejidad debería ser uno para cualquier tipo de modelo que tengan.
+>
+
+
+### 35. Demo - Evaluate - Calculate Metrics with Python
+
+1. Vamos a la página <img alt="Hugging Face's logo" src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" width="32" height="32"> [Hugging Face -> Documentation](https://huggingface.co/docs).
+2. Buscamos el que dice [`Evaluate`](https://huggingface.co/docs/evaluate/index).</br><img alt ="" src ="https://huggingface.co/datasets/evaluate/media/resolve/main/evaluate-banner.png" height="32">
+3. **Al abrir esto, ¿qué es exactamente "evaluar"?**
+Es una biblioteca para evaluar fácilmente modelos y conjuntos de datos de aprendizaje automático.
+Ya está creada y proporciona una especie de capa de envoltorio para que no tengas que hacer cálculos matemáticos para diferentes tipos de métricas.
+Simplemente di "calcular esta métrica".
+Y eso es todo lo que necesitas hacer.
+¿Cómo lo instalamos?
+Bueno, si vas a la instalación, te indicará que necesitas algo más que Python.
+3.7.
+4. Creamos el archivo **`src/test/LLM/Hug_face/evaluate_demo.py`**.
+5. **¿Qué puedes hacer con esto?**
+[![Choosing a metric for your task](images/2025-08-15_083113.png "Choosing a metric for your task")](https://huggingface.co/docs/evaluate/choosing_a_metric#choosing-a-metric-for-your-task)
+Primero que nada, calcularemos varias métricas.
+Ejecutaremos varios benchmarks.
+Si ves la guía, indica cómo elegir la métrica para tu tarea.
+Calcularemos el azul junto con el desgarro y, de hecho, haremos benchmarks de ChatGPT.
+6. Empezamos poniendo esto en el archivo **`evaluate_demo.py`**:
+```py
+import evaluate
+
+# load the metrics
+accuracy_metrics = evaluate.load("accuracy")
+# f1_metrics = evaluate.load("f1")
+# precision_metric = evaluate.load("precision")
+# recall_metric = evaluate.load("recall")
+
+# Define predictions and references
+predictions = [0, 1, 1, 0, 1]
+references = [0, 1, 0, 0, 1]
+
+# Compute the accuracy
+accuracy_result = accuracy_metrics.compute(
+    predictions=predictions, references=references)
+print("Accuracy:", accuracy_result)
+```
+
+>[!IMPORTANT]
+>
+> ### Ambiente Virtual de Python en Visual Studio Code
+>
+> 1. En `Visual Studio Code` En el menú superior</br>» `View` </br>» `Command Palette...` </br>» `Python: Select Interpreter`
+> 2. Selecciono `Venv Creates as '.venv'` o `+ Create Virtual Environment` y elijo de donde se va a basar este ambiente virtual.</br> Espero un rato a que haga la instalación y creación de la carpeta **".venv"**.
+> 3. En una `TERMINAL` el comando, para activar el Ambiente Virtual de Python: </br> `.venv/Scripts/activate`
+> 4. Instalo la biblioteca requerida: </br> `pip install evaluate` </br> Tener presente que esto se instala dentro de la carpeta nueva **".venv"**.
+> 5. Pruebo la ejecución del nuevo archivo con este comando en una `TERMINAL`: </br> `python .\src\test\LLM\Hug_face\evaluate_demo.py` </br> <span style="color:red;">Y obtengo un error.</span>
+> 6. Instalo una biblioteca que está faltando: </br> `pip install accuracy`
+> 7. Vuelvo a probar el comando en una `TERMINAL` y estando en el Ambiente Virtual: </br> `python .\src\test\LLM\Hug_face\evaluate_demo.py` </br> <span style="color:green;">Y obtengo una respuesta:</span> </br> `Accuracy: {'accuracy': 0.8}`
+> 8. Para ejecutar usando `Visual Studio Code`: </br>» `View` </br>» `Command Palette` </br>» `Python: Select Interpreter` </br>» `Recommended` </br> »  `⏯️` </br> » `Run Python File in Dedicated Terminal`
+>
+> Así se ve el proceso de ejecución: </br> ![.](images/2025-08-15_095625.gif "")
+
+
+
+
+
+
+7. Agrego mas código al archivo **`evaluate_demo.py`** y descomento las tres variables definidas al principio:
+```py
+# Compute the F1 score
+f1_result = f1_metrics.compute(
+    predictions=predictions, references=references, average="binary")
+print("F1 score", f1_result)
+
+# Compute the precision
+precision_result = precision_metric.compute(
+    predictions=predictions, references=references, average="binary")
+print("Precision:", precision_result)
+
+# Compute the recall
+recall_result = recall_metric.compute(
+    predictions=predictions, references=references, average="binary")
+print("Recall:", recall_result)
+```
+8. Ejecuto el comando en la `TERMINAL`, estando dentro del ambiente virtual: </br> `python .\src\test\LLM\Hug_face\evaluate_demo.py` </br> Y este fue el resultado obtenido:
+```bash
+Downloading builder script: 6.79kB [00:00, 19.9MB/s]
+Downloading builder script: 7.56kB [00:00, 25.7MB/s]
+Downloading builder script: 7.38kB [00:00, 11.3MB/s]
+Accuracy: {'accuracy': 0.8}
+F1 score {'f1': 0.8}
+Precision: {'precision': 0.6666666666666666}
+Recall: {'recall': 1.0}
+```
+
+>[!TIP]
+>
+>Otras formas de instalar el Ambiente Virtual de Python:
+> * En <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-windows" viewBox="0 0 16 16"><path d="M6.555 1.375 0 2.237v5.45h6.555zM0 13.795l6.555.933V8.313H0zm7.278-5.4.026 6.378L16 16V8.395zM16 0 7.33 1.244v6.414H16z"/></svg> Windows, vez de usar el comando `pyton` usar `py`: </br> [How do I create a python3 venv for Windows?](https://www.reddit.com/r/learnpython/comments/13jxxw7/how_do_i_create_a_python3_venv_for_windows/)
+> * Para <?xml version="1.0" encoding="UTF-8"?><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-windows" viewBox="0 0 16 16"><path d="M6.555 1.375 0 2.237v5.45h6.555zM0 13.795l6.555.933V8.313H0zm7.278-5.4.026 6.378L16 16V8.395zM16 0 7.33 1.244v6.414H16z"/></svg> Windows es mejor usar lo que sugiere esta página, pero teniendo en cuenta el uso de `py` en vez de `python`: </br> [Local Python Virtual Environments using venv](https://github.com/denisecase/datafun-00-python-virtual-env?tab=readme-ov-file#step-1-create-the-virtual-environment)
+>
+> Para salir del Ambiente Virtual de Python, el comando en una `TERMINAL` es: </br> `deactivate`
+
+
+
+### 36. Demo - Pytorch - Calculate Perplexity for a Model
+
+1. El sitio a utilizar es este: </br> [<img alt="Transformers -> Installation" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/transformers_as_a_model_definition.png" width="200px" title="Transformers -> Installation">](https://huggingface.co/docs/transformers/installation)
+2. Ejecuto en una `TERMINAL` el comando para levantar el [Ambiente Virtual de Python](#ambiente-virtual-de-python-en-visual-studio-code): </br> `.venv/Scripts/activate`
+3. Según el código debo tener dos bibliotecas, ejecuto dos comandos en la `TERMINAL` donde tengo el Ambiente Virtual de Python: </br> `pip install torch` </br> `pip install transformers`
+4. Creo el archivo **`src\test\LLM\Hug_face\perplex.py`**, con este código:
+```py
+import torch
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
+import math
+
+# Load the pre-trained model and tokenizer
+
+model_name = "gpt2"  # You can change to "gpt2-medium", "gpt2-large", etc.
+model = GPT2LMHeadModel.from_pretrained(model_name)
+tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+
+# Set the pad_token to the eos_token to handle padding correctly
+tokenizer.pad_token = tokenizer.eos_token
+model.eval()  # Set the model to evaluation mode
+
+
+def calculate_perplexity(text):
+    # Strip whitespace and validate that text is not emptu
+    text = text.strip()
+    if not text:
+        print("Error: input text is empty. Please provide valid text.")
+        return None
+
+    # Toeknize and prepare the input with padding for batch compability
+    encodings = tokenizer(text, return_tensors="pt",
+                          padding=True, truncation=True)
+
+    # Ensure input tensor dimensions are  expected
+    input_ids = encodings["input_ids"]
+    attention_mask = encodings["attention_mask"] if "attention_mask" in encodings else None
+
+    # Check if the input tensor has valid content
+    if input_ids.size(1) == 0:
+        print("Error: Tokenization result in an empty input. Please check your text")
+        return None
+
+    # Calculate the loss (negaitve log likelihood)
+    with torch.no_grad():
+        outputs = model(input_ids=input_ids,
+                        attention_mask=attention_mask, labels=input_ids)
+        loss = outputs.loss.item()
+
+    # Calculate perplexity
+    perplexity = math.exp(loss)
+    return perplexity
+
+
+# Text to calculate perplexity on
+text = ("Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+        "Donec ullamcorper libero ut interdum posuere. "
+        "Quisque et tincidunt ipsum, in cursus sem. "
+        "Proin turpis turpis, tempus id lectus a, mollis ultricies leo. "
+        "Integer mollis dolor fringilla, aliquam diam vitae, cursus enim.")
+
+# Debugging: Print the input to verify it is not-empy after stripping
+print(f"Debug: Received input - `{text}`")
+
+
+perplexity =calculate_perplexity(text)
+
+if perplexity is not None:
+  print(f"Perplexity: {perplexity}")
+```
+5. Luego de ejecutar este comando en la `TERMINAL` con el Ambiente Virtual de Python: </br> `python .\src\test\LLM\Hug_face\perplex.py` </br> Sale un erro con esta sugerencia a instalar: </br> `pip install hf_xet`
+6. Vuelvo a ejecutar en la `TERMINAL` con el Ambiente Virtual de Python: </br> `python .\src\test\LLM\Hug_face\perplex.py` </br> Y obtengo esta respuesta:
+```bash
+Debug: Received input - `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper libero ut interdum posuere. Quisque et tincidunt ipsum, in cursus sem. Proin turpis turpis, tempus id lectus a, mollis ultricies leo. Integer mollis dolor fringilla, aliquam diam vitae, cursus enim.`
+`loss_type=None` was set in the config but it is unrecognised.Using the default loss: `ForCausalLMLoss`.
+Perplexity: 31.946859967236634
+```
+7. Cerremos el Ambiente Virtual de Python con este comando: </br> `deactivate`
+
+
+### Quiz 2: Chapter Quiz
+
+>[!NOTE]
+>
+>![Quiz 2: Chapter Quiz](images/2025-08-15_164519.gif "Quiz 2: Chapter Quiz")
+>
+>
+
+
+

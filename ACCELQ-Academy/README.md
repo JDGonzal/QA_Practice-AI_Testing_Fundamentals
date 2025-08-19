@@ -250,7 +250,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >y empieza a auto-formular como se construyen los elementos.
 >
 >9. Ahora antes de terminar, deseo clarificar y asegurar que todo esté claro. La diferencia entre una `Action` y un `Scenario`: </br> ![Clarificar diferenciar una `Action` de un `Scenario`](images/2025-08-11_152629.png "Clarificar diferenciar una `Action` de un `Scenario`")</br>
->Un `Scenario` es un proeso del negocio que se está probando en cambio una `Action` es un bloque de lógica reutilizable significativo y funcional que se usa como un `Step` en un `Scenario`.
+>Un `Scenario` es un proceso del negocio que se está probando en cambio una `Action` es un bloque de lógica reutilizable significativo y funcional que se usa como un `Step` en un `Scenario`.
 
 
 
@@ -259,5 +259,15 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[![Haz clic aquí y mira el video `Key Entities in ACCELQ`](images/2025-08-11_144035.gif "Haz clic aquí y mira el video `Key Entities in ACCELQ`")](videos/03_Key%20Entities%20in%20ACCELQ.mp4)
 >
 
+
+
+### 6. 🚀 Pop Quiz: Key Entities in ACCELQ
+
+>[!NOTE]
+>
+>![🚀 Pop Quiz: Key Entities in ACCELQ](images/2025-08-19_152120.gif "🚀 Pop Quiz: Key Entities in ACCELQ")
+
+
+###
 
 

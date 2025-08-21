@@ -735,6 +735,13 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 ### 17. Introduction
 
+>[!IMPORTANT]
+>
+>Antes de instalar cualquier cosa de `Python`, ver este proceso para tener de forma
+>local en cada proyecto un Ambiente Virtual de Python
+>
+>[Ambiente Virtual de Python en Visual Studio Code](https://github.com/JDGonzal/QA_Practice-AI_Testing_Fundamentals/blob/main/MasterclassTestingMachineLearning/README.md#ambiente-virtual-de-python-en-visual-studio-code)
+
 >[!NOTE]
 >
 >Así que ya estamos en el módulo cuatro del curso.
@@ -824,6 +831,13 @@ print('Hello world!')
 
 
 ### 20. Creating chatbot (Part 1)
+
+>[!IMPORTANT]
+>
+>Antes de instalar cualquier cosa de `Python`, ver este proceso para tener de forma
+>local en cada proyecto un Ambiente Virtual de Python
+>
+>[![Ambiente Virtual de Python en Visual Studio Code](images/2025-08-15_095625.gif "Ambiente Virtual de Python en Visual Studio Code")](https://github.com/JDGonzal/QA_Practice-AI_Testing_Fundamentals/blob/main/MasterclassTestingMachineLearning/README.md#ambiente-virtual-de-python-en-visual-studio-code)
 
 1. Se nos pide instalar unas bibliotecas de `Python` con el comando `pip`: </br>
 `pip install streamlit pypdf2 langchain faiss-cpu`

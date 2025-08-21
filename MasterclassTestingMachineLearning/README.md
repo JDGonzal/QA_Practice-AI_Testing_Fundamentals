@@ -1629,7 +1629,7 @@ Y eso es todo lo que necesitas hacer.
 Bueno, si vas a la instalación, te indicará que necesitas algo más que Python.
 3.7.
 4. Creamos el archivo **`src/test/LLM/Hug_face/evaluate_demo.py`**.
-5. **¿Qué puedes hacer con esto?**
+5. **¿Qué puedes hacer con esto?** </br>
 [![Choosing a metric for your task](images/2025-08-15_083113.png "Choosing a metric for your task")](https://huggingface.co/docs/evaluate/choosing_a_metric#choosing-a-metric-for-your-task)
 Primero que nada, calcularemos varias métricas.
 Ejecutaremos varios benchmarks.
@@ -1800,5 +1800,1125 @@ Perplexity: 31.946859967236634
 >
 >
 
+
+
+
+## Section 6: RAG and Retrieval Augmented Generation Testing
+
+
+### 37. What is RAG
+
+>[!NOTE]
+>
+>Ahora hablemos de Rag.
+>
+>Significa recuperación y generación aumentada.
+>Profundizaremos en ello en breve.
+>Pero entonces, ¿por qué necesitamos rag?
+>¿Por qué no podemos simplemente vivir sin rag?
+>
+>Bueno, la idea, y he resumido aquí los cuatro puntos principales, es que un modelo...
+>Para ser inteligente, necesita ser entrenado con datos.
+>Y, por lo tanto, el modelo es tan inteligente como los datos que tiene.
+>Y cuanto más tiempo funcione el modelo y sus datos se vuelvan obsoletos, mayor será el deterioro de su inferencia.
+>
+>Esto se denomina deterioro del modelo o deriva del modelo.
+>La idea es que, en caso de necesitar datos que no estaban disponibles cuando se entrenó el modelo,
+>debe obtenerlos de una fuente externa.
+>Y esto es lo que hace RAG: buscar en bases de datos externas, bases de datos de conocimiento, para brindarte más información sobre tu necesidad específica.
+>
+>La otra se centra en las alucinaciones y la desinformación, porque si le pides al modelo que haga algo y este no sabe exactamente cómo hacerlo o no tiene la respuesta, comenzará a alucinar.
+>Por lo tanto, si la información que buscas está en una base de datos externa, el modelo la obtendrá y, por lo tanto, obtendrás una respuesta correcta con mayor probabilidad que una alucinación.
+>
+>La otra se centra en el contexto y, por ejemplo, el límite de tokens y el límite de memoria.
+>Sabemos que los lenguajes de modelado tienen un límite de memoria, pero con Rag puedes ampliar esa memoria con la cantidad de base de datos que tengas.
+>
+>Rag también resuelve el problema de la memoria de tu modelo de lenguaje grande, y quizás algo simple o común que los usuarios no ven.
+>¿Está esta parte aquí?
+>Porque si quieres usar IA en tu propia empresa, lo más probable es que tengas datos que no están disponibles abiertamente en internet.
+>Esos datos son tu tesoro.
+>Y puedes y debes protegerlos a toda costa.
+>
+>Por lo tanto, ningún modelo se ha entrenado con esos datos.
+>Por esta razón, conviene entrenar tu modelo con esos datos o ampliar sus capacidades, sus capacidades de conocimiento, ampliándolo con los datos de tu propia empresa.
+>
+>![Why do we need RAG?](images/2025-08-19_154155.png "Why do we need RAG?")
+>
+>En este caso, todo se reduce a la seguridad.
+>Ahora bien, no se desea que los datos estén disponibles para que todos los vean.
+>
+>Se busca que el modelo utilice los datos en un contenedor específico, en la instancia, en la propia infraestructura, para controlar cómo se transfieren los datos a la infraestructura.
+>Estas serían algunas de las razones por las que necesitamos RAC.
+>Pero, en la mayoría de los casos, para los usuarios finales será este.
+>Y para las empresas, básicamente será este.
+>
+>Ahora, si continuamos y analizamos qué es exactamente RAC,
+>Rag consta de tres partes: recuperador, aumento y generación.
+>
+>Para ejecutar RAC, se necesitarían, por ejemplo, bases de datos.
+>Se llaman bases de datos de conocimiento y pueden ser vectoriales, estructuradas o no estructuradas, ya que actualmente también se puede trabajar con bases de datos no estructuradas o, mejor dicho, no vectoriales.
+>
+>**¿Cómo funciona esto?**
+>
+>![What is RAG?](images/2025-08-19_154854.png "What is RAG?")
+>
+>Expliquemos rag de forma sencilla.
+>
+> * El usuario utiliza cualquier tipo de aplicación generativa.
+>O quizás simplemente esté generando un modelo de lenguaje extenso.
+>
+> * La solicitud se incorporará a este modelo de recuperación.
+>¿Y qué hace el modelo de recuperación?
+>Tomará tu solicitud y buscará en su base de datos, ya sea vectorial o no, fragmentos de información que contengan la respuesta a tus preguntas.
+>Porque, por ejemplo, la información de un documento se divide en fragmentos que se superponen.
+>Y también hablaremos de eso.
+>
+> * Entonces, esta recuperación buscará uno o más documentos en la base de datos vectorial.
+>Tomará la solicitud que enviaste aquí y añadirá contexto adicional al resultado de la búsqueda, si puedo seleccionarlo.
+>Ahora, la representación vectorial de la parte que responde a las preguntas de tu consulta se enviará a ambos, por lo que se ampliará.
+>
+> * Esta es la parte de ampliación.
+>Ampliará tu solicitud con el contexto que obtienes de tu base de datos externa.
+>Y todo se enviará al modelo de lenguaje general que resumirá esa información.
+>O quizás lo amplíe según lo que escribas en la solicitud, ya que tu solicitud podría ser:
+>
+> * Oye, ¿puedo encontrar esa información aquí y escribir una publicación al respecto?
+>O podría ser un resumen.
+>Dependiendo de lo que tengas aquí.
+>Y todo esto se incorporará a este modelo.
+>Y luego, el modelo te devolverá la respuesta al usuario.
+>Esta es la funcionalidad básica.
+>
+> * La recuperación es esta parte que recupera tu información.
+>Entonces, esta recuperación y el aumento ocurren aquí cuando la recuperación construye tu solicitud.
+>Y luego la generación ocurre en el modelo de lenguaje completo.
+>Y luego, le devuelves esta información al usuario.
+>Permítanme mostrarles algunos ejemplos que tengo con diferentes herramientas.
+>
+>Por ejemplo, si vas a ChatGPT, solo un ejemplo.
+>Subes un documento y dices: "Buscando este documento, por ejemplo, busca este documento"
+>para la información x, y x podría ser, no importa cuál, y agregas el documento.
+>Esto es de A.
+>
+>![Chat-GPT RAG](images/2025-08-19_155615.png "Chat-GPT RAG")
+>
+>Así que esto no es un seguimiento porque no busca en bases de datos externas.
+>Pero sigue el concepto de imaginar que tu documento está almacenado en una base de datos externa.
+>Es lo mismo.
+>Pero técnicamente esto no es una recuperación de generación aumentada.
+>La otra opción es si has creado tu propio GPT personalizado.
+>Por ejemplo, aquí tengo una guía de autoservicio.
+>Y si quiero editar este GPT, tengo la posibilidad de agregar algunos documentos.
+>Y aquí he agregado el manual del Samsung S22.
+>Ahora, si borro y actualizo, verás que tarda un poco.
+>Y si lo subo de nuevo, digamos que aquí va a ser el manual S22.
+>Y si lo vuelvo a actualizar, verán que el documento no solo se actualiza, sino que se integra y se desglosa en una base de datos vectorial.
+>Por eso está tardando tanto este proceso de actualización.
+>
+>Y ahora, si solicito algo sobre este manual, es una especie de jerga.
+>Pero nosotros, como usuarios, aún no lo vemos porque desconocemos el funcionamiento interno de ChatGPT.
+>Podría ser una jerga o podría ser otra.
+>Y porque no lo sabemos.
+>¿Qué hay del uso de la búsqueda web?
+>¿Es correcto?
+>Sí.
+>Porque si activo la búsqueda web, ChatGPT accederá al sitio web, tomará la información que busco, ampliará mi solicitud y me dará la respuesta.
+>
+>Esto es "FLOWISAI".
+>Es un marco de orquestación de agentes.
+>Aquí tengo algunos flujos de agentes y una herramienta de RAG.
+>
+>![FlowiseAI - > RAG](images/2025-08-19_155834.png "FlowiseAI - > RAG")
+>
+>Veamos qué estoy haciendo exactamente.
+>Primero, configuro el modelo de IA abierta.
+>Aquí está mi temperatura.
+>Aquí está el modelo que quiero usar.
+>También proporciono mi clave API.
+>
+>Este modelo lo usa un supervisor que controla a todos mis demás trabajadores.
+>Este es un enfoque de tres pasos para hacer una pregunta sobre un documento.
+>Luego, estos modelos lo perfeccionan hasta que obtengo una publicación sobre ese documento o una publicación en redes sociales sobre mi consulta.
+>
+>![.](images/2025-08-19_160151.png "")
+>
+>Por ejemplo, este agente o parte del trabajador busca mi información en la base de datos.
+>El otro crea el contenido basándose en la información obtenida, y el otro crea una publicación de blog basada en este creador de contenido.
+>
+>Se trata de un enfoque de tres pasos, pero lo que queremos analizar es qué sucede con el trabajador que obtiene mi base de conocimientos.
+>El trabajador utiliza una herramienta de recuperación.
+
+
+### 38. 4 Types of RAG - Simple, Speculative, Graph, Corrective
+
+>[!NOTE]
+>
+>Hay muchísimos tipos de trapo, pero en mi caso, seleccionaré solo las tres o cuatro técnicas o implementaciones de trapo más populares que tenemos.
+>En esta lección, presentamos las siguientes cuatro técnicas.
+>
+>![RAG Types](images/2025-08-19_160616.png "RAG Types")
+>
+> Así que será el modelo estándar.
+>Lo que ya han visto es el modelo correctivo, que básicamente implementa una especie de bucle de retroalimentación para garantizar que la información que el sistema les ha entregado sea correcta.
+>Así que se realiza una especie de verificación de datos.
+>Está el modelo especulativo, que consiste en adivinar y tener múltiples opciones antes de obtener el resultado.
+>Y el modelo gráfico, que utiliza bases de datos de grafos junto con bases de datos vectoriales para encontrar las relaciones entre los nodos del grafo.
+>
+> * Ahora, si vamos al estante **estándar**, como ya vieron, quiero añadir algo más.
+>Buscan en un documento, pero también pueden buscar en varios.
+>El sistema utiliza un mecanismo de puntuación.
+>Por ejemplo, buscará en diez documentos diferentes.
+>El sistema aplica un mecanismo de puntuación a los diez documentos y, en función de esta, les proporciona la información más importante para su búsqueda.
+>Además, no hay nada más.
+>Se trata básicamente de una puntuación máxima de k de los documentos.
+>
+> * Pasemos al siguiente.
+>Este es el recuadro **correctivo**.
+>Es básicamente una especie de recuadro.
+>Es un recuadro que hemos visto y que tiene otra capa de validación.
+>En resumen, sigue existiendo la generación aumentada de recuperación estándar, pero con verificación de datos.
+>Así que la recuperación y el... te proporcionarán la información.
+>Pero luego habrá una capa adicional que buscará los hechos o validará que la información obtenida sea objetivamente correcta.
+>Es una especie de ciclo de retroalimentación.
+>Imagina que un profesor te asigna una tarea y le das la respuesta, pero el profesor corrige tu trabajo.
+>Esto es básicamente lo que estás haciendo o le pides a un colega que revise tu trabajo.
+>Esto es un "corrección" o "corrección".
+>Implementa una verificación adicional de la respuesta que recibirás.
+>Y como puedes ver aquí, esta será tu verificación adicional que se añade al contexto.
+>Y luego obtendrás una respuesta, con suerte, válida.
+>
+> * El siguiente es un **"corrección especulativa"**,  significa lo siguiente:
+>Imagina que no sabes exactamente, o que tu sistema no sabe exactamente, cuál es la mejor respuesta, así que intentará especular.
+>Esto a su vez tiene tres partes:
+>El recuperador, el redactor y la verificación.
+>La recuperación recuperará información y el redactor generará un conjunto de posibles respuestas para tu consulta o como posible respuesta.
+>¿Qué pasará entonces con el documento y las posibles respuestas?
+>Esta parte evaluará todas las respuestas y les asignará una puntuación, un porcentaje, y la que tenga el mayor porcentaje de aciertos ganará. </br> </br>
+>Básicamente, tienes: "Tengo esta consulta".
+>Estas son mis posibles respuestas.
+>Esta es la mejor.
+>Imagina que se trata de un comité y conoces a tus arquitectos.
+>Proponen cinco soluciones diferentes.
+>Y luego, en un comité, eliges la mejor solución y propones el resultado final.
+>Este es un rack especulativo, muy útil cuando el modelo no sabe exactamente cuál es la información correcta, ni cuál es la perfecta. </br>
+>Por ejemplo, no se obtiene una puntuación del 98%.
+>
+> * El último que veremos (aunque no el último, hay uno más que no voy a cubrir) es **Graph** Rag.
+>Básicamente, se trata de grafos de conocimiento, y en ellos, la información se relaciona con otra mediante los nodos del grafo.
+>Se utilizan nodos, no bases de datos ni bases de datos de grafos para almacenar información.
+>Esto es muy útil, por ejemplo, cuando se desea obtener información de múltiples fuentes o realizar una investigación exhaustiva, como la que realizan actualmente diferentes empresas.
+>Se utiliza este tipo de grafo de conocimiento porque se necesita sintetizar información y validarla de una fuente con la otra.
+>Y si quieres investigar en 20 artículos diferentes, necesitas usar este tipo de gráfico de conocimiento, ya que la información se referencia en una u otra parte.
+>
+> * Si volvemos aquí, hay otro tipo de filtro que no añadí.
+>Se trata del filtro genético, donde los agentes intentan obtener la mejor información y la revalidan.
+>Pero el problema es que lleva mucho tiempo.
+>Así que no hay problema.
+>Cuando quieres hacer algo y tienes tiempo para esperar, digamos cinco minutos.
+>
+>Pero en una aplicación en tiempo real con un usuario, no tiene sentido usar un filtro genético, así que un filtro estándar podría ser tu chatbot de respuesta a preguntas.
+>
+>La violación correctiva podría darse cuando necesitas asesoramiento médico, legal o financiero, porque la información necesita ser corregida.
+>
+>Un RAG especulativo es cuando no sabes exactamente cuál es la respuesta correcta y no estás seguro.
+>Así que quieres hacer este tipo de especulaciones, que podrían ser las mejores.
+>Por ejemplo, una predicción de qué comprar a continuación.
+>Si quiero ver qué podría comprar un cliente a continuación basándome en lo que tiene en el carrito, podría especular.
+>Oye.
+>Podría ser esto o lo otro, pero no lo sé con exactitud.
+>Así que solo voy a especular.
+>Y esto podría ser para investigación.
+>Obtener información de varios documentos.
+
+
+### 39. Create a RAG application with FAISS
+
+>[!NOTE]
+>
+>Si recuerdan cuando analizamos nuestra arquitectura Rag, sabemos que, a diferencia de la IA tradicional, se requiere una base de datos vectorial.
+>Y en esta base de datos vectorial se encuentra lo que se llama:
+>Vectores.
+>Así que aquí solo se almacenan los índices vectoriales y las similitudes entre ellos.
+>
+>![RAG Archicture Model](images/2025-08-19_161732.png "RAG Archicture Model")
+>
+>Para el siguiente material, he usado esta.
+>Les mostraré.
+>iss
+>[![Faiss](images/2025-08-19_162226.png "Faiss")](https://faiss.ai/), desarrollada por Facebook o Meta.
+>
+>Es una biblioteca para la búsqueda eficiente de similitudes y la agrupación de vectores densos.
+>Contiene algoritmos que buscan en conjuntos de vectores de cualquier tamaño, incluso mayores que el mío.
+>Y luego, se profundiza en los detalles.
+>
+>En mi caso, al instalarla, he usado la CPU.
+>Así que, aunque no esté ejecutando algo extremadamente grande, también podría usar la GPU.
+>Pero en mi caso, si no tienes una GPU dedicada y, por ejemplo, estás ejecutando localmente en tu portátil, esto es lo que debes ejecutar.
+>Si tienes un controlador compatible con Cuda, como AMD o Nvidia, también puedes usar esta parte.
+>No voy a usar PyTorch.
+>
+
+1. Empezamos creando el archivo **`src/rag/RAG_Simple.py`**, de entrada tengo estas importaciones:
+
+|Nro.|Import -> Python|Source|
+|-|-|-|
+|1|`import os` |[Source code: Lib/os.py](https://docs.python.org/3/library/os.html)|
+|2|`import fitz #PyMuPDF`| [PyMuPDF 1.26.3](https://pymupdf-readthedocs-io.translate.goog/en/latest/installation.html?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=tc)|
+|3|`from typing import List` |[Source code: Lib/typing.py](https://docs.python.org/3/library/typing.html) |
+|4|`from langchain_openai import OpenAIEmbeddings`|[LangChain -> Ecosystem packages](https://python.langchain.com/docs/how_to/installation/)|
+|5|`from langchain_community.vectorstores import FAISS`|[LangChain -> Ecosystem packages](https://python.langchain.com/docs/how_to/installation/)|
+|6|`from langchain.text_plitter import RecursiveCharacterTextSplitter`|[LangChain -> Ecosystem packages](https://python.langchain.com/docs/how_to/installation/)|
+|7|`from langchain.schema import Document`|[LangChain -> Ecosystem packages](https://python.langchain.com/docs/how_to/installation/)|
+
+2. Activar el Ambiente Virtual de Python con este comando en la `TERMINAL`: </br> `.venv/Scripts/activate`
+3. Nos muestra un archivo **`src/rag/requirements.txt`**, que se instala con un comando en la `TERMINAL`, con base en este documento [Python Requirements.txt](https://www.freecodecamp.org/news/python-requirementstxt-explained/), este sería el contenido: </br> ![requirements.txt](images/2025-08-20_094436.png "requirements.txt"): </br> Ejecutar este comando en la `TERMINANL` con el Ambiente Virtual de Python: </br>`pip install -r ./src/rag/requirements.txt`
+4. Reinstalar en nuestro Ambiente Virtual de Python con lo mas reciente:
+```bash
+pip uninstall pymupdf
+pip install --upgrade pymupdf
+pip uninstall langchain
+pip install langchain
+pip uninstall langchain-openai
+pip install langchain-openai
+pip uninstall langchain-community
+pip install langchain-community
+pip freeze 
+```
+5. Tengo en la carpeta **"documents"**, algunos archivos **`*.pdf`**, en este caso son manuales del celular _Samsung Galaxy 22_.
+6. Este sería el contenido del archivo **`src/rag/RAG_Simple.py`**:
+```py
+import os
+import fitz  # PyMuPDF
+from typing import List
+from dotenv import load_dotenv
+
+# FAISS & Langchain imports
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+
+# =========================================================
+# FAISS & Document Loading Setup
+# =========================================================
+DB_FILE = "./src/rag/.faiss_index"
+OPENAI_API_KEY = None  # Will be set after loading .env
+
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    """Extract text from a PDF file using PyMuPDF."""
+    text = ""
+    page_number = 0
+    try:
+        with fitz.open(pdf_path) as doc:
+            for page in doc:
+                page_text = page.get_text("text")
+                page_number = page.number + 1
+                text += page_text + "\n"
+            print(f"Extracting text from page {page_number} of {pdf_path}")
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
+    return text
+
+
+def load_documents(folder_path: str) -> List[Document]:
+    """Load all PDF and TXT from a folder and return a list of Document objects."""
+    local_docs = []
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        print(f"Processing file: {filename}")
+        if filename.endswith(".pdf"):
+            text = extract_text_from_pdf(file_path)
+        elif filename.endswith(".txt"):
+            with open(file_path, "r", encoding="utf-8") as file:
+                text = file.read()
+        else:
+            continue
+        if text.strip():
+            local_docs.append(Document(page_content=text,
+                                       metadata={"source": filename}))
+    return local_docs
+
+
+def create_vector_db(local_docs):  # List[Document]
+    """Create a FAISS vector database from a list of Document objects."""
+    print("Local docs type:", type(local_docs),
+          "with length:", len(local_docs))
+    if not local_docs:
+        raise ValueError(
+            "No documents provided to create the vector database.")
+    if os.path.exists(DB_FILE):
+        print(f"Database file {DB_FILE} already exists.")
+        print("Please delete it before creating a new one.")
+        return
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=500, chunk_overlap=100)
+    docs = text_splitter.split_documents(local_docs)
+
+    # Generating embeddings
+
+    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+
+    vector_db = FAISS.from_documents(docs, embeddings)
+
+    # Save the vector store to disk
+    vector_db.save_local(DB_FILE)
+    print(f"Vector database created and saved to {DB_FILE}.")
+
+
+def load_vector_db():
+    """Create a FAISS vector database from documents in the 'documents' folder."""
+    if os.path.exists(DB_FILE):
+        return FAISS.load_local(DB_FILE, OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY), allow_dangerous_deserialization=True)
+    else:
+        raise FileNotFoundError(
+            f"Database file {DB_FILE} not found. Please create the database first.")
+
+
+def retrieve_elevant_docs(query: str, k: int = 3) -> List[Document]:
+    """Retrieve the top-k relevant documents chunks from FAISS."""
+    vector_db = load_vector_db()
+    if vector_db:
+        results = vector_db.similarity_search(query, k=k)
+        return [doc.page_content for doc in results]
+    else:
+        print("Vector database not found or could not be created.")
+        return []
+
+
+# =========================================================
+# Main Execution
+# =========================================================
+if __name__ == "__main__":
+    FOLDER_PATH = "./src/rag/documents"
+    load_dotenv()  # Carga las variables de entorno del archivo .env
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    print("OpenAI API Key:", OPENAI_API_KEY)
+
+    # Load documents from the 'documents' folder
+    documents = load_documents(FOLDER_PATH)
+    create_vector_db(documents)
+
+    while True:
+        query = input("Enter your query (or 'exit' to quit): ")
+        if query.lower() == 'exit':
+            break
+        relevant_docs = retrieve_elevant_docs(query)
+        if relevant_docs:
+            print("Relevant documents:")
+            for idx, doc in enumerate(relevant_docs, 1):
+                print(f"[{idx}] - {doc}\n")
+        else:
+            print("No relevant documents found.")
+    print("Exiting the Simple RAG/Chatbot.")
+```
+
+7. Es necesario crear en la raíz el archivo **`.env`** con esta línea: </br> `OPENAI_API_KEY = "sk-proj-A-VALID-API-KEY-HERE"`
+8. En la `TERMINAL` y en mismo Ambiente Virtual de Python, ejecutamos este comando: </br> `python ./src/rag/RAG_Simple.py`.
+9. Ahora puedo hacerle preguntas y estos son algunos ejemplos: </br> ![Can I charge my S22 wireless?](images/2025-08-20_120310.png "Can I charge my S22 wireless?") ![¿Puedo cargar mi S22 de forma inalámbrica?](images/2025-08-20_120420.png "¿Puedo cargar mi S22 de forma inalámbrica?")
+10. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+### 40. `RAGAs` Validation Framework - Retrieval
+
+>[!NOTE]
+>
+>Para diferentes tipos de pruebas que desee realizar con su modelo de lenguaje extenso, no solo para rag, sino también para otros conceptos.
+>
+>Existen muchas bibliotecas.
+>Por ejemplo, existe la biblioteca "evaluate", que se centra más en la matriz de precisión, o la matriz de confusión, que se obtiene de "hugging face".
+>
+>O puede usar algo un poco más profesional, llamado `Ragas`, que es una biblioteca que proporciona herramientas para optimizar el rendimiento, pero está diseñada para ayudarle a evaluar sus aplicaciones de lenguaje extensas con facilidad y confianza.
+>Facilidad.
+>
+>[![Ragas](images/2025-08-20_150704.png "Ragas")](https://docs.ragas.io/en/stable/)
+>
+
+1. En este sitio empezamos con [🚀 Get Started](https://docs.ragas.io/en/stable/getstarted/)
+2. Seleccionamos [Installation](https://docs.ragas.io/en/stable/getstarted/install/), para procesos de instalacion de `Ragas`.
+3. Seleccionamos en la parte de arriba [🛠️ How-to Guides](https://docs.ragas.io/en/stable/howtos/).
+4. Vamos a este otro sitio [List of available metrics](https://docs.ragas.io/en/stable/concepts/metrics/available_metrics/).
+5. Regresaos a [Evaluate a simple LLM application](https://docs.ragas.io/en/stable/getstarted/evals/).
+6. Ejemplo de un prompt:
+```py
+from ragas import SingleTurnSample
+from ragas.metrics import BleuScore
+
+test_data = {
+    "user_input": "summarise given text\nThe company reported an 8% rise in Q3 2024, driven by strong performance in the Asian market. Sales in this region have significantly contributed to the overall growth. Analysts attribute this success to strategic marketing and product localization. The positive trend in the Asian market is expected to continue into the next quarter.",
+    "response": "The company experienced an 8% increase in Q3 2024, largely due to effective marketing strategies and product adaptation, with expectations of continued growth in the coming quarter.",
+    "reference": "The company reported an 8% growth in Q3 2024, primarily driven by strong sales in the Asian market, attributed to strategic marketing and localized products, with continued growth anticipated in the next quarter."
+}
+metric = BleuScore()
+test_data = SingleTurnSample(**test_data)
+metric.single_turn_score(test_data)
+```
+7. Un paso a paso para evaluar los RAG [Evaluate a simple RAG system](https://docs.ragas.io/en/stable/getstarted/rag_eval/), con este texto inicial:
+```py
+sample_docs = [
+    "Albert Einstein proposed the theory of relativity, which transformed our understanding of time, space, and gravity.",
+    "Marie Curie was a physicist and chemist who conducted pioneering research on radioactivity and won two Nobel Prizes.",
+    "Isaac Newton formulated the laws of motion and universal gravitation, laying the foundation for classical mechanics.",
+    "Charles Darwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'.",
+    "Ada Lovelace is regarded as the first computer programmer for her work on Charles Babbage's early mechanical computer, the Analytical Engine."
+]
+```
+8. He aquí ejemplos de consultas o _queries_ y Respuestas esperadas:
+```py
+sample_queries = [
+    "Who introduced the theory of relativity?",
+    "Who was the first computer programmer?",
+    "What did Isaac Newton contribute to science?",
+    "Who won two Nobel Prizes for research on radioactivity?",
+    "What is the theory of evolution by natural selection?"
+]
+
+expected_responses = [
+    "Albert Einstein proposed the theory of relativity, which transformed our understanding of time, space, and gravity.",
+    "Ada Lovelace is regarded as the first computer programmer for her work on Charles Babbage's early mechanical computer, the Analytical Engine.",
+    "Isaac Newton formulated the laws of motion and universal gravitation, laying the foundation for classical mechanics.",
+    "Marie Curie was a physicist and chemist who conducted pioneering research on radioactivity and won two Nobel Prizes.",
+    "Charles Darwin introduced the theory of evolution by natural selection in his book 'On the Origin of Species'."
+]
+```
+
+9. Creamos el archivo **`src/rag/RAGAS_localy.py`**, que es una copia de **`RAG_Simple.py`**, con algunos cambios:
+```py
+import os
+import fitz  # PyMuPDF
+import json
+from typing import List
+from dotenv import load_dotenv
+
+# RAGAS Evaluation Imports
+from ragas.metrics import (
+    context_precision,  # Measures if retrieved is relevantto the answer.
+    context_recall  # Measures if all necessary information was retreieved.
+)
+from ragas import evaluate
+from datasets import Dataset
+
+# FAIS & LangChain Imports
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+
+# =========================================================
+# FAISS & Document Loading Setup
+# =========================================================
+DB_FILE = "./src/rag/.faiss_index"
+OPENAI_API_KEY = None  # Will be set after loading .env
+
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    ...
+
+
+def load_documents(folder_path: str) -> List[Document]:
+    ...
+
+
+def create_vector_db(local_docs):  # List[Document]
+    ...
+
+
+def load_vector_db():
+    ...
+
+
+def retrieve_elevant_docs(query: str, k: int = 3) -> List[Document]:
+    ...
+
+# =========================================================
+# RAGAS Evaluation (Retrieval Testing Only)
+# =========================================================
+
+
+def evaluate_ragas(query: str, retrieved_docs: List[str], correct_answer: str):
+    """Evaluates the RAG retrieval system using RAGAS metrics"""
+
+    # Ensure retieved_docs is a list
+    if not isinstance(retrieved_docs, list):
+        retrieved_docs = [retrieved_docs]
+
+    # Prepare data for evaluation
+    evaluation_data = {
+        "question": [query],
+        "contexts": [retrieved_docs],  # Expected format: list of strings
+        "answer": [correct_answer],
+        "reference": [correct_answer]  # Required for context_precision
+    }
+    dataset = Dataset.from_dict(evaluation_data)
+
+    # Run RAGAS evaluation
+    scores = evaluate(dataset, metrics=[
+        context_precision,
+        context_recall
+    ])
+
+    # Convert to dictionary
+    scores_dict = scores.__dict__
+
+    # Remove non-serializable parts (e.g., evaluation_dataset) if present
+    EVAL_DATA = "evaluation_dataset"
+    if EVAL_DATA in scores_dict:
+        scores_dict.pop(EVAL_DATA)
+    # Extract only the scores
+    only_scores = scores_dict.get("scores", {})
+
+    print("\n🕯️ **RAG Retrieval Evaluation Scores:**")
+    print(json.dumps(only_scores, indent=2, default=str))
+
+# Example
+# # query = "Can I charge my Galaxy S22 wirelessly?"
+# # answer = ["Yes, you can charge your Galaxy S22 wirelessly using the Wireless power sharing feature. To use it, open Settings, go to Battery and device care, select Battery, and tap Wireless power sharing. Then tap Battery limit to set your desired threshold, and once that level is reached, wireless power sharing will automatically turn off."]
+
+
+# =========================================================
+# Main Execution
+# =========================================================
+if __name__ == "__main__":
+    ...
+        answer = input("✅ Enter the correct answer for evaluation: ")
+        evaluate_ragas(query, relevant_docs, answer)
+        print("\n" + "="*50 + "\n")
+        print("Evaluation complete. Scores printed above.")
+        print("You can now continue with the next query or exit.")
+    print("Exiting the RAGAS evaluation script.")
+```
+10. Primero Activamos el Ambiente Virtual de Python: </br> `.venv/Scripts/activate`
+11. Luego ejecutamos el comando para correr el script: </br> `python ./src/rag/RAGAS_local.py`
+12. La pregunta inicial sería: </br> `Can I charge my Galaxy S22 wirelessly?`
+13. Y la respuesta para la evaluación: </br> `Yes, you can charge your Galaxy S22 wirelessly using the Wireless power sharing feature. To use it, open Settings, go to Battery and device care, select Battery, and tap Wireless power sharing. Then tap Battery limit to set your desired threshold, and once that level is reached, wireless power sharing will automatically turn off.`
+14. Luego de un rato esto es lo que se obtiene: </br> ![RAG Retrieval Evaluation Scores](images/2025-08-20_163906.png "RAG Retrieval Evaluation Scores")
+15. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+
+### 41. RAGAs Validation Framework - Retrieval - Augmentation - Generation
+
+1. Empezamos creando el archivo **`src/rag/implement_gpt.py`**, similar a los anteriores con lagunos cambios:
+```py
+import os
+import fitz  # PyMuPDF
+from typing import List
+from dotenv import load_dotenv  # Load environment variables
+from openai import OpenAI
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+
+# Set API key or raise an error if not set
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    load_dotenv()  # Carga las variables de entorno del archivo .env
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# print("OpenAI API Key:", OPENAI_API_KEY)
+
+# Instantiate OpenAI client
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+
+# =========================================================
+# FAISS & Document Loading Setup
+# =========================================================
+DB_FILE = "./src/rag/.faiss_index"
+
+# Define the GPT model class
+model_name = "gpt-3.5-turbo"  # Example model name, can be changed as needed
+
+
+class GPTModel:
+    def __init__(self, model_name=model_name):
+        self.model_name = model_name
+        # self.embeddings = OpenAIEmbeddings(openai_api_key=api_key)
+
+    def generate_response(self, prompt: str) -> str:
+        """Generate a response using the GPT model."""
+        completion = openai_client.chat.completions.create(
+            model=self.model_name,
+            messages=[{"role": "system", "content": "You are a helpful assistant."},
+                      {"role": "user", "content": prompt}]
+        )
+        return completion.choices[0].message.content
+
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    """Extract text from a PDF file using PyMuPDF."""
+    text = ""
+    page_number = 0
+    try:
+        with fitz.open(pdf_path) as doc:
+            for page in doc:
+                page_text = page.get_text("text")
+                page_number = page.number + 1
+                text += page_text + "\n"
+            print(f"Extracting text from page {page_number} of {pdf_path}")
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
+    return text
+
+
+def load_documents(folder_path: str) -> List[Document]:
+    ...
+
+
+def create_vector_db(local_docs):  # List[Document]
+    ...
+
+
+
+def load_vector_db():
+    ...
+
+
+def retrieve_elevant_docs(query: str, k: int = 3) -> List[Document]:
+    ...
+
+
+def chat_with_context(query: str, k: int = 3) -> str:
+    """Generate a response to the query using retrieved relevant documents as context."""
+    relevant_docs = retrieve_elevant_docs(query, k)
+    context = "\n\n".join(relevant_docs)
+
+    prompt = f"Context:\n{context}\n\nQuestion: {query}\nAnswer:"
+    gpt_model = GPTModel()
+    response = gpt_model.generate_response(prompt)
+    return response
+
+
+# =========================================================
+# Main Execution
+# =========================================================
+if __name__ == "__main__":
+    FOLDER_PATH = "./src/rag/documents"
+    # load_dotenv()  # Carga las variables de entorno del archivo .env
+    # OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    # print("OpenAI API Key:", OPENAI_API_KEY)
+
+    # Load documents from the 'documents' folder
+    documents = load_documents(FOLDER_PATH)
+
+    # Create FAISS database (run only once per dataset)
+    create_vector_db(documents)
+
+    while True:
+        user_query = input("Enter your query (or 'exit' to quit): ")
+        if user_query.lower() == 'exit':
+            break
+        responseGPT = chat_with_context(user_query)
+        if responseGPT:
+            print("\n 💬 ChatGPT Response: \n", responseGPT)
+        else:
+            print("No relevant documents found.")
+    print("Exiting the ChatGPT RAG/Chatbot.")
+
+```
+2. Activo el Ambiente Virtual de Python: </br> `.venv/Scripts/activate`
+3. Luego ejecutamos el comando para ejecutar el escript: </br> `python ./src/rag/implement_gpt.py`
+4. Este sería el resultado esperado: </br> ![ChatGPT RAG/Chatbot](images/2025-08-20_172946.png "ChatGPT RAG/Chatbot")
+5. Podemos Implementar algo parecido al **`RAGAS_local.py`**, para validar la respuesta de este **`implement_gpt.py`**.
+6. Voy a crear el archivo **`src/rag/RAGAS_gpt.py`**, para probar la verificación basado en **`RAGAS_local.py`**:
+```py
+import os
+import fitz  # PyMuPDF
+import json
+from typing import List
+from dotenv import load_dotenv  # Load environment variables
+from openai import OpenAI
+
+# RAGAS Evaluation Imports
+from ragas.metrics import (
+    context_precision,  # Measures if retrieved is relevantto the answer.
+    context_recall  # Measures if all necessary information was retreieved.
+)
+from ragas import evaluate
+from datasets import Dataset
+
+# FAIS & LangChain Imports
+from langchain_openai import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.schema import Document
+
+# Set API key or raise an error if not set
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    load_dotenv()  # Carga las variables de entorno del archivo .env
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# print("OpenAI API Key:", OPENAI_API_KEY)
+
+# Instantiate OpenAI client
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+
+# =========================================================
+# FAISS & Document Loading Setup
+# =========================================================
+DB_FILE = "./src/rag/.faiss_index"
+
+# Define the GPT model class
+model_name = "gpt-3.5-turbo"  # Example model name, can be changed as needed
+
+
+class GPTModel:
+    def __init__(self, model_name=model_name):
+        self.model_name = model_name
+        # self.embeddings = OpenAIEmbeddings(openai_api_key=api_key)
+
+    def generate_response(self, prompt: str) -> str:
+        """Generate a response using the GPT model."""
+        completion = openai_client.chat.completions.create(
+            model=self.model_name,
+            messages=[{"role": "system", "content": "You are a helpful assistant."},
+                      {"role": "user", "content": prompt}]
+        )
+        return completion.choices[0].message.content
+
+
+def extract_text_from_pdf(pdf_path: str) -> str:
+    """Extract text from a PDF file using PyMuPDF."""
+    text = ""
+    page_number = 0
+    try:
+        with fitz.open(pdf_path) as doc:
+            for page in doc:
+                page_text = page.get_text("text")
+                page_number = page.number + 1
+                text += page_text + "\n"
+            print(f"Extracting text from page {page_number} of {pdf_path}")
+    except Exception as e:
+        print(f"Error extracting text from {pdf_path}: {e}")
+    return text
+
+
+def load_documents(folder_path: str) -> List[Document]:
+    """Load all PDF and TXT from a folder and return a list of Document objects."""
+    local_docs = []
+    for filename in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, filename)
+        print(f"Processing file: {filename}")
+        if filename.endswith(".pdf"):
+            text = extract_text_from_pdf(file_path)
+        elif filename.endswith(".txt"):
+            with open(file_path, "r", encoding="utf-8") as file:
+                text = file.read()
+        else:
+            continue
+        if text.strip():
+            local_docs.append(Document(page_content=text,
+                                       metadata={"source": filename}))
+    return local_docs
+
+
+def create_vector_db(local_docs):  # List[Document]
+    """Create a FAISS vector database from a list of Document objects."""
+    print("Local docs type:", type(local_docs),
+          "with length:", len(local_docs))
+    if not local_docs:
+        raise ValueError(
+            "No documents provided to create the vector database.")
+    if os.path.exists(DB_FILE):
+        print(f"Database file {DB_FILE} already exists.")
+        print("Please delete it before creating a new one.")
+        return
+    text_splitter = RecursiveCharacterTextSplitter(
+        chunk_size=500, chunk_overlap=100)
+    docs = text_splitter.split_documents(local_docs)
+
+    # Generating embeddings
+
+    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+
+    vector_db = FAISS.from_documents(docs, embeddings)
+
+    # Save the vector store to disk
+    vector_db.save_local(DB_FILE)
+    print(f"Vector database created and saved to {DB_FILE}.")
+
+
+def load_vector_db():
+    """Create a FAISS vector database from documents in the 'documents' folder."""
+    if os.path.exists(DB_FILE):
+        return FAISS.load_local(DB_FILE, OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY), allow_dangerous_deserialization=True)
+    else:
+        raise FileNotFoundError(
+            f"Database file {DB_FILE} not found. Please create the database first.")
+
+
+def retrieve_elevant_docs(query: str, k: int = 3) -> List[Document]:
+    """Retrieve the top-k relevant documents chunks from FAISS."""
+    vector_db = load_vector_db()
+    if vector_db:
+        results = vector_db.similarity_search(query, k=k)
+        return [doc.page_content for doc in results]
+    else:
+        print("Vector database not found or could not be created.")
+        return []
+
+
+def chat_with_context(query: str, k: int = 3) -> str:
+    """Generate a response to the query using retrieved relevant documents as context."""
+    relevant_docs = retrieve_elevant_docs(query, k)
+    context = "\n\n".join(relevant_docs)
+
+    prompt = f"Context:\n{context}\n\nQuestion: {query}\nAnswer:"
+    gpt_model = GPTModel()
+    response = gpt_model.generate_response(prompt)
+    return response
+
+# =========================================================
+# RAGAS Evaluation (Retrieval Testing Only)
+# =========================================================
+
+
+def evaluate_ragas(query: str, retrieved_docs: List[str], correct_answer: str):
+    """Evaluates the RAG retrieval system using RAGAS metrics"""
+
+    # Ensure retieved_docs is a list
+    if not isinstance(retrieved_docs, list):
+        retrieved_docs = [retrieved_docs]
+
+    # Prepare data for evaluation
+    evaluation_data = {
+        "question": [query],
+        "contexts": [retrieved_docs],  # Expected format: list of strings
+        "answer": [correct_answer],
+        "reference": [correct_answer]  # Required for context_precision
+    }
+    dataset = Dataset.from_dict(evaluation_data)
+
+    # Run RAGAS evaluation
+    scores = evaluate(dataset, metrics=[
+        context_precision,
+        context_recall
+    ])
+
+    # Convert to dictionary
+    scores_dict = scores.__dict__
+
+    # Remove non-serializable parts (e.g., evaluation_dataset) if present
+    EVAL_DATA = "evaluation_dataset"
+    if EVAL_DATA in scores_dict:
+        scores_dict.pop(EVAL_DATA)
+    # Extract only the scores
+    only_scores = scores_dict.get("scores", {})
+
+    print("\n🕯️ **RAG Retrieval Evaluation Scores:**")
+    print(json.dumps(only_scores, indent=2, default=str))
+
+# Example
+# # query = "Can I charge my Galaxy S22 wirelessly?"
+# # aswer = "Yes, you can charge your Galaxy S22 wirelessly using the Wireless power sharing feature. To use it, open Settings, go to Battery and device care, select Battery, and tap Wireless power sharing. Then tap Battery limit to set your desired threshold, and once that level is reached, wireless power sharing will automatically turn off."
+
+
+# =========================================================
+# Main Execution
+# =========================================================
+if __name__ == "__main__":
+    FOLDER_PATH = "./src/rag/documents"
+    # load_dotenv()  # Carga las variables de entorno del archivo .env
+    # OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    # print("OpenAI API Key:", OPENAI_API_KEY)
+
+    # Load documents from the 'documents' folder
+    documents = load_documents(FOLDER_PATH)
+    create_vector_db(documents)
+
+    while True:
+        user_query = input("Enter your query (or 'exit' to quit): ")
+        if user_query.lower() == 'exit':
+            break
+        responseGPT = chat_with_context(user_query)
+        if responseGPT:
+            print("\n 💬 ChatGPT Response: \n", responseGPT)
+        else:
+            print("No relevant documents found.")
+        answer = input("✅ Enter the correct answer for evaluation: ")
+        evaluate_ragas(user_query, responseGPT, answer)
+        print("\n" + "="*50 + "\n")
+        print("Evaluation complete. Scores printed above.")
+        print("You can now continue with the next query or exit.")
+    print("Exiting the RAGAS to GPT evaluation script.")
+
+```
+7. Ejecuté en la `TERMINAL` estando en el Ambiente Virtual de Python: </br> `python .\src\rag\RAGAS_gpt.py`
+8. Luego de una espera y poner como `query` el texto </br> `Can I charge my Galaxy S22 wirelessly?` </br> Y luego a la pregunta de `correct answer` de: </br> `Yes, you can charge your Galaxy S22 wirelessly using the Wireless power sharing feature. To use it, open Settings, go to Battery and device care, select Battery, and tap Wireless power sharing. Then tap Battery limit to set your desired threshold, and once that level is reached, wireless power sharing will automatically turn off.` </br> Esta sería la respuesta: </br> ![RAGAS to GPT](images/2025-08-21_082859.png "RAGAS to GPT")
+9. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+### 42. Rag framework - Coherence, Fluency and Relevance
+
+>[!NOTE]
+>
+>Al evaluar el RAG, se requiere más que simplemente pensar en la capacidad de recordar o si toda la información está ahí.
+>Por lo tanto, también debemos considerar la fluidez, la relevancia y la coherencia.
+>
+>Porque todos estos elementos son importantes al comparar cualquier tipo de sistema de IA.
+>Y también para el RAG, ¿cierto?
+>
+>También debes verificar si tu sistema de evaluación también considera la fluidez, la relevancia y la coherencia en tu flujo de trabajo del RAG.
+>
+>![Human Evaluation](images/2025-08-21_083652.png "Human Evaluation")
+>
+>Para ello, quiero presentar un concepto llamado LLM como juez.
+>Básicamente, se evalúa el resultado de la secuencia de comandos de Rag utilizando otro modelo de lenguaje amplio.
+>Y, por supuesto, también lo analizaremos.
+>¿Pero saben qué es la fluidez?
+>Así funciona.
+>Cuán natural y gramaticalmente correcto es el texto generado.
+>Y no sólo fluidez.
+>
+>![Human Evaluation - fluency](images/2025-08-21_083932.png "Human Evaluation - fluency")
+>
+>Pero también se analiza la coherencia.
+>Y la coherencia, como saben, muestra la fluidez y consistencia de todos los elementos que se extraen
+>de la producción de material.
+>Ahora bien, en términos de contexto, también se puede analizar la relevancia.
+>
+>![Human Evaluation - coherence](images/2025-08-21_084308.png "Human Evaluation - coherence")
+>
+>¿Es la respuesta relevante para lo que tengo?
+>Porque le pedirás a tu sistema que proporcione algunas respuestas.
+>¿Y es relevante?
+>
+>![Human Evaluation - Relevance](images/2025-08-21_084620.png "Human Evaluation - Relevance")
+>
+>Y también podrías considerar la concisión.
+>¿Es conciso?
+>Es decir, ¿obtengo cinco páginas de algo que podría resumirse en quizás dos líneas?
+>¿O recibo mucha palabrería, que en realidad no es tan relevante para mí?
+>Y para validar tu trabajo, analizaremos un marco basado en una evaluación profunda.
+>
+>![Human Evaluation - Concision](images/2025-08-21_084954.png "Human Evaluation - Concision")
+>
+>Básicamente, este es mi código, algo que tengo aquí.
+>Si subimos, vemos que usaremos esta métrica de "eval".
+>Necesitas tu clave API.
+>
+>Configuraré mi contenedor ChatGPT, ya que lo usaré para que me haga un trabajo.
+>Luego generaré varias pruebas.
+>Si te fijas, estas son pruebas Pi.
+>Aquí están mis evaluaciones: fluidez, coherencia, relevancia y concisión.
+>
+>Todas se realizan con una instrucción.
+>Así que, incluso si esto ya está predefinido y nadie sabe cómo usarlo, necesitas proporcionar una especie de instrucción.
+>Pero no te preocupes, esta instrucción se combina con algo que está detrás de la instrucción y te proporcionará todos estos elementos.
+>
+>Y también puedo decir aquí, por ejemplo, algo como esto y un criterio de aprobación en porcentajes.
+>Por defecto, se obtiene un 50% de aprobado.
+>Ahora, esta prueba que acabo de empezar, buscará un archivo llamado texto de entrada y texto de referencia.
+>Comparará uno con el otro, porque al validar una pista se necesita un texto de entrada, algo con lo que se pueda trabajar.
+>Y luego la referencia, que es la parte correcta.
+>
+>Tomará mi texto de entrada, que es un texto que he copiado de internet.
+>Lo traducirá al rumano, obtendrá las ideas principales y las traducirá de nuevo al inglés.
+>Y luego la referencia está aquí.
+>Compararemos el resumen de la traducción al rumano con el texto de referencia en inglés que ya he completado.
+>Sí, esa es la idea.
+>
+>Queremos comparar algo con otra cosa.
+>Y pueden ver aquí que estoy ejecutando LM como juez, ¿ven aquí, verdad?
+>LM como juez.
+>Y estoy probando fluidez, coherencia, relevancia y concisión.
+>Todos se ejecutarán en paralelo, y la prueba ya está hecha.
+>Ha sido utilizada por una IA confiable con nuestro marco de trabajo.
+>Y aquí está la tasa de aprobación, no la puntuación.
+>
+>Así que las cuatro pruebas han pasado, pero ¿cuál es exactamente su puntuación?
+>
+>Bueno, por ejemplo, veamos si subimos en relevancia.
+>Obtuve un 78% de aprobados en concisión, 66% en fluidez y 51%.
+>Así que, si este porcentaje fuera dos puntos porcentuales menor, este examen habría sido reprobado.
+>Así que, al evaluar el RAG, no solo se trata de asegurar la memoria del contexto, o quizás la precisión del contexto, o quizás la veracidad, sino que también hay que observar eso y compararlo, ¿cierto?
+>
+>Porque siempre comparamos algo con algo con el RAG.
+>Esa es la idea.
+>Así que siempre se compara algo.
+>
+>Y básicamente eso es todo.
+>Eh, no, estoy seguro de que encontrarán una manera de evaluar la coherencia, la fluidez, la relevancia y cualquier otra cosa que deseen utilizando este LLM como criterio.
+>Correcto.
+>Así que recuerden, obtienen información, obtienen resultados y luego consultan a un modelo lingüístico externo de gran tamaño.
+>En este caso, la IA confiará en que evaluarán sus resultados comparándolos con un resultado predefinido.
+>Y luego tienes dos pares de ojos que miran tus resultados y tu puntuación.
+>
+
+
+### 43. RAG Benchmarking - Nugget Coverage
+
+>[!NOTE]
+>
+>Ahora bien, cuando haces un rag, básicamente tienes un montón de documentos.
+>Imagina que esta es toda tu base de conocimientos dividida en fragmentos.
+>
+>Estos son los fragmentos de información que tu recuperación obtendrá para completar tu contexto.
+>Y si haces tu pregunta, tu información podría estar en este y en este otro.
+>
+>![RAG Testing](images/2025-08-21_091505.png "RAG Testing")
+>
+>Y estos dos podrían no contener la respuesta a tu información.
+>Y el fragmento que contenga con seguridad tu información, será la respuesta a tu consulta.
+>Eso se llama pepita de oro porque es de oro, sin duda.
+>Encontrarás tu información allí.
+>
+>Por ejemplo, imaginemos que tienes el fragmento uno, el fragmento dos, el fragmento tres, el fragmento cuatro, y
+>luego defines el fragmento dos como mi pepita de oro.
+>Entonces, cuando estés probando la siguiente métrica, que es la cobertura de la pepita de oro,
+>Lo que quieres validar es que el retriever coja tu pepita, y tú sabes que es esa pepita y no otra.
+>
+>Y, sabes, esto es muy fácil de implementar.
+>Puedes hacerlo con ragas.
+>Y te lo mostraré ahora mismo.
+>
+>Básicamente, lo que tengo aquí es una implementación de ragas.
+>Y lo más importante que queremos analizar no es el código.
+>Porque, de nuevo, el código con el que se puede explicar, como ChatGPT o Claude, es esta parte del conjunto de datos.
+>
+>Así que aquí es donde definimos nuestro conjunto de datos.
+>Y ven que tenemos tres bloques de datos.
+>Y saben que los bloques uno y cuatro son válidos.
+>Pero el bloque cuatro no está aquí porque no se ha recuperado.
+>
+>Así que, básicamente, cuando hacen su llamada y luego se recuperan estos bloques, y saben que los bloques uno y cuatro son válidos.
+>Así que lo que puedo decirles es que falta el bloque cuatro.
+>Eso es un problema.
+>Y luego se obtienen las puntuaciones de soporte.
+>
+>La puntuación de soporte indica la relevancia de su respuesta en su bloque.
+>Cómo.
+>Básicamente, cuanto mayor sea la puntuación de soporte, más relevante será tu respuesta en ese fragmento.
+>Ahora, de nuevo, tenemos estos fragmentos recuperados.
+>Estos están etiquetados como pepitas de oro.
+>
+>Y estas son nuestras puntuaciones de soporte.
+>Así que voy a ejecutar esto.
+>Y ahora veamos cuáles son los resultados que obtendremos.
+>Un par de segundos, porque esto funcionará muy rápido. No estoy usando ningún tipo de alfombra.
+>Solo estoy simulando esto y calculando para ti.
+>No necesitas simular.
+>Puedes hacerlo como quieras, pero ya sabes, porque ya has implementado los archivos y esto es justo lo que queremos hacer.
+>Entonces.
+>
+>La recuperación de la pepita de oro es 0.5.
+>¿Por qué?
+>Porque de dos, solo llegó uno.
+>Así que, también deberías tener el fragmento para...
+>Pero la recuperación no se molestó en obtener el fragmento para la puntuación media de soporte, como pueden imaginar.
+>Sí, es este de aquí.
+>
+>Básicamente, es algo que pueden revisar.
+>La recuperación es como obtener documentos, ¿verdad?
+>Pueden ver si el documento se recupera.
+>Esa es una parte.
+>Y luego pueden analizar el contexto para ver si la recuperación obtuvo de ese documento lo que quieran.
+>
+>La primera parte es obtener el documento y luego obtener el fragmento específico de ese documento.
+>Es una métrica muy importante si quieren probar su recuperación, ya saben, la recuperación de la pepita de oro.
+>Y si quieren probar toda la información, esa será su precisión o su recuperación.
+>
 
 

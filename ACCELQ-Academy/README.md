@@ -63,7 +63,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 >[!IMPORTANT]
 >
->[![Haz clic aquí y mira el video `Hello World`](images/2025-07-31_084115.gif "Haz clic aquí y mira el video `Hello World`")](videos/01_Hello%20World.mp4)
+>[![Haz clic aquí y mira el video `Hello World`](images/2025-07-31_084115.gif "Haz clic aquí y mira el video `Hello World`")](videos/01_Hello_World.mp4)
 >
 
 
@@ -210,7 +210,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 >[!IMPORTANT]
 >
->[![Haz clic aquí y mira el video `Extending Hello World`](images/2025-08-05_095351.gif "Haz clic aquí y mira el video `Extending Hello World`")](videos/02_Extending%20Hello%20World.mp4)
+>[![Haz clic aquí y mira el video `Extending Hello World`](images/2025-08-05_095351.gif "Haz clic aquí y mira el video `Extending Hello World`")](videos/02_Extending_Hello_World.mp4)
 >
 
 
@@ -256,7 +256,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 >[!IMPORTANT]
 >
->[![Haz clic aquí y mira el video `Key Entities in ACCELQ`](images/2025-08-11_144035.gif "Haz clic aquí y mira el video `Key Entities in ACCELQ`")](videos/03_Key%20Entities%20in%20ACCELQ.mp4)
+>[![Haz clic aquí y mira el video `Key Entities in ACCELQ`](images/2025-08-11_144035.gif "Haz clic aquí y mira el video `Key Entities in ACCELQ`")](videos/03_Key_Entities_in_ACCELQ.mp4)
 >
 
 
@@ -268,6 +268,43 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >![🚀 Pop Quiz: Key Entities in ACCELQ](images/2025-08-19_152120.gif "🚀 Pop Quiz: Key Entities in ACCELQ")
 
 
-###
+### 7. ▶️ Introduction to Element Identification (Web)
+
+
+1. Empezamos con un ejemplo, dando clic en el cuadro de `Username`, después de un rato aparecen las opciones: </br> ![.](images/2025-08-21_112453.png "")</br> Para obtener un elemento para la prueba que se va a correr. </br> La identificación de elementos involucra la definición de este criterio y el término `locator` es comunmente usado para indicar la identifación de un elemento.
+2. Se utilizan dos aproximaciones para la identificación de un elemento: </br> » Uno es el **Locator-Free**. </br> » Y el otro es el **Smart-Locator**.
+3. **Locator-Free**, no tiene `locators`, es decir no tiene localizadores o identificadores de elemento.
+4. **Smart-Locator**, usa una combinación de atributos _HTML_ que son óptimos y probalemente estáticos a favor de identificar un elemento.
+
+![Two ways to identify Elements in ACCELQ](images/2025-08-21_144230.png "Two ways to identify Elements in ACCELQ")
+
+5. En la mayoría de los casos ACCELQ puede identificar usando la aproximación  usando el **Locator-Free**. En el Escenario no se requiere buscar los elementos o los _locators_, que son implícitos yendo con el **Locator-Free**. El ACCELQ permite configurar por defecto cual aproximación utilizar.
+6. Yendo por `RESOURCES` está la opción `Project Preferences` </br> ![RESOURCES -> Project Preferences](images/2025-08-22_084607.png "RESOURCES -> Project Preferences")
+7. Se especifica el uso de **Locator-Free** o **Smart-Locator**: </br> ![Project Preferences](images/2025-08-22_084803.png "Project Preferences") </br> Vamos a escribir un Escenario ejemplo el cual demuestra estos dos típos de localizadores. El sistema detecta automáticamente cuando usar que tipo de localizador.
+8. El primer paso a invocar en el browser dando [`ENTER`] en la _URL_: </br> ![ENTER -> URL](images/2025-08-22_085821.png "ENTER -> URL") </br> ![1️⃣ Invoque Browser](images/2025-08-22_090051.png "1️⃣ Invoque Browser")
+9. El siguiente es darle clic derecho al cuadro de `Username` y vamos a la opción de `Actions` y luego `Login to QBank`: </br> ![Login to QBank](images/2025-08-22_090519.png "Login to QBank")
+10. Aparece a la izquierda y completamos los campos vacíos o pendientes: </br> ![2️⃣ Login to QBank](images/2025-08-22_090746.png "2️⃣ Login to QBank")
+11. Damos clic en un ícono en la parte superior al centro: </br> ![WebElement](images/2025-08-22_091200.png "WebElement") </br> Al momento parece esta información: </br> ![WebElement -> div#qdb_notifications](images/2025-08-22_091358.png "WebElement -> div#qdb_notifications")
+12. Damos clic derecho y seleccionamos la opción `click on a web element`: </br> ![click on a web element](images/2025-08-22_091702.png "click on a web element")
+13. Pide un nombre al elemento: </br> ![Provide a name for the Element](images/2025-08-22_094801.png "Provide a name for the Element")</br>Esto es un **Smart-Locator** y es manejado como un elemento que necesita proveer un nombre, para tratar con este elemento. </br> Le da clic para completar la operación y aparece el tercer elemento: </br> `3️⃣ Click on Notification icon web element`.
+14. Y esto hace que se nevegue a la página siguiente: </br> ![Notifications page](images/2025-08-22_095350.png "Notifications page")
+15. Damos clic en `ELEMENTS`: </br> ![Elements(1)](images/2025-08-22_095642.png "Elements(1)") </br> Aparecen todos los **Smart-Locators**
+16. Si le doy clic en `Notification icon`: </br> ![Notification icon -> Generic Element <div/>](images/2025-08-22_095921.png "Notification icon -> Generic Element <div/>")
+17. Damos clic en el texto `Notifications` y esperamos : </br> ![WebElement -> Notifications](images/2025-08-22_100207.png "WebElement -> Notifications")
+18. Aparece el menú de `Generic Element`: </br> ![Generic Element](images/2025-08-22_100458.png "Generic Element") </br> Buscamos y seleccionamos `verify page text`: </br> ![verify page text](images/2025-08-22_101119.png "verify page text")
+19. Seleccionamos `verify page contains text (web)`: </br> ![verify page contains text (web)](images/2025-08-22_101419.png "verify page contains text (web)")
+20. Completamos el texto faltante de `4️⃣ verify page contains text (web)`: </br> ![4️⃣ verify page contains text (web) -> Notifications](images/2025-08-22_101651.png "4️⃣ verify page contains text (web) -> Notifications")
+21. Vamos por el botón superior derecho: </br> ![click on a web element](images/2025-08-22_102002.png "click on a web element") </br> Y me aparecen dos opciones, **Locator-Free** y **Smart-Locator**: </br> ![LOCATOR OPTIONS](images/2025-08-22_102519.png "LOCATOR OPTIONS")
+22. Selecciono el **Locator-Free** y obtengo el quinto paso: </br> ![5️⃣ Click on text](images/2025-08-22_102755.png "5️⃣ Click on text") </br>nos lleva a una nueva página: </br> ![Recent Activity](images/2025-08-22_103431.png "Recent Activity")
+23. Damos clic en el paso 5️⃣ en el texto `(equals, ignore case)` y seleccionamos `starts with` </br> ![starts with](images/2025-08-22_104311.png "starts with")
+24. Cambiamos el texto del paso 5️⃣ por `Mark as Read` </br> ![Mark as Read](images/2025-08-22_104710.png "Mark as Read") </br> De esta manera, aunque el _label_ fue algo dinámico, se usarí un **Locator-Free**. </br> Y una vez esto esta hecho, puede pasar al normal curso para convertir esto en una `Action` y salir de este `Scenario`.
+
+
+
+>[!IMPORTANT]
+>
+>[![Haz clic aquí y mira el video `Key Entities in ACCELQ`](images/2025-08-21_100000.gif "Haz clic aquí y mira el video `Element_Id`")](videos/04_Element_Id.mp4)
+>
+
 
 

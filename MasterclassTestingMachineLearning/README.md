@@ -2922,3 +2922,740 @@ if __name__ == "__main__":
 >
 
 
+## Section 7: Evaluate Machine Learning Model based on DATA Split
+
+
+### 44. Introduction to Splitting Data for AI/ML Models
+
+
+>[!NOTE]
+>
+>Para probar mejor la IA, es necesario comprenderla.
+>Y no profundizaré mucho en qué exactamente.
+>Bueno, o en el funcionamiento interno de la IA, pero es muy importante.
+>Es necesario comprender cuáles son los tres pilares que la sustentan.
+>
+>![Pilares de la IA](images/2025-08-25_172004.png "Pilares de la IA")
+>
+>1. Ahora, sin más preámbulos, el primero se centra en los datos. >Y digo **datos limpios** porque significa, por ejemplo, que no tienen sesgos.</br>
+></br>No contienen lenguaje grosero.
+>Son datos correctos, no están llenos de teorías conspirativas, porque no queremos que nuestra IA aprenda que cierta minoría, por ejemplo, es genéticamente inferior, etc.
+>¿Verdad?</br>
+></br>Y no se trata solo de eso.
+>Se trata de que los datos sean estadísticamente representativos de toda la población.
+>Y hablaremos de eso más adelante.
+>Pero es importante saber que los datos son inmensos.
+>Son absolutamente inmensos cuando se trata de IA.
+>
+>2. El siguiente tema trata sobre **algoritmos**.
+></br></br>
+>Quizás hayas oído hablar de redes neuronales convolucionales, aprendizaje profundo o cualquier tipo de algoritmo de aprendizaje automático.
+>Bueno, los algoritmos funcionan con datos.
+></br></br>
+>Por lo tanto, cuanto mejor sea el algoritmo, más fácil será para tu aprendizaje automático convertir los datos en una predicción, o generar algo, y también más rápido, ya que los algoritmos pueden ser lentos y rápidos.
+></br></br>
+>El segundo pilar de la IA se centra en los algoritmos, ya que verás que, a partir de los mismos datos, diferentes algoritmos de aprendizaje automático obtienen diferentes resultados y eficiencias.
+></br></br>
+>Así, podrías obtener una puntuación del 90 % con un algoritmo, pero podrías obtener una puntuación del 97 % de precisión con un algoritmo diferente.
+>
+>3. El tercero es la **potencia de procesamiento**.
+></br></br>
+>Estoy bastante seguro de que saben que Nvidia domina el mundo actualmente.
+>Y todo esto junto.
+>Constituyen los fundamentos, los pilares para crear IA.
+></br></br>
+>Así que todo se reduce a algoritmos de datos y, por supuesto, a la potencia de procesamiento que se utiliza.
+>Porque el entrenamiento de la IA en sí mismo requiere un uso intensivo de recursos.
+>Y verán que los diferentes algoritmos y métodos de entrenamiento requieren un uso más intensivo de recursos
+>que otros.
+>
+>En fin, esto es solo el principio.
+>Ahora pasemos a la parte sobre datos, ya que existen métodos de entrenamiento y evaluación muy específicos para ellos y los analizaremos en todo este capítulo.
+>
+>Y hay algo llamado división de datos que realmente me gusta y disfruto.
+>
+>Ahora imagina que este es tu conjunto de datos, todo lo que tienes aquí.
+>Voy a tomar mi puntero.
+>Estos serán todos los datos que tengo.
+>Eso es todo.
+>
+>Nada más.
+>
+>![División de Datos](images/2025-08-25_172519.png "División de Datos")
+>
+>Este es mi entrenamiento completo.
+>Los datos están etiquetados y ya están depurados.
+>Son representativos.
+>Y voy a usar estos datos para entrenar y validar mi modelo.
+>Pero, ¿cómo se dice "esto es para entrenamiento y esto para evaluación"?
+>
+>¿Cómo se sabe cómo hacerlo?
+>Existen algunos métodos.
+>Imagina el siguiente escenario donde tomas todos estos datos que tienes aquí y dices: "Supongamos que el 80% o el 70% serán mis datos de entrenamiento".
+>Así que mi algoritmo se entrenará solo con el 70% de todos mis datos.
+>
+>Entonces, te preguntarás: "¿Qué hago con el siguiente 30%?".
+>Bueno, el siguiente 30% será para probar mi algoritmo.
+>Esto significa que estos serán mis datos de entrenamiento etiquetados, y estos serán datos que el modelo no ha visto.
+>Esto se usará en el modelo para validarlo.
+>Entonces, se te pedirá que uses datos nuevos nunca antes vistos para ver si llegas a la etiqueta real.
+>No.
+>
+>Esto significa que tu entrenamiento puede ser único y no hay retroalimentación durante el mismo.
+>Así que hay otro método que puedes usar para dividir aún más tus datos.
+>
+>Repetimos el proceso.
+>Imagina que esto es el 60%.
+>Y vas a entrenar tu modelo solo con estos datos, solo con esta parte, el 60% de todos tus datos.
+>Solo un ejemplo.
+>
+>Luego, obtendrás otro conjunto de datos: datos de evaluación, que se usarán para evaluar el entrenamiento del modelo.
+>Durante el entrenamiento, puedes simplemente decir: "Oye, quiero que ejecutes el entrenamiento con estos datos".
+>Y durante el entrenamiento, también quiero que uses estos datos para evaluar si el entrenamiento es correcto.
+>Harás esto un par de veces, y solo después podrías decir: "Mi modelo está entrenado y ahora usaré estos datos para comparar mi modelo actual".
+>
+>Esto se llama división de datos.
+>En los próximos videos, te mostraré qué es el plegado en K.
+>
+>¿Cómo puedes dividir aún más tus datos?
+>También te mostraré que, por ejemplo, si analizamos los abrazos, los datos faciales suelen dividirse así.
+
+
+### 45. Demo - Python - Scikit - Split Data for Testing
+
+1. Nos vamos a esta página <img alt="scikit learn" width="16px" height="16px" src="https://cdn-avatars.huggingface.co/v1/production/uploads/1654272313249-6141a88b3a0ec78603c9e784.png" style="background:lightblue;" > [scikit-learn/iris](https://huggingface.co/datasets/scikit-learn/iris)
+2. Revisamos en el tabulador primero `Dataset card` y debajo que el `train` está en `Split(1)` y `150 rows`: </br> ![iris -> Dataset Viewer](images/2025-08-25_180316.png "iris -> Dataset Viewer")
+3. Vemos cuatro parámetros:
+* SepalLengthCm
+* SepalWidthCm
+* PetalLengthCm
+* PetalWidthCm
+4. Y luego, dependiendo de estos números, también se obtiene la especie de iris, que puede ser una de las tres.</br> Estos son todos los datos que tenemos.</br>Básicamente, lo que queremos hacer es entrenar nuestro modelo para que, dependiendo de las combinaciones de estos cuatro, prediga qué tipo de especie tenemos.</br>Pero para predecirlo, es necesario encontrar una manera de trabajar con los datos.
+5. Creamos el archivo **`src/test/LLM/Data_Spliting/evaluate_model.py`**
+6. Primero en la `TERMINAL` ejecuto el Ambiente Virtual de Python: </br> `.venv/Scripts/activate`
+7. Se ve el archivo **`src/test/LLM/Data_Spliting/iris_eval.csv`**, con este ejemplo de valores:
+```csv
+id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm,Species
+71,5.9,3.2,4.8,1.8,Iris-versicolor
+30,5.7,2.6,3.5,1.0,Iris-versicolor
+135,6.1,2.6,5.6,1.4,Iris-virginica
+...
+144,6.8,3.2,5.9,2.3,Iris-virginica
+127,6.2,2.8,4.8,1.8,Iris-virginica
+92,6.1,3.0,4.6,1.4,Iris-versicolor
+```
+8. Si existe el archivo **`iris_eval.csv`** lo borramos.
+9. Hay otro archivo **`src/test/LLM/Data_Spliting/iris_train.csv`**, con estos datos de ejemplo:
+```csv
+id,SepalLengthCm,SepalWidthCm,PetalLengthCm,PetalWidthCm,Species
+95,5.6,2.7,4.2,1.3,Iris-versicolor
+57,6.3,3.3,4.7, 1.6,Iris-versicolor
+97,5.7,2.9,4.2, 1.3,Iris-versicolor
+...
+102,5.8,2.7,5.1,1.9,Iris-virginica
+145,6,7,3,3,5,7,2.5,Iris-virginica
+46,4.8,3.0,1.4,0.3,Iris-setosa
+```
+10. Si existe el archivo **`iris_train.csv`**, lo borramos.
+11. Creo otro archivo de nombre **`src/test/LLM/Data_Spliting/split_train_Dataset.py`**, con este código:
+```py
+from datasets import load_dataset
+
+# Step 1: Load the Iris dataset from Hugging Face
+dataset = load_dataset("scikit-learn/iris")
+
+# Step 2: Split the dataset into training (120 samples) and evaluation (30 samples)
+split_dataset = dataset["train"].train_test_split(test_size=30, seed=42)
+
+# Step 3: Save the splits to CSV files
+current_path = "./src/test/LLM/Data_Spliting/"
+train_file = current_path + "iris_train.csv"
+eval_file = current_path + "iris_eval.csv"
+
+split_dataset["train"].to_pandas().to_csv(train_file, index=False)
+split_dataset["test"].to_pandas().to_csv(eval_file, index=False)
+
+print(f"Training data saved to '{train_file}'")
+print(f"Evaluation data saved to '{eval_file}'")
+```
+12. Ejecuto en la `TERMINAL` este último **`split_train_Dataset.py`** </br> `python ./src/test/LLM/Data_Spliting/split_train_Dataset.py` </br> Y obtengo los dos archivos que inicialmente borré:
+* **`src/test/LLM/Data_Spliting/iris_eval.csv`**
+* **`src/test/LLM/Data_Spliting/iris_train.csv`**
+13. Creo otro archivo de nombre **`src/test/LLM/Data_Spliting/split_train_scikit.py`**, con este código:
+```py
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+import pandas as pd
+
+# Step 1: Load the Iris dataset from Hugging Face
+iris = load_iris()
+x = iris.data  # Features
+y = iris.target  # Labels
+
+# Step 2: Split the dataset into training (120 samples) and evaluation (30 samples)
+x_train, x_eval, y_train, y_eval = train_test_split(
+    x, y, test_size=30/150, random_state=42)
+
+# Step 3: Convert split to DataFrames
+train_data = pd.DataFrame(x_train, columns=iris.feature_names)
+train_data["target"] = y_train
+
+eval_data = pd.DataFrame(x_eval, columns=iris.feature_names)
+eval_data["target"] = y_eval
+
+# Step 4: Save the splits to CSV files
+current_path = "./src/test/LLM/Data_Spliting/"
+train_file = current_path + "iris_train.csv"
+eval_file = current_path + "iris_eval.csv"
+
+train_data.to_csv(train_file, index=False)
+eval_data.to_csv(eval_file, index=False)
+
+print(f"Training data saved to '{train_file}'")
+print(f"Evaluation data saved to '{eval_file}'")
+```
+14. Borro de nuevo los dos archivo **`*.csv`**.
+15. Ejecuto en la `TERMINAL` este último **`split_train_Dataset.py`** </br> `python ./src/test/LLM/Data_Spliting/split_train_scikit.py` </br> Y obtengo los dos archivos que anteriormente borré:
+* **`src/test/LLM/Data_Spliting/iris_eval.csv`**
+* **`src/test/LLM/Data_Spliting/iris_train.csv`**
+16. Ejecutamos de nuevo en la `TERMINAL` el anterior **`split_train_Dataset.py`** </br> `python ./src/test/LLM/Data_Spliting/split_train_Dataset.py` </br> Genera mejores resultados en los archivos **`*.csv`**.
+18. Creamos otro archivo **`src/test/LLM/Data_Spliting/train_model.py`** y le ponemos este código:
+```py
+from datasets import Dataset
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer, TrainingArguments
+import pandas as pd
+import os
+
+# Step 1: Load your dataset from a CSV file
+current_path = "./src/test/LLM/Data_Spliting/"
+train_file = current_path + "iris_train.csv"
+data = pd.read_csv(train_file)
+
+# Step 1.1: Validate the existence of the training file
+if not os.path.exists(train_file):
+    raise FileNotFoundError(f"Training file not found: {train_file}")
+
+# Step 1.2: Validate the columns in the dataset
+required_columns = ['SepalLengthCm', 'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm', 'Species']
+if not all(col in data.columns for col in required_columns):
+    raise ValueError(f"The dataset must contain the following columns: {required_columns}")
+
+# Step 2: Convert the dataset to Hugging Face Dataset
+dataset = Dataset.from_pandas(data)
+
+# Step 3: Preprocess the datase: Convert all feature column into a single textual description
+
+
+def convert_to_text(example):
+    features = f"This flower has a sepal length of {example['SepalLengthCm']} cm, a sepal width of {example['SepalWidthCm']} cm, "\
+        f"a petal length of {example['PetalLengthCm']} cm, and a petal width of {example['PetalWidthCm']} cm."
+    return {"text": features}
+
+
+dataset = dataset.map(convert_to_text)
+
+# Step 4: Map the 'Species' column to numerical lables for classification
+label_mapping = {"Iris-setosa": 0, "Iris-versicolor": 1, "Iris-virginica": 2}
+
+# Ensure 'Species' is correctly mapped
+dataset = dataset.map(lambda x: {"label": label_mapping[x["Species"]]})
+
+# Drop unnecessary columns
+dataset = dataset.remove_columns(
+    {"Id", "SepalLengthCm", "SepalWidthCm", "PetalLengthCm", "PetalWidthCm", "Species"})
+
+# Step 5: Tokenize the dataset
+tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+
+
+def tokenize_data(example):
+    return tokenizer(example["text"], truncation=True, padding="max_length", max_length=128)
+
+
+tokenized_dataset = dataset.map(tokenize_data, batched=True)
+
+# Step 6: Split the dataset into training and evaluation sets
+train_test_split = tokenized_dataset.train_test_split(test_size=0.2, seed=42)
+train_dataset = train_test_split["train"]
+eval_dataset = train_test_split["test"]
+
+# Step 7: Load a pre-trained DistriBERT model
+model = DistilBertForSequenceClassification.from_pretrained("distilbert-base-uncased",num_labels=3)
+
+# Step 8: Define training arguments with increased epochs and logging
+training_arg=TrainingArguments(
+    output_dir=current_path +"results",
+    eval_strategy="epoch", # Performs evaluation at the end of each epoch
+    save_strategy="epoch", # Save checkpoints at the end at each poch
+    learning_rate=5e-5,
+    per_device_train_batch_size=16,
+    per_device_eval_batch_size=16,
+    num_train_epochs=10, # Increased epochs for better training
+    weight_decay=0.01,
+    logging_dir=current_path +"logs",
+    logging_steps=10,
+    save_total_limit=2,
+    load_best_model_at_end=True, # Load the best model at the end of training
+)
+
+# Step 9: Initialize Trainer
+trainer = Trainer(
+    model=model,
+    args=training_arg,
+    train_dataset=train_dataset,
+    eval_dataset=eval_dataset,
+)
+
+# Step 10: Train the model and save the results
+trainer.train()
+print("Training completed. Best model saved at:", training_arg.output_dir)
+```
+19. Ejecutamos en una `TERMINAL` esta instalación en el Ambiente Virtual de Python: </br> `pip install transformers[torch]`
+20. Ejecutamos este último con el comando: </br> `python ./src/test/LLM/Data_Spliting/train_model.py`. </br> ![train_model.py](images/2025-08-26_151306.png "train_model.py")</br> Este proceso demora un rato y genera varias carpetas y archivos en la carpeta **"src/test/LLM/Data_Spliting/results"**, entre ellos una carpeta de nombre **"checkpoint-60"**
+21. Este último lo vamos a utilizar en el archivo **`src/test/LLM/Data_Spliting/evaluate_model.py`**, con este código:
+```py
+from datasets import Dataset
+from transformers import DistilBertTokenizer, DistilBertForSequenceClassification, Trainer
+import pandas as pd
+import os
+
+# Step 1: Load the evaluation dataset
+current_path = "./src/test/LLM/Data_Spliting/"
+# eval_file = current_path+"iris_eval.csv"
+eval_file = current_path+"iris_train.csv"
+eval_data = pd.read_csv(eval_file)
+
+# Step 1: Validate the existence of the evaluation file
+if not os.path.exists(eval_file):
+    raise FileNotFoundError(f"Evaluation file not found: {eval_file}")
+
+# Step 1.1: Validate the columns in the dataset
+required_columns = ['SepalLengthCm',
+                    'SepalWidthCm', 'PetalLengthCm', 'PetalWidthCm']
+if not all(col in eval_data.columns for col in required_columns):
+    raise ValueError(
+        f"The dataset must contain the following columns: {required_columns}")
+
+# Step 2: Convert the dataset to Hugging face Dataset
+eval_dataset = Dataset.from_pandas(eval_data)
+
+# Step 3: Preprocess the dataset: convert features into textual descriptions
+
+
+def convert_to_text(example):
+    features = f"Sepal length: {example['SepalLengthCm']}, Sepal width: {example['SepalWidthCm']}, "\
+        f"Petal length: {example['PetalLengthCm']}, Petal width: {example['PetalWidthCm']}."
+    return {"text": features}
+
+
+eval_dataset = eval_dataset.map(convert_to_text)
+
+# Step 4: Tokenize the dataset
+tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+
+
+def tokenizer_data(example):
+    return tokenizer(example["text"], truncation=True, padding="max_length", max_length=128)
+
+
+tokenized_eval_dataset = eval_dataset.map(tokenizer_data, batched=True)
+
+# Step 5: Load the trained model
+model_path = current_path + "results/checkpoint-60"
+model = DistilBertForSequenceClassification.from_pretrained(
+    model_path, local_files_only=True)  # Path to the saved model
+if not os.path.exists(model_path):
+    raise FileNotFoundError(f"Trained model not found: {model_path}")
+
+# Step 6: Initialize Trainer
+trainer = Trainer(
+    model=model,
+    tokenizer=tokenizer,
+)
+
+# Step 7: Make predictions
+predictions = trainer.predict(tokenized_eval_dataset)
+
+# Step 8: Evaluate predictions and save results
+predicted_labels = predictions.predictions.argmax(axis=1)  # Get the predicted class
+actual_labels = eval_dataset["Species"]  # Original labels
+
+# Step 9: Map label indices back to species names
+label_mapping = {"Iris-setosa": 0, "Iris-versicolor": 1, "Iris-virginica": 2}
+reverse_label_mapping = {v: k for k,
+                         v in label_mapping.items()}  # Reverse mapping
+
+# Step 10: Calculate accuracy
+predicted_labels = predictions.predictions.argmax(
+    axis=1)  # Fix access to predictions
+actual_labels = eval_data["Species"]  # Use eval_data for actual labels
+
+if len(predicted_labels) != len(actual_labels):
+    raise ValueError(
+        "Mismatch between number of predictions and actual labels.")
+
+correct_predictions = sum(
+    reverse_label_mapping[predicted_labels[i]] == actual_labels[i]
+    for i in range(len(actual_labels))
+)
+accuracy = correct_predictions / len(actual_labels)
+
+# Print and save results
+print(f"Accuracy: {accuracy:.2f}")
+
+# Save evaluation results to a CSV file
+output_file = current_path + "evaluation_results.csv"
+eval_data["PredictedLabel"] = [reverse_label_mapping[label]
+                               for label in predicted_labels]
+eval_data.to_csv(output_file, index=False)
+print(f"Evaluation results saved to {output_file}")
+```
+22. En una `TERMINAL`, ejecutamos el comando: </br> `python ./src/test/LLM/Data_Spliting/evaluate_model.py` </br> Al final denera un archivo de nombre **`evaluation_results.csv`**.
+23. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+### 46. K-Fold Cross Validation
+
+>[!NOTE]
+>
+>Les mostraré un método diferente para **Dividir sus Datos**,
+>esto se llama **Plegado K**.
+>
+>Creo que con un ejemplo, les será más fácil de entender.
+>
+>![Dividir Datos - Plegado K](images/2025-08-26_153202.png "Dividir Datos - Plegado K")
+>
+>Si recuerdan la última vez que dividimos todos nuestros datos de entrenamiento, teníamos la parte de evaluación de los datos de entrenamiento y luego los datos de prueba.
+>Y recordarán que el entrenamiento y la evaluación se llamaban entrenamiento iris.
+>Y esta parte era la evaluación iris.
+>Ese era el nombre que teníamos en nuestro ejemplo de código.
+>Pasemos al siguiente.
+>
+>![Dividir Datos - Plegado K - Básico](images/2025-08-26_153538.png "Dividir Datos - Plegado K - Básico")
+>
+>Así que volvemos.
+>Estos son todos nuestros datos de entrenamiento.
+>
+>Con todo lo que tenemos, esas 150 muestras que teníamos en Iris, imagina el siguiente escenario.
+>Este es un pliegue: una parte de mis datos de entrenamiento, una pequeña parte.
+>Otra parte.
+>Otra parte.
+>Otra.
+>Y estos son mis datos de prueba.
+>
+>Básicamente, he dividido mis datos en cinco pliegues diferentes.
+>Cuatro serán datos de entrenamiento y uno será de prueba.
+>Uno de cuatro.
+>Cuatro de cinco serán datos de entrenamiento y uno de cinco de prueba.
+>
+>Y voy a ejecutar el entrenamiento de mi modelo en este tren en estas cuatro partes.
+>Evaluar en la última.
+>Me imagino que son unos 2530, o lo que sea, 40.
+>
+>La siguiente ejecución, el siguiente entrenamiento, es así.
+>Voy a entrenar con los tres primeros y el último o el quinto, y el cuarto serán mis datos de prueba, y así sucesivamente hasta tener todas las combinaciones posibles.
+>
+>Esto significa que entrenaré mi modelo cinco veces diferentes y cada vez el conjunto de prueba será una versión diferente del conjunto de entrenamiento.
+>
+>**Personas entre 20 y 30 años (30, 40, 50, 50, 60).**
+>
+>![Dividir Datos - Plegado K - Estratificación - Básico](images/2025-08-26_154005.png "Dividir Datos - Plegado K - Estratificación - Básico")
+>
+>Estos serán tus datos de entrenamiento y de prueba.
+>Y deben ser relevantes.
+>Así que tienes entre 20 y 60 personas.
+>Pero estos son tus datos de entrenamiento sobre ingresos.
+>
+>Ahora imaginemos que tienes hombres y mujeres, y que tus ingresos son mensuales y anuales.
+>No importa.
+>Y ahora podría decir: "Bueno, el 50% de mis datos corresponden a este grupo de edad, el 25% a este grupo de edad, 25 y 25".
+>
+>Y juntos no serán 100, porque, como saben, puede haber personas trabajando mayores de 60 años, personas trabajando menores de 20, pero podríamos decir que el 90% de la población activa tiene entre 20 y 60 años, y el 25% de las personas que trabajan hoy en día tienen entre 30 y 40 años.
+>Y el 25% de mis datos también está aquí".
+>
+>Esto significa que estadísticamente las proporciones son correctas.
+>Si tuviera, por ejemplo, [o].
+>Esto significa que estadísticamente estamos en lo cierto porque el 25% de mi población tiene esta edad y el 25% de mis datos corresponden a esta edad.
+>Así que estamos en lo cierto.
+>Están perfectamente representados.
+>
+>Tomemos otro escenario.
+>Y aquí es donde se aplican las estrategias.
+>Eh, en este escenario donde tus datos son representativos de la población, tomemos un escenario diferente.
+>Imagina que tienes un sistema de filtrado de correo electrónico que filtra spam y no spam.
+>Eso es todo.
+>¿Verdad?
+>Tienes una IA que decide.
+>Esto va a spam.
+>Esto no es spam.
+>Y eso es todo lo que hace, ¿verdad?
+>Así es mi vida.
+>Nada más.
+>
+>Ahora imagina que tienes un 25% de correos no spam y un 75% de spam.
+>No son estadísticamente correctos.
+>Supongo que, si entrenas tu modelo con un 75% de spam y un 25% de no spam, estará sesgado.
+>Estará sesgado hacia el spam.
+>
+>Por ejemplo, si tienes 1000 correos electrónicos y el 25 % no son spam y el 75 % sí lo son, en este caso, necesitas usar un algoritmo k-fold estratificado donde la proporción debe corregirse, lo cual se hace directamente en el código.
+>
+>Pero existen diferentes métodos de entrenamiento para evitar que esto se desvíe hacia el spam.
+>Quieres que sea neutral, como este.
+>De esta manera, este entrenamiento introduce sesgos en el sistema, y ​​nadie quiere que haya sesgos en el sistema.
+>
+>Y si vamos a la última parte, también está esta tabla.
+>
+>![Aspecto - Plegado K - Estrattificación](images/2025-08-26_154454.png "Aspecto - Plegado K - Estrattificación")
+>
+>**¿Qué significa esto?**
+>
+>Y luego la distribución de clases.
+>Validación cruzada, la básica.
+>Esto es para conjuntos de datos balanceados.
+>Recuerden que para conjuntos de datos desbalanceados, como mencioné, se debe usar la estratificación para garantizar una evaluación justa en todas las clases.
+>Ambas son bastante fáciles de implementar.
+>
+>El cálculo es más costoso, pero es fácil de implementar.
+>Puede generar resultados sesgados en conjuntos de datos desbalanceados.
+>Exactamente.
+>Por eso, esta opción es solo para conjuntos de datos balanceados.
+>
+>Ventajas: fácil de implementar.
+>Funciona con todos los problemas y es más rápida con conjuntos de datos grandes.
+>Repito: evaluación justa y adecuada.
+>La mayoría de las veces, se usará esta opción en caso de que la evaluación no sea justa.
+>
+>Pero nuestro conjunto de datos de iris va aquí porque está totalmente equilibrado.
+>Representa el 33 % de las tres clases.
+>Sí.
+>
+>Y, de nuevo, la desventaja es lo opuesto a la ventaja.
+>Eso es todo por la teoría.
+>En el próximo video les mostraré cómo ejecutaremos la evaluación en un modelo entrenado
+>utilizando una técnica de entrenamiento de validación de k-fold.
+>
+
+### 47. Model Overfitting and underfitting testing approaches
+
+>[!NOTE]
+>
+>Son grandes problemas a los que se enfrentan todos los modelos hoy en día, o todos los ingenieros informáticos que trabajan en el campo de la IA.
+>
+>Se trata del sobreajuste y el infraajuste.
+>Y podrías estar sobreajustando o infraajustando, pero es muy difícil llegar al punto exacto en que tu modelo sea simplemente perfecto.
+>
+>![.](images/2025-08-26_155128.png "")
+>
+>Permítanme explicar el concepto de sobreajuste.
+>
+>* Esto significa que tu modelo funciona muy bien con datos de entrenamiento, pero con datos de evaluación no vistos, hay una gran diferencia entre tu puntuación durante el entrenamiento y tu puntuación con datos no vistos.
+></br>
+>Entonces, ¿cuáles son los síntomas o qué significa esto?
+>   * Lo más probable es que tu modelo haya memorizado los datos de entrenamiento.
+></br>
+>Así que no encuentra patrones en la estructura de datos real, pero sabe que, bueno, es como un mecanismo de almacenamiento en caché.
+></br>
+>Sí, déjenme decirlo así.
+>Si sabes cómo funciona el almacenamiento en caché, tu modelo podría ser una especie de enorme máquina de almacenamiento en caché.
+>
+>   * Tu modelo no entendió bien los patrones de los datos, sino que simplemente los memorizó.
+></br>
+>Esto se conoce como sobreajuste, un problema muy grave.
+>Significa que tus algoritmos no son muy buenos.
+>Y esa es una parte del problema.
+>No la única, pero sí una parte.
+>
+>* ¿Y qué hay del infraajuste?
+></br>
+>Bueno, es lo contrario.
+></br>
+>¿Qué significa?
+>   * Significa que el modelo tiene un rendimiento deficiente tanto con los datos de entrenamiento como con los de evaluación.
+>Si buscas un modelo con un rendimiento deficiente con los datos de entrenamiento, pero bueno con los de evaluación,
+>sabes que es un misterio.
+>Ese tipo de situación es una anomalía.
+>No existe.
+></br>
+>Es simplemente un efecto de probabilidad.
+>¿Verdad?
+>Es algo que no debería existir, es solo una coincidencia que ocurrió una vez.
+></br>
+>En este caso, significa que no hay nada en tus datos que pueda tener significado.
+>Por lo tanto, tus datos son totalmente independientes.
+>No hay correlación entre nada.
+></br>
+>   * Pero incluso en ese caso, debería haber algo en tu método de evaluación, tus algoritmos.
+>No son lo suficientemente buenos para el propósito.
+></br>
+>Esto significa que tu modelo no ha aprendido ningún patrón significativo de los datos.
+>De acuerdo.
+>Pero bueno.
+></br>
+>¿Cómo probamos esto?
+>¿Cómo evaluamos algo así?
+>Bueno, no te preocupes, porque te tengo cubierto.
+
+1. Regresamos al archivo **`src/test/LLM/Data_Spliting/evaluate_model.py`**
+2. Posemos cambiar el texto de `"iris_eval.csv"` por el de `"iris_iris.csv"`.
+3. Ejectuar de nuevo en la `TERMINAL` el Ambiente Virtual de Python: </br> `.venv/Scripts/activate`
+4. Ahora si ejecutar el comando en la `TERMINAL` de: </br> `python ./src/test/LLM/Data_Spliting/evaluate_model.py`</br> Se demora mas y obtiene algo similar al anterior
+5. Hay un arhivo que no se puede ver completo el codigo de nombre **`compare.py`**.
+6. Y hay otro para generar los **`*.csv`** de nombre **`tran_k_fold.py`**, tampoco se alcanza ver el código completo.
+7. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+### 48. Laboratory - Python K Fold Training and Demo
+
+1. Para el archivo **`src\test\LLM\Data_Spliting\train_k_fold.py`**, empiezo con las importaciones:
+```py
+from datasets import Dataset
+from transformers import (
+    DistilBertTokenizer,
+    DistilBertForSequenceClassification,
+    Trainer,
+    TrainingArguments,
+    DataCollatorWithPadding,
+)
+from sklearn.model_selection import StratifiedKFold
+import pandas as pd
+import os
+```
+2. Completo los tres primeros pasos de **`train_k_fold.py`**:
+```py
+# Step 1: Load your dataset from a CSV file
+current_path = "./src/test/LLM/Data_Spliting/"
+train_file = current_path + "iris_train.csv"
+data = pd.read_csv(train_file)
+
+# Step 1.1: Validate the existence of the training file
+if not os.path.exists(train_file):
+    raise FileNotFoundError(f"Training file not found: {train_file}")
+
+# Step 1.2: Validate the columns in the dataset
+required_columns = ['SepalLengthCm', 'SepalWidthCm',
+                    'PetalLengthCm', 'PetalWidthCm', 'Species']
+if not all(col in data.columns for col in required_columns):
+    raise ValueError(
+        f"The dataset must contain the following columns: {required_columns}")
+
+# Step 2: Convert the dataset to Hugging Face Dataset
+dataset = Dataset.from_pandas(data)
+
+
+# Step 3: Preprocess the datase: Convert all feature column into a single textual description
+def convert_to_text(example):
+    features = f"Features: Sepal length {example['SepalLengthCm']} cm, Sepal width {example['SepalWidthCm']} cm, "\
+        f"Petal length of {example['PetalLengthCm']} cm, Petal width of {example['PetalWidthCm']} cm."
+    return {"text": features}
+
+
+dataset = dataset.map(convert_to_text)
+```
+3. Agregamos pasos 4 y 5:
+```py
+# Step 4: Map the 'Species' column to numerical lables for classification
+label_mapping = {"Iris-setosa": 0, "Iris-versicolor": 1, "Iris-virginica": 2}
+
+# Ensure 'Species' is correctly mapped
+dataset = dataset.map(lambda x: {"label": label_mapping[x["Species"]]})
+
+# Step 5: Tokenize the dataset
+tokenizer = DistilBertTokenizer.from_pretrained("distilbert-base-uncased")
+data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
+
+def tokenize_data(example):
+    return tokenizer(example["text"], truncation=True, padding="max_length", max_length=128)
+
+
+tokenized_dataset = dataset.map(tokenize_data, batched=True)
+```
+4. Paso 6 y empiezo un ciclo `for`:
+```py
+# Step 6: k-Fold Cross-Validation
+kf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+df = pd.DataFrame(tokenized_dataset)
+
+results = []
+model_checkpoint = "distilbert-base-uncased"
+
+for fold, (train_idx, val_idx) in enumerate(kf.split(df, df["label"])):
+    print(f"\n--- Fold {fold+1} ---")
+```
+5. Continuo con el contenido del ciclo `for` , pasos 7 a 9:
+```py
+    # Step 7: Create result directories
+    fold_result_dir =f"{current_path}results_fold{fold+1}"
+    os.makedirs(fold_result_dir, exist_ok=True)
+
+    # Step 8: Create result training and validation sets
+    train_data = df.iloc[train_idx]
+    eval_data = df.iloc[val_idx]
+    train_dataset = Dataset.from_pandas(train_data)
+    eval_dataset = Dataset.from_pandas(eval_data)
+
+    # Step 9: Load a pre-trained DistriBERT model
+    model = DistilBertForSequenceClassification.from_pretrained(
+        model_checkpoint, num_labels=3)
+```
+6. Pasos 10 a 14, para cerrar el `for`:
+```py
+    # Step 10: Define training arguments with increased epochs and logging
+    training_arg = TrainingArguments(
+        output_dir=fold_result_dir,
+        eval_strategy="epoch",  # Performs evaluation at the end of each epoch
+        save_strategy="epoch",  # Save checkpoints at the end at each poch
+        learning_rate=5e-5,
+        per_device_train_batch_size=16,
+        per_device_eval_batch_size=16,
+        num_train_epochs=3,  # Increased epochs for better training
+        weight_decay=0.01,
+        logging_dir=f"{current_path}logs_fold_{fold+1}",
+        logging_steps=10,
+        save_total_limit=2,  # Keep only the last 2 checkpoints
+        load_best_model_at_end=True,  # Load the best model at the end of training
+    )
+
+    # Step 11: Inicialize Trainer
+    trainer = Trainer(
+        model=model,
+        args=training_arg,
+        train_dataset=train_dataset,
+        eval_dataset=eval_dataset,
+        data_collator=data_collator,
+    )
+
+    # Step 12: Train the model and save the results
+    trainer.train()
+    trainer.save_model(fold_result_dir)
+    print("Training completed. Best model saved at:", training_arg.output_dir)
+    
+    # Step 13: Update checkpoint for next fold
+    model_checkpoint=fold_result_dir # Use the best model of current fold as starting point for the next
+
+    # Step 14: Evaluate the model
+    eval_results = trainer.evaluate()
+    results.append(eval_results)
+
+    print(f"Results for fold {fold+1}: {eval_results}")
+```
+7. Finalizamos con el paso 15, ya por fuera del `for`:
+```py
+# Step 15: Calculate average metrics across all folds
+average_results = {key: sum(r[key]for r in results)/len(results)
+                   for key in results[0]}
+print("\n--- Average Results Across all Folds ---")
+
+for key, value in average_results.items():
+    print(f"{key}: {value:.4f}")
+
+# Final Output
+print("\nTraining and evaluation completed. Models and checkpoints are saved in respective fold directories.")
+```
+8. Levantamos el Ambiente Virtual de Python: </br> `.venv/Scripts/activate`
+9. En la misma `TERMINAL` donde tenemos el Ambiente Virtual de Python, ejecutamos el comando para correr el proceso: </br> `python ./src/test/LLM/Data_Spliting/train_k_fold.py`
+10. Ahora bien para evaluar cualquiera de estos modelos entramos al archivo **`src/test/LLM/Data_Spliting/evaluate_model.py`** y cambiamos el `model_path` por la ruta de unos de los obtenidos en el proceso anterior, por ejemplo **"results_fold5/checkpoint-18"**.
+11. Probamos la ejecución de nuevo de **`evaluate_model.py`**, con el comando: </br> `python ./src/test/LLM/Data_Spliting/evaluate_model.py`</br> Al final obtengo un resultado como este: </br> `Accuracy: 0.95`</br> `Evaluation results saved to ./src/test/LLM/Data_Spliting/evaluation_results.csv`
+12. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+

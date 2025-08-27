@@ -308,3 +308,11 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 
 
+### 8. 🚀 Pop Quiz: Introduction to Element Identification
+
+
+>[!NOTE]
+>
+>![🚀 Pop Quiz: Introduction to Element Identification](images/2025-08-27_101432.gif "🚀 Pop Quiz: Introduction to Element Identification")
+
+

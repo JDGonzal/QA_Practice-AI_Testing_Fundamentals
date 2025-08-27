@@ -3659,3 +3659,290 @@ print("\nTraining and evaluation completed. Models and checkpoints are saved in 
 12. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
 
 
+
+## Section 8: Performance Characteristics for AI Models
+
+
+### 49. Criteria 1- Model Training Time
+
+
+>[!NOTE]
+>Uno de los requisitos no funcionales clave relacionados con el rendimiento.
+>Se trata del tiempo que lleva entrenar un modelo.
+>Y lo que puedo decirles es que para ChatGPT, que es, por supuesto, el modelo más infame,
+>se tarda aproximadamente un mes en entrenarlo, y no tienen que creerme.
+>
+>![Supervised ML](images/2025-08-27_111642.png "APP Creation (Supervised ML)")
+>
+>Busquen en internet el tiempo necesario para entrenar un ChatGPT.
+>Entrenar el modelo lleva muchísimo tiempo.
+>Porque al entrenar un modelo, también se trata de los datos y del hiperparámetro.
+>
+>Así que modifican el hiperparámetro de su modelo para encontrar el equilibrio adecuado entre costo, rendimiento, precisión, sobreajuste, subajuste, etc.
+>Un aspecto clave, si estás probando tu modelo, es el tiempo de entrenamiento, ya que esto implica el costo del entrenamiento. Esto se refleja directamente en esto, ya que, si creas algo muy complejo, necesitarás una GPU especializada.
+>
+>Ya he mencionado el tiempo de entrenamiento.
+>El modelo también se ve influenciado por el ajuste de hiperparámetros.
+>Te mostraré cómo se ve esto.
+>
+>![Model Hyperparameters](images/2025-08-27_112526.png "Model Hyperparameters")
+>
+>Me refiero al parámetro, porque lo que tengo aquí es muy poca información sobre los dos tipos de hiperparámetros.
+>El primer tipo, que vemos arriba, es para la red neuronal.
+>Es para el modelo.
+>En este caso, nuevamente, tenemos el tamaño de entrada del número de características.
+>
+>Si se usa alguna clasificación, significa que tengo diez características diferentes.
+>Por ejemplo, una casa.</br>
+>Podría tener diez características.
+>Número de habitaciones.</br>
+>Ahora, ya sabes, superficie, etc., diez.
+>Y la salida será uno.</br>
+>Y tendrá 32 nodos ocultos además de la entrada y la salida.
+>
+>Este es el hiperparámetro de la red neuronal.
+>Si se ve abajo, se encuentra el parámetro de entrenamiento, que configura el modelo para entrenar el número de épocas.
+>Por ejemplo, ¿cuántas veces se revisan todos los datos de entrenamiento?
+>
+>Si se desea entrenar más rápido, en lugar de cinco épocas, se podrían usar seis. Si se desea entrenar más, este hiperparámetro también influye en el tiempo que tarda el modelo en revisar todos los datos.
+>Y, por supuesto, hay muchos otros hiperparámetros.
+>Su tasa de aprendizaje será una función de pérdida.
+>Hay muchos parámetros.
+>
+>Y, dependiendo de cómo se configuren, influirán en el tiempo de entrenamiento del modelo.
+>Un aspecto y una característica muy importante de un modelo de IA es el tiempo de entrenamiento.
+>Estoy bastante seguro de que no has oído hablar del tiempo que tarda en compilarse una aplicación, y nadie se fija mucho en eso.
+>
+>Quizás algunos equipos de desarrollo, pero, bueno, nadie dice: "¡Guau! ¡Se tarda una semana en compilar nuestra aplicación!".
+>Eso no sucede.
+>Pero en el caso de los modelos, bueno, este es un criterio muy importante que se debe considerar específicamente.
+
+
+### 50. Criteria 2 - Inference Time
+
+>[!NOTE]
+>
+>**¿Y qué hay del tiempo de inferencia?**
+>
+>Inferencia se refiere al tiempo que el modelo tarda en dar la predicción.
+>En el caso de los modelos de clasificación, por ejemplo, ¿podrías decirme qué hay en esta imagen?
+>Podrías obtener una casa, un coche, etc.
+>Es casi instantáneo, pero en el caso de la IA generativa, tarda bastante.
+>
+>Por lo tanto, algo que debes medir es el tiempo de tu inferencia, o el tiempo que tu modelo de IA generativa detiene la generación.
+>Y, por supuesto, como puedes imaginar, esto podría ser problemático dependiendo de la aplicación que estés desarrollando.
+>Porque si estás realizando una investigación exhaustiva…
+>
+>Imaginemos que estoy usando un Gemini, pensando experimentalmente.
+>O podría estar usando… digamos este, y diría que es agua líquida.
+>Permíteme hacerte una pregunta.
+>Y como ven, ahora estoy razonando, pero aún no obtengo la respuesta.
+>Y ya obtuve la respuesta.
+>
+>Pero estoy bastante seguro de que si preguntas: "¿Cuál es el interés compuesto de... no sé qué cantidad de dinero ajustada a la inflación, etc.?",
+>en los próximos años, razonará mucho más.
+>
+>Entonces, la pregunta es: ¿es importante este valor?
+>La respuesta depende de la aplicación que estés desarrollando.
+>Porque si estás desarrollando un chatbot, es muy importante.
+>Necesitas una comunicación prácticamente en tiempo real.
+>No quieres esperar a que tu chatbot razone dos minutos para luego darte una respuesta.
+>No.
+>
+>Así que quieres que el chatbot razone muy rápido.
+>Y, por supuesto, si quieres probar esta información o este tiempo, realizar cualquier tipo de prueba de rendimiento y luego enviar solicitudes, asegúrate de enviar una solicitud diferente, ya que ChatGPT y otras API no tienen memoria, pero sí almacenamiento en caché.
+>
+>Te devolverán todo esto como respuesta o te enviarán diferentes indicaciones con el mismo tamaño de token.
+>Estoy bastante seguro de que podrás probar el tiempo de respuesta.
+>Y, por supuesto, el tiempo de respuesta se ve influenciado por la infraestructura que ejecuta tu modelo, ya que necesitas separar el entrenamiento y la ejecución del modelo. Lo entrenas en una infraestructura, pero luego puedes ejecutarlo en tu teléfono si tienes un minimodelo, por ejemplo.
+>
+>Así que recuerda que los modelos de razonamiento piensan despacio y quizás te den una buena respuesta.
+>
+>Mientras que, por ejemplo, con este flash, dices: "¿Cuánto es uno más uno?".
+>
+>Está pensando, pero uso la respuesta como dos, así que no hay razonamiento.
+>Así que el tiempo de inferencia es otro parámetro que debes considerar al validar cualquier tipo de modelo de IA o IA generativa.
+
+
+### 51. Criteria 3 - Model Drifting
+
+>[!NOTE]
+>
+>[![What is model drift?](images/2025-08-27_113419.png "What is model drift?")](https://www.ibm.com/think/topics/model-drift)
+>
+>Ahora hablaremos sobre el concepto de desviación, desviación a largo plazo o desviación del modelo.
+>Para explicarlo más fácilmente, voy a visitar IBM, ya que tienen una página relacionada con esto.
+>Entonces, ¿qué es exactamente una desviación en el rendimiento del modelo? Es simplemente una disminución en su rendimiento.
+>
+>En resumen.
+>En otras palabras, el modelo pierde precisión con el paso del tiempo.
+>
+>Esto podría deberse a dos razones:
+>El modelo aprende de sus interacciones y de las interacciones con...
+>
+>Por ejemplo, imaginemos que ChatGPT interactúa con muchas personas, y si aprende de estas interacciones, algunas personas podrían decir: "Bien hecho por algo que no funciona bien", y el modelo decaerá porque incorporará datos erróneos en su mecanismo de aprendizaje reforzado.
+>
+>Otra razón por la que un modelo decaerá o se desviará es porque se generan nuevos datos.
+>Porque sabemos que el modelo tiene información sobre los datos del tren.
+>
+>Pero si se incorporan nuevos datos a la ecuación, por ejemplo, si se tiene un modelo que predice el precio de la vivienda basándose en diez parámetros, pero ahora todos los usuarios del mercado utilizan once, el modelo se deteriorará porque no será tan preciso como los modelos que proporcionan once parámetros o simplemente porque el modelo utiliza datos del año pasado, por lo que desconoce los datos de este año.
+>
+>Por lo tanto, el modelo se deteriora.
+>La deriva del modelo en sí misma significa que el modelo pierde precisión con el tiempo.
+>Entonces, ¿qué se hace en este caso?
+>
+>En primer lugar, es necesario realizar un seguimiento continuo, por lo que se debe supervisar el rendimiento del modelo si se cuenta con un conjunto de datos de referencia que siempre se utiliza para probar el modelo.
+>
+>Lo que podría hacer es evaluar semanalmente, quizás mensualmente o incluso con frecuencia, según sus necesidades, el rendimiento del modelo y asegurarse de que el parámetro, si el modelo ha decaído o las respuestas ya no alcanzan su nivel de precisión, debería entrenarlo con los datos más recientes disponibles.
+>
+>Por lo tanto, este es un requisito no funcional, que podría decirse funcional o no funcional según cómo se mire.
+>Porque ahora el modelo funciona, pero no con la precisión que debería.
+>Así que monitoree su modelo.
+>Compárelo o pruébelo con un punto de referencia.
+>Y si las cosas no van bien, lo que debe hacer es volver a entrenar su modelo, ya que la parte de hiperparámetros está bien.
+
+
+
+### 52. Criteria 4 - Infrastructure to run Model - Model Distillation
+
+>[!NOTE]
+>
+>[![What is Model Distillation?](images/2025-08-27_114051.png "What is Model Distillation?")](https://labelbox.com/guides/model-distillation/)
+>
+>Abordemos la idea de cuánta infraestructura necesito para ejecutar mi modelo.
+>Si no lo estás o no estás familiarizado con las pruebas de rendimiento, debes saber que hoy en día las aplicaciones se prueban para comprobar su rendimiento.
+>
+>Para determinar cuánta potencia de procesamiento necesito para un número específico de usuarios o para un volumen de datos determinado, etc.
+>Existen pruebas de carga, pruebas de estrés, etc.
+>
+>**¿Y por qué hacemos esto?**
+>
+>Porque queremos saber qué tipo de infraestructura necesitamos para que una aplicación se ejecute con un parámetro específico, que generalmente es el tiempo de salida.
+>Entonces, ¿cuánto tiempo tarda mi aplicación en realizar una acción determinada?
+>
+>Crear un usuario y proporcionarme la respuesta.
+>También necesitamos hacer esto en el caso de la IA, y por eso lo estoy mencionando aquí.
+>
+>**Destilación del modelo.**
+>
+>Porque tenemos modelos muy grandes, como GPT y Gemini, y modelos muy pequeños, como el modelo Flash, por ejemplo.
+>Y esta es la razón por la que tenemos modelos grandes y pequeños: queremos poder ejecutar IA sin una infraestructura especial y dedicada.
+>Y por esta razón, nosotros o quienes trabajan con IA han creado estos agentes realmente pequeños.
+>
+>**¿Pero cómo lo han logrado?**
+>
+>Usando un concepto llamado destilación de modelos.
+>Y no entraré en detalles sobre cómo se hace.
+>Hay información en línea.
+>Puedo decirles que para realizar la destilación de modelos, solo necesitan tener un modelo de profesor.
+>
+>Imaginemos que va a ser un Google Gemini y se necesita un modelo de estudiante, que es Gemini Flash.
+>Y luego, mediante diferentes mecanismos, pueden enseñar a sus estudiantes.
+>O bien, el estudiante puede recibir clases del agente de IA docente hasta que adquiera aproximadamente el 80 % del conocimiento con tan solo el 1 % de la potencia de cálculo.
+>
+>Existen diferentes técnicas para realizar la destilación de modelos.
+>Puedes encontrarlas en línea.
+>Pero hay algo que quiero mostrarte.
+>
+>Pero hay algo que quiero mostrarles.
+>De Hugging Face, tenemos este pequeño modelo, que se divide en tres modelos diferentes.
+>Hoy en día, los modelos muy grandes tienen casi un billón de parámetros, casi 700 mil millones, etc.
+>Pero el agente pequeño tiene tres versiones: 145 millones, tres 60.000.001,7 mil millones de parámetros.
+>
+>**¿Y cómo se puede ejecutar esto?**
+>
+>Bueno, si busco aquí, digamos "teléfono", pueden ver que este modelo se puede ejecutar en un iPhone 15 con seis gigabytes de RAM.
+>Así de pequeños son.
+>Repito, no se pueden entrenar estos modelos en el teléfono.
+>Es imposible.
+>
+>No se necesitan... quiero decir, se podría hacerlo con una vida útil de 1000 años.
+>Pero sí se puede ejecutar el modelo en el teléfono.
+>Por eso, otra característica muy importante que se debe medir es qué tipo de CPU o GPU necesito para ejecutar mi modelo localmente.
+>¿Y cuál es el tiempo de respuesta que obtengo al ejecutar mi modelo localmente?
+
+
+### 53. Criteria 5 - Memory and Token Limits
+
+
+>[!NOTE]
+>
+>[![Memory and new controls for ChatGPT](images/2025-08-27_115043.png "Memory and new controls for ChatGPT")](https://openai.com/index/memory-and-new-controls-for-chatgpt/)
+>
+>Echa un vistazo a este título, la memoria y los nuevos controles para ChatGPT.
+>
+>**¿Qué significa esto?**
+>
+>Significa que los chats recuerdan lo que hemos hablado con ellos.
+>Tienen memoria.
+>Y te lo puedo demostrar ahora mismo.
+>
+>Voy a ir a Egipto.
+>Seleccionaré a mi modelo de foto y preguntaré: "¿Cuál es la fórmula del agua?".
+>Y luego haré una pregunta de seguimiento: ¿para qué sirve?
+>La idea es que tú hiciste la pregunta y yo obtuve la respuesta.
+>Y luego, un ChatGPT tiene el contexto de la pregunta anterior.
+>Y luego tengo una especie de pregunta de seguimiento.
+>Pero en detalle.
+>
+>Lo que no sabes es que cada vez que envías una nueva solicitud, todo lo que has discutido en este chat se envía de vuelta a ChatGPT.
+>Todas las conversaciones que has tenido, todas las indicaciones que has enviado y todas las respuestas se envían junto con cada pregunta que haces.
+>Esto no significa que se almacenen en la memoria.
+>
+>Significa que toda la conversación se envía de vuelta a ChatGPT para que tenga el contexto de lo que estás hablando.
+>Esta es la idea de la memoria, pero ¿cuánta memoria tienes?
+>Y aquí es donde debemos pensar en los tokens.
+>
+>Copio esto y vayamos al tokenizador de la API abierta.
+>Voy a obtener esto y copiar la respuesta.
+>Hemos usado 256 tokens para obtener la respuesta.
+>Esta es la respuesta.
+>
+>Por lo tanto, siempre que quieras trabajar con la API, debes recordar que no tienen memoria y que debes gestionarla manualmente si quieres probar algo en ella.
+>Un atributo no funcional de cualquier modelo de lenguaje grande se refiere a los tokens de entrada y salida.
+>
+>Aquí en Gemini tenemos una pequeña comparación:
+>ChatGPT turbo.
+>Sabes, Cloud Three Deep Seek y todos los demás tienen diferentes límites de tokens, y tú tienes un límite de tokens de entrada y salida constantemente.
+>
+>Hay un límite de tokens de entrada y un límite de tokens de salida.
+>
+>Por eso, los diferentes modelos son buenos para diferentes tareas.
+>Por lo tanto, al realizar cualquier tipo de prueba,
+>recuerda también superar el límite de tokens para alcanzar tu límite de tokens.
+>
+>Y así sucesivamente, para ver qué sucede.
+>Por ejemplo, Leipzig tiene 64 contextos y una salida de 8 K.
+>Entonces, lo cual es ocho veces menor que la salida, y así sucesivamente.
+>
+>Ahora, para mostrarles que no hay memoria en la API, tengo un chatbot.
+>Básicamente, está llamando a ChatGPT.
+>Lo ejecutaré y preguntaré: "¿Cuál es la fórmula del agua?".
+>
+>Obtendré una respuesta.
+>La fórmula química es H₂O.
+>Y luego diré para qué sirve.
+>No quiero especificar agua porque es transparente.
+>
+>Quiero hacer la pregunta de seguimiento: ¿para qué sirve?
+>
+>Como puedo realizar diversas tareas, como responder preguntas, etc.
+>No hay memoria.
+>Así que si digo algo que seguirá aquí, obtendré lo mismo.
+>No funciona.
+>Por eso es importante pensar en la memoria, el contexto y los tokens de entrada y salida, ya que necesitas trabajar con ellos para obtener una respuesta adecuada.
+>
+>Como puedes ver, también puedes definir cuántos tokens, el máximo de tokens que quieres que tu modelo responda.
+>En caso de que haya una respuesta muy grande y no quieras 200 o 500 tokens, o lo que sea, solo cinco o no sé.
+>También puedes configurarlo.
+>Bien.
+>
+>Esto se trata de la memoria.
+>Se prueba como cualquier otro análisis de valor límite.
+>Se va por debajo del margen que sobrepasa el límite.
+>Y, por supuesto, puedes ser creativo con eso.
+
+
+
+
+

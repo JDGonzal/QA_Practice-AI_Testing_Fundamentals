@@ -303,7 +303,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 >[!IMPORTANT]
 >
->[![Haz clic aquí y mira el video `Key Entities in ACCELQ`](images/2025-08-21_100000.gif "Haz clic aquí y mira el video `Element_Id`")](videos/04_Element_Id.mp4)
+>[![Element_Id](images/2025-08-21_100000.gif "Haz clic aquí y mira el video `Element_Id`")](videos/04_Element_Id.mp4)
 >
 
 
@@ -314,5 +314,143 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[!NOTE]
 >
 >![🚀 Pop Quiz: Introduction to Element Identification](images/2025-08-27_101432.gif "🚀 Pop Quiz: Introduction to Element Identification")
+
+
+
+### 9. ▶️ Navigating around ACCELQ
+
+1. Navegar a través de `ACCELQ`, es muy intuitivo, veremos algunos controles y las funcionalidades disponibles.
+2. Empezando por la navegación superior, está en la imagen superior a la derecha, el `Profile` o Perfil: </br> ![Profile](images/2025-08-28_110411.png "Profile") </br> Se ve la descripción, el correo, cambio de contraseña.
+3. `Auth Properties`: Están las `KEY` o _Tokens_ para utilizar desde una _API_.
+
+|||
+|-|-|
+|![Auth Properties](images/2025-08-28_110901.png "Auth Properties") | Las `KEY` se usan para herramientas de integración con `ACCELQ`.|
+
+4. `Project Information`: Al lado de la imagen del `Profile` o Perfil, está el proyecto y la información de este.
+
+|||
+|-|-|
+|![Project Information](images/2025-08-28_144011.png "Project Information")| Se puede cambiar entre los diferentes proyectos.</br> Aquí también aparece el `Role` = `QA Engineer`.</br> Y los privilegios a los que este corresponde.</br> También el `Test Asset View`, los cuales son las preferencias que se tienen tanto para automatización como para manual.</br>Controla que _asset_ desea verse y obtiene una vista rápida a configuración.|
+
+5. `Project Settings`, donde puede configurar una montón de cosas relacionadas con el proyecto.
+
+|||
+|-|-|
+|![Project Settings](images/2025-08-28_145151.png "Project Settings")| Se debe tener privilegios de administrador.|
+
+6. `Project Activity`: Se pueden ver los proyectos recientes
+
+|||
+|-|-|
+|</br> ![Project Activity](images/2025-08-28_145436.png "Project Activity")|Se accede a los proyectos recientes.|
+
+7. `Activity`: Estos sería la vista de los proyectos recientes.
+
+|||
+|-|-|
+|![Activity](images/2025-08-28_145650.png "Activity")|En este caso de las dos últimas semanas|
+
+8. `Activity -> Filter by users`: Por defecto aparecen `ALL USERS`
+
+|||
+|-|-|
+|![Activity -> Filter by users](images/2025-08-28_145911.png "Activity -> Filter by users")|También lo puede filtrar por cada usuario|
+
+9. `Help Center`: El el botón con el ❔ es el `Help Center` o centro de ayuda:
+
+|||
+|-|-|
+|![Help Center](images/2025-08-28_150212.png "Help Center")|Se puede consultar cualquier tema del `ACCELQ`|
+
+10. `Help Center -> Knowledge Base`: Se escribe de forma libre.
+
+|||
+|-|-|
+|![Help Center -> Knowledge Base](images/2025-08-28_150528.png "Help Center -> Knowledge Base")|Provee acceso a la base del conocimiento, donde puede escribir o preguntar de forma libre, sobre el tema que se desea aprender.|
+
+11. `Browse Product Guide`: Se puede tener acceso a recursos de aprendizaje.
+
+|||
+|-|-|
+|![Browse Product Guide](images/2025-08-28_153138.png "Browse Product Guide")|» `Product Guide` o Guía de productos </br>» `Learn by Videos` o Aprender por vídeos </br> » `Commands in Action Logic` o Comandos Lógicos de Acciones|
+
+12. `What's New?`: Abajo a la derecha del `Help Center`.
+
+|||
+|-|-|
+|![What's New?](images/2025-08-28_153502.png "What's New?")|Para mirar las nuevas características que están disponibles en la actual versión|
+
+13. `What's New in Release 5.1`: Al darle clic a `What's New?` aparece esta ventana.
+
+|||
+|-|-|
+|![What's New in Release 5.1](images/2025-08-28_153915.png "What's New in Release 5.1") </br> ![What's New ACCELQ](images/2025-08-28_154224.png "What's New ACCELQ")|En el botón `Explore Now`, muestras las nuevas características que le fueron agregadas. </br> </br> Las caracterías que tenemos en esta versión.|
+
+14. `Create New Entity`: el botón con el signo de ➕.
+
+|||
+|-|-|
+|![Create New Entity](images/2025-08-28_164549.png "Create New Entity") </br> ![Create New Entity -> List](images/2025-08-28_164950.png "Create New Entity -> List") |Donde se puede crear de forma rápida uno de los siguiente elementos: </br> » `AUTO` ->`Test Suite` o Conjunto de Pruebas en Auto </br> » `AUTO`-> `Scenario` o Escenarios en Auto </br> » `AUTO`->`Context` o Contextos en Auto </br> » `AUTO`->`Action` o Acciones en Auto </br> </br> » `MANUAL`->`Test Suite` o Conjunto de Pruebas Manuales </br> » `MANUAL`->`Scenario` o Escenarios Manuales|
+
+15. `RUN`: El botón para ejecución
+
+|||
+|-|-|
+|![Run](images/2025-08-28_171038.png "Run") </br> ![Run -> List](images/2025-08-28_171237.png "Run -> List") | Provee acceso a ejecutar pruebas. </br> </br> Estas pueden ser:</br> » `Run Automation Test` o Correr pruebas automáticas </br> » `Create CI Job` o Crear Trabajos de Integración Continua</br> » `Start Manual Test` o Ejecutar pruebas Manuales|
+
+16. `Global Search / ctrl+G`🔍: Búsqueda Global.
+
+|||
+|-|-|
+|![Global Search / ctrl+G](images/2025-08-28_171802.png "Global Search / ctrl+G") </br> ![.](images/2025-08-28_172106.png "") |Acá se puede conseguir cualquier entidad sin necesidad de hacerlo manualmente. </br> </br> Busca por cualquier parte del nombre con mayúsculas o minúsculas, y luego seleccionarlo.|
+
+17. `UNIVERSE`: En la barra izquierda de navegación.
+
+|||
+|-|-|
+|![UNIVERSE](images/2025-08-28_172521.png "UNIVERSE") | Esquema Visual de como se relacionan loe elementos en las pruebas. </br> </br> Permite seguir los casos de prueba y navegar sobre estas.|
+
+18. `NAIGATOR`: Va a alguno de los elementos del aplicativo.
+
+|||
+|-|-|
+|![NAVIGATOR](images/2025-08-28_172856.png "NAVIGATOR") |Donde se puede navegar de forma rápida uno de los siguiente elementos: </br> » `AUTO` ->`Test Suite` o Conjunto de Pruebas en Auto </br> » `AUTO`-> `Scenario` o Escenarios en Auto </br> » `AUTO`->`Context` o Contextos en Auto </br> » `AUTO`->`Action` o Acciones en Auto </br> </br> » `MANUAL`->`Test Suite` o Conjunto de Pruebas Manuales </br> » `MANUAL`->`Scenario` o Escenarios Manuales|
+
+19. `NAVIGATOR`->`Scenarios`: Seleccioné este y me lleva a los Escenarios, que tengo creados, para este Proyecto.
+
+|||
+|-|-|
+|![Scenarios](images/2025-08-28_173218.png "Scenarios") |Lista todos los escenarios que están disponibles. </br> Se pueden aplicar algunos filtros. </br> Puede cambiar el Orden de la lista. </br>|
+
+20. `RESOURCES`: las herramientas que se pueden utilizar.
+
+|||
+|-|-|
+|![RESOURCES`](images/2025-08-28_173617.png "RESOURCES") |Estos recursos los cuales son el soporte a las entidades. </br> » `DATA`->`Global Propierties` </br> » `DATA`->`Run Properties` </br> » `DATA`->`Data List` </br> » `DATA`->`Data Types` </br> » `RESOURCES`->`User Extensions` </br> » `RESOURCES`->`Local Agents` </br> » `RESOURCES`->`Drivers Profiles`|
+
+21. `Global Propierties`: Tengo acceso a los diferente elementos de `RESOURCES`
+
+|||
+|-|-|
+|![Global Propierties](images/2025-08-28_174439.png "Global Propierties") | Presentación similar a los elementos de `NAVIGATOR`. </br> </br> En la parte de arriba se ven las listas de `RESOURCES`.|
+
+22. `RESULTS`: En el menú de la izquierda.
+
+|||
+|-|-|
+|![RESULTS](images/2025-08-28_174820.png "RESULTS") </br> ![RESULTS->List](images/2025-08-28_174957.png "RESULTS->List") |Son los resultados tanto Automáticos como manuales y las Tareas de Integración Contiua `CI Jobs`. </br> Los listados son ordenados del mas reciente al mas antiguo. </br>  |
+
+23. Puedo por ejemplo empezar por `NAVIGATOR`, seleccionar `Scenarios`. </br> Luego estando en `SCENARIOS`, Selecciono uno de esa lista, ejemplo `Verify Login on QBank`. </br> Luego puedo revisar una de las `Action` en esta lista y me lleva a visualizar en detalle esa `Action`: </br> ![Scenarios -> Action -> Detail](images/2025-08-28_175818.png "Scenarios -> Action -> Detail")
+24. Puedo navegar a `Account Summary Page`: </br> ![Account Summary Page](images/2025-08-28_180114.png "Account Summary Page")
+25. Aqui pudimos ver un rápido vistazo a las mútiples entidades que tenemos, las cuales se pueden editar em cualquier momento.
+
+
+
+>[!IMPORTANT]
+>
+>[![Reviewed_Navigating_around_in_ACCELQ](images/2025-08-27_15552.gif "Haz clic aquí y mira el video `Reviewed_Navigating_around_in_ACCELQ`")](videos/05_Reviewed_Navigating_around_in_ACCELQ.mp4)
+>
+
 
 

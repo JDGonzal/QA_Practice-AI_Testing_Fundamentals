@@ -3944,5 +3944,405 @@ print("\nTraining and evaluation completed. Models and checkpoints are saved in 
 
 
 
+## Section 9: GLUE - Benchmark against NLP
 
+### 54. What is GLUE NLP Benchmark
+
+>[!NOTE]
+>
+**>[<img alt="" src="https://gluebenchmark.com/assets/images/glue_icon_blue.svg" widht="20px" height="20px"/> GLUE](https://gluebenchmark.com/) _The General Language Understanding Evaluation_**
+>
+>El benchmark de Evaluación de la Comprensión del Lenguaje General (GLUE) es una colección de recursos para entrenar, evaluar y analizar sistemas de comprensión del lenguaje natural. GLUE consta de:
+>
+>* Un benchmark de nueve tareas de comprensión del lenguaje, basadas en oraciones o pares de oraciones, basado en conjuntos de datos ya establecidos y seleccionados para abarcar una amplia gama de tamaños, géneros textuales y grados de dificultad;
+>* Un conjunto de datos de diagnóstico diseñado para evaluar y analizar el rendimiento del modelo con respecto a una amplia gama de fenómenos lingüísticos presentes en el lenguaje natural; y
+>* Una tabla de clasificación pública para el seguimiento del rendimiento en el benchmark y un panel para visualizar el rendimiento de los modelos en el conjunto de diagnóstico.
+>
+>El formato del benchmark GLUE es independiente del modelo, por lo que cualquier sistema capaz de procesar oraciones y pares de oraciones y generar las predicciones correspondientes puede participar. Las tareas del benchmark se seleccionan para favorecer los modelos que comparten información entre tareas mediante la compartición de parámetros u otras técnicas de aprendizaje por transferencia. El objetivo final de GLUE es impulsar la investigación en el desarrollo de sistemas generales y robustos de comprensión del lenguaje natural.
+>
+><img alt="Owner avatar nyu-mll" src="https://avatars.githubusercontent.com/u/25018927?s=48&amp;v=4" width="20" height="20">[nyu-mll/GLUE-baselines](https://github.com/nyu-mll/GLUE-baselines)
+>
+>Si vas a la sección de código, te llevará a este repositorio de GitHub.
+>Aquí tienes el entorno para descargar los datos de Glue y el código fuente.
+>Dado que hay una advertencia de obsolescencia, no usaré nada de lo que está aquí.
+>Escribiré mi propio código porque lo que necesitamos son los datos.
+>
+>También puedes ver, por ejemplo, en este entorno el archivo YAML, que puedes usar si usas una herramienta como la que mostré al principio para aislar tu entorno. Aquí te indica lo que necesitas.
+>Pero, como está obsoleta, existen bibliotecas más nuevas que también usaremos.
+>Si quieres obtener los datos, aquí tienes los enlaces para descargarlos.
+>Aquí tienes la ruta para todos los conjuntos de datos que necesitamos.
+>
+>![GLUE -> leaderboard](images/2025-08-29_085745.png "GLUE -> leaderboard")
+>
+>Y luego, aquí también tienen las tareas que cubriremos en una lección aparte: la tabla de clasificación.
+>La tabla de clasificación significa, como ven, cuál es el mejor modelo.
+>
+>¿Qué modelo obtiene la puntuación más alta con respecto a esto? No podrán obtener un resultado al ejecutar la prueba comparativa con una prueba real. Necesitan obtener sus resultados y enviarlos a la gente aquí en un formato específico.
+>
+>Y solo después de eso podrán ver su puntuación en el video de capacitación que mostraré.
+>Cuando ejecutemos la demostración real, la ejecutaremos contra un conjunto de entrenamiento que también contiene los resultados.
+>Así es como calculamos, porque para ejecutar contra el conjunto real, no se tienen las predicciones.
+>
+>No se tienen los valores de verdad fundamentales.
+>Por lo tanto, nunca podrán acceder a su propio dispositivo.
+>La puntuación real la obtendrás únicamente con los datos de entrenamiento.
+
+
+### 55. What are the 11 benchmark Tasks of GLUE
+
+>[!NOTE]
+>
+>![GLUE -> tasks](images/2025-08-29_101503.png "GLUE -> tasks")
+>
+>En el video anterior, les comenté que tenemos el punto de referencia de Glue, y este es el que se utiliza.
+>Este punto de referencia se evaluará con varias tareas que, como saben, el usuario puede comprender y evaluar.
+>
+>Originalmente eran ocho, pero ahora son cerca de once tareas diferentes.
+>
+>Y este es el formato.
+>Así que este es el nombre de la tarea.
+>Aquí pueden descargar los datos.
+>Y esta es la métrica, ya que existen diferentes métricas.
+>
+>Por ejemplo, esta métrica se relaciona con la precisión gramatical.
+>Conocemos F1.
+>Y luego hay otras métricas que se discutirán a lo largo de este material de capacitación.
+>
+>![CoLa -> The Corpus of Linguistic Acceptability](images/2025-08-29_101858.png "CoLa -> The Corpus of Linguistic Acceptability")
+>
+>Por ejemplo, veamos esta tarea, la de la cola.
+>
+>Si buscas más información, verás que esa columna representa el corpus de aceptabilidad lingüística.
+>Si quieres leer la investigación que la respalda, ve aquí y verás los juicios de aceptabilidad de las redes neuronales.
+>También verás qué valida exactamente esta tarea.
+>
+>Investiga la capacidad de las redes neuronales artificiales para juzgar la aceptabilidad gramatical de una oración, con el objetivo de evaluar su competencia lingüística.
+>
+>No haré esto para todas las tareas.
+>Está bastante claro.
+>Las tareas que tenemos...
+>Era la de la cola, que básicamente determina si un texto es gramaticalmente correcto.
+>
+>Luego está el Stanford Sentment Treebank, que clasifica si un sentimiento es positivo o negativo.
+>Así que estás hablando y el modelo identifica si lo que dices tiene una vibra positiva o negativa.
+>Microsoft.
+>Eh, ahora continuemos.
+>Eh, parámetro de similitud textual semántica.
+>
+>Esto mide la similitud semántica entre dos oraciones en una escala continua.
+>Eh, Winograd NLI, que significa inferencia del lenguaje natural, resuelve las referencias de pronombres en oraciones
+>con ambigüedad.
+>Eh, digamos antecedentes.
+>
+>Esto significa que estás diciendo dos frases y en un momento determinado, por ejemplo, a Andrés le gusta el agua caliente o el té.
+>
+>Y en la siguiente oración dices que le gusta mucho tomar té, que no sé qué.
+>Así que esto valida si se refiere a Andrés ahora.
+>Básicamente, hay muchas otras tareas, por ejemplo, reconocer la implicación textual.
+>Esto determina si la oración se sigue original o lógicamente de otra.
+>Entonces, si de lo que estás hablando…
+>Tiene sentido lógico.
+>
+>Lo que estás expresando.
+>
+>Eh, ¿soy...? Por ejemplo, esta es una inferencia de lenguaje natural multigenética que juzga la relación entre una premisa y la hipótesis.
+>Así que te dice que esta es la premisa, esta es una hipótesis, y así sucesivamente.
+>Estas son las tareas de enlace.
+>Cuando expresas algo, estás diciendo algo.
+>
+>Así es como se validará el modelo frente a estos puntos de referencia.
+>Y lo realmente interesante es que puedes realizar pruebas independientes para cada tipo de tarea.
+>No necesitas ejecutar todo porque eso llevaría un tiempo.
+>Pero puedes simplemente decir: "Oye, quiero ejecutar contra pares de preguntas de Quora, por ejemplo, contra esta, para poder probar contra pares de preguntas de Quora".
+>Y por cierto, Qqp detecta si dos preguntas son paráfrasis la una de la otra.
+>
+>Y pueden ver, por ejemplo, que esta tiene F1 y precisión como métricas, y no indican nada sobre la recuperación, etc.
+>Porque estas son las métricas más importantes para este tipo de evaluación.
+>Así que esta es, en realidad, la tarea de enlace y los datos, y cómo los obtendremos.
+>Les mostraré en el video donde hablamos de nuestro código.
+>Pero por ahora, deben saber que esto es para la comprensión del lenguaje natural.
+>Hay 11 tipos de puntos de referencia.
+>Pueden obtener los datos de todos ellos.
+>Pueden obtener los datos de uno de ellos.
+>
+>[![datasets/nyu-mll/glue](images/2025-08-29_102838.png "datasets/nyu-mll/glue")](https://huggingface.co/datasets/nyu-mll/glue)
+>
+>También puedes encontrar los datos aquí mismo, en la `Hugging Face`.
+>
+>Y puedes encontrar las etiquetas de todos los datos que quieras.
+>Y si quieres saber qué hace cada una de estas, digamos, tareas, también puedes encontrarlas aquí.
+>Ahora todo está aquí.
+>Eso es todo.
+>Ah, y por cierto, sí, sí.
+>Muy importante.
+>
+>Olvidé mencionar que está en inglés.
+>
+>Así que todas las preguntas que hagas deben estar en inglés.
+>No significa que no tenga valor traducirlas con una máquina del inglés a otro idioma,
+>y hacer las preguntas en otro idioma, porque la traducción podría no ser correcta.
+>Así que, si haces esto, siempre necesitas usar estos datos, que están en inglés.
+>
+>Y el modelo que estás validando debe estar entrenado en inglés. Dicho esto, nos vemos en la parte donde realmente codificamos y ejecutamos nuestra prueba.
+>
+>Repito que los datos se usan para entrenamiento, no para benchmarking, porque los datos de benchmarking o, digamos, los datos de prueba solo contienen las predicciones, no la tabla de verdad fundamental.
+>Y luego, quienes mantienen esta tabla de clasificación te dirán tu puntuación.
+
+
+### 56. How to run a GLUE benchmark test
+
+>[!NOTE]
+>
+>[How to run a GLUE benchmark test](videos/2025-08-29_103338.mp4)
+>
+
+
+### 57. Glue benchmarking on Bert Huggingface Model
+
+1. Activamos el Ambiente Virtual de Python con el comando: </br> `.venv/Scripts/activate`
+2. Instalamos las librerías faltantes: </br> `pip install seaborn` </br> » [seaborn: statistical data visualization](https://pypi.org/project/seaborn/)
+3. Creamos el siguiente archivo **`src/test/LLM/GLUE/evaluate_glue.py`**, con este código inicial:
+```py
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from transformers import AutoTokenizer, AutoModelForSequenceClassification, Trainer, TrainingArguments, DataCollatorWithPadding
+from datasets import load_dataset
+import evaluate
+
+print("1. Load the BERT-base model and tokenizer")
+model_name = "bert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForSequenceClassification.from_pretrained(
+    model_name, num_labels=2)
+
+print("2. Load the GLUE dataset (e.g. SST-2 fror sentiment analysis)")
+task = "sst2"  # Change this for other GLUE tasks (e.e, 'mrpc', 'qqp')
+dataset = load_dataset("glue", task)
+
+
+print("3. Preprocess the dataset")
+def preprocess_function(examples):
+    return tokenizer(examples["sentence"], truncation=True, padding="max_length", max_length=128)
+
+
+encoded_dataset = dataset.map(preprocess_function, batched=True)
+
+print("4. Load evaluation metric using 'evaluate'")
+metric = evaluate.load("glue", task)
+```
+4. Continuo Añadiendo pasos del 5 al 8:
+```py
+print("5. Define a function to compute the metrics")
+
+
+def compute_metrics(eval_pred):
+    logits, labels = eval_pred
+    predictions = logits.argmax(axis=1)
+    return metric.compute(predictions=predictions, references=labels)
+
+
+print("6. Create a DataCollaator for dynamic padding")
+data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
+
+print("7. Prepare evaluation aguments")
+training_args = TrainingArguments(
+    output_dir=current_path+"results",
+    per_device_eval_batch_size=64,
+    logging_dir=current_path+"logs",
+    do_train=False,  # No Trainings
+    do_eval=True,  # Only evaluation
+)
+
+print("8. Initialize Trainer fro evaluation")
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    eval_dataset=encoded_dataset["validation"],
+    compute_metrics=compute_metrics,
+    data_collator=data_collator,  # Use data collator instead of tokenizer
+)
+```
+5. Añado los pasos restantes:
+```py
+print("9. Evaluate all model on the evaluation set")
+results = trainer.evaluate()
+
+# DEBUG: Print all metrics  returned by the evaluation
+print("Evaluation results:", results)
+
+print("10. Filter GLUE-specific metrics")
+exclude_metrics = ["eval_loss", "eval_runtime", "eval_samples_per_second",
+                   "eval_steps_per_second", "eval_model_prepare_time"]
+glue_metrics = {k: v for k, v in results.items() if k not in exclude_metrics}
+
+print("Convert GLUE metrics to a DataFrame for visulization")
+result_df = pd.DataFrame.from_dict(
+    glue_metrics, orient="index", columns=["value"])
+result_df.reset_index(inplace=True)
+result_df.columns = ["Metric", "Value"]
+
+# DEBUG: Ensure DataFrame is populated correcytly
+print("Filtered Results for Graph:", result_df)
+
+print("11. Plot the GLUE metrics")
+plt.figure(figsize=(10,6))
+sns.barplot(x="Metric", y="Value", data=result_df, palette="viridis")
+plt.title(f"GLUE Evaluation Results for Tasks: {task.upper()}", fontsize=16)
+plt.xlabel("Metrics", fontsize=14)
+plt.ylabel("Values", fontsize=14)
+plt.xticks(rotation=45, fontsize=12)
+plt.tight_layout()
+plt.show()
+```
+6. En la `TERMINAL` con el Ambiente Virtual de Python, ehecuto este comando: </br> `python ./src/test/LLM/GLUE/evaluate_glue.py`
+7. Al terminal aparece esta imagen en pantalla: </br> ![GLUE Evaluation Results for Tasks SST2](images/2025-08-31_145809.png "GLUE Evaluation Results for Tasks SST2")
+8. Cierro esta ventana y finaliza el proceso en Python.
+9. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+### 58. Demo - Python GLUE benchmark against GHATGPT
+
+>[!NOTE]
+>
+>Por diversión, quiero mostrarles cómo comparar ChatGPT con el benchmark Glue SST two.
+>
+>Una forma de hacerlo, y es bastante divertida, es hacer lo siguiente:
+>Acceden a ChatGPT y preguntan cuál es el sentimiento de esta frase.
+>Por cierto, esto está tomado de la tarea two.
+>
+>Una cadena que, finalmente, transporta una reinvención de La Bella y la Bestia y películas de terror de los 90 y 40.
+>¿Es positivo o negativo?
+>No, es positivo.
+>Pueden hacerlo manualmente, solo por diversión, pero con suerte no lo harán.
+>
+>![Chat GPT -> Sentiment Analysis](images/2025-08-31_150420.png "Chat GPT -> Sentiment Analysis")
+>
+>
+
+1. Creamos el archivo **`src/test/LLM/GLUE/glue_gpt.py`**.
+2. Activamos el Ambiente Virtual de Python con el comando: </br> `.venv/Scripts/activate`
+3. Empezamos con las importaciones necesarias:
+```py
+import os
+from dotenv import load_dotenv  # Load environment variables
+from openai import OpenAI
+import numpy as np
+from datasets import load_dataset
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+```
+4. Inicializa el cliente de `OpenAI`:
+```py
+print("1. Initialize OpenAI client")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    load_dotenv()  # Carga las variables de entorno del archivo .env
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+# print("OpenAI API Key:", OPENAI_API_KEY)
+
+# Instantiate OpenAI client
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+```
+5. Función para la respuesta con base en el _prompt_:
+```py
+def get_openai_response(prompt):
+    """
+    Sends a prompt to OpenAi's API using the updateaded OPENAI client retrieves the response
+    """
+    try:
+        completion = openai_client.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        chat_reponse = completion.choices[0].message.content.strip()
+        return chat_reponse
+    except Exception as e:
+        print(f"An error ccurred: {e}")
+        return None
+```
+6. Función para evaluar los `SST-2` de los primeros 50 ejemplos:
+```py
+def evaluate_ssts_first_50():
+    """
+    Evaluate the SST-2 taks using the OpenAI API and computes metrics for the first 50 validations examples.
+    """
+    print("Load the SST-2 dataset")
+    dataset = load_dataset("glue", "sst2")
+    validation_set = dataset["validation"]
+
+    print("Ensure we are iterating over dicctionaries (convert to a list fo dictionaries)")
+    validation_examples = list(validation_set)
+
+    print("Store predictions and labels")
+    predictions = []
+    labels = []
+
+    print("Evaluate only the first 50 examples")
+    for idx, example in enumerate(validation_examples[:50]):
+        print("Ensure 'sentence' is accessed correctly")
+        prompt = f"Classify the sentiment of the following sendentece as poistive or negative: \"{example['sentence']}\""
+
+        print("Get the model's prediction using OpenAI API")
+        response = get_openai_response(prompt=prompt)
+
+        # Show sprompt and response
+        print(f"Prompt ({idx+1}): {prompt}")
+        print(f"Response: {response}")
+
+        if response is not None:
+            print("Convert the response to a label (e.g., 0 or 1)")
+            if "positive" in response.lower():
+                predictions.append(1)
+            elif "negative" in response.lower():
+                predictions.append(0)
+            else:
+                print(f"Unexpected response: {response}")
+        else:
+            predictions.append(-1)  # HAndle API failures
+        print("Store the true label")
+        labels.append(example["label"])
+
+    print("Filter out invalid predictions")
+    valid_indices = [i for i, pred in enumerate(predictions) if pred != -1]
+    valid_predictions = [predictions[i] for i in valid_indices]
+    valid_labels = [labels[i] for i in valid_indices]
+
+    print("Compute evaluation metrics")
+    accuracy = accuracy_score(valid_labels, valid_predictions)
+    precision = precision_score(
+        valid_labels, valid_predictions, average="binary")
+    recall = recall_score(valid_labels, valid_predictions, average="binary")
+    f1 = f1_score(valid_labels, valid_predictions, average="binary")
+
+    print("Display results")
+    results = {
+        "Accuracy": accuracy,
+        "Precision": precision,
+        "Recall": recall,
+        "F1-Score": f1,
+    }
+    for metric, value in results.items():
+        print(f"{metric}: {value:.4f}")
+```
+7. Al final invoco esta super función `evaluate_ssts_first_50()`:
+```py
+print("run the evaluation for the first 50 SST-2 examples")
+if __name__ == "__main__":
+    evaluate_ssts_first_50()
+```
+8. En una `TERMINAL` deonse se ejecute el Ambiente Virtual de Pyton, corro este comando: </br> `python ./src/test/LLM/GLUE/glue_gpt.py`
+9. Este es el resultado arrojado al final:
+```bash
+Compute evaluation metrics
+Display results
+Accuracy: 0.9400
+Precision: 0.9200
+Recall: 0.9583
+F1-Score: 0.9388
+```
+10. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
 

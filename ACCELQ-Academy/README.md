@@ -219,6 +219,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[!NOTE]
 >
 >![🚀 Pop Quiz: Action Reuse in Scenario Development](images/2025-08-11_142021.gif "🚀 Pop Quiz: Action Reuse in Scenario Development")
+>
 
 
 
@@ -266,6 +267,8 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[!NOTE]
 >
 >![🚀 Pop Quiz: Key Entities in ACCELQ](images/2025-08-19_152120.gif "🚀 Pop Quiz: Key Entities in ACCELQ")
+>
+
 
 
 ### 7. ▶️ Introduction to Element Identification (Web)
@@ -314,6 +317,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[!NOTE]
 >
 >![🚀 Pop Quiz: Introduction to Element Identification](images/2025-08-27_101432.gif "🚀 Pop Quiz: Introduction to Element Identification")
+>
 
 
 
@@ -452,5 +456,14 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >[![Reviewed_Navigating_around_in_ACCELQ](images/2025-08-27_15552.gif "Haz clic aquí y mira el video `Reviewed_Navigating_around_in_ACCELQ`")](videos/05_Reviewed_Navigating_around_in_ACCELQ.mp4)
 >
 
+
+
+### 10. 🚀 Pop Quiz: Navigating Around ACCELQ
+
+
+>[!NOTE]
+>
+>![🚀 Pop Quiz: Navigating Around ACCELQ](images/2025-09-03_112634.gif "🚀 Pop Quiz: Navigating Around ACCELQ")
+>
 
 

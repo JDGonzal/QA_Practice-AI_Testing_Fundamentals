@@ -9,6 +9,10 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 [![Curso reciente ](images/2025-07-24_103320.png "Masterclass Testing Machine Learning (AI) Models
 ")](https://www.udemy.com/course/introduction-to-testing-ai-models-llms-and-chatbots/)
 
+>[!IMPORTANT]
+>
+>## [Repositorio del Instructor](https://github.com/danteachqe/LLMs)
+
 ## Section 1: Introduction
 
 ### 1. Introduction to Material
@@ -2071,7 +2075,7 @@ Perplexity: 31.946859967236634
 |7|`from langchain.schema import Document`|[LangChain -> Ecosystem packages](https://python.langchain.com/docs/how_to/installation/)|
 
 2. Activar el Ambiente Virtual de Python con este comando en la `TERMINAL`: </br> `.venv/Scripts/activate`
-3. Nos muestra un archivo **`src/rag/requirements.txt`**, que se instala con un comando en la `TERMINAL`, con base en este documento [Python Requirements.txt](https://www.freecodecamp.org/news/python-requirementstxt-explained/), este sería el contenido: </br> ![requirements.txt](images/2025-08-20_094436.png "requirements.txt"): </br> Ejecutar este comando en la `TERMINANL` con el Ambiente Virtual de Python: </br>`pip install -r ./src/rag/requirements.txt`
+3. Nos muestra un archivo **`requirements.txt`**, que se instala con un comando en la `TERMINAL`, con base en este documento [Python Requirements.txt](https://www.freecodecamp.org/news/python-requirementstxt-explained/), este sería el contenido: </br> ![requirements.txt](images/2025-08-20_094436.png "requirements.txt"): </br> Ejecutar este comando en la `TERMINANL` con el Ambiente Virtual de Python: </br>`pip install -r ./requirements.txt`
 4. Reinstalar en nuestro Ambiente Virtual de Python con lo mas reciente:
 ```bash
 pip uninstall pymupdf
@@ -4345,4 +4349,1100 @@ Recall: 0.9583
 F1-Score: 0.9388
 ```
 10. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+>[!IMPORTANT]
+>
+>## Repositorio del Instructor <https://github.com/danteachqe/LLMs>
+
+
+## Section 10: Other benchmarks that are used today to benchmark AI
+
+
+### 59. 7 Benchmarking Models
+
+>[!NOTE]
+>
+>Lo que hemos visto es cómo funciona realmente la evaluación comparativa en el caso de modelos lingüísticos extensos y cualquier otro tipo de prueba que se desee realizar.
+>
+>Ahora bien, sería realmente interesante ver algunas de las pruebas de referencia ya disponibles que se podrían aprovechar para probar los diferentes modelos con los que se esté trabajando.
+>
+>![Benchmark Types](images/2025-09-03_115413.png "Benchmark Types")
+>
+> * **Truthful QA:**
+> Comenzaremos con algo llamado control de calidad veraz.</br>
+>Este es un punto de referencia utilizado para comprobar la veracidad del resultado. </br>
+>Básicamente, evalúa la capacidad de los modelos para proporcionar respuestas precisas y veraces, lo cual, por supuesto, es crucial para combatir la desinformación y promover el uso ético de la IA.</br>
+>Consta de unas 800 preguntas divididas en 38 categorías.
+>Se introduce una pregunta y se comprueba si el resultado es correcto o se basa en ideas erróneas.
+>Ahondaremos en esto con más detalle.
+>
+> * **MMLU:**
+>Ahora, otro método se llama MLU, que básicamente consiste en la comprensión masiva del lenguaje multitarea.</br>
+>Su objetivo es evaluar los modelos basándose en el conocimiento adquirido durante la fase de preentrenamiento.
+>Este tipo de prueba se centra básicamente en preguntas de cero o pocas.</br>
+>Y, por supuesto, es un punto de referencia integral que evalúa los modelos en preguntas de opción múltiple en diversas materias, como humanidades, ciencias sociales y muchas más.
+>Las preguntas varían desde, digamos, elementales hasta avanzadas.
+>
+> * **HellaSwag:**
+>El siguiente que está aquí es algo llamado swag.</br>
+>Y evalúa la capacidad de razonamiento de sentido común de los modelos LLM mediante la autocompletación de oraciones.</br>
+>Básicamente, se proporciona la entrada inicial y luego se ve cómo funciona el autocompletado.
+>Y, por supuesto, esto tiene unas 10 000 oraciones que el modelo necesita autocompletar para obtener la puntuación.
+>
+> * **HumanEval:**
+> Después de eso, existe algo llamado evaluación humana.</br>
+>Consiste en 164 tareas de programación únicas diseñadas para evaluar la capacidad de generación de código de los modelos.</br>
+>Este tipo de evaluación se utiliza para tareas de codificación.
+>Está diseñada específicamente para tareas relacionadas con la programación y la codificación.
+>
+> * **CodeXGLUE:**
+>El siguiente que analizaremos es Code X Glue.</br>
+>Ofrece 14 conjuntos de datos en diez tareas diferentes que se utilizan para probar y comparar modelos directamente en diversos escenarios de codificación, como sin finalización de código, transformación de código, resumen de código, etc.</br>
+>Por cierto, fue desarrollado por Microsoft y creo que también habrán oído hablar de él.
+>
+> * **BLEU:**
+> Esto se llama BLEU.
+>Es una métrica para evaluar la calidad del texto traducido automáticamente de un idioma a otro.</br>
+>Básicamente, evalúa la calidad de la traducción.
+>Funciona así: tienes el texto de salida, así que sabes cómo debería verse la traducción, y tienes la entrada. Luego, comparas el texto traducido con el texto de salida correcto y ves la coincidencia.</br>
+>Cuántos tokens o palabras hay en una coincidencia.
+>Y luego obtienes una puntuación.
+>
+>Estos son algunos de los escenarios o pruebas de referencia disponibles actualmente, pero los analizaremos en el siguiente material.
+
+
+### 60. TruthfulQA - Truthfulness
+
+>[!TIP]
+>
+>La página que muestra el instructor ya no existe: </br>
+>![confident-ai.com/docs/benchmarks-truthful-qa](images/2025-09-03_121120.png "confident-ai.com/docs/benchmarks-truthful-qa")
+>
+
+>[!NOTE]
+>
+>Lo que quiero hacer ahora es abordar el primer punto de referencia que analizaremos.
+>Se trata de la clave veraz.
+>
+>La idea es que este ya es un modelo de evaluación creado por la Universidad de Cornell.
+>Les mostraré el enlace más adelante.
+>La idea es que incluya, como se indica aquí, 817 preguntas sobre 38 temas.
+>Se trata de conceptos erróneos.
+>Se trata de ver si, al formular diferentes preguntas, el modelo también tiene en cuenta los conceptos erróneos, la paranoia.
+>Ya saben, esas teorías descabelladas.
+>
+>Por ejemplo, hay una pregunta que dice: "¿Cuál es el propósito del Área 51?".
+>Y una de las respuestas falsas es sobre extraterrestres. Así que el control de calidad veraz es exactamente así.
+>Se trata de encontrar la respuesta correcta entre una multitud de posibles respuestas falsas y teorías conspirativas.
+>Y si te preguntabas cómo funciona esto, bueno, lo que hago es usar una IA confiable.
+>
+>Estos métodos de nivel profundo han creado dos tipos diferentes de prueba: MC1.
+>Se trata de seleccionar una respuesta correcta entre varias opciones.
+>Y MC2 trata de identificar múltiples respuestas correctas de un conjunto.
+>Hay dos maneras de probar esto.
+>
+>Si te desplazas hacia abajo, verás la lista de temas.
+>Sí, esos 38 son todos sobre psicología.
+>Economía, proverbios, ciencia ficción, conceptos erróneos, subjetividad, etc.
+>Y puedes probar cualquier modelo de lenguaje grande siempre que crees una envoltura alrededor de él.
+>Para este tipo de conceptos erróneos.
+>La documentación oficial de Truhelka.
+>Excepciones.
+>Es este de aquí.
+>
+>De la [Universidad de Cornell](https://arxiv.org/abs/2109.07958).
+>
+>![TruthfulQA: Measuring How Models Mimic Human Falsehoods](images/2025-09-03_155233.png "TruthfulQA: Measuring How Models Mimic Human Falsehoods")
+>
+>Y dice que se mide cómo los modelos imitan la falsedad humana.
+>Como dije, se trata de información falsa. Aquí a la derecha tienen el artículo original.
+>Si van aquí, encontrarán el artículo de investigación con fecha de octubre de 2022.
+>Y aquí está el resumen, de 49 páginas.
+>No sé si realmente quieran leerlo, pero pueden hacer el examen y luego obtendrán una calificación.
+>De eso se trata todo.
+>
+>Si se desplazan hacia abajo, pueden encontrar algunas preguntas y cómo estas personas evalúan estos modelos.
+>Permítanme bajar.
+>Va a tomar un tiempo.
+>Por ejemplo, ¿cuál de las siguientes es una versión humorística de este artista o película llamada Counting Crows?
+>que tienen aquí.
+>Así que podrás encontrar las preguntas aquí mismo.
+>
+>También hay un repositorio de GitHub donde puedes encontrar toda la información.
+>
+>![github.com/sylinrl/TruthfulQA](images/2025-09-03_160032.png "github.com/sylinrl/TruthfulQA")
+>
+>Si quieres usarlo, tienes el archivo [Léame aquí](https://github.com/sylinrl/TruthfulQA).
+>Tienes la licencia.
+>Todo se centra en Python.
+>
+>Sin embargo, este es un excelente punto de referencia que podrías usar si estás desarrollando un modelo de lenguaje extenso.
+>Y esto te informará sobre tus datos de prueba.
+>
+>Yo lo usaría para verificar que mis datos de entrenamiento sean correctos y que el modelo pueda identificar información falsa en tus datos de entrenamiento y omitirla.
+>O al menos asegurarme de que, cuando el modelo te da una respuesta, no utilice información falsa ni sesgada.
+>Y que, por supuesto, lo que obtienes del modelo sea realmente incorrecto.
+>Ahora, en el próximo video, veremos cómo probaremos ChatGPT.
+>Con este método de control de calidad veraz, digamos, de validación.
+
+
+### 61. Python - Demo - Benchmarking Open AI CHAT GPT  - TruthfulQA
+
+1. Empiezo creando el archivo **`src/test/LLM/truthfulQA_fully.py`**
+2. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+3. Instalo la libreria(s) faltantes:
+```bash
+pip install deepeval
+```
+4. Comienzo a poner codigo en el archivo **`truthfulQA_fully.py`**:
+```py
+from openai import OpenAI
+import os
+from deepeval.benchmarks import TruthfulQA
+from deepeval.benchmarks.modes import TruthfulQAMode
+
+# Optionally, set the API key here if it's not set as an environment variable
+api_key = os.getenv('OPENAI_API_KEY')
+if not api_key:
+    raise ValueError("OPENAI_API_KEY environment variable is not set.")
+
+client = OpenAI(api_key=api_key)  # Instantiate the client with the API key
+
+# Define a model class that will be passed to the benchmark
+
+
+class GPT35Model:
+    def __init__(self, model_name="gpt-3.5-turbo"):
+        self.model_name = model_name
+
+    # This method must return a single string as an answer
+    def generate(self, prompt):
+        completion = client.chat.completions.create(
+            model=self.model_name,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        # Correctly access the message content
+        if completion.choices and completion.choices[0].message:
+            return completion.choices[0].message.content.strip()
+        return "No response generated."
+
+
+# Initialize your GPT-3.5 model
+gpt35_model = GPT35Model()
+
+# Define the benchmark with specific shots
+benchmark = TruthfulQA(mode=TruthfulQAMode.MC1)
+
+# Evaluate the GPT-3.5 model
+try:
+    # Pass the model instance directly if the benchmark is designed to handle such objects
+    results = benchmark.evaluate(gpt35_model)
+    if isinstance(results, float):
+        print(f"Overall TruthfulQA Accuracy: {results}")
+    else:
+        print(f"Overall Score: {results.overall_score}")
+except Exception as e:
+    print(f"An error occurred during evaluation: {e}")
+```
+5. Ejecuto el comando: </br> `cd src/test/LLM && python truthfulQA_fully.py`
+6. y me sale el proceso, leugo el comando en la `TERMINAL`: </br> ` cd ../../../ `
+7. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+### 62. Python - Demo - Benchmarking Open AI CHAT GPT  - MMLU
+
+1. Empiezo creando el archivo **`src/test/LLM/truthfulQA_part.py`**
+2. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+3. Completo el código:
+```py
+import os
+from openai import OpenAI
+from dotenv import load_dotenv  # Load environment variables
+from deepeval.benchmarks import TruthfulQA
+from deepeval.benchmarks.tasks import TruthfulQATask
+from deepeval.benchmarks.modes import TruthfulQAMode
+
+
+# 1. Initialize OpenAI client
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    load_dotenv()  # Load environment variables from .env file
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+# Instantiate OpenAI client
+openai_client = OpenAI(api_key=OPENAI_API_KEY)
+
+# 2. Define a model class that will be passed to the benchmark
+
+
+class GPT35Model:
+    def __init__(self, model_name="gpt-3.5-turbo"):
+        self.model_name = model_name
+
+    # This method must return a single string as an answer
+    def generate(self, prompt):
+        completion = openai_client.chat.completions.create(
+            model=self.model_name,
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+        # Correctly access the message content
+        if completion.choices and completion.choices[0].message:
+            return completion.choices[0].message.content.strip()
+        return "No response generated."
+    
+# Initialize your GPT-3.5 model
+gpt35_model = GPT35Model()
+
+# Define the benchmark with specific tasks and modes
+benchmark = TruthfulQA(
+    tasks=[TruthfulQATask.ADVERTISING, TruthfulQATask.FICTION],  # Use the TruthfulQATask enums
+    mode=TruthfulQAMode.MC2
+)
+
+# Evaluate the GPT-3.5 model
+try:
+    # Pass the model instance directly if the benchmark is designed to handle such objects
+    results = benchmark.evaluate(gpt35_model)
+    print("Evaluation completed successfully!")
+    print(f"Results: {results}")
+except Exception as e:
+    print(f"An error occurred: {e}")
+```
+4. Ejecuto el comando: </br> `python src/test/LLM/truthfulQA_part.py`
+5. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+### 63. Python  - Demo - Benchmarking  CHATGPT with BLEU  Metrics
+
+1. Creamos el archivo **`src/test/LLM/BLEU_Eval.py`**.
+2. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+3. Instalo la libreria(s) faltantes:
+```bash
+pip install sacrebleu
+```
+4. Comienzo a poner codigo en el archivo:
+```py
+import os
+import json
+import requests
+
+import sacrebleu
+from dotenv import load_dotenv  # Load environment variables
+
+
+def get_openai_response(prompt):
+    """
+    Send a prompt to OpenAI's ChatGPT and retieves the response
+    Args:
+        prompt (string): User's request to OPENAI o GPT-4
+    """
+    # 1. Initialize OpenAI client
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    if not OPENAI_API_KEY:
+        load_dotenv()  # Load environment variables from .env file
+        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    openai_url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {OPENAI_API_KEY}"
+    }
+    data = {
+        "model": "gpt-4",  # Ensure this is the correct model name
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        "max_tokens": 500,  # Adjust as need
+        "n": 1,
+        "stop": None,
+        "temperature": 0.7
+    }
+
+    try:
+        # Use json=data instead of data=json.dumps(data)
+        response = requests.post(openai_url, headers=headers, json=data)
+        response.raise_for_status()
+        result = response.json()
+
+        # For debugging:
+        print("Full API Response: ", json.dumps(result, indent=2))
+
+        chat_response = result['choices'][0]['message']['content'].strip()
+        return chat_response, result  # Return both the translation and the full response
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    return None, None
+
+
+def calculate_bleu(reference, candidate):
+    """
+    Calculates the BLEU score between the reference and candidate translations
+    Args:
+        reference (_type_): _description_
+        candidate (_type_): _description_
+    """
+    bleu = sacrebleu.corpus_bleu([candidate], [[reference]])
+    return bleu.score
+
+
+def main():
+    """
+    Main function to execute the workflow
+    """
+
+    # Input English sentence
+    english_sentence = input("Enter the English sentence: ").strip()
+    if not english_sentence:
+        print("We need an English Sentence. Exiting...")
+        return
+    # Input benchmark Spanish translation
+    benchmark_traslation = input(
+        "Enter the benchhmark Spanish traslation: ").strip()
+    if not benchmark_traslation:
+        print("We need an Spanish Sentence. Exiting...")
+        return
+    # Construct the prompt to translate from English to Spanish
+    prompt = f"Translate the following sentence from English to Spahish: {english_sentence}"
+
+    print("\nSending prompt o ChatGPT...\n")
+    chatgpt_translation, api_response = get_openai_response(prompt=prompt)
+    if not chatgpt_translation:
+        print("Failed to get a response from chatGPT")
+        return
+
+    print("=== Input ad Benchmark ===")
+    print(f"English Sentence: {english_sentence} ")
+    print(f"Benckmark Spanish Translation: {benchmark_traslation}")
+    print("===========================\n")
+
+    print("=== ChatGPT's Translation ===")
+    print(chatgpt_translation)
+    print("===========================\n")
+
+    # Calculate BLEU score
+    bleu_score = calculate_bleu(benchmark_traslation, chatgpt_translation)
+    print(f"BLEU Score: {bleu_score}")
+
+
+print("\nFull API Response for Debugging:")
+if __name__ == "__main__":
+    main()
+```
+5. Ejecuto en la `TERMINAL` el comando: </br> `python ./src/test/LLM/BLEU_Eval.py`
+6. Me pide una frase en inglés, por ejemplo: </br> `The quick brown fox jumps over the lazy dog.`
+7. Luego me pide la traducción al español, por ejemplo: </br> `El rápido zorro marrón salta sobre el perro perezoso.`
+8. Me sale este resultado:
+```bash
+=== Input ad Benchmark ===
+English Sentence: The quick brown fox jumps over the lazy dog.
+Benckmark Spanish Translation: El rápido zorro marrón salta sobre el perro perezoso.
+===========================
+
+=== ChatGPT's Translation ===
+El rápido zorro marrón salta sobre el perro perezoso.
+===========================
+
+BLEU Score: 100.00000000000004
+```
+9. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+### 64. Python  - Demo - Benchmarking  CHATGPT with TER Metrics
+
+
+>[!NOTE]
+>
+>![Benchmarking TER](images/2025-09-03_182810.png "Benchmarking TER")
+>
+>Otro método para calificar la traducción es la traducción automática.
+>Se llama TER y significa tasa de error de traducción.
+>
+>Básicamente, ¿qué significa esto?
+>
+> * **TER** mide cuántos cambios o ediciones se deben realizar en una traducción generada automáticamente para que coincida con la traducción de referencia.
+>Esto significa que, al hacer algo, se ve lo que se quiere hacer.
+>Se parte de algo.
+>¿Y cuántos pasos se dan para llegar al resultado?
+>Veamos qué significa esto.
+>   * ¿Cuáles pueden ser estos cambios?
+>En las **inserciones**, significa que quizás se agrega una palabra nueva o se elimina.
+>   * Quizás se **elimina** una palabra adicional que no debería estar.
+>   * Quizás un artículo que no debería estar o una **sustitución**.
+>Se reemplaza una palabra por la correcta.
+>   * O podría ser un **desplazamiento**.
+>Se pasa de un lugar a otro.
+>Se mueve una palabra, un token, quizás del principio al final, o se mueve un grupo de palabras del principio al final o al centro.
+>
+>Así que estas son las posibles acciones que se pueden realizar para realizar una traducción según un punto de referencia.
+>
+> * ¿Y cuál es el número? </br>
+>Es decir, el número total de cambios que se realizan dividido entre el total de palabras en la referencia y multiplicado por 100, porque tiene que ser un porcentaje.
+>
+>![TER = 44.4%](images/2025-09-03_183205.png "TER = 44.4%")
+>
+>Y ahora les daré un ejemplo.
+>
+>Imagina que tienes esto.
+>
+>Esta es tu traducción de referencia.
+>El rápido zorro marrón salta sobre el perro perezoso.
+>Por cierto, esta es una oración clásica en aprendizaje automático.
+>
+>Imaginemos que tu primera iteración es rápida.
+>El zorro marrón salta sobre el perro perezoso.
+>Como puedes ver, no es exactamente lo mismo.
+>
+>¿Qué tienes?
+>Bueno, la primera acción que insertas sería insertar la "El".
+>Pero sigue sin ser correcto.
+>Correcto.
+>
+>La otra sería una sustitución.
+>En lugar de "saltar", tienes "saltos".
+>Así que añades "el" al final de "saltar".
+>
+>Y luego tienes una inserción.
+>El perro perezoso.
+>Y entonces sabes que tienes una letra mayúscula.
+>Así que, en lugar del marrón rápido con una Q grande, tendrás la pequeña.
+>Sí.
+>
+>Así que esto es lo que causa el error.
+>Así que ves **cuatro** iteraciones.
+>Y si calculas la tercera puntuación, básicamente tienes **cuatro** ediciones.
+>Y divides eso entre **nueve** palabras, así que es **cuatro** dividido entre **nueve**.
+>Multiplica por 100 y eso es básicamente un **44.4 %**.
+>
+>Esa es tu tercera puntuación.
+>Ahora intentemos comparar de nuevo la traducción de ChatGPT con una traducción de referencia de Google.
+
+1. Creamos el archivo **`src/test/LLM/TER_Eval.py`**.
+2. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+3. Ya está instalada la libreria faltantes: `pip install sacrebleu`.
+1. Comienzo a poner codigo en el archivo, que es muy similar a **`BLEU_Eval.py`**:
+```py
+import os
+import json
+import requests
+
+import sacrebleu
+from dotenv import load_dotenv  # Load environment variables
+
+
+def get_openai_response(prompt):
+    """
+    Send a prompt to OpenAI's ChatGPT and retieves the response
+    Args:
+        prompt (string): User's request to OPENAI o GPT-4
+    """
+    # 1. Initialize OpenAI client
+    OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    if not OPENAI_API_KEY:
+        load_dotenv()  # Load environment variables from .env file
+        OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+    openai_url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {OPENAI_API_KEY}"
+    }
+    data = {
+        "model": "gpt-4",  # Ensure this is the correct model name
+        "messages": [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": prompt}
+        ],
+        "max_tokens": 500,  # Adjust as need
+        "n": 1,
+        "stop": None,
+        "temperature": 0.7
+    }
+
+    try:
+        # Use json=data instead of data=json.dumps(data)
+        response = requests.post(openai_url, headers=headers, json=data)
+        response.raise_for_status()
+        result = response.json()
+
+        # For debugging:
+        print("Full API Response: ", json.dumps(result, indent=2))
+
+        chat_response = result['choices'][0]['message']['content'].strip()
+        return chat_response, result  # Return both the translation and the full response
+    except requests.exceptions.RequestException as http_err:
+        print(f"HTTP error occurred: {http_err}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
+    return None, None
+
+
+def calculate_ter(reference, candidate):
+    """
+    Calculates the BLEU score between the reference and candidate translations
+    Args:
+        reference (_type_): _description_
+        candidate (_type_): _description_
+    """
+    ter_score = sacrebleu.corpus_ter([candidate], [[reference]])
+    return ter_score.score
+
+
+def main():
+    """
+    Main function to execute the workflow
+    """
+
+    # Input English sentencef
+    print("\nThe quick brown fox jumps over the lazy dog.")
+    english_sentence = input("Enter the English sentence: ").strip()
+    if not english_sentence:
+        print("We need an English Sentence. Exiting...")
+        return
+    # Input benchmark Spanish translation
+    print("\nEl rápido zorro café salta encima del perro perezoso.")
+    benchmark_traslation = input(
+        "Enter the benchhmark Spanish traslation: ").strip()
+    if not benchmark_traslation:
+        print("We need an Spanish Sentence. Exiting...")
+        return
+    # Construct the prompt to translate from English to Spanish
+    prompt = f"Translate the following sentence from English to Spahish: {english_sentence}"
+
+    print("\nSending prompt to ChatGPT...\n")
+    chatgpt_translation, api_response = get_openai_response(prompt=prompt)
+    if not chatgpt_translation:
+        print("Failed to get a response from chatGPT")
+        return
+
+    print("=== Input ad Benchmark ===")
+    print(f"English Sentence: {english_sentence} ")
+    print(f"Benckmark Spanish Translation: {benchmark_traslation}")
+    print("===========================\n")
+
+    print("=== ChatGPT's Translation ===")
+    print(chatgpt_translation)
+    print("===========================\n")
+
+    # Calculate TER score
+    ter_score = calculate_ter(benchmark_traslation, chatgpt_translation)
+    print(f"TER Score: {ter_score}")
+
+
+print("\nFull API Response for Debugging:")
+if __name__ == "__main__":
+    main()
+```
+5. Ejecuto en la `TERMINAL` el comando: </br> `python ./src/test/LLM/TER_Eval.py`
+6. Me pide una frase en inglés, por ejemplo: </br> `The quick brown fox jumps over the lazy dog.`
+7. Luego me pide la traducción al español, por ejemplo: </br> `El rápido zorro café salta encima del perro perezoso.`
+8. Me sale este resultado:
+```bash
+=== Input ad Benchmark ===
+English Sentence: The quick brown fox jumps over the lazy dog.
+Benckmark Spanish Translation: El rápido zorro café salta encima del perro perezoso
+===========================
+
+=== ChatGPT's Translation ===
+El rápido zorro marrón salta sobre el perro perezoso.
+===========================
+
+TER Score: 44.44444444444444
+```
+9. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+### 65. What Is GPQA  - Graduate Level Q&A
+
+>[!NOTE]
+>
+>[![GPQA: A Graduate-Level Google-Proof Q&A Benchmark](images/2025-09-04_091233.png "GPQA: A Graduate-Level Google-Proof Q&A Benchmark")](https://arxiv.org/abs/2311.12022)
+>
+>De todas las formas en que se puede comparar un modelo,
+>Personalmente, me encanta este.
+>
+>Se llama GPQA y significa prueba de nivel de posgrado.
+>Preguntas y respuestas.
+>Punto de referencia.
+>
+>¿Y cómo funciona esto?
+>
+>Bueno, básicamente, si revisamos el artículo, comprenderemos que se compone básicamente de tres tipos diferentes de dominios: química, física y biología.
+>Así es como se ha estructurado el conjunto de datos.
+>La idea es la siguiente.
+>
+>Si realmente quieren profundizar en cómo funciona esto, lo verán.
+>Y, de hecho, está en algún lugar aquí arriba, la forma en que han creado sus preguntas.
+>Es así.
+>Así que tienen una exportación que está al menos a nivel de pH.
+>Esa es la idea.
+>Esta exportación generará varias preguntas.
+>
+>Las preguntas deben crearse de tal manera que cualquier otro experto con doctorado pueda responderlas.
+>Pero cualquier otra persona que no sea experta en ese campo no debería poder responderlas, ni siquiera con la ayuda de Google.
+>Lo que han hecho es crear varias preguntas, que luego han sido revisadas por un experto, y el creador original las ha recreado y reinterpretado tras la respuesta.
+>
+>Y entonces se convierte en una pregunta de respuesta múltiple.
+>Así es como funciona.
+>Esta es la idea.
+>
+>Incluso si, por ejemplo, me hacen una pregunta sobre biología con la ayuda de Google, no debería poder responderla como un experto con doctorado.
+>Y aquí hay dos conjuntos de datos.
+>Si bajamos, vemos que se ha dividido en Gpca.
+>
+>El diamante Gpca consta de 198 preguntas que la mayoría de los expertos han podido responder, mientras que el resto no.
+>Si tienes una IA que piensa, debería poder responder la pregunta si piensa. Pero si la respuesta no está en el conjunto de datos, tu IA necesita pensar para responderla. Solo si la respuesta está en los datos de entrenamiento, puede responderla si no tiene capacidad de razonamiento.
+>
+>Creo que esta es una excelente prueba, un excelente punto de referencia.
+>Mira los resultados.
+>Por cierto, también puedes encontrar ejemplos de preguntas aquí.
+>Verás algunas de las respuestas.
+>
+>Como puedes ver, los validadores humanos expertos del conjunto de diamantes responden correctamente al 8281%, mientras que los no humanos lo hacen al 21%. Este es un conjunto de datos perfecto para comparar cualquier tipo de modelo.
+>
+>Dado que, por supuesto, estas preguntas no se incluyen en los datos de entrenamiento, porque si se incluyen, simplemente se analizan los datos de entrenamiento y se muestran los resultados.
+>Por eso, se insiste en que, si se ve la pregunta, no se debe ingresar en ChatGPT, ya que esta es la respuesta.
+>Puede ingresar en ChatGPT, Google, Gemini o cualquier otro.
+>
+>Mira la respuesta a esta pregunta tomada de A, B, C, D, pero nunca debes revelarla.
+>¿Y por qué?
+>Porque estás entrenando el modelo y esto es lo que quieres.
+>
+>No quieres entrenar el modelo con la respuesta real, sino que vea cómo funciona realmente. Verás que no tienes ninguna posibilidad, pocas posibilidades, ninguna posibilidad de probar todo. El artículo explica cómo hacerlo. En el próximo video te mostraré cómo puedes probar ChatGPT con todas las preguntas.</br>
+>O quizás solo con algunas de las preguntas de este benchmark.
+
+
+### 66. Demo - Benchmarking - GPQA  with Python
+
+>[!NOTE]
+>
+>[![github.com/idavidrein/gpqa](images/2025-09-04_094750.png "github.com/idavidrein/gpqa")](https://github.com/idavidrein/gpqa)
+>
+>Ahora ya sabes qué significa GQPA.
+>Lo siguiente que debes hacer es obtener el conjunto de preguntas.
+>Para ello, debes ir al repositorio de GitHub para este tipo de medición.
+>Está aquí, en esta página web.
+>Dejaré el enlace completo en la descripción del video.
+>Todo está aquí.
+>
+
+1. Creamos el archivo **`src/test/LLM/GPQA_limit.py`**.
+2. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+3. Comienzo a poner codigo en el archivo tomado de este sitio [gpqa_limit.py](https://github.com/danteachqe/LLMs/blob/main/LLM/gpqa_limit.py):
+4. Creo la carpeta **"src/test/LLM/dataset/gpqa"**
+5. Dentro de la nueva carpeta copio estos 6 archivos de esta ruta: </br> <https://github.com/danteachqe/LLMs/tree/main/LLM/dataset/gpqa/dataset>:
+    * gpqa_diamond.csv
+    * gpqa_experts.csv
+    * gpqa_extended.csv
+    * gpqa_main.csv
+    * gpqa_modified.csv
+    * license.txt
+6. Ejecuto el archivo en la `TERMINAL` con el comando: </br> `python ./src/test/LLM/GPQA_limit.py` </br> Completo unas preguntas y me sale unaa respuesta como esta:
+```bash
+Evaluating GPQA: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 5/5 [01:40<00:00, 20.01s/it] 
+
+Evaluation Completed.
+Total Tasks: 5
+Correct Predictions: 0
+Accuracy: 0.00%
+
+Final GPQA Accuracy: 0.00%
+```
+
+>[!NOTE]
+>
+>Con esta parte, simplemente ejecutamos la prueba completa.
+>Así que, también le he pedido al modelo que imprima la pregunta, la respuesta y lo que obtuvimos de ChatGPT.
+>Ahora veremos.
+>
+>Es Python y tiene este límite, y ahora empezará a funcionar.
+>Esta es mi primera pregunta.
+>Y, por cierto, las preguntas son muy difíciles.
+>Muy difíciles.
+>Si no eres un especialista, no podrás responderlas.
+>O quizás sí lo seas y yo no pueda, pero son muy difíciles.
+>En este caso, la respuesta correcta es, digamos, esta y lo que obtuvimos de ChatGPT.
+>
+>Así que esta es la matemática.
+>Y la respuesta correcta es esta.
+>Así que obtuvo la respuesta correcta.
+>
+>Normalmente, como ya lo he hecho un par de veces, obtengo entre un 40 % y un 60 %, dependiendo de cómo me sienta ese día.
+>Para ser sincero, espero una eficiencia del 60 % o incluso del 40 %.
+>
+>¿Cuántos átomos de carbono hay en el producto tres?
+>Aquí tienen la pregunta, y la respuesta correcta, si no recuerdo mal, debería ser uno.
+>ChatGPT nos dirá que, en este caso, ¿podrían darnos más detalles?
+>En realidad, no es posible obtener más información.
+>De hecho, sí es posible.
+>Hay gente que lo ha logrado.
+>En fin, terminará pronto.
+>
+>Si quieren comprobarlo, pueden consultar la respuesta correcta que ya hemos creado.
+>Aquí la tienen.
+>Recuerda que siempre tienes la respuesta correcta, y solo es cuestión de si no crees en ChatGPT.
+>Mira, creo que el examen ya debería haber terminado, así que este debería ser el último.
+>Así que obtienes el 40 %.
+>
+>Tenemos dos respuestas correctas y, si necesito más información o no puedo proporcionarla, te recomiendo consultar con un especialista.
+>En el caso de cinco preguntas, nuestras predicciones correctas son dos.
+>Esto significa que tres no se pudieron responder.
+>Y este es el examen más difícil que hemos encontrado en línea.
+>Por supuesto, también puedes crear tus propias preguntas.
+>Si quieres ampliar el marco, simplemente añade otras preguntas y listo.
+
+7. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+### 67. Hellaswag - Can a model finish your sentence?
+
+
+>[!NOTE]
+>
+>[![HellaSwag: Can a Machine Really Finish Your Sentence?](images/2025-09-04_105233.png "HellaSwag: Can a Machine Really Finish Your Sentence?")](https://arxiv.org/abs/1905.07830)
+>
+>En esta clase hablaremos sobre Hella Swag, un punto de referencia.
+>Y, como su nombre indica, ¿puede una máquina realmente terminar una frase?
+>
+>Esta es la prueba real.
+>Algo que para nosotros podría parecer trivial para una máquina puede ser extremadamente difícil.
+>Si quieres leer el trabajo de investigación, primero tienes este enlace.
+>La URL principal está en la descripción del curso.
+>Y desde allí, haz clic en "Ver PDF".
+>¿Puede una máquina realmente terminar una frase?
+>
+>Y no, es extremadamente fácil entender cómo funciona.
+>Básicamente, tienes el siguiente contexto:
+>* Una mujer está afuera con un cubo y un perro.
+>* El perro corretea intentando evitar el baño.
+>* Ella...
+>* Y luego tienes cuatro posibles respuestas:
+>   * Enjuaga el cubo con jabón y seca la cabeza del perro con el secador.
+>
+>Y las conoces todas.
+>Parecen bastante plausibles.
+>Pero la correcta es que moja al perro.
+>Luego se da la vuelta.
+>Luego vuelve a escapar.
+>Así que esta es la correcta.
+>¿Y todas las demás?
+>Son ruido.
+>
+>Su propósito es simplemente confundir al modelo.
+>Ahora bien, es muy importante mencionar que todas estas predicciones, las tres incorrectas,
+>han sido generadas con GPT 2.
+>
+>Y la tercera es creada por humanos.
+>Así es como funciona.
+>Simplemente le preguntas a tu modelo: «Oye, por favor, dime cuál es el final más probable de mi oración
+>de las cuatro siguientes».
+>Y luego, por supuesto, recibirás puntos cada vez que aciertes.
+>Y si no la aciertas, no recibirás puntos.
+>
+>[![github.com/rowanz/hellaswag](images/2025-09-04_105923.png "github.com/rowanz/hellaswag")](https://github.com/rowanz/hellaswag)
+>
+>También hay un repositorio de GitHub aquí.
+>Hablaremos más sobre el repositorio en el próximo video, donde tendremos una demostración práctica.
+>
+>¿Cómo se ejecuta un benchmark de este tipo y qué contiene este repositorio?
+>
+>Creo que la parte más importante son los datos.
+>Y los datos en sí se cubren en exactamente tres elementos:
+>Esta es la prueba.
+>Este es el entrenamiento.
+>Y esta es la validación.
+>Por lo tanto, es muy importante mencionar cuándo obtendrás tu modelo.
+>
+>Tu modelo estará preentrenado, pero para una tarea específica, porque sabemos, o esperamos que ya sepas, que los modelos son específicos para una tarea de traducción, por ejemplo, para completar oraciones, para matemáticas, ciencias, programación, etc.
+>Entonces, ¿por qué necesitas estos datos de entrenamiento?
+>Es para afinar tu modelo para la tarea específica: completar la oración.
+>
+>Porque si no entrenas ni afinas tu modelo, sabes que tus valores o resultados serán bastante malos.
+>Pero si entrenas tu modelo con estos datos de entrenamiento, sabrás que aumentarás considerablemente su precisión.
+>Los datos de validación sirven simplemente para validar el rendimiento actual de tu modelo.
+>Esto es el entrenamiento.
+>
+>Esto sirve para validar: después de varios entrenamientos, vuelves a validar tu modelo y luego lo entrenas un poco más para intentar no sobreajustarlo ni subajustarlo.
+>Esta es la prueba oficial.
+>Esto es algo que debes entregarles.
+>Te dirán cuál es la puntuación real.
+>Es bastante fácil.
+>
+>Creo que la prueba tiene un total de 20 000 preguntas.
+>El entrenamiento tiene, no sé, unos 50,000 y la validación, otra cantidad que se va a tomar en tu PC en un día para ejecutar todo el entrenamiento y también la prueba.
+>Así que esto es básicamente todo, ¿verdad?
+>Es muy fácil.
+>De qué se trata esta prueba.
+>
+>Y luego encontrarás aquí información sobre modelos como Bert y cómo los humanos, por ejemplo, el 95% de los humanos, ya sabes, aprobarán esta prueba.
+>Pero ya sabes, los mejores modelos, solo el 48%.
+>Y esto es algo que también querrás validar en caso de que tu modelo esté diseñado para comunicarse con personas, para generar contenido significativo.
+>
+>Así que esto es una cosa para probar la comprensión del lenguaje natural o la inferencia de tu modelo.
+>Y en el próximo video haremos trabajo práctico.
+>¿Cómo podemos ejecutar el benchmark usando un modelo de cara abrazada?
+>Um, en tu infraestructura, en la mía o en la tuya.
+
+
+### 68. Demo - Benchmark - HellaSwag
+
+
+1. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+2. Basado en este respositorio [rowanz/hellaswag -> Getting the environment set up](https://github.com/rowanz/hellaswag?tab=readme-ov-file#getting-the-environment-set-up), hay que instalar estas bibliotecas:
+```bash
+pip install tensorflow==1.12.0
+pip install --upgrade google-api-python-client oauth2client
+```
+>[!WARNING]
+>
+>Con el primer comando `pip install tensorflow==1.12.0`, nos aparece un error: </br>
+>* `ERROR: Could not find a version that satisfies the requirement tensorflow==1.12.0 (from versions: 2.20.0rc0, 2.20.0)`
+>* `ERROR: No matching distribution found for tensorflow==1.12.0`
+>
+>Lo hago con base en la página [<img src="https://www.gstatic.com/devrel-devsite/prod/v8a38e499423b6e64664446c6bb8c3f06d3bbb8c3153ec81b5cfa22b086049d9c/tensorflow/images/lockup.svg" height="24px" alt="TensorFlow" title="TensorFlow"> -> `Install TensorFlow with pip`](https://www.tensorflow.org/install/pip). </br>
+>Entonces procedo a ejecutar ambos comandos: </br> `pip install tensorflow` </br> `pip install 'tensorflow[and-cuda]'`
+>
+>El segundo me genera este error: </br>
+>* `ERROR: Could not find a version that satisfies the requirement nvidia-nccl-cu12<3.0,>=2.25.1; extra == "and-cuda" (from tensorflow[and-cuda]) (from versions: 0.0.1.dev5)`
+>* `ERROR: No matching distribution found for nvidia-nccl-cu12<3.0,>=2.25.1; extra == "and-cuda"`
+
+3. La carpeta que se busca en el repositorio <https://github.com/danteachqe/LLMs>, no existe  </br> **"src/rest/LLM/hellaswag"** con el archivo allí incluído de nombre **`limit.py`**.
+4. Creamos la carpeta **`src/test/LLM/hellaswag`**.
+5. Copiamos en dicha carpeta de este repositorio <https://github.com/rowanz/hellaswag/tree/master/data>, estos archivos:
+   * README.md
+   * hellaswag_test.jsonl
+   * hellaswag_train.jsonl
+   * hellaswag_val.jsonl
+6. Creamos la carpeta **"src/test/LLM/hellswag/hellaswag_models/bert"**
+7. Copiamos en esta nueva carpeta los tres archivos del repositorio <https://github.com/rowanz/hellaswag/tree/master/hellaswag_models/bert>
+8. Creamos este archivo **`src\test\LLM\hellswag\hellaswag_limit.py`** con este código:
+```py
+import os
+import torch
+from datasets import load_dataset, Dataset
+from transformers import AutoTokenizer, AutoModelForMultipleChoice
+from torch.utils.data import DataLoader
+import json
+
+# Set the number of samples to use (modify this as need)
+NUM_SAMPLES = 100  # Adjust the number of samples to test on
+
+
+# Get th full path of files
+def get_full_path(file_name):
+    CURRENT_PATH = os.path.dirname(os.path.abspath(__file__))
+    # print("Current Path:", CURRENT_PATH)
+    current_working_directory = os.getcwd().replace("\\", "/")
+    # print(f"Current Working Directory: {current_working_directory}")
+    CURRENT_PATH = CURRENT_PATH.replace(current_working_directory, ".")
+    DATASET_PATH = os.path.join(
+        CURRENT_PATH, file_name).replace("\\", "/")
+    return DATASET_PATH
+
+
+# Load the tokenizer and model
+tokenizer = AutoTokenizer.from_pretrained('roberta-base')
+model = AutoModelForMultipleChoice.from_pretrained("roberta-base")
+
+
+# Load datasets
+def load_custom_dataset(file_path, num_samples=None):
+    with open(file_path, "r") as f:
+        dataset = Dataset.from_list([json.loads(line) for line in f])
+        if num_samples:
+            # Limit to the spefied number of samples
+            dataset = dataset.select(range(num_samples))
+        return dataset
+
+
+val_data = load_custom_dataset(
+    get_full_path("hellaswag_val.jsonl"), NUM_SAMPLES)
+test_data = load_custom_dataset(
+    get_full_path("hellaswag_test.jsonl"), NUM_SAMPLES)
+
+
+# Preprocess the data
+def preprocess_function(examples):
+    first_sentences = [[context]*4 for context in examples["ctx"]]
+    answer_choices = examples["endings"]
+
+    first_sentences = sum(first_sentences, [])
+    answer_choices = sum(answer_choices, [])
+
+    tokenize_examples = tokenizer(
+        first_sentences, answer_choices, truncation=True, padding="max_length", max_length=128)
+
+    return {k: [tokenize_examples[k][i:i+4] for i in range(0, len(tokenize_examples[k]), 4)]for k in tokenize_examples}
+
+
+# Preprocess datasets
+encoded_val = val_data.map(preprocess_function, batched=True)
+encoded_test = test_data.map(preprocess_function, batched=True)
+
+
+# Prepare the DataLoader
+def collate_fn(batch):
+    input_ids = torch.tensor([item["input_ids"] for item in batch])
+    attention_mask = torch.tensor([item["attention_mask"]for item in batch])
+    labels = torch.tensor([int(item["label"])
+                          for item in batch]) if 'label' in batch[0] else None
+    return {"input_ids": input_ids, "attention_mask": attention_mask, "labels": labels}
+
+
+# DataLoader
+val_dataloader = DataLoader(encoded_val, batch_size=8, collate_fn=collate_fn)
+test_dataloader = DataLoader(encoded_test, batch_size=8, collate_fn=lambda x: collate_fn(
+    [{k: v for k, v in item.items() if k != 'label'} for item in x]))
+
+# Run the model and compute accuracy on validation set
+device = torch.device("cpu")
+model.to(device)
+
+
+# Verication of data model
+def evaluate_model(dataloader, compute_accuracy=True):
+    model.eval()
+    num_correct = 0
+    num_total = 0
+    predictions = []
+
+    with torch.no_grad():
+        for batch in dataloader:
+            input_ids = batch["input_ids"].to(device)
+            attention_mask = batch["attention_mask"].to(device)
+
+            outputs = model(input_ids=input_ids, attention_mask=attention_mask)
+            logits = outputs.logits
+            pred = torch.argmax(logits, dim=1).tolist()
+            predictions.extend(pred)
+
+            if compute_accuracy and 'labels' in batch:
+                labels = batch["labels"].to(device)
+                num_correct += (torch.tensor(pred) == labels).sum().item()
+                num_total += labels.size(0)
+    if compute_accuracy:
+        accuracy = num_correct/num_total
+        print(f"Validation Accuracy: {accuracy:.4f}")
+    return predictions
+
+
+# Evaluate on valiation set
+print(f"Evaluate on validation set (first {NUM_SAMPLES} samples)...")
+evaluate_model(val_dataloader)
+
+# Make predictions on test set
+print(f"Making predictions on test set (first {NUM_SAMPLES} samples)...")
+test_predictions = evaluate_model(test_dataloader, compute_accuracy=False)
+
+# Save test predictions
+with open(get_full_path("test_predictions.jsonl"), "w")as f:
+    for pred in test_predictions:
+        f.write(json.dumps({"prediction": pred})+"\n")
+print("Test predictions saved to 'test_predictions.jsonl'")
+```
+9. Ejecuto el archivo en la `TERMINAL` con el comando: </br> `python ./src/test/LLM/hellswag/hellaswag_limit.py` </br> Completo unas preguntas y me sale unaa respuesta como esta:
+```bash
+tokenizer_config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████| 25.0/25.0 [00:00<00:00, 111kB/s]
+config.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 481/481 [00:00<00:00, 3.56MB/s]
+vocab.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 899k/899k [00:00<00:00, 3.98MB/s]
+merges.txt: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 456k/456k [00:00<00:00, 3.30MB/s]
+tokenizer.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1.36M/1.36M [00:00<00:00, 6.43MB/s]
+2025-09-04 16:44:10.788876: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2025-09-04 16:44:19.082464: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+model.safetensors: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 499M/499M [00:13<00:00, 37.5MB/s]
+Some weights of RobertaForMultipleChoice were not initialized from the model checkpoint at roberta-base and are newly initialized: ['classifier.bias', 'classifier.weight', 'roberta.pooler.dense.bias', 'roberta.pooler.dense.weight']
+You should probably TRAIN this model on a down-stream task to be able to use it for predictions and inference.
+Map: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:00<00:00, 1496.12 examples/s]
+Map: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 100/100 [00:00<00:00, 3250.06 examples/s]
+Evaluate on validation set (first 100 samples)...
+Validation Accuracy: 0.2200
+Making predictions on test set (first 100 samples)...
+Test predictions saved to 'test_predictions.jsonl'
+```
+10. Si abrimos el archivo que acabó de crear **`test_predictions.jsonl`**, nos sale algo como esto: </br> ![test_predictions.jsonl](images/2025-09-04_164934.png "test_predictions.jsonl")
+11. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+
+
+
+### 69. Python - Demo - Benchmarking Open AI CHAT GPT  - HumanEval
+
+
+
+>[!NOTE]
+>
+>[![HumanEval: Decoding the LLM Benchmark for Code Generation](images/2025-09-04_165515.png "HumanEval: Decoding the LLM Benchmark for Code Generation")](https://deepgram.com/learn/humaneval-llm-benchmark)
+>
+>El último punto de referencia del que quiero hablarles.
+>Se llama evaluación humana.
+>
+>Este tipo de punto de referencia está diseñado específicamente para probar grandes modelos de lenguaje con la generación de código.
+>Son útiles solo para la generación de código.
+>Como siempre, el artículo de investigación se puede encontrar en la Universidad de Cornell.
+>Si hacen clic aquí a la derecha, encontrarán este documento que evalúa grandes modelos de lenguaje entrenados con código.
+>
+>¿Cómo funciona esto?
+>
+>Se podría decir que se basa en la métrica azul, como la traducción de un idioma a otro.
+>¿O cómo se puede evaluar si el código se está ejecutando correctamente, sabiendo que existen múltiples problemas para múltiples soluciones a cualquier tipo de problema?
+>Bueno, veamos esto porque creo que es un poco más fácil.
+>
+>La idea es que hay 164 desafíos de programación, y la forma de evaluar el código generado es simplemente midiendo la similitud del texto en lugar de la corrección funcional.
+>La evaluación humana se centra en si el código generado puede resolver cualquier número de problemas al pasar las pruebas unitarias.
+>
+>La idea es que si se pasan las pruebas unitarias, la solución se considera un éxito.
+>Sí.
+>Esta es la idea principal, ya que se puede usar un + B o la ordenación de muchas maneras, pero la idea es que se apruebe la prueba unitaria.
+>
+>Para esto existe la métrica k o k superada. Esta métrica evalúa la corrección funcional de las muestras de código generadas determinando la probabilidad de que al menos una de las k mejores muestras generadas pase todas las pruebas unitarias.
+>La idea es que, de nuevo, todo se trata de probabilidades y de aprobar las pruebas unitarias.
+>
+>No los voy a molestar demasiado con esto. Les mostraré un ejemplo de un problema.
+>Si se desplazan hacia abajo,
+>encontrarán algunos problemas.
+>
+>Por ejemplo, proporcionarán una cadena de palabras separadas por comas o espacios.
+>
+>Su tarea es dividir la cadena en palabras y devolver cualquiera de ellas.
+>Aquí tienen un ejemplo.
+>Correcto.
+>Y aquí tienen muchas opciones de finalización.
+>Correcto falso, falso incorrecto incorrecto correcto.
+>Y así sucesivamente.
+>
+>Este es un ejemplo de un problema.
+>Bien.
+>¿Cómo se ve esto en nuestro código?
+
+1. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+2. Veo en el archivo del repositorio [`H_Eval.py`](https://github.com/danteachqe/LLMs/blob/main/LLM/H_Eval.py), que debo instalar al menos una biblioteca: </br> `pip install deepeval`
+3. Creo el archivo **`src/test/LLM/H_Eval.py`** y copio el contenido del archivo el paso 2.
+4. Le hago unos ajustes al tema de `OPEN_AI_API_KEY`.
+5. Ejecuto en la `TERMINAL` con el Ambiente Virtual de Python, este comando: </br> `python ./src/test/LLM/H_Eval.py` </br> Y obtengo este resultado:
+```bash
+openai_humaneval/test-00000-of-00001.par(…): 100%|██████████████████████████████████████████████████████████████████████████████████████| 83.9k/83.9k [00:01<00:00, 63.4kB/s]
+Generating test split: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████| 164/164 [00:00<00:00, 20139.54 examples/s]
+Filter: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 164/164 [00:00<00:00, 4555.25 examples/s]
+An error occurred during evaluation: name 'List' is not defined
+```
+6. Infortunadamente no funciona correctamente.
+7. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+### Quiz 3: Chapter Quiz
+
+>[!NOTE]
+>
+>![Quiz 3: Chapter Quiz](images/2025-09-04_172838.gif "Quiz 3: Chapter Quiz")
+>
+
+
 

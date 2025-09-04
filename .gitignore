@@ -141,3 +141,4 @@ vite.config.ts.timestamp-*
 # Vector Database for RAG testing
 **/.faiss/*
 **/.faiss_index/*
+*.jsonl

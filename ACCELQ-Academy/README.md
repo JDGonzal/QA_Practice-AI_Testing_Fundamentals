@@ -467,3 +467,151 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 
 
+
+
+### ▶️ Working with Logic Editor for building custom logic
+
+1. En este video aprenderemos cómo ampliar y crear lógica personalizada, como generación de datos aleatorios, conexión a una base de datos o trabajo con archivos, etc., más allá de la grabación normal que se realiza para las interacciones de la interfaz de usuario.
+2. AccelQ incorpora un potente editor lógico creado sobre una interfaz de lenguaje natural que le permite lograr todo esto y mucho más de forma tan sencilla como grabar interacciones de UI.
+3. Acá tenemos un Escenario para verificar transferencia de fondos en "QBAnk": </br> !["Scenario -> Verify Founds Transfer on QBank](images/2025-09-05_072532.png "Scenario -> Verify Founds Transfer on QBank")</br> Ahora, en el cuarto paso, la acción implica completar la información de transferencia de fondos.
+
+
+
+4. Ahora déjame abrir esto y trataremos de mejorar esta lógica: </br> ![Action -> Populate Founds Transfer Info](images/2025-09-05_073147.png "Action -> Populate Founds Transfer Info") </br> Como puede ver, el campo de nota aquí recibe un valor de prueba codificado que queremos reemplazar con un valor aleatorio cada vez que se ejecuta la prueba y, además, no estamos completando el campo de fecha aquí que queremos establecer dinámicamente en la fecha del día siguiente cada vez que se ejecuta la prueba.
+
+
+
+5. Veamos cómo podemos lograrlo. Antes de mejorar esta lógica, abramos la aplicación </br> ![Recorder](images/2025-09-05_074024.png "Recorder") </br> Ahora, si miro la grabadora aquí, aún no ha abierto la aplicación.
+
+
+6. Así que primero llevemos la grabadora a la página correcta. </br> ![Record side](images/2025-09-05_074616.png "Record side")
+
+
+7. Así que volveré al escenario. Haré clic en reproducir: </br> ![Playback / Edit Steps](images/2025-09-05_075243.png "Playback / Edit Steps")
+
+
+
+8. Ahora aquí seleccionaré las tres primeras declaraciones o _statements_ y haré clic en el botón de reproducción: </br> ![PLAYBACK (Selección 3 primeros)](images/2025-09-05_075610.png "PLAYBACK (Selección 3 primeros)")
+
+
+9. Ahora esto iniciará la aplicación y seguirá los pasos para llegar a la página correcta:</br> ![Recording is ON](images/2025-09-05_083402.png "Recording is ON")
+
+
+10. Ahora que la aplicación está en la página correcta, naveguemos a la acción, clic en el paso 4️⃣ : </br> ![.](images/2025-09-05_085234.png "Action -> PopulateFunds Transfer Info") </br> Aquí en el campo de nota queremos reemplazar esta prueba con un texto aleatorio.
+
+
+
+11. Entonces seleccionaré esta declaración o paso y presionaré [`SHIFT`] + [`ENTER`]</br> ![Nueva Declaracion -> [`SHIFT`] + [`ENTER`]](images/2025-09-05_090401.png "Nueva Declaracion -> [`SHIFT`] + [`ENTER`]") </br> Para crear una nueva declaración antes de esta y comencemos escribiendo la intención que es obtener un texto aleatorio.
+
+
+12. Ahora, de las opciones que aparecen, elegiré la opción obtener `Get Random String With Length In Range` : </br> ![Get Random String With Length In Range](images/2025-09-05_090822.png "Get Random String With Length In Range")
+
+
+13. Y tenemos la opción de seleccionar alfabético o alfanumérico o numérico: </br> ![Opciones para el valor aleatorio](images/2025-09-05_091234.png "Opciones para el valor aleatorio") </br> Escojo alfabético.
+
+
+
+14. Aquí y luego podemos elegir la longitud mínima de la cadena, digamos 1 y presionar Enter y la longitud máxima, déjame configurarla en 5 y presionar Enter: </br> ![Mínimo y Máximo](images/2025-09-05_091602.png "Mínimo y Máximo") </br> Y ahora, como esta información es necesaria en la siguiente declaración o _statement_, necesitamos capturar la salida de este comando.
+
+
+15. Entonces presionaré capturar aquí y hay dos formas diferentes o dos tipos diferentes de parámetros en los que puedes almacenar esta información: </br> ![Capture Result](images/2025-09-05_091936.png "Capture Result") </br> Una es una salida de acción, lo que significa que la información que capture aquí estará disponible fuera de esta acción en el escenario y la segunda es un parámetro local en el que la información se almacenará en una variable disponible solo en esta lógica.
+
+
+16. En este caso, elegiré el parámetro local, ya que es un requisito, y le daré un nombre representativo. </br> ![.](images/2025-09-05_092451.png "") </br> Lo llamaremos `memo text`.
+
+
+
+17. Presiono Enter. Luego, presiono Esc para salir del modo de edición y hago clic en el `test` del paso 5️⃣ para cambiarla a la variable: ![Cambiando por la variable](images/2025-09-05_092816.png "Cambiando por la variable")
+
+
+18. Ahora nuevamente hay dos maneras: puede hacer clic en este pequeño ícono aquí y elegir la opción de parámetro local: </br> ![Local Parameter](images/2025-09-05_093111.png "Local Parameter")
+
+
+
+19. o simplemente permanecer en el literal y comenzar a escribir el nombre del `memo text`: </br> ![memo text](images/2025-09-05_093414.png "memo text") </br>Al empezar a escribir, verás que aparece el mensaje que emite el parámetro local. Selecciónalo y ahora se convertirá en `memo text`.
+
+
+20. Puedes comprobarlo seleccionando estas dos afirmaciones y haciendo clic en "Reproducir". El texto introducido debería ser algo aleatorio, como puedes ver aquí: </br> ![Memo <- memo text](images/2025-09-05_093902.png "Memo <- memo text")
+
+
+
+21. Ahora tomemos una extensión aquí y creemos otra declaración o paso donde queremos ingresar la fecha de transferencia como una fecha que siempre será un día en el futuro a partir de la fecha actual. Seleccionamos el paso 3️⃣ </br> ![Paso número 3️⃣](images/2025-09-05_094431.png "Paso número 3️⃣")
+
+
+22. Presionamos [`SHIFT`] + [`ENTER`] Comenzaré a escribir la intención de nuevo. Aquí quiero obtener la fecha futura. Así que simplemente diré `date future`: </br> ![date future](images/2025-09-05_094810.png "date future") </br>Así que no tienes que recordar el nombre del comando. Puedes ver que escribí "fecha futura" y luego aparece "agregar a fecha y hora".
+
+
+23. Quizás esto sea lo que quiero usar. Así que permítanme seleccionar este comando relevante y especificar las entradas, que son bastante intuitivas. Aquí quiero `Add to date time`. </br> ![Add to date time](images/2025-09-05_095259.png "Add to date time")
+
+
+
+24. Presiono Enter una vez y el criterio de duración es días:  </br> ![add 1 day](images/2025-09-05_100150.png "add 1 day")
+
+
+25. Y el criterio de fecha y hora es la fecha actual, ya que es a la fecha actual a la que quiero agregar un día: </br> ![date time criteria -> current](images/2025-09-05_100431.png "date time criteria -> current")
+
+
+
+
+26. También pueden configurar el formato aquí y capturar la salida en una variable llamada fecha de transferencia o similar. Podemos proceder de la misma manera que para el campo memo. Entonces déjame presionar escape para salir de esto: </br> ![Action -> Populate Funds Transfer Info (Completed)](images/2025-09-05_100851.png "Action -> Populate Funds Transfer Info (Completed)")
+
+
+27. El mismo concepto se aplica a la automatización o creación de lógica para otras tareas, como leer un archivo de Excel. Al final presionamos [`SHIFT`] + [`ENTER`] </br> ![.](images/2025-09-05_101254.png "")
+
+
+
+28. Por ejemplo, supongamos que desea trabajar con archivos de Excel y simplemente escribe "`Excel read`". </br> ![Excel read](images/2025-09-05_101552.png "Excel read") </br> De nuevo, no es necesario recordar los nombres de los comandos; simplemente escriba su intención y verá que aparecen comandos como "get raw count in Excel file" y otros que se pueden usar para trabajar con archivos de Excel.
+
+
+29. Por ejemplo, si desea trabajar con una base de datos, simplemente escriba "`database oracle`" y verá los comandos que puede usar: </br> ![database oracle](images/2025-09-05_101823.png "database oracle") </br> Así que todo está a tu alcance.
+
+
+
+
+30. Para obtener más ayuda sobre un comando en particular, puedes hacer clic en este icono de información. </br> ![SELECT COMMAND / ACTION -> Information ℹ️](images/2025-09-05_102307.png "SELECT COMMAND / ACTION -> Information ℹ️") </br>
+
+
+
+31. Más información te llevará a la barra lateral con ayuda adicional: </br> ![More Info](images/2025-09-05_102806.png "More Info") </br>  También puedes observar que cada comando proviene de una biblioteca.
+
+
+32. Puedes hacer clic en el nombre de la biblioteca y explorar las opciones disponibles. </br> ![LIBRARY -> Database Automation](images/2025-09-05_103023.png "LIBRARY -> Database Automation")
+
+
+
+33. También puedes hacer clic en este icono de expansión para ver todos los detalles. </br> ![Expand All](images/2025-09-05_103207.png "Expand All")
+
+
+34. También puedes acceder a él desde el centro de ayuda aquí. </br> ![Help Center ❔](images/2025-09-05_103501.png "Help Center ❔")
+
+
+
+35. El editor de lógica es muy completo y ofrece una gama de funciones. Puedes explorar la barra de herramientas aquí y hacer clic derecho en las declaraciones o _statements_ o pasos para obtener varias opciones. </br> ![clic derecho en las declaraciones o _statements_ o pasos](images/2025-09-05_103749.png "clic derecho en las declaraciones o _statements_ o pasos") </br> Así, cualquier lógica personalizada que necesites para tu automatización se puede realizar aquí.
+
+
+
+36. También puedes obtener ayuda rápida  </br> ![Help in statements](images/2025-09-05_104035.png "Help in statements")
+
+
+
+
+37. En esta sección de introducción al editor de lógica: </br> ![Get Started with Logic Editor](images/2025-09-05_104254.png "Get Started with Logic Editor")
+
+
+
+
+38. Puedes desplazarte hacia abajo y encontrar algunos de los atajos que puedes usar: </br> ![Creating statements form Logic Editor](images/2025-09-05_104436.png "Creating statements form Logic Editor")
+
+
+
+
+
+
+
+
+>[!IMPORTANT]
+>
+>[![logic_editor](images/2025-09-05_071635.gif "Haz clic aquí y mira el video `logic_editor`")](videos/06_logic_editor.mp4) 
+>
+
+

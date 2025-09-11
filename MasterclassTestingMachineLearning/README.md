@@ -5446,3 +5446,465 @@ An error occurred during evaluation: name 'List' is not defined
 
 
 
+
+
+## Section 11: LLM Functional Testing - Traditional Software Perspective
+
+
+### 70. Basic Content Generation Testing for LLMs
+
+>[!NOTE]
+>
+>Comenzaremos con el tipo de prueba más básico que se pueda imaginar para estos grandes modelos de lenguaje.</br>
+>También podría llamarse prueba de humo o _Smoke Test_.</br>
+>Es una prueba sencilla que busca validar la funcionalidad de un modelo de lenguaje.
+>
+>Esto significa que intentas generar un video y, si se genera, la prueba es exitosa.
+>Esta es la parte de un _Smoke Test_.
+>No miras el contenido.
+>Ves que se puede generar.
+>Y al final explicaré por qué no miramos el contenido.
+>
+> * Entonces, quizás quieras generar una imagen.
+>Así que, nuevamente, validas que tienes la capacidad de generar esta imagen.
+> * O quizás quieras generar algún tipo de archivo de audio, generar texto o conectarte a la API.
+>Así que llamas a estas diferentes API y envías tus indicaciones o lo que quieras hacer, y obtienes una respuesta a través de la API.
+> * O simplemente puedes validar que tu modelo de lenguaje grande tiene la capacidad de razonar, o tal vez de interpretar nuevos datos.
+>
+>Así que, digamos que estas son las fáciles, ¿verdad?
+>
+> * La prueba obvia que se debe realizar al validar cualquier modelo lingüístico extenso.
+>Y ahora, permítanme explicarles por qué no es importante para lo que se genera.
+>
+> * Porque parte de esta prueba se verá la capacidad de pensar, la capacidad de comprender a las personas, de comprender las emociones, y eso debe alimentarse al motor a través del procesamiento del lenguaje natural. Para obtener un resultado correcto, si no se obtiene, significa que se requiere un paso intermedio.
+> * De nuevo, esta comprensión de la sintaxis, la comprensión de las emociones o el PLN no se están realizando correctamente.
+>El resultado es incorrecto, y eso será un aspecto aparte de la validación de su modelo lingüístico extenso, o quizás de sus modelos base.
+>
+
+
+### 71. Temperature Testing of LLMs
+
+>[!NOTE]
+>
+>![Google AI Studio -> Temperatura](images/2025-09-10_144056.png "Google AI Studio -> Temperatura")
+>
+>Para entender cómo probar la temperatura de un modelo,
+>Primero que nada, necesitamos entender qué es la temperatura.
+>
+>Ahora estoy escuchando Google AI Studio porque me proporciona una interfaz de usuario donde puedo configurar el modelo.
+>Umm, normalmente, si vas a Gemini, a Google Gemini Comm, no puedes hacer eso.
+>Pero aquí tengo esta función.
+>
+>Entonces, ¿cuál es exactamente esta temperatura?
+>Como pueden ver, 1.5 Pro tiene un control deslizante entre >0 y 2, mientras que el otro modelo tiene entre 0 y 1.
+>Así que la temperatura en sí misma es un medidor de aleatoriedad.
+>
+> * Con cero, la aleatoriedad es casi nula.
+> * Con uno, puedes obtener diferentes elementos aleatorios, diferentes resultados aleatorios en tu respuesta, y quieres tener esto cuanto más contenido se genere.
+>Creativo.
+>Eh, para ser inspirador, etc.
+>
+>Quieres que esto sea lo más cercano a uno.
+>Cuantos más datos necesites, más cerca de cero debes ajustarlo.
+>Así es como nacen las alucinaciones.
+>
+>Cuando tienes este valor cerca de uno y obtienes un resultado factualmente incorrecto, se trata de una alucinación.
+>Y esto se debe a que has configurado tu modelo de lenguaje general para que te dé resultados aleatorios, llamémoslos alucinaciones.
+>
+
+### 72. Functional Completeness for AI Models
+
+>[!NOTE]
+>
+>![Imagine a scenario set in the year 2150](images/2025-09-10_150811.png "Imagine a scenario set in the year 2150")
+>
+>Ahora veamos un ejemplo de completitud funcional y razonamiento avanzado.
+>He creado una especie de consigna compleja.
+>Veamos la primera parte de la consigna, donde establecemos todo el contexto.
+>```txt
+>CQ
+>Imagine a scenario set in the year 2150, where humanity has made significant advancements in technology, particularly in artificial intelligence and space travel. In this future, Earth's governments have unified under a single global entity known as the Earth Alliance, which has established colonies on Mars and the Moon. A new form of digital currency, called TerraCredits, is the standard medium of exchange across all human settlements in the solar system. Additionally, an Al-driven platform named "Genesis" controls all aspects of daily life, from managing environmental controls on the colonies to personal finance and job assignments.
+>
+>A group of scientists on Mars has discovered an ancient alien artifact that, when interfaced with, has unexpectedly integrated alien technology into Genesis, leading to unforeseen enhancements in its capabilities. These enhancements include the development of a new form of communication that surpasses verbal and written language, termed "Quantum Semiotics," allowing humans and Al to exchange complex ideas instantaneously.
+>```
+>Y ahora viene la segunda parte del enunciado.
+> * Su tarea consiste en analizar las implicaciones éticas de integrar tecnología extraterrestre en Génesis. Así, este sistema de IA analizará cómo la introducción de la semiótica cuántica podría transformar las relaciones humanas con la IA.
+> * Reflexione sobre los posibles desafíos socioeconómicos.
+> * Cree una narrativa breve.
+> * Se trata de crear la historia de una vida o de cómo es un día en la vida de una familia típica.
+>Y también lo estoy contando.
+> * Asegúrese de que su respuesta integre una comprensión integral de las tendencias tecnológicas actuales, etc.
+>
+>**¿Por qué es esto tan desafiante?**
+>
+>![¿Por qué es esto tan desafiante?](images/2025-09-10_151442.png "¿Por qué es esto tan desafiante?")
+>
+>Bueno, primero que nada, quiero que el modelo de lenguaje amplio comprenda e integre conceptos avanzados.
+>Esta es la primera parte.
+>Luego también añado razonamiento ético.
+>
+>¿Cuáles son los riesgos y beneficios de la tecnología futurista? Luego, el análisis de impacto.
+>Necesita especular sobre lo que podría suceder.
+>Porque todo aquí se hace con mucha cautela.
+>Porque especula, analiza.
+>
+>Por lo tanto, necesita cambiar entre una temperatura baja y una temperatura alta.
+>Y luego, narrativa creativa.
+>Así que también quiero tener la capacidad de contar historias, además de razonar.
+>Sí.
+>
+>Así que contrastan entre sí, y luego la cohesión y la profundidad.
+>
+>La respuesta debe ser coherente y estar lógicamente estructurada. Este es un ejemplo de una instrucción que podrías probar para ver si tu modelo de lenguaje completo tiene la capacidad de razonar para dar respuestas complejas y también para cambiar la temperatura de alta a baja dentro de la misma instrucción.
+>
+
+
+### 73. Testing Functional Correctness of AI Models
+
+>[!NOTE]
+>
+>[![Google’s AI chatbot Bard makes factual error in first demo](images/2025-09-10_161429.png "Google’s AI chatbot Bard makes factual error in first demo")](https://www.theverge.com/2023/2/8/23590864/google-ai-chatbot-bard-mistake-error-exoplanet-demo)
+>
+>Antes de mostrarles qué es realmente una corrección funcional,
+>veamos un error factual y lo que podría significar para un modelo de lenguaje amplio.
+>Cuando se lanzó Googlebot y ahora se llama Gemini, aparecieron algunas imágenes y había un error.
+>
+>El error se refería al primer telescopio que, en la historia, tomó una foto de un planeta fuera del sistema solar.
+>Google dice que es el Telescopio Espacial James Webb, y en realidad es otra cosa.
+>Y, como saben, aquí es donde reside el problema.
+>Así que se trata de un error factual.
+>
+>Y, por supuesto, se trata de un problema con los datos de entrenamiento.
+>Pero ahora veamos qué significa realmente.
+>
+>**Corrección funcional.**
+>
+>![Funcional Correctness](images/2025-09-10_165700.png "Funcional Correctness")
+>
+>Estoy bastante seguro de que pueden imaginar lo que esto significa: la corrección funcional se refiere a la idea de, >en primer lugar, completar la tarea.
+>
+>Por lo tanto, se necesitan, en primer lugar, habilidades de razonamiento para comprender la tarea.
+>Y luego, puede completar la tarea o puede solicitar más información para completarla.
+>
+>Y llegaremos a esa relevancia.
+>¿Responde?
+>En primer lugar, sobre el tema que has preguntado, se trata de la coherencia.
+>¿Es fácil de entender ahora?
+>
+>¿Es consistente?
+>
+>Y luego debe evitar errores factuales como los que vimos en el ejemplo anterior.
+>Pero, de nuevo, esto no se debió a que el algoritmo o el proceso de aprendizaje automático fueran deficientes.
+>
+>Sino a que los datos de entrenamiento en sí no estaban completos para proporcionar la respuesta completa o correcta, lo que podría deberse a que se proporcionaron datos de entrenamiento sesgados o incompletos.
+>
+>Y, por supuesto, todo se reduce a la precisión. Se trata de que la información se cree a partir de fuentes fiables.
+>Responder a preguntas factuales con los datos correctos o con una traducción correcta.
+>
+>O quizás mostrar la fuente de los datos.
+>Veamos cómo se vería esto en cualquier modelo de lenguaje extenso.
+
+
+### 74. Testing for Accuracy in case of ML Models
+
+>[!NOTE]
+>
+>![Accuracy Testing](images/2025-09-10_170404.png "Accuracy Testing")
+>
+>Ahora hablemos un poco sobre las pruebas de precisión.
+>Y te gustaría que tu modelo lingüístico general proporcionara respuestas precisas.
+>Porque si no lo hace, es simplemente una forma de ser creativo.
+>Y lo que vemos actualmente en todo el mundo es esta tendencia a reemplazar a los humanos con diferentes genitales.
+>
+>Pero los humanos solo pueden ser reemplazados si las respuestas que proporcionan las herramientas son similares a las humanas, es decir, precisas.
+>Por lo tanto, las pruebas de precisión se refieren a todo el proceso de evaluar si los resultados del modelo lingüístico general o del modelo base son correctos, veraces o tienen el resultado deseado.
+>Y para comprobarlo, existen muchísimas maneras diferentes; he seleccionado solo cuatro de ellas.
+>
+> * Por ejemplo, este método Blue Ridge.</br>
+>Hay diferentes maneras de evaluar si un modelo lingüístico general traduce el texto correctamente de un idioma a otro como debería.
+>Básicamente, en este caso, lo que se busca es un texto extenso, ya sea complejo o simple.</br>
+>Supongamos que se trata de una página y se desea comprobar si, al traducir, por ejemplo, del inglés al alemán, la traducción proporcionada por el modelo de lenguaje extenso es lo más precisa posible.</br>
+>No tiene sentido traducir cada palabra, pero si se pierde el contexto, si gramaticalmente no tiene sentido, etc.
+>Hay maneras de evaluar esto, pero una forma de comprobar la precisión es pedirle al modelo de lenguaje extenso que realice una traducción.
+>
+> * La otra se refiere a la perplejidad.</br>
+>La perplejidad se refiere a la idea de predecir estadísticamente cuál es el mejor resultado para una situación determinada.</br>
+>Esto significa que si comienzo una oración y le pido al modelo de lenguaje general que la termine, para mí, debería tener el mayor sentido estadístico.
+> * La finalización completa que obtendré debe ser una evaluación específica del dominio.</br>
+>Por lo tanto, los modelos de lenguaje general también pueden entrenarse para tareas específicas.
+>Por ejemplo, diagnósticos médicos a partir de texto e imágenes.</br>
+>Pueden ser herramientas de traducción especiales.
+>Pueden ser cualquier tipo de herramienta relacionada con la codificación y el desarrollo, que se entrena específicamente para escribir código o crear una historia de usuario, etc.</br>
+>Y en este caso, debes asegurarte de evaluar tu modelo base en tareas específicas de un tema o industria en particular.
+>También veremos algunos ejemplos.
+> * Otra forma de evaluar la calificación es la evaluación cualitativa. Esto significa básicamente que tú, como humano, intentarás evaluar las respuestas proporcionadas por el modelo de lenguaje general, pero buscas relevancia o coherencia.</br>
+>Así que te gustaría comprender o validar que el modelo responderá de la misma manera que le preguntaste.
+>Así que mantendrá la tonalidad, lo que le permitirá comprender el contexto.</br>
+>Y el mejor ejemplo que tendremos en este caso es la narración.
+>Y eso es realmente genial.
+>Lo analizaremos.
+
+
+### 75. Repeatability Testing for ML Models
+
+>[!NOTE]
+>
+>Uno de los parámetros más importantes para cualquier modelo de lenguaje extenso es la capacidad de obtener resultados constantes.
+>En nuestro caso, esto se refiere a las pruebas de repetibilidad, ya que si se intenta sustituir a un humano,
+>y se intenta asignar a un modelo de lenguaje extenso cualquier tarea que se desee que sea predecible
+>y repetible, de modo que cada vez que alguien le pregunte a su modelo base: "¿Cuál es la respuesta a esto?"
+>
+>¿O cómo lo hago?
+>
+>Se busca que sea siempre consistente con la forma de hacerlo.
+>Aquí es donde entran en juego las pruebas de repetibilidad.
+>¿Y qué son?
+>Bueno, se refieren a evaluar la consistencia con la que un modelo de lenguaje extenso produce el mismo resultado para una entrada y configuración determinadas.
+>Esta es la definición.
+>
+>![Reparability Testing](images/2025-09-11_103350.png "Reparability Testing")
+>
+>Pero al final, ¿por qué necesitamos esto?
+>
+> * En primer lugar, como ya he dicho, se trata de la **fiabilidad**.
+>Así que se busca que sea fiable.
+>Y para cualquier tarea, se buscan resultados consistentes.
+>
+> * El siguiente punto es la **depuración**.
+>Por supuesto, un modelo de lenguaje extenso no funcionará a la perfección desde el principio.
+>Así que se busca la capacidad de depuración.</br>
+>Al igual que en el desarrollo de software, la fiabilidad también está relacionada con la depuración.
+>Cuanto más fiable sea, más se podrá depurar y más se podrá ajustar cualquier tipo de modelo.</b>
+>Y luego se trata de la evaluación comparativa.
+>¿Por qué?</br>
+>Bueno, es fácil porque hoy en día, los modelos básicos o los modelos de lenguaje extensos tienden a compararse entre sí.
+> * Entonces, si su modelo de lenguaje extenso no puede, al menos, proporcionar resultados fiables o repetibles, ¿cómo puede intentar probarlo de una versión a otra? Porque quizás en la versión 3 de GPT se hagan algunas preguntas y luego en la 3.5 la misma pregunta, pero podría obtener un resultado diferente.</br>
+>Por lo tanto, desea que sea repetible para poder realizar todo este tipo de evaluación comparativa.
+>
+>Al igual que en el desarrollo de software, la confiabilidad también está relacionada con la depuración.
+>
+>Continuando, veamos cómo podemos probar realmente esta repetibilidad.
+>
+> * Bueno, la primera forma de hacerlo, que es la más obvia, como pueden imaginar, es mediante la **indicación idéntica**.
+>Así que tomas la misma indicación y la introduces varias veces en el mismo modelo de lenguaje extenso, y luego ves el resultado.</br>
+>Por supuesto, si intentas ser muy creativo y dices generar una historia, probablemente obtendrás resultados diferentes, pero para una pregunta muy estricta que solo puede proporcionar, digamos, una buena respuesta, entonces querrás usar este tipo de indicación idéntica.
+> * El siguiente tema trata sobre las **indicaciones parafraseadas**.
+>¿Y qué significa esto?
+>Significa que estás creando varias indicaciones que tienen el mismo significado, pero usan diferentes frases o palabras, pero expresan la misma idea.
+>No te preocupes, tendremos muchos ejemplos de cómo podemos usar esto.
+>
+> * ¿Cómo podemos probarlo?
+>Y luego se trata de la **temperatura**.
+>Como ya comentamos, la temperatura implica aleatoriedad.
+>Cuanto más alta sea la temperatura, menos predecible será el modelo.</br>
+>Cuanto más baja sea la temperatura, más predecible o repetible será su comportamiento.</br>
+>En este caso, se puede experimentar con la temperatura y ver si una temperatura baja proporciona una característica repetible.</br>
+>Y una temperatura más alta genera más caos.
+>
+> * Y, por supuesto, se podría añadir otra información.
+>Esto se logra simplemente estableciendo un contexto muy específico.
+>Y luego se observa si una indicación proporciona el mismo resultado.</br>
+>Esto proviene de un algoritmo rag, donde se proporciona un número y, digamos, se trabaja a partir de él.
+>
+>
+
+### 76. Multimodal Testing of AI Models | LLMs
+
+>[!NOTE]
+>
+>Las pruebas multimodales, como su nombre indica, consisten en probar diferentes funcionalidades del mismo modelo dentro de una misma instrucción.
+>
+>Para simplificar, imaginemos que utilizamos un modelo de lenguaje extenso que permite introducir algo más que texto simple.
+>
+>Normalmente, los modelos actuales admiten una entrada: una instrucción junto con un archivo de vídeo, una imagen, algún tipo de sonido o simplemente otro texto; por ejemplo, un archivo PDF con texto.
+>
+>Las pruebas multimodales implican proporcionar diferentes tipos de entrada.
+>
+>Es decir, texto junto con algo más, y luego queremos identificar todo lo que contiene.
+>
+
+### 77. Invariance Testing for ML Models
+
+>[!NOTE]
+>
+>![Invariance Testing](images/2025-09-11_105241.png "Invariance Testing")
+>
+
+
+### 78. Python Demo - Invariance Testing Gemini and ChatGPT and hugging face models
+
+
+1. Partimos de la base de crear el archivo **`Semantic.py`** y copiar el contenido del respositorio [`Semantics.py`](https://github.com/danteachqe/LLMs/blob/main/LLM/Semantics.py)
+2. Levanto el Ambiente Virtual de Python en una `TERMINAL` con el comando: </br> `.venv/Scripts/activate`
+3. Instalo la libreria(s) faltante(s), en este caso [sentence-transformers 5.1.0](https://pypi.org/project/sentence-transformers/):
+```bash
+pip install -U sentence-transformers
+pip install tf-keras
+pip install openai==0.28
+```
+4. Ejecutamos en la terminal este último archivo: </br> `python ./src/test/LLM/Semantics.py`
+5. La respuesta obtenida fue:
+```bash
+modules.json: 100%|██████████████████████████████████████████████████████████████████████████████████████████████████████████| 349/349 [00:00<00:00, 1.88MB/s]
+config_sentence_transformers.json: 100%|██████████████████████████████████████████████████████████████████████████████████████| 116/116 [00:00<00:00, 604kB/s]
+README.md: 10.5kB [00:00, 25.1MB/s]
+sentence_bert_config.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████| 53.0/53.0 [00:00<00:00, 295kB/s]
+config.json: 100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████| 612/612 [00:00<00:00, 4.29MB/s]
+model.safetensors: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 90.9M/90.9M [00:08<00:00, 11.2MB/s]
+tokenizer_config.json: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████| 350/350 [00:00<00:00, 1.94MB/s]
+vocab.txt: 232kB [00:00, 9.07MB/s]
+tokenizer.json: 466kB [00:00, 20.1MB/s]
+special_tokens_map.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████| 112/112 [00:00<00:00, 345kB/s]
+config.json: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████| 190/190 [00:00<00:00, 502kB/s]
+Semantic Similarity Scores between Responses:
+tensor([[1.0000, 0.8289, 0.7928],
+        [0.8289, 1.0000, 0.8549],
+        [0.7928, 0.8549, 1.0000]])
+```
+6. Una vez terminada la prueba salirnos del Ambiente Virtual de Python con el comando: </br> `deactivate`
+
+
+### 79. Bidirectional Testing for ML Models
+
+>[!NOTE]
+>
+>![Bidirectional Testing](images/2025-09-11_150653.png "Bidirectional Testing")
+>
+
+
+
+### 80. Efficiency and Simplicity Validations
+
+>[!NOTE]
+>
+>Ahora bien, sabemos que los grandes modelos de lenguaje, o básicamente los modelos de IA, consumen mucha energía y pueden utilizarse para resolver problemas realmente complejos.
+>
+>Por lo tanto, queremos validar que, cada vez que un modelo resuelve un problema, elige el método más sencillo, conveniente y, digamos, más económico.
+>
+>Más económico podría significar que se utilizan menos tokens o menos energía.
+>
+>Para ello, tenemos esta sencilla ecuación lineal.
+>Básicamente, hay tres ecuaciones.
+>Necesitas resolver y ver cuáles son los números a, b y c.
+>
+>Para ello, compararemos ChatGPT con Google Gemini.
+>
+>Y veamos si ambos modelos eligen la forma más sencilla de resolverlo.
+
+
+### 81. Learning Ability- Chat GPT and Google Vertex AI
+
+>[!NOTE]
+>
+>![Learning Ability](images/2025-09-11_151227.png "Learning Ability")
+>
+>Si recuerdan que al principio hablamos del aprendizaje automático, les dije que la IA es simplemente una máquina estadística muy inteligente que puede extraer información relevante de los datos.
+>
+>Esto es básicamente la IA, ya sea generativa, visión artificial o cualquier otra cosa.
+>
+>La capacidad de un sistema de IA para aprender continuamente es fundamental.
+>
+>Y aquí es donde probaremos la capacidad de un sistema para aprender de los nuevos datos.
+
+
+### 82. Statistical Correctness for ML Models
+
+>[!NOTE]
+>
+>Así que necesito disculparme ahora mismo.
+>Necesitamos analizar un poco las estadísticas.
+>No demasiado, solo un poco.
+>
+>Para validar que tu sistema funciona correctamente, es decir, que predice la información correctamente, con base en evidencia estadística, necesitas realizar pruebas para ello.
+>
+>Por eso, necesitamos ver esto.
+>Estoy en Wikipedia, en la sección de [distribución de probabilidad](https://en.wikipedia.org/wiki/Probability_distribution).
+>Y aquí podemos abrir esto.
+>Digamos que esta imagen muestra la probabilidad de que algo suceda o la distribución.</br>
+>Digamos que no es probabilidad, sino distribución.
+>
+>Imagina una prueba de rendimiento y obtienes un amplio rango de números.</br>
+>Así que casi el 70% de tus resultados estarán en este intervalo.
+>Tendrás algunos resultados mucho mejores.
+>
+><img alt="Probability distribution" title="Probability distribution" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Standard_deviation_diagram_micro.svg/1280px-Standard_deviation_diagram_micro.svg.png" class="svg mw-mmv-dialog-is-open" width="400" height="200">
+>
+>Así que el tiempo podría ser bueno y luego tendrás algo peor, y el tiempo, por supuesto, sería peor.
+>Así que esta es la distribución de tu tiempo de respuesta. Si tienes, digamos, un millón de consultas, un millón de llamadas al backend o un millón, lo que sea, el 70 % estará en este rango.</br>
+>Y luego tienes un 15 %, lo que se llama un sentimiento del 15 %, y otro 15 %.
+>
+>Esto también es lo que utilizan modelos como ChatGPT y Gemini Llama para predecir lo que viene, porque dicen que el 70 % de todo está aquí.</br>
+>Así que lo más probable es que este sea el siguiente token.
+>Sí.
+>Esto podría significar la probabilidad de que un token siga a otro.
+>Para que esto sea más fácil de entender.
+
+
+### 83. LLM AI Testing - Long-Term Drift Testing
+
+>[!NOTE]
+>
+>**La deriva y la degradación.**
+>
+>![Drifting and Degradation](images/2025-09-11_152629.png "Drifting and Degradation")
+>
+>Es un concepto realmente interesante.
+>Y si se compara con otros programas tradicionales, creo que aquí es donde la capacidad de aprendizaje constante de un modelo de lenguaje extenso es realmente crucial.
+>
+> * La **deriva**, en términos simples, significa que los datos del modelo se vuelven obsoletos en comparación con los últimos avances en cualquier campo.
+>Esto significaría que si tu modelo deja de aprender, imaginemos que en 1997, tu chatbot o tu modelo de lenguaje extenso serían totalmente inútiles en el mundo actual.
+>
+> * El concepto de deriva significa que si no entrenas tu modelo con nuevos datos, el resultado deja de ser relevante para los avances que se están produciendo en la sociedad.
+>Veamos algunos de los conceptos de deriva que tenemos.
+>Tenemos tres tipos de conceptos:
+>   * El concepto de deriva.
+> Esto se refiere a cuando las propiedades estadísticas de una variable cambian con el tiempo.
+> Les daré un ejemplo.
+> Cambios en las normas sociales, en el uso del lenguaje y el significado de diferentes palabras.
+>   * Este es el cambio conceptual.
+> Creo que la etiqueta social en la moda es un mejor ejemplo.
+> Lo que se usaba hace diez años en la moda ya no se usa hoy.
+> Este es el cambio conceptual.
+> Es la idea de que las cosas están cambiando y que el modelo necesita actualizarse.</br>
+> El segundo ejemplo es el cambio de datos.
+> Esto podría significar que se trata de diferentes cambios en la distribución de datos.</br>
+> Por ejemplo, conceptos que se usan más ahora que antes, o viceversa.</br>
+>¿Qué es tendencia ahora y qué era tendencia?</br>
+>Hace un par de años.
+>Podría ser similar al concepto, pero, como pueden ver, se trata de distribución estadística.
+>Mientras que el concepto se centraba en el significado.
+>
+>   * Y el último tema que quiero abordar es el manejo de la desviación. Este concepto se refiere a la idea de que estás intentando crear un chatbot que sepa cómo responder a una consulta, y quizás hayas cambiado tus sistemas.
+> Quizás hayas cambiado tu política.
+> Por lo tanto, necesitas actualizar tu chatbot para que esté al tanto de las políticas, las actividades operativas y los manuales de usuario más recientes, para que reciba la información más reciente.
+> Esto es el manejo de la desviación y estos tres conceptos.
+> Son muy importantes para probar tu chatbot.
+>
+> * El concepto de desviación es muy sencillo.
+>Solo necesitas asegurarte de que estás probando o comparando el presente con el pasado, y así sabrás que siempre obtienes la información actual.
+>La desviación de datos se basa en la distribución estadística.
+>Así que, si tienes cualquier tipo de información o datos de distribución estadística, si cambias estos datos, puedes hacer preguntas.
+>
+>Entonces, ¿cuál es la probabilidad más alta de lo que sea?
+>Y dependiendo de la distribución estadística que tenga, su modelo le proporcionará lo más probable y manejable.
+>Todo se reduce a cambios en las actividades cotidianas.
+>
+
+
+### 84. [Demo ] - Vertex AI Learning Ability - Model Training - Manual
+
+
+### 85. [Demo ] - Vertex AI Learning Ability - Model Training - Json
+
+
+### Quiz 4: Chapter Quiz
+
+>[!NOTE]
+>
+>![Quiz 4: Chapter Quiz](images/2025-09-11_154016.gif "Quiz 4: Chapter Quiz")
+>
+
+
+
+
+

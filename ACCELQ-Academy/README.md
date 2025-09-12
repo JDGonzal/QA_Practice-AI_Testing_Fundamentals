@@ -615,3 +615,17 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 
 
+
+
+### 🚀 Pop Quiz: Extending and Building Custom Logic in Test Automation
+
+
+>[!NOTE]
+>
+>![🚀 Pop Quiz: Extending and Building Custom Logic in Test Automation](images/2025-09-12_090738.gif "🚀 Pop Quiz: Extending and Building Custom Logic in Test Automation")
+>
+
+
+
+
+

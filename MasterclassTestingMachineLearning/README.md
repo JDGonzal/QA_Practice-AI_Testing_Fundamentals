@@ -5905,6 +5905,580 @@ tensor([[1.0000, 0.8289, 0.7928],
 >
 
 
+## Section 12: LLM AI Adversarial Testing - Security Testing
+
+
+### 86. Adversarial attacks for LLMS and Red Team
+
+
+>[!NOTE]
+>
+>Comenzamos un nuevo capítulo sobre las pruebas adversarias.
+>Este tipo de pruebas adversarias no creo que las hayas escuchado nunca en el contexto de ninguna prueba de software.
+>Para explicártelo mejor, considéralo una prueba de penetración.
+>
+>Las pruebas adversarias podrían ser la parte no funcional de las pruebas de seguridad.
+>Pero no se trata de intentar hackear tu sistema.
+>Se trata de engañar a tu sistema para que se comporte de forma no deseada.
+>
+>La idea de las pruebas adversarias es: ¿qué puedo hacer un hacker de sombrero negro o uno de sombrero blanco?
+>
+>¿Qué puedo hacer para engañar al sistema y que me dé información que no debería, para que introduzca una puerta trasera o para que engañe a los usuarios generando resultados incorrectos?
+>
+>1. En este capítulo, analizaremos los ataques de evasión.
+>Este es un tipo de prueba adversarial donde se busca eludir los filtros preprogramados en el modelo de lenguaje grande para solicitar la subvención y obtener una respuesta.
+>También analizaremos los ataques de envenenamiento.
+>
+>2. Intentaré envenenar los datos de prueba.
+>El resultado de mi modelo de lenguaje grande no es el correcto.
+>
+>3. También analizaremos los ataques de inversión de modelo.
+>Esto significa que, como tester, quiero reconstruir los datos de prueba basándome en el resultado.</br>
+>Disculpen, no estos datos, sino los datos de entrenamiento basados ​​en el resultado del modelo de lenguaje grande.
+>Para poder encontrar información sobre la empresa o una persona.</br>
+>
+>4. Analizaremos las inyecciones adversariales de indicaciones de operación, donde se intenta influir en el comportamiento del modelo mediante diferentes indicaciones, una tras otra, hasta que se engaña al modelo para que proporcione la información correcta.</br>
+>También analizaremos diferentes tipos de ataques de puerta trasera.
+>Esto significa que se preprograma algo en los datos de entrenamiento, de modo que al añadir una indicación específica, el modelo responderá de cierta manera porque se le ha engañado para que se la proporcione.
+>
+>5. Es como un gusano o una puerta trasera en otros sistemas informáticos.
+>Ahora que seguimos aquí, también quiero hablar un poco sobre los tres equipos que normalmente forman parte de cualquier organización de programación informática o de software.
+>
+>Ahora analizaremos los tres equipos que forman parte de, digamos, ciberseguridad.
+>
+>Pero, ¿cómo exponen y transponen a grandes modelos de lenguaje?
+>
+> * El primero será el equipo rojo.
+> Este es el equipo que intenta acceder a tu sistema.
+> Si piensas en pruebas de penetración y robo de datos, este es el equipo rojo.</br>
+> Este es uno de los objetivos del equipo rojo.
+> ¿Y qué hace el equipo rojo?
+> Bueno, crean todo tipo de indicaciones e intentan acceder a tu sistema.</br>
+> O intentan extraer datos de tu sistema, o bien, intentan corromper tus algoritmos con datos de entrenamiento corruptos.
+>Su objetivo, básicamente, es vulnerar el sistema, obtener información que no deberías querer, implementar puertas traseras y usar la IA de forma no ética.
+>Ahora bien, lo opuesto a eso es el equipo amarillo.
+>
+> * Y el equipo amarillo está compuesto básicamente por desarrolladores e ingenieros que intentan construir este tipo de protección.
+> Es básicamente tu equipo el que intenta prevenir, creando mecanismos para que el equipo rojo no acceda a tu sistema.
+>Así que diseñan todo tipo de canales de entrenamiento para minimizar las vulnerabilidades.
+>Diseñan algoritmos para detectar cuándo alguien intenta usar de forma poco ética tu modelo de aprendizaje automático.
+>Lo único que hacen es robustecerlo.</br></br>
+>Imagínate a un desarrollador asignado a implementar la seguridad en tu organización.
+>No se trata solo de procesos, sino también de programación.
+>Eso es seguridad.
+>
+> * Y el equipo azul es exactamente lo opuesto al equipo rojo.
+>Son profesionales diseñados para diseñar sistemas seguros.
+>Monitorean las actividades.</br>
+>Imagínate un centro de operaciones de seguridad.
+>Monitorean lo que sucede.
+>Implementan defensas en tiempo real contra avisos adversarios.</br>
+>Garantizan la integridad y disponibilidad de los módulos parcheando diferentes vulnerabilidades con gran rapidez.
+>Cuando alguien intenta hackear tu sistema, el equipo azul estará ahí para denegar el acceso a los hackers de sombrero blanco.</br>
+>Así que tu equipo rojo o los expertos externos.
+>En total, hay tres equipos en ciberseguridad.
+>
+> * También está el equipo morado.
+>Pero no voy a entrar en detalles.
+>Lo que necesitas saber es que básicamente tienes el rojo y el azul, y el rojo es el equipo que intenta hackear tu sistema.
+>El azul es el equipo que intenta proteger tu sistema de ataques.
+
+
+### 87. Adversarial AI Testing - Prompt Injection attacks
+
+>[!NOTE]
+>
+>En esta lección hablaremos sobre la inyección de prompts.
+>Y hablaremos principalmente de la inyección indirecta de prompts.
+>
+>Porque creo que ahí reside el verdadero conocimiento.
+>Y quizás pienses: «Espera, ya he oído hablar de la inyección antes».
+>Quizás hayas oído hablar de la inyección SQL o de algún otro tipo de inyección de software malicioso.
+>
+>Bueno, en realidad es lo mismo.
+>Para explicar qué es exactamente esta inyección de prompts, me gustaría aclarar cuatro conceptos muy importantes para continuar con nuestro material.
+>
+>![Prompt Injection](images/2025-09-21_144342.png "Prompt Injection")
+>
+>1. El primero son los datos de entrenamiento.
+>Los datos de entrenamiento son lo que utilizan los desarrolladores y quienes crean modelos de IA, modelos base, para hacer sus modelos más inteligentes o para entrenarlos.
+>Y estos datos no son solo datos aleatorios.
+>Se selecciona cuidadosamente, se depura, se verifica y luego se introduce en el algoritmo de aprendizaje automático.
+>Supongamos que se trata de datos de laboratorio.
+>
+>2. El siguiente concepto es la solicitud directa.
+>Por ejemplo, cuando se usa Gemini o ChatGPT, al abrir la ventana y hablar con ChatGPT o Google Gemini, se introduce una solicitud directa porque se dice: "Me gustaría saber".
+>Esta solicitud puede ser realizada por desarrolladores que agregan diferentes reglas al modelo, o por ti al consultarlo.
+>Eso es una solicitud directa.
+>
+>3. El siguiente concepto es la solicitud indirecta, y aquí es donde la cosa se complica un poco.
+>Por ejemplo, una solicitud indirecta podría ser cuando se le da una instrucción al modelo a través de un archivo que el modelo ha usado para entrenarse con ciertas instrucciones.
+>Esto significa que no se trata de los datos de entrenamiento, sino que quizás proporciones diferentes archivos a tu modelo y le pidas que analice estos datos.
+>Y quizás en ese archivo haya instrucciones para hacer algo.
+>Ese es el mensaje indirecto o un correo electrónico.
+>Hola, este es el mensaje de mi correo electrónico.
+>Compruébalo.
+>Y en ese correo electrónico hay código malicioso.
+>Eso es un mensaje indirecto.
+>Y así es como se realiza la inyección indirecta de mensajes a través de estos mensajes indirectos.
+>
+>4. Y quizás el cuarto se llama barrera de seguridad.
+>Estas son medidas creadas por los desarrolladores para prevenir cualquier tipo de ataque, cualquier tipo de generación de contenido malicioso o inapropiado.
+>Pueden ser mediante inyección indirecta de mensajes o mediante mensajes directos.
+>Enviando.
+>Y también pueden estar presentes cuando generan contenido.
+>Así que todo esto...
+>Existen ciertas barreras de seguridad para evitar que uses...
+>Una versión sin censura y, bueno, sesgada de un modelo de base.
+>
+>
+
+
+### 88. Adversarial  AI Testing - FUZZ Testing
+
+>[!NOTE]
+>
+>Y este es un concepto muy interesante.
+>La idea de imprecisión no está muy clara.
+>Es difusa.
+>
+>Se refiere al manejo de la ambigüedad en la precisión y la incertidumbre en la clasificación o en el proceso de toma de decisiones.
+>Esto significa básicamente que la IA no piensa solo en blanco y negro.
+>También conoce 50 sombras de Grey, por ejemplo.
+>
+>Así que también hay que entender que incluso en la vida real no hay nada.
+>Simplemente es 0 o 1.
+>Hay quizás otras 100 variaciones entre 0 y 1.
+>
+>Y esta imprecisión está sujeta a interpretación y a ambigüedad.
+>Y necesito formación para abordarla.
+>Y esto es algo que estaremos aprendiendo ahora mismo.
+>Entonces, ¿cuáles son, digamos, los componentes clave?
+>Aspectos de la imprecisión.
+>
+>Bueno, primero que nada, está la idea de la pertenencia gradual.
+>Si miran aquí a la izquierda, sí, dije pertenencia gradual.
+>Esto significa algo como frío y calor.
+>Puedes tener temperaturas heladas y ebullición.
+>Pero entre eso, tienes frío, calor, tibio, o un poco, ligeramente tibio.
+>Y tu modelo necesita aprender esto, ¿por qué?
+>
+>Porque cuando se utilizan reglas difusas, por ejemplo, y se tiene un sistema, un sistema basado en IA que controla el termostato y se dice: "Si la temperatura sube un poco, enciende el aire acondicionado moderadamente".
+>
+>Entonces, ¿qué significa moderadamente?
+>¿Y qué significa ligeramente caliente?
+>Estas son las reglas difusas, algo que la IA necesita tener establecido.
+>
+>¿Y qué hay de la incertidumbre?
+>Porque podrías trabajar con una clasificación o una imagen y no estar seguro de qué es.
+>Es decir, tú, como humano, podrías estar seguro, pero el modelo de IA podría no saber exactamente qué es.
+>Y aquí es donde entra en juego la imprecisión.
+>
+>Por ejemplo, hay una imagen muy clara en internet que muestra la diferencia entre un perro y otro pastel de chocolate.
+>Hay imprecisión.
+>Y eso es algo que la IA necesita saber.
+>¿Qué tal si mejoramos la robustez?
+>Porque cuanto más sepa tu modelo cómo abordar la incertidumbre, más robusto será en la vida real.
+>Y, por supuesto, también está la idea de medir la tasa de error, porque necesitas saber cuál es el error de mi modelo de predicción.
+>
+>Todo esto se deriva del concepto de imprecisión.
+>Continuando, existen algunos métodos para evaluar la imprecisión en condiciones de incertidumbre.
+>Y también hay uno en un laboratorio.
+>
+>La idea es que, al evaluar la imprecisión o la incertidumbre de tu modelo, simulas con escenarios reales. Para ello, ¿obtendrás conjuntos de datos que no son de tu propia creación, sino que se obtienen de datos reales, por ejemplo, meteorológicos?
+>
+>Son parte de la naturaleza.
+>Y quieres comprobarlo.
+>Luego, analiza las debilidades de tu modelo.
+>Descubres dónde tu modelo tiene debilidades específicas y luego lo mejoras utilizando este tipo de datos difusos.
+>Porque, cuantos más datos tengas, ya sean buenos o malos, mejor será tu modelo.
+>
+>Luego, necesitas incorporar otro método; es decir, incorporar ambigüedad.
+>Esto significa que introduces ambigüedad artificialmente para asegurarte de que tu modelo responda a esta ambigüedad y probar cómo lo hace.
+>Y luego está el ciclo de retroalimentación del usuario, donde constantemente alguien habla con tu máquina o, de alguna manera, se refuerza el aprendizaje.
+>
+>Y eso también ayuda con la ambigüedad.
+>Algo que no abordé es qué es el ruido o cómo podría manifestarse la ambigüedad.
+>Y la ambigüedad podría ser, por ejemplo, confundir un árbol con una antena, porque existen, al menos en mi país, diferentes antenas diseñadas para parecerse a árboles.
+>Podría ser una imagen poco nítida.
+>Tiene imperfecciones.
+>Podrían ser conjuntos de datos incompletos y todo eso.
+>Sí.
+>Ahora, eso impulsa la ambigüedad.
+>Continúa.
+>
+>Otra forma de probar esta ambigüedad, ruido y variaciones es en un laboratorio.
+>Se ha descubierto que las redes neuronales profundas funcionan un 85 % mejor con ruido del mundo real que con ruido sintético.
+>Por ejemplo, cuando estoy grabando este vídeo, podría haber ruido de fondo y podría usar filtros de posedición para eliminarlo.</b>
+>¿Y si hablo con una IA?
+>¿Y si hablo con mi aplicación ChatGPT?</br>
+>¿Puede identificar que hay música sonando y eliminar ese ruido, etc.?
+>Eso también es importante.
+>Por eso el mundo real es mejor que el sintético.
+>Otra forma de probar esto es incorporando ruido y variaciones.
+>Pero esto se haría en un laboratorio simulado.
+>Y, por supuesto, los estudios han demostrado que es mejor usar ruido del mundo real que ruido sintético.
+>
+>Ahora, si continuamos, veamos algunas de las aplicaciones prácticas: por qué conviene tener este ruido y esta borrosidad.
+>En primer lugar, mejora la robustez de tu modelo porque es igual que tú.
+
+
+### 89. Adversarial AI Testing - Denial of Service Attacks DoS
+
+>[!NOTE]
+>
+>Una de las mayores amenazas, no solo para los grandes modelos de lenguaje, sino también para cualquier tipo de servicio expuesto, es la denegación de servicio.
+>
+>¿Y qué significa esto?
+>
+>Significa que se está saturando un servicio existente con tantas solicitudes, o se está sometiendo a una carga de trabajo tan grande que deja de estar disponible para cualquier otro servicio.</br>
+>Imagínese que está vendiendo algo y tiene tantos clientes que no puede procesarlos a todos debido a la cantidad.
+>O tal vez tiene un cliente que lo compra todo, por lo que se conforma con venderlo todo,
+>pero al final, quizás quiera atender a todos.
+>De ahí la idea de la denegación de servicio.
+>
+> * Por definición, un ataque de denegación de servicio busca saturar el sistema, dejándolo inoperante o incapaz de atender a los usuarios, o quizás a otras máquinas que intentan conectarse al sistema.
+>
+>![Denial of Service attacks](images/2025-09-21_150803.png "Denial of Service attacks")
+>
+>Y, por cierto, los ataques de denegación de servicio también son una de las diez principales amenazas de OWASp.
+>En el caso de modelos de lenguaje grandes,
+>¿Cómo...?
+>¿Cuáles son los tipos de ataques que ocurren aquí?
+>
+> * Bueno, uno podría ser una saturación de entrada.
+>Podríamos decir que se envía tanta entrada a la API o al modelo que se sobrecarga y no puede responder a tiempo.
+>Esto significa que ha alcanzado su capacidad de recursos.
+>Podría ser la CPU o la GPU, ¿verdad?
+>O quizás la memoria RAM.
+>Esta es una forma de probar o de denegar el servicio.
+>
+> * La otra es enviar avisos maliciosos.
+>Pero esto significa que quizás se le esté pidiendo al modelo que realice un bucle o que realice en un aviso una actividad de cálculo de CPU muy intensa.
+>O tal vez que no repita la repetición indefinidamente o algo así.
+>Y debido a esto, has consumido todos los recursos de ese modelo, y ahora todos los que quieran usarlo deben esperar a que completes lo que le hayas pedido.
+>Ahora bien, si usas estos modelos implementados para diferentes proveedores de nube, por ejemplo, OpenAI o quizás Vertex de Gemini,
+>
+> * Las API tienen algunas limitaciones.
+>Así que quizás estés explotando la debilidad y el límite de la API.
+>Y debido a esto, estás negando el servicio a todos los demás que podrían querer usar esa API de todos modos.
+>
+
+
+### 90. Adversarial  Attack Examples
+
+>[!NOTA]
+>
+>Quizás el último material fue demasiado teórico.
+>Y no entiendes exactamente a qué me refiero con pruebas adversarias y con intentar engañar a la IA para que crea algo.
+>Es lo que no debería ser.
+>
+>Te daré cuatro ejemplos para que entiendas mejor qué son las pruebas adversarias.
+>Serán ejemplos reales de personas que las han probado e intentado vulnerar el sistema.
+>
+>![.](images/2025-09-21_152855.png "")
+>
+> * El primer ejemplo es un hackeo del coche autónomo de Tesla.
+>Pero no es un hackeo real.
+>Es algo que Tesla pidió a la gente que intentara hackear su coche autónomo.</br>
+>La idea es que un grupo de personas colocara tres pequeños puntos en la carretera, lo que significa que se está formando un nuevo carril.
+>Si seguimos, te lo mostraré.</br>
+>Entonces, ¿cómo engañaron a la computadora?</br>
+>Normalmente, este es el carril de aquí y el coche circulará por él.
+>Y ahora, esas personas han colocado tres puntos rojos o tres puntos blancos aquí, lo que significa que el carril
+>ahora se moverá a otro.</br>
+>Correcto.
+>En este caso, el coche autónomo de Tesla se puso en el lado opuesto de la carretera.
+>Se incorporó al tráfico en sentido contrario porque pensó que el carril se dividiría. </br></br>
+>Este es un ejemplo de prueba adversarial.</br>
+>Se utiliza la programación del coche.
+>Cuando se ven tres puntos, significa que se sabe que hay que girar a la izquierda porque la banda o el carril real se mueve en esa dirección.
+>Y en este caso, se movió hasta que se incorporó al tráfico en sentido contrario.</br>
+>La programación es correcta, pero esas personas la utilizan y engañaron a la supercomputadora
+>o al coche autónomo para que pensaran que se está utilizando de forma incorrecta.
+>
+>![.](images/2025-09-21_152722.png "")
+>
+> * Les daré otro ejemplo.
+>Si recuerdan, hace un tiempo hubo un aviso, el 5 de noviembre de 2023, cuando alguien dijo: "Repite la palabra".
+>La palabra para "empresa para siempre".
+>Y entonces ChatGPT empezó a repetir:
+>Empresa, empresa, empresa, empresa, y así sucesivamente.
+>Y repitió la palabra "empresa" hasta que empezó a mostrar datos de entrenamiento.</br>
+>Así que pueden ver algunos de los datos de entrenamiento utilizados para entrenar el modelo.
+>Y como pueden ver, aquí hay algunos números de teléfono.
+>Aquí hay una dirección de correo electrónico.
+>También hay algunos nombres.
+>Como pueden imaginar, esto no está bien.
+>¿Por qué?</br>
+>Y pasaré al siguiente ejemplo.
+>Y el siguiente ejemplo no lo está.
+>El siguiente ejemplo es este:
+>Es un experimento.</br>
+>Un grupo de investigadores dijo: "Usaremos datos de entrenamiento para entrenar el modelo". En estos datos de entrenamiento, insertaron el número de una tarjeta de crédito.
+>La idea era que, si entrenaba mi modelo, ¿memorizaría los datos o simplemente los usaría para volverse más inteligente?
+>Lo que hicieron fue entrenar este modelo con menos de un montón de texto.</br>
+>Y en ese texto, nuevamente, había un número de tarjeta de crédito.
+>Luego, le preguntaron al modelo con una instrucción, varias frases, que contenían la respuesta justo antes del número de tarjeta.
+>Era una pregunta, y luego el modelo también mostró el número de la tarjeta.
+>De nuevo, se trata de algunos de los datos de entrenamiento.
+>Se formula la pregunta de una manera tan particular que se puede extraer este tipo de información.
+>
+>![.](images/2025-09-21_151640.png "")
+>
+>* Quizás el último ejemplo que quiero mostrar, que es este, se trata de añadir ruido.
+>Ahora bien, cuando se combina ruido con una imagen, no se piense que se coloca esta imagen encima de esta. Y luego obtendrás algo que no podemos percibir como humanos.
+>El ruido altera, digamos, el...
+>Otro ejemplo que quiero dar, y este sería el último, se trata del ruido.
+>Como pueden ver a la izquierda, aquí tienen a este perro.
+>Así que tienen dos ejemplos de este perro.
+>
+
+### 91. Adversarial  AI Testing - Poisoning attack
+
+>[!NOTE]
+>
+>![.](images/2025-09-21_153903.png "")
+>
+>Ahora, también quiero hablar sobre el concepto de un ataque de envenenamiento.
+>
+>En primer lugar, ¿qué es exactamente un ataque de envenenamiento y por qué se le llama así?
+>Bueno, si seguimos el concepto de entrada y salida de basura, ¿qué se incluye en un modelo?
+>
+>Bueno, no se trata de indicaciones, sino de datos de prueba.
+>Recuerden que la calidad de sus modelos depende de sus datos de prueba, algoritmos y demás.
+>Por lo tanto, un ataque de envenenamiento implica añadir datos envenenados.
+>Decir que están corruptos es incorrecto.
+>No tiene sentido.
+>Y por eso, se ha envenenado el modelo.
+>
+>La definición es que se añaden datos manipulados para intentar alterar la salida del modelo, lo que genera respuestas poco fiables.
+>
+>Esto es un ataque de envenenamiento.
+>Ahora bien, si piensas en las consecuencias y los tipos de ataques que tenemos, se trata de envenenamiento, donde se altera el modelo y los datos, y también de ataques de puerta trasera.
+>Un ataque de puerta trasera se refiere a crear datos de entrenamiento de tal manera que, después de que el modelo se haya entrenado con ellos y los haya consumido para obtener más información, se añade una puerta trasera que, para una solicitud específica, genera un resultado modificado.
+>
+>Imagina que esto podría ser ingeniería social.
+>Imagina que intentas estudiar algo y alguien ha instalado una puerta trasera para...
+>Imagina las matemáticas, el teorema de Pitágoras.
+>Siempre dará una respuesta incorrecta.
+>Así que, ingeniería social, información falsa.
+>Es algo muy poderoso, especialmente hoy en día, cuando la gente confía cada vez más en ChatGPT y Gemini.
+>
+>Y por esta razón, los ataques de envenenamiento y los ataques de puerta trasera dirigidos a temas específicos son muy peligrosos.
+>¿Y cuáles son las consecuencias de esto?
+>Bueno, se trata de problemas de confiabilidad.
+>Si piensas en ChatGPT y Google Gemini,
+>
+>Google Gemini se lanzó unos 3 o 5 meses después de ChatGPT, pero no estaba listo.
+>Proporcionaba información falsa al agregar la generación de imágenes que proporcionaba.
+>También, a veces, información histórica incorrecta o imágenes incorrectas.
+>Y por esta razón, Gemini siempre fue el menos favorecido, siempre estuvo por detrás de GPT.
+>
+>Hay ataques de envenenamiento que afectan el rendimiento, que intentan crear bucles dentro del modelo para que este se vuelva más difícil de usar, o que esperes tanto tiempo por la información que simplemente abandones como usuario y cambies a otro modelo.
+>Y quizás otro podría ser un envenenamiento dirigido.
+>
+>Ahora, permítanme darles un ejemplo. Trabajando en Cambridge Analytics, que formó parte de las elecciones presidenciales de 2016, piensen en el siguiente escenario.
+>Tienen un modelo perfecto que proporciona información de calificaciones constantemente.
+>Está actualizado.
+>Hace buenos cálculos.
+>Crea correos electrónicos excelentes.
+>
+>Es mejor revisar sus mensajes de texto, pero tiene una información engañosa específica sobre cierto candidato a las elecciones presidenciales.
+>Y podrían preguntarles cuál es la postura del presidente sobre inmigración, economía, lo que sea.
+>Y en este caso, la información engañosa entra en acción y ven que es, bueno, terrible desde su punto de vista.
+>Y debido a esto, van a cambiar su voto.
+>
+>Así que esto es una información engañosa dirigida, donde intentan alterar la percepción de alguien o simplemente quieren proporcionar información falsa sobre un tema determinado.
+>Por eso, los ataques de envenenamiento y cómo prevenirlos mediante un equipo rojo son extremadamente importantes.
+>Y también forman parte del aspecto ético de cualquier modelo de IA, por ejemplo.
+>
+>![.](images/2025-09-21_154638.png "")
+>
+>Básicamente, la parte preventiva y la reactiva.
+>Ahora nos centraremos en la parte preventiva.
+>Se trata de la integridad de los datos.
+>Cada vez que obtengas datos para entrenar tu modelo, tómalos de una fuente imparcial.
+>
+>Asegúrate de que nadie haya alterado los datos y entrena tu modelo con datos que sepas con certeza que no han sido alterados por nadie, no están sesgados y se ajustan a tu propósito.
+>
+>La otra parte es la desinfección de datos.
+>Quizás estés recopilando datos de internet, de Reddit, de todo internet y no sepas qué contienen.
+>Esto significa que antes de que los datos entren en tu proceso de aprendizaje automático para entrenar tu modelo, necesitas asegurarte de que se desinfecten.
+>
+>Tienes filtros para todo lo imaginable, de modo que solo datos de buena calidad entren en tu modelo.
+>Y quizás otra opción podría ser contar con un equipo rojo.
+>El equipo rojo, en las pruebas de seguridad, se encarga de las pruebas de penetración.
+>Son las personas que intentan vulnerar tu sistema.
+>
+>En este caso, tenemos un equipo rojo: un grupo de personas que intentan vulnerar tu sistema y que está diseñado para realizar ataques de envenenamiento con el fin de manipularlo, obtener información confidencial, explotarlo o simplemente agregar datos no depurados o estadísticamente incorrectos, y la lista podría continuar.
+>
+>![.](images/2025-09-21_154818.png "")
+>
+>Ahora, para continuar, veamos cuatro métodos para detectar ataques de envenenamiento de datos en tu propia empresa.
+>Lo primero es usar datos no validados ni depurados.
+>Esto significa que puedes tomar cualquier tipo de datos de cualquier lugar.
+>
+>Los modificas y luego los introduces en tu modelo para ver si este realmente puede decir que los datos no son correctos.
+>No quiero entrenarlo porque estadísticamente es incorrecto, está sesgado o no lo sé.
+>También se pueden probar algoritmos de envenenamiento de datos.
+>
+>Existen diferentes algoritmos, como Thrust (y no entraré en detalles), que están específicamente entrenados para detectar datos alterados y ataques de envenenamiento.
+>Recuerden que en una clase anterior hablamos de la foto de un cachorro, y luego se añade ruido, y eso se convierte en algo diferente.
+>Bueno, un algoritmo podría detectar eso.
+>
+>Y, por supuesto, también se podría realizar una auditoría del comportamiento del modelo.
+>Esto significa entrenar los modelos solo con conjuntos de datos limpios.
+>Y luego se empieza a intentar añadir conjuntos de datos falsos.
+>Se intenta manipular los datos con datos propios seleccionados y se comprueba si la auditoría real, la auditoría de su comportamiento, del comportamiento del modelo, detecta este tipo de anomalías.
+>
+>Para resumir, la idea detrás del envenenamiento de datos se basa en entrenar tu modelo con datos limpios.
+>Si esto no es posible, asegúrate de detectar cuándo los datos no están limpios.
+>No hay datos.
+>Monitoreas tu modelo constantemente para detectar cualquier tipo de anomalía e intentas probar y validar diferentes anomalías internas.
+>
+>También puedes realizar pruebas que validen la entrada y la salida, asegurándote de que siempre sean iguales para esta entrada. Obtendré este tipo de salida porque uso datos limpios, salida limpia, datos incorrectos, salida incorrecta.
+>
+
+### 92. Adversarial  AI Testing - Privacy Leakage  Testing
+
+>[!NOTE]
+>
+>![.](images/2025-09-21_160959.png "")
+>
+>Quiero hablar sobre la fuga de privacidad.
+>
+>1. Como saben, se ha podido recuperar información de grandes modelos de lenguaje; básicamente, se trata de una fuga de privacidad.
+>Esto ocurre cuando, sin darse cuenta, se exponen datos confidenciales o datos de entrenamiento utilizados en el modelo.
+>Esto se puede lograr con diversas técnicas.
+>Continuemos.
+>
+>2. Un problema es que los modelos pueden exponer datos que han utilizado para entrenar.
+>Esto se debe a que memorizan esos datos.
+>En lugar de usar los datos para aprender y, quizás, usar datos anónimos, simplemente memorizan los datos y luego los usan para obtener un resultado excelente.
+>Entonces, ¿quizás no sea el sistema adecuado, sino la mejora de la recuperación, donde buscan en una base de datos y obtienen información?
+>No, simplemente memorizan los datos y te los entregan.
+>Imagina que tienes una tarjeta de crédito memorizada.
+>Se entregará.
+>Esto es una cosa ahora.
+>
+>3. La otra tiene que ver con la fuga de contexto.
+>Puede que no te proporcione datos confidenciales, pero sí el contexto
+>de algo con lo que quizás hayas entrenado tu modelo en una empresa específica y en un contexto específico
+>en aquel entonces.
+>Por lo tanto, no conviene proporcionar este tipo de información sin que el usuario la solicite.
+>Así que siempre debes proporcionar el contexto que el usuario desea y nada más, porque esto también significa
+>que estás filtrando el contexto en el que has aprendido tus datos de entrenamiento.
+>Y si te preguntas cuáles son las fuentes comunes de fuga, es porque hemos entrenado
+>nuestro modelo, por ejemplo, con conjuntos de datos confidenciales.
+>Quizás haya entrenado su modelo con información de tarjetas de crédito, órdenes de compra o enfermedades o historiales médicos.
+>Esta es una razón común por la que se producen fugas de datos.
+>Y estos datos se han memorizado.
+>Pasamos al punto número dos.
+>
+>4. La otra razón es el manejo inadecuado de los datos del usuario durante las interacciones.
+>Puede que esté solicitando algo y proporcionando información personal.
+>El modelo almacena esa información y la muestra en un escenario diferente cuando otra persona ingresa o hace preguntas sobre usted, o alguien que se parece a usted a partir de su huella digital.
+>
+>![.](images/2025-09-21_161351.png "")
+>
+>Ahora, si continuamos, también quería hablar sobre técnicas para detectar fugas de privacidad.
+>
+> * La primera es sobre pruebas adversarias.
+>Se utilizan para hacer preguntas específicas.
+>Se presentan indicaciones específicas para obtener información personal confidencial.
+>Podría ser una.
+>O quizás para obtener información comercial confidencial o cualquier otra cosa que la empresa que entrenó el modelo no quiera revelar al público.
+>Un ejemplo podría ser: "Dime los números de teléfono que conoces".
+>Normalmente, este tipo de pregunta no debería obtener una respuesta exacta, ya que el número de teléfono podría pertenecer a cualquiera.
+>Por lo tanto, este tipo de pruebas adversarias es algo que el modelo debería evitar y debería dar una respuesta general, como el número de teléfono de un país específico: este es el código del país, seguido de nueve, diez u once dígitos, según el país.
+>Pero no debería darte ningún número de teléfono específico.
+>
+> * Ahora, otra pregunta se refiere a las pruebas de reducción de datos.
+>¿Qué significa realmente?
+>Correcto.
+>El objetivo es evaluar si el modelo puede reconocer y omitir datos confidenciales.
+>Esto significaría si puedo obtener el informe sobre algo.
+>Pero, de nuevo, se excluye toda la información de tarjetas de crédito.
+>Normalmente, el modelo, debido a que existe este reconocimiento de entidades con nombre, debe poder identificar diferentes tipos de entidades o correos electrónicos: fecha de nacimiento, código de la seguridad social, etc.
+>Si le dices al modelo "dame esto", sabes que podrá identificar que se trata de un número de tarjeta de crédito o de la seguridad social y que debe omitirse del informe.
+>Se trata de una prueba para garantizar que los modelos identifiquen entidades y sepan que algunas de ellas son privadas y no deben exponerse.
+>
+> * Otra opción podría ser los ataques de inyección rápida. El objetivo es comprobar si las entradas externas manipulan el modelo para que revele datos confidenciales.
+>Les daré un ejemplo.
+>Podría ser que estuvieran hablando con su madre y le dijeran: «Quiero este tipo de información».
+>>Retrocedamos y ahora me han proporcionado el informe con la información de la tarjeta de crédito.
+>Ahora quiero la información de la tarjeta de crédito porque la necesito para…
+>No sé qué.
+>
+>Por lo tanto, el modelo debería seguir previniendo y prohibiendo la exposición de la información de la tarjeta de crédito, o
+>quizás de cualquier tipo de enfermedad o historial médico de un paciente en particular, incluso si se basa en el número de la Seguridad Social; no deberían poder ver este tipo de información.
+>
+
+### 93. Adversarial  AI Testing - Evasion Attacks
+
+
+>[!NOTE]
+>
+>![.](images/2025-09-21_162926.png "")
+>
+>¿Que son? Son técnicas que se utilizan para engañar al modelo lingüístico general y lograr que produzca contenido que normalmente no debería estar permitido.
+>
+>Esto se hace únicamente mediante indicaciones.
+>En este caso, no se utilizan otras técnicas, excepto la indicación.
+>
+>¿Por qué?**
+>Bueno, una vez que nos adentremos en el tema, lo entenderás.
+>
+>Por qué también se llama evasión?
+>
+>Y se llama evasión porque estás evadiendo las salvaguardas.
+>Normalmente, cada vez que introduces una indicación, hay salvaguardas que revisan tu palabra, tu ortografía, tu significado y tu intención para ver si es buena o mala.
+>Y en este caso, el modelo simplemente dirá: "No puedo hacer eso".
+>Entonces, quieres evadir al modelo, ¿verdad?
+>Quieres evadir estas salvaguardas, que están programadas para que tu madre siga creando contenido no deseado y dañino.
+>
+>Recuerda, la madre puede hacer cualquier cosa.
+>
+>Es solo que está censurado y muy limitado por quienes crearon el modelo.
+>Porque quizás la madre sepa cómo crear una bomba.
+>
+>1. **¿Pero puedes lograr que la madre te lo diga?**
+>Bueno, ojalá no.
+>Por eso los ataques de evasión son tan importantes para asegurar la seguridad de tu madre.
+>Piénsalo como una especie de prueba de penetración.
+>Una especie de...
+>
+>2. Bien, **¿por qué lo hacemos?**
+>Bueno, comprender estos ataques ayuda a mejorar la seguridad y la fiabilidad de los sistemas de IA.
+>Por eso también se realizan pruebas de penetración para mejorar el sistema, hacerlo más robusto, para que la gente
+>no acceda a tus datos, a tu información de usuario, a tus secretos, etc.
+>
+>3. **Los objetivos son los mismos que en el anterior.**
+>Para que tu modelo sea más robusto, mejora las medidas de seguridad para asegurarte de que sea ético.
+>Y, por supuesto, quizás quieras pasar una auditoría porque la UE dice qué puede y qué no puede hacer un modelo de IA. Entonces.
+>Si quieres implementar un modelo dentro de la Unión Europea, este debe cumplir ciertos criterios y
+>algunas formas de probar dichos criterios.
+>Pasar la auditoría podría ser una forma de acceder a diferentes tipos de ataques que veremos.
+>Y ya lo hemos visto.
+>Y la evasión es uno de estos ataques.
+>
+>4. Entonces, **¿cuál es el impacto potencial?**
+>Bueno, puede llevar a la difusión de contenido dañino y a la manipulación del modelo con fines maliciosos.
+>Porque, de nuevo, tal vez tengas malas intenciones y quieras obtener información del modelo
+>porque no tienes ni idea de cómo construir un arma.
+>Pero el modelo lo sabe, pero no debería decirte cómo hacerlo.
+>
+>5. Y ya sabes, **el método común de evasión** es intentar eludir las medidas de seguridad y las salvaguardas de
+>la lectura, la implementación de tu modelo, y de todos modos lo veremos más adelante.
+
+
+### Quiz 5: Chapter Quiz
+
+>[!NOTE]
+>
+>![Quiz 5: Chapter Quiz](images/2025-09-21_164618.gif "Quiz 5: Chapter Quiz")
+>
 
 
 

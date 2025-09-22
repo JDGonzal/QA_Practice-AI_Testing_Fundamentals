@@ -611,7 +611,7 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 
 >[!IMPORTANT]
 >
->[![logic_editor](images/2025-09-05_071635.gif "Haz clic aquí y mira el video `logic_editor`")](videos/06_logic_editor.mp4) 
+>[![logic_editor](images/2025-09-05_071635.gif "Haz clic aquí y mira el video `logic_editor`")](videos/06_logic_editor.mp4)
 >
 
 
@@ -626,6 +626,204 @@ Most useful courses to develop the skills needed in this new era of QAs in AI.
 >
 
 
+### ▶️ Comprehensive settings to Run a test
 
+1. En este video, veamos las opciones integrales disponibles al ejecutar una prueba de automatización. En ACCELQ, el escenario y los conjuntos de pruebas son dos entidades que se ejecutan principalmente. Si recuerda, un escenario es un conjunto de casos de prueba que representan el flujo que se intenta validar, y un conjunto es una combinación de escenarios que se ejecutan como una sola unidad. </br> ![Scenarios -> 6](images/2025-09-22_072619.png "Scenarios -> 6")
+
+
+
+
+
+2. Dependiendo de si intentas ejecutar un escenario o un traje, puedes elegir entre varias opciones para iniciar una ejecución. Por ejemplo, puedes simplemente hacer clic derecho en un escenario y seleccionar "Ejecutar": </br> ![`Verify Founds Transfer on QBank demo` -> Run](images/2025-09-22_073000.png "`Verify Founds Transfer on QBank demo` -> Run")
+
+
+
+
+
+3. O puedes abrir el escenario y luego hay un botón de ejecución contextual aquí que también ayuda: </br> ![Open -> `Verify Founds Transfer on QBank demo` -> Run](images/2025-09-22_073303.png "Open -> `Verify Founds Transfer on QBank demo` -> Run")
+
+
+
+
+
+4. Además, también tienes una opción global para iniciar una ejecución desde arriba sin tener que abrir la entidad primero: </br> ![Global `Run`](images/2025-09-22_073715.png "Global `Run`")
+
+
+
+
+
+5. Y la única diferencia es que, cuando intentas correr desde arriba, el escenario o el palo se preselecciona en función de tu ejecución anterior, en lugar del que tienes abierto actualmente: </br> ![Run Automation Test -> Execution Params / Run Settings](images/2025-09-22_074151.png "Run Automation Test -> Execution Params / Run Settings")
+
+
+
+
+
+
+
+
+
+
+
+
+6. Entonces, aquí puedes comenzar proporcionando un propósito para la ejecución que se mostrará de forma destacada en tu informe de prueba: </br> ![Scenario selection](images/2025-09-22_074928.png "Scenario selection")
+
+
+
+
+
+
+7. Puedes elegir entre ejecutar un traje o un escenario, como dije antes: </br> ![Opciones: Test Suite / Scenario](images/2025-09-22_075652.png "Opciones: Test Suite / Scenario")
+
+
+
+
+
+
+8. Una vez que hayas seleccionado el traje o escenario, si deseas configurar qué casos de prueba quieres que se ejecuten, puedes hacer clic en este enlace y elegir la opción que prefieras: </br> ![Test Cases -> 3](images/2025-09-22_080028.png "Test Cases -> 3")
+
+
+
+
+
+
+9. Entonces, como puedes ver, puedes ejecutar todos los casos de prueba o seleccionar algunos específicos según tus preferencias:  </br> ![Scenario / Test Case](images/2025-09-22_080629.png "Scenario / Test Case")
+
+
+
+
+
+
+
+10. Y en la parte inferior aquí, tienes múltiples opciones. Como puedes ver, el primer paso aquí es programar la ejecución: </br> ![Múltiples opciones](images/2025-09-22_081005.png "Múltiples opciones") </br> ![When Yo Run](images/2025-09-22_081145.png "When Yo Run")
+
+
+
+
+
+
+
+
+
+
+
+
+11. Entonces, de forma predeterminada, podría ejecutarlo en el momento actual o también podría configurarlo para una ejecución futura, que podría ser única o recurrente: </br> ![Schedule for a Future Run](images/2025-09-22_081645.png "Schedule for a Future Run")</br> Para ejecutarlo, puede hacer clic en este enlace y elegir la opción que desee. </br> Como puede ver, puede ejecutar todos los casos de prueba o seleccionar algunos específicos. </br> En la parte inferior, tiene varias opciones. Como puede ver, la primera es programar la ejecución.
+
+
+
+
+
+
+12. Entonces, cuando realizas una ejecución recurrente, tienes opciones integrales disponibles, como puedes ver: </br> ![When To Run -> Schedule for a Future Run -> Recurring](images/2025-09-22_082157.png "When To Run -> Schedule for a Future Run -> Recurring")
+
+
+
+
+
+13. Y desde aquí, también puedes iniciar la creación de un trabajo de CI, de lo que hablaremos en un video aparte: </br> ![When To Run -> Create CI Job](images/2025-09-22_111220.png "When To Run -> Create CI Job")
+
+
+
+
+
+
+14. Y luego aquí eliges a qué entorno se dirigirá esta ejecución. Un entorno es algo que puedes configurar en la configuración de tu proyecto y, según tu entorno de prueba y tu entorno de implementación, puedes configurar y elegir el entorno donde deseas ejecutar esta prueba: </br> ![When To Run -> App Environment](images/2025-09-22_111758.png "When To Run -> App Environment")
+
+
+
+
+
+
+15. Por lo tanto, los datos de prueba y otros aspectos se basarán específicamente en el entorno que seleccione: </br> ![When To Run -> App Environment x 3](images/2025-09-22_112010.png "When To Run -> App Environment x 3")
+
+
+
+
+
+
+16. Y Luego, aquí, selecciona el agente o el host donde se ejecutará la prueba: </br> ![Agent / Host](images/2025-09-22_112405.png "Agent / Host")
+
+
+
+
+
+
+17. Podrías configurar un agente en tu máquina local para ejecutar la prueba localmente o, dependiendo de los agentes disponibles, podrías elegir uno. </br> Este podría ser un agente en la nube o quizás un agente que se encuentra en su entorno de laboratorio. </br> También están disponibles otras integraciones como la pila de navegadores y el laboratorio de origen: </br>  </br> ![Agent / Host -> Select Agent by ...](images/2025-09-22_112730.png "Agent / Host -> Select Agent by ...") </br></br> Además, si tiene la edición empresarial, también puede seleccionar el agente por disponibilidad, que es una selección dinámica de agentes donde el sistema seleccionará el agente adecuado según el balanceo de carga y los criterios que especifique. </br> También puedes dejar este campo en blanco o escribir un prefijo o un pequeño texto coincidente para elegir entre un subconjunto de agentes.
+
+
+
+
+18. Y luego, una vez que seleccionas el agente, también puedes seleccionar el navegador y el sistema operativo. </br> Y si está ejecutando automatización móvil, también tendrá la oportunidad de seleccionar el dispositivo móvil: </br> ![Web OS & Browser](images/2025-09-22_113914.png "Web OS & Browser")
+
+
+
+
+
+
+19. El perfil del controlador aquí le permite configurar los detalles de invocación del navegador web, y trataremos esto en un tema aparte: </br> ![Driver Profile](images/2025-09-22_145856.png "Driver Profile")
+
+
+
+
+
+
+20. Aquí puedes elegir las opciones de registro. Dispones de diferentes parámetros. Puedes tomar capturas de pantalla en modo óptimo, completo o en caso de error.</br>En modo óptimo, solo se tomarán las capturas mínimas necesarias según cómo cambie el estado de la aplicación. En modo completo, se tomarán capturas de pantalla en cada paso de la prueba, y en caso de error, solo se tomarán capturas de pantalla cuando se produzca un error: </br> ![Screenshots / Logging](images/2025-09-22_150224.png "Screenshots / Logging")
+
+
+
+
+
+
+21. De manera similar, en cuanto al registro, tenemos opciones estándar y detalladas. La opción detallada también incluye más información para la resolución de problemas en los archivos de registro: </br> ![Logging -> Standard / Verbose](images/2025-09-22_151419.png "Logging -> Standard / Verbose")
+
+
+
+
+
+
+22. Aquí puedes configurar los tiempos de espera de tu página y elementos. Analizaremos la relevancia funcional de estos parámetros en otro vídeo: </br> ![Page / Element Load Time](images/2025-09-22_151802.png "Page / Element Load Time")
+
+
+
+
+
+
+23. Aquí puede habilitar la ejecución paralela según la configuración de su agente. Este debe estar configurado para aceptar la cantidad necesaria de subprocesos paralelos. </br> Aquí puede configurar para esta ejecución específica cuántos subprocesos paralelos desea utilizar para invocar el navegador en paralelo y ejecutar la prueba: </br> ![Parallel Execution](images/2025-09-22_152353.png "Parallel Execution")
+
+
+
+
+
+
+24. Aquí tienes la opción de autorreparación y depuración de elementos. Por defecto, la autorreparación está habilitada y te permite acceder a los elementos en caso de cambios en la aplicación o en el contenido dinámico.</br> Y si por alguna razón los criterios de identificación que has establecido se vuelven obsoletos, el proceso de IA se activará e intentará identificar el elemento: </br> ![Element Self-Healing](images/2025-09-22_152840.png "Element Self-Healing")
+
+
+
+
+
+
+25. La segunda opción es que la ejecución de la prueba se detenga si se produce un fallo en un elemento y se desea comprender qué cambios se han producido en la aplicación. Esto permite observar en tiempo real cómo cambian los atributos y criterios de los elementos: </br> ![Element Self-Healing -> Pause and ...](images/2025-09-22_153357.png "Element Self-Healing -> Pause and ...")
+
+
+
+
+
+
+
+26. Finalmente, aquí puedes configurar las notificaciones según tu edición empresarial. Primero, puedes compartir el informe por correo electrónico. Este puede ser un usuario del sistema o cualquier dirección de correo electrónico externa. </br> Además, la integración con Teams y Slack está disponible para la edición empresarial.</br>![Notify To](images/2025-09-22_153849.png "Notify To") </br> Puedes elegir el nombre del canal donde quieres que se publique el resultado una vez finalizado. También puedes elegir cuándo quieres enviar la notificación de resultados, tanto al inicio como al finalizar.
+
+
+
+
+27. Bien, estas son las opciones completas disponibles al ejecutar una prueba de automatización.</br> Hay algunas adiciones adicionales que abordaremos en próximos videos. </br> Y un punto importante a tener en cuenta es que todas estas selecciones de configuración se guardan como predeterminadas para las ejecuciones posteriores. </br> Así que no es necesario repetir esto.
+
+
+
+
+
+>[!IMPORTANT]
+>
+>[![logic_editor](images/2025-09-21_171036.gif "Haz clic aquí y mira el video `Reviewed Configuring and Running Automation Test`")](videos/07_Reviewed_Configuring_and_Running_Automation_Test.mp4)
+>
 
 
